@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import BrandLogo from "./BrandLogo";
-import { Phone, Mail, MapPin, ChevronRight, Check } from "lucide-react";
+import { Phone, Mail, MapPin, ChevronRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 export default function Footer() {
@@ -24,26 +24,25 @@ export default function Footer() {
   return (
     <footer id="contact-info" className="bg-[#02331c] text-[#d1e5db] font-sans">
       {/* Main Footer Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6">
-          {/* Col 1: Brand Info (3.5 cols) */}
-          <div className="lg:col-span-3 space-y-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-8 sm:pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-7 lg:gap-6">
+          {/* Col 1: Brand Info (3 cols) */}
+          <div className="sm:col-span-2 lg:col-span-3 space-y-3.5">
             <BrandLogo variant="light" />
 
-            <p className="text-xs text-[#a9cfbe] leading-relaxed pt-2">
+            <p className="text-xs text-[#a9cfbe] leading-relaxed pt-1">
               We bring you premium quality Rice, Pulses, Dry Fruits, Millets,
               Spices and more, sourced from trusted farms and delivered with
               purity and care to your table.
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-2.5 pt-2 text-[#d1e5db]">
-              {/* Facebook */}
+            <div className="flex items-center gap-2 pt-1 text-[#d1e5db]">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
+                className="w-7 h-7 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
                 aria-label="Facebook"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -51,12 +50,11 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* Instagram */}
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
+                className="w-7 h-7 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
                 aria-label="Instagram"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -64,12 +62,11 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* YouTube */}
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
+                className="w-7 h-7 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
                 aria-label="YouTube"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -77,81 +74,64 @@ export default function Footer() {
                 </svg>
               </a>
 
-              {/* LinkedIn */}
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
+                className="w-7 h-7 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
                 aria-label="LinkedIn"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
               </a>
-
-              {/* Pinterest */}
-              <a
-                href="https://pinterest.com"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#054326] hover:bg-[#075933] flex items-center justify-center transition-colors hover:text-white"
-                aria-label="Pinterest"
-              >
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345-.09.375-.291 1.199-.334 1.379-.053.224-.174.271-.4.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 12-5.393 12-12 0-6.628-5.373-12-12-12z" />
-                </svg>
-              </a>
             </div>
           </div>
 
-          {/* Col 2: Contact Info (2.5 cols) */}
-          <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="font-serif font-bold text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
+          {/* Col 2: Contact Info (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
               Contact Info
             </h4>
 
-            <div className="space-y-3 text-xs text-[#b8d6c7]">
-              {/* Phone */}
-              <div className="flex items-start gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-[#054326] flex items-center justify-center text-[#58cf8b] shrink-0 mt-0.5">
-                  <Phone className="w-3.5 h-3.5" />
+            <div className="space-y-2.5 text-xs text-[#b8d6c7]">
+              <div className="flex items-start gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#054326] flex items-center justify-center text-[#58cf8b] shrink-0 mt-0.5">
+                  <Phone className="w-3 h-3" />
                 </div>
                 <div>
-                  <div className="text-[11px] text-[#7eb59a]">Call us at</div>
+                  <div className="text-[10px] text-[#7eb59a]">Call us at</div>
                   <a
                     href="tel:+918769215905"
-                    className="hover:text-white transition-colors font-medium text-white block"
+                    className="hover:text-white transition-colors font-medium text-white block text-xs"
                   >
                     +91-8769215905, 8769115905
                   </a>
                 </div>
               </div>
 
-              {/* Email */}
-              <div className="flex items-start gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-[#054326] flex items-center justify-center text-[#58cf8b] shrink-0 mt-0.5">
-                  <Mail className="w-3.5 h-3.5" />
+              <div className="flex items-start gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#054326] flex items-center justify-center text-[#58cf8b] shrink-0 mt-0.5">
+                  <Mail className="w-3 h-3" />
                 </div>
                 <div>
-                  <div className="text-[11px] text-[#7eb59a]">Email us at</div>
+                  <div className="text-[10px] text-[#7eb59a]">Email us at</div>
                   <a
                     href="mailto:contact@yourbrand.com"
-                    className="hover:text-white transition-colors font-medium text-white block"
+                    className="hover:text-white transition-colors font-medium text-white block text-xs"
                   >
                     contact@yourbrand.com
                   </a>
                 </div>
               </div>
 
-              {/* Address */}
-              <div className="flex items-start gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-[#054326] flex items-center justify-center text-[#58cf8b] shrink-0 mt-0.5">
-                  <MapPin className="w-3.5 h-3.5" />
+              <div className="flex items-start gap-2">
+                <div className="w-6 h-6 rounded-full bg-[#054326] flex items-center justify-center text-[#58cf8b] shrink-0 mt-0.5">
+                  <MapPin className="w-3 h-3" />
                 </div>
                 <div>
-                  <div className="text-[11px] text-[#7eb59a]">Our Address</div>
-                  <p className="leading-snug text-white font-medium">
+                  <div className="text-[10px] text-[#7eb59a]">Our Address</div>
+                  <p className="leading-snug text-white font-medium text-xs">
                     11, Manish Bag Colony, Near Vikram Tower, Sapna Sangeeta,
                     Indore - 452001 M. P. INDIA
                   </p>
@@ -160,12 +140,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 3: Our Site (1.5 cols) */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="font-serif font-bold text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
+          {/* Col 3: Our Site (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
               Our Site
             </h4>
-            <ul className="space-y-1.5 text-xs text-[#a9cfbe]">
+            <ul className="space-y-1 text-xs text-[#a9cfbe]">
               {[
                 { name: "About Us", href: "#" },
                 { name: "Certifications", href: "#certifications" },
@@ -184,7 +164,7 @@ export default function Footer() {
                       onClick={link.action}
                       className="flex items-center gap-1 hover:text-white transition-colors group cursor-pointer text-left"
                     >
-                      <ChevronRight className="w-3 h-3 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
+                      <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
                       <span>{link.name}</span>
                     </button>
                   ) : (
@@ -192,7 +172,7 @@ export default function Footer() {
                       href={link.href}
                       className="flex items-center gap-1 hover:text-white transition-colors group"
                     >
-                      <ChevronRight className="w-3 h-3 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
+                      <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
                       <span>{link.name}</span>
                     </a>
                   )}
@@ -201,12 +181,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Categories (1.5 cols) */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="font-serif font-bold text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
+          {/* Col 4: Categories (2 cols) */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
               Categories
             </h4>
-            <ul className="space-y-1.5 text-xs text-[#a9cfbe] uppercase font-semibold">
+            <ul className="space-y-1 text-xs text-[#a9cfbe] uppercase font-semibold">
               {[
                 "PULSES",
                 "MILLET",
@@ -221,7 +201,7 @@ export default function Footer() {
                     href="#categories"
                     className="flex items-center gap-1 hover:text-white transition-colors group"
                   >
-                    <ChevronRight className="w-3 h-3 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
                     <span>{cat}</span>
                   </a>
                 </li>
@@ -229,9 +209,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 5: Newsletter & Payment Badges (2.5 cols) */}
-          <div className="lg:col-span-2 space-y-3.5">
-            <h4 className="font-serif font-bold text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
+          {/* Col 5: Newsletter & Payments (2 cols) */}
+          <div className="sm:col-span-2 lg:col-span-2 space-y-3">
+            <h4 className="font-serif font-bold text-xs sm:text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
               Newsletter
             </h4>
 
@@ -243,44 +223,39 @@ export default function Footer() {
             <form onSubmit={handleSubscribe} className="space-y-2">
               <input
                 type="email"
-                placeholder="Enter your email address"
+                placeholder="Enter email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-white text-gray-900 text-xs px-3 py-2 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#58cf8b]"
+                className="w-full bg-white text-gray-900 text-xs px-3 py-2 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#58cf8b]"
               />
               <button
                 type="submit"
-                className="w-full bg-[#0a4d29] hover:bg-[#0d6134] text-white font-bold text-xs uppercase tracking-wider py-2 rounded-lg transition-colors border border-[#1b6b3e] cursor-pointer"
+                className="w-full bg-[#0a4d29] hover:bg-[#0d6134] text-white font-bold text-[11px] uppercase tracking-wider py-2 rounded-lg transition-colors border border-[#1b6b3e] cursor-pointer"
               >
                 {isSubscribed ? "SUBSCRIBED ✓" : "SUBSCRIBE"}
               </button>
             </form>
 
             {/* Secure Payments Row */}
-            <div className="pt-2">
-              <div className="text-[11px] font-semibold text-[#81bba0] mb-2 uppercase tracking-wider">
+            <div className="pt-1">
+              <div className="text-[10px] font-semibold text-[#81bba0] mb-1.5 uppercase tracking-wider">
                 Secure Payments
               </div>
               <div className="flex items-center gap-1.5 flex-wrap">
-                {/* Visa */}
-                <div className="bg-white rounded px-2 py-1 text-[10px] font-black text-[#1a1f71] tracking-tighter shadow-xs">
+                <div className="bg-white rounded px-1.5 py-0.5 text-[9px] font-black text-[#1a1f71] tracking-tighter">
                   VISA
                 </div>
-                {/* Mastercard */}
-                <div className="bg-white rounded px-2 py-1 flex items-center shadow-xs">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#eb001b] -mr-1"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#f79e1b] opacity-80"></div>
+                <div className="bg-white rounded px-1.5 py-0.5 flex items-center">
+                  <div className="w-2 h-2 rounded-full bg-[#eb001b] -mr-0.5"></div>
+                  <div className="w-2 h-2 rounded-full bg-[#f79e1b] opacity-80"></div>
                 </div>
-                {/* UPI */}
-                <div className="bg-white rounded px-2 py-1 text-[10px] font-black text-[#0f7c41] shadow-xs">
+                <div className="bg-white rounded px-1.5 py-0.5 text-[9px] font-black text-[#0f7c41]">
                   UPI
                 </div>
-                {/* RuPay */}
-                <div className="bg-white rounded px-2 py-1 text-[10px] font-black text-[#00529b] shadow-xs">
+                <div className="bg-white rounded px-1.5 py-0.5 text-[9px] font-black text-[#00529b]">
                   RuPay
                 </div>
-                {/* AMEX */}
-                <div className="bg-white rounded px-2 py-1 text-[10px] font-black text-[#2e77bb] shadow-xs">
+                <div className="bg-white rounded px-1.5 py-0.5 text-[9px] font-black text-[#2e77bb]">
                   AMEX
                 </div>
               </div>
@@ -290,13 +265,11 @@ export default function Footer() {
       </div>
 
       {/* Sub-footer Bar */}
-      <div className="border-t border-[#064223] py-4 text-[11px] text-[#86b59e] px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
-          {/* Copyright */}
+      <div className="border-t border-[#064223] py-3.5 text-[10.5px] sm:text-[11px] text-[#86b59e] px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5 text-center md:text-left">
           <div>© 2026 Your Brand. All Rights Reserved.</div>
 
-          {/* Policy Links */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
             <a href="#" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
@@ -314,7 +287,6 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Designed with Love */}
           <div>
             Designed with <span className="text-red-400">❤️</span> for Better
             Food & A Healthier Life.

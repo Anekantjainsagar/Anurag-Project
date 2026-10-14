@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { BEST_SELLERS } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import { useCart } from "@/context/CartContext";
-import { Heart, Star, ChevronDown, ArrowRight, Check } from "lucide-react";
+import { Heart, Star, ChevronDown, ArrowRight } from "lucide-react";
 
 export default function BestSellersSection({
   activeCategoryFilter,
@@ -42,35 +42,35 @@ export default function BestSellersSection({
     : BEST_SELLERS;
 
   return (
-    <section id="best-sellers" className="py-12 bg-white border-t border-[#f0eee6]">
+    <section id="best-sellers" className="py-8 sm:py-12 bg-white border-t border-[#f0eee6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
           <div>
             <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
               Our Best Sellers
             </h2>
-            <p className="text-gray-500 text-xs sm:text-sm mt-1">
+            <p className="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1">
               Premium quality products loved by our customers
               {activeCategoryFilter && (
                 <span className="ml-2 font-semibold text-[#044a27]">
-                  • Filtered by {activeCategoryFilter}
+                  • {activeCategoryFilter}
                 </span>
               )}
             </p>
           </div>
 
           <a
-            href="#all-products"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#044a27] bg-[#f2f8f4] hover:bg-[#044a27] hover:text-white px-4 py-2 rounded-full border border-[#cde1d6] transition-all self-start sm:self-auto"
+            href="#best-sellers"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#044a27] bg-[#f2f8f4] hover:bg-[#044a27] hover:text-white px-3.5 py-1.5 sm:py-2 rounded-full border border-[#cde1d6] transition-all self-start sm:self-auto"
           >
             <span>View All Products</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        {/* Products Grid: 4 columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Products Grid: 1 col on mobile, 2 on tablet, 4 on desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {filteredProducts.map((product) => {
             const currentOption =
               selectedOptions[product.id] || product.options[0];
@@ -80,7 +80,7 @@ export default function BestSellersSection({
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#e4ebe6] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group relative bg-white border border-[#e4ebe6] rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Product Image Area */}
                 <div className="relative aspect-4/3 overflow-hidden bg-[#fbf9f5] border-b border-[#f0f3f1]">
@@ -93,11 +93,11 @@ export default function BestSellersSection({
                   {/* Wishlist Button (Circular, Top Right) */}
                   <button
                     onClick={() => toggleWishlist(product.id)}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer"
+                    className="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer"
                     aria-label="Add to wishlist"
                   >
                     <Heart
-                      className={`w-4 h-4 transition-colors ${
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${
                         isWishlisted
                           ? "fill-[#e11d48] text-[#e11d48]"
                           : "text-gray-400 hover:text-gray-700"
@@ -107,26 +107,26 @@ export default function BestSellersSection({
                 </div>
 
                 {/* Card Content */}
-                <div className="p-4 flex-1 flex flex-col justify-between space-y-3.5">
+                <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-3">
                   {/* Title & Subtitle */}
                   <div>
-                    <h3 className="font-semibold text-sm sm:text-base text-gray-900 group-hover:text-[#044a27] transition-colors line-clamp-1">
+                    <h3 className="font-semibold text-xs sm:text-sm text-gray-900 group-hover:text-[#044a27] transition-colors line-clamp-1">
                       {product.name}
                     </h3>
-                    <p className="text-xs text-gray-500 mt-0.5 font-medium">
+                    <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 font-medium">
                       {product.subtitle}
                     </p>
                   </div>
 
                   {/* Price Row */}
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-serif font-bold text-base sm:text-lg text-[#044a27]">
+                    <span className="font-serif font-bold text-sm sm:text-base text-[#044a27]">
                       ₹{currentOption.price.toFixed(2)}
                     </span>
-                    <span className="text-xs text-gray-400 line-through">
+                    <span className="text-[11px] sm:text-xs text-gray-400 line-through">
                       ₹{currentOption.originalPrice.toFixed(2)}
                     </span>
-                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">
+                    <span className="text-[9px] sm:text-[10px] font-bold text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded-full">
                       {currentOption.discount}
                     </span>
                   </div>
@@ -138,11 +138,11 @@ export default function BestSellersSection({
                       onClick={() =>
                         setOpenDropdownId(isDropdownOpen ? null : product.id)
                       }
-                      className="w-full flex items-center justify-between text-xs font-medium text-gray-700 bg-[#f9faf9] hover:bg-[#f0f4f2] border border-[#d6e0da] px-3 py-2 rounded-lg transition-colors cursor-pointer"
+                      className="w-full flex items-center justify-between text-xs font-medium text-gray-700 bg-[#f9faf9] hover:bg-[#f0f4f2] border border-[#d6e0da] px-2.5 py-1.5 sm:py-2 rounded-lg transition-colors cursor-pointer"
                     >
-                      <span>{currentOption.label}</span>
+                      <span className="truncate">{currentOption.label}</span>
                       <ChevronDown
-                        className={`w-3.5 h-3.5 text-gray-500 transition-transform ${
+                        className={`w-3.5 h-3.5 text-gray-500 transition-transform shrink-0 ml-1 ${
                           isDropdownOpen ? "rotate-180" : ""
                         }`}
                       />
@@ -156,10 +156,10 @@ export default function BestSellersSection({
                             key={i}
                             type="button"
                             onClick={() => handleOptionSelect(product.id, opt)}
-                            className="w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#f0f7f3] text-gray-700 transition-colors cursor-pointer"
+                            className="w-full text-left px-3 py-1.5 text-xs flex items-center justify-between hover:bg-[#f0f7f3] text-gray-700 transition-colors cursor-pointer"
                           >
-                            <span className="font-medium">{opt.label}</span>
-                            <span className="text-gray-500 font-semibold">
+                            <span className="font-medium truncate mr-2">{opt.label}</span>
+                            <span className="text-gray-500 font-semibold shrink-0">
                               ₹{opt.price.toFixed(2)}
                             </span>
                           </button>
@@ -171,25 +171,25 @@ export default function BestSellersSection({
                   {/* Rating row */}
                   <div className="flex items-center gap-1.5 text-xs text-gray-600">
                     <div className="flex items-center gap-0.5 text-amber-500">
-                      <Star className="w-3.5 h-3.5 fill-current" />
-                      <span className="font-bold text-gray-800">
+                      <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
+                      <span className="font-bold text-gray-800 text-[11px] sm:text-xs">
                         {product.rating}
                       </span>
                     </div>
-                    <span className="text-gray-400">({product.reviewsCount})</span>
+                    <span className="text-gray-400 text-[11px]">({product.reviewsCount})</span>
                   </div>
 
-                  {/* Action Buttons: ADD TO CART | BUY NOW */}
+                  {/* Action Buttons */}
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <button
                       onClick={() => addToCart(product, currentOption, 1)}
-                      className="w-full text-center text-xs font-bold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border border-[#044a27] py-2.5 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                      className="w-full text-center text-[10.5px] sm:text-xs font-bold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border border-[#044a27] py-2 rounded-lg transition-colors shadow-2xs cursor-pointer truncate"
                     >
                       ADD TO CART
                     </button>
                     <button
                       onClick={() => handleBuyNow(product)}
-                      className="w-full text-center text-xs font-bold text-white bg-[#044a27] hover:bg-[#03391e] py-2.5 rounded-lg transition-colors shadow-xs hover:shadow-md cursor-pointer"
+                      className="w-full text-center text-[10.5px] sm:text-xs font-bold text-white bg-[#044a27] hover:bg-[#03391e] py-2 rounded-lg transition-colors shadow-xs hover:shadow-md cursor-pointer truncate"
                     >
                       BUY NOW
                     </button>
