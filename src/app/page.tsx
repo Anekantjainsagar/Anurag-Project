@@ -18,10 +18,11 @@ import TrackOrderModal from "@/components/TrackOrderModal";
 import ToastNotification from "@/components/ToastNotification";
 
 function MainContent() {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  // First category ("Rice") is ALWAYS selected by default!
+  const [selectedCategory, setSelectedCategory] = useState<string>("Rice");
 
   const handleSelectCategory = (catName: string) => {
-    setSelectedCategory((prev) => (prev === catName ? null : catName));
+    setSelectedCategory(catName);
     const target = document.getElementById("best-sellers");
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
@@ -36,17 +37,20 @@ function MainContent() {
       {/* 2. Main Sticky Navbar */}
       <Navbar />
 
-      {/* 3. Hero Banner Section */}
+      {/* 3. Hero Carousel Section */}
       <HeroSection />
 
-      {/* 4. Shop by Category */}
+      {/* 4. Shop by Category (First category selected by default) */}
       <CategorySection
         onSelectCategory={handleSelectCategory}
         selectedCategory={selectedCategory}
       />
 
-      {/* 5. Our Best Sellers */}
-      <BestSellersSection activeCategoryFilter={selectedCategory} />
+      {/* 5. Our Best Sellers & Category Catalog */}
+      <BestSellersSection
+        activeCategoryFilter={selectedCategory}
+        onSelectCategory={handleSelectCategory}
+      />
 
       {/* 6. Dual Promo Banners */}
       <PromoBanners />

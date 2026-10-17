@@ -10,14 +10,14 @@ export default function PromoBanners() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
           {/* Left Banner: Premium Rice Collection */}
           <div className="relative overflow-hidden rounded-2xl border border-[#decbb0] shadow-2xs bg-[#dfd0bd] flex flex-col justify-between group min-h-[190px] sm:min-h-[220px]">
-            {/* Background image covering right half */}
+            {/* Background high-res image covering right half */}
             <div className="absolute right-0 top-0 bottom-0 w-3/5 sm:w-1/2 pointer-events-none overflow-hidden">
               <img
-                src="/images/banner-rice.jpg"
+                src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=1000&q=80"
                 alt="Premium Rice Collection"
-                className="w-full h-full object-cover object-right transform transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#dfd0bd] via-[#dfd0bd]/80 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#dfd0bd] via-[#dfd0bd]/85 to-transparent"></div>
             </div>
 
             {/* Content on left */}
@@ -48,14 +48,14 @@ export default function PromoBanners() {
 
           {/* Right Banner: Pulses & Dry Fruits */}
           <div className="relative overflow-hidden rounded-2xl border border-[#d2b8a7] shadow-2xs bg-[#c9b19e] flex flex-col justify-between group min-h-[190px] sm:min-h-[220px]">
-            {/* Background image covering right half */}
+            {/* Background high-res image covering right half */}
             <div className="absolute right-0 top-0 bottom-0 w-3/5 sm:w-1/2 pointer-events-none overflow-hidden">
               <img
-                src="/images/banner-pulses.jpg"
+                src="https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&w=1000&q=80"
                 alt="Pulses and Dry Fruits"
-                className="w-full h-full object-cover object-right transform transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#c9b19e] via-[#c9b19e]/80 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#c9b19e] via-[#c9b19e]/85 to-transparent"></div>
             </div>
 
             {/* Content on left */}

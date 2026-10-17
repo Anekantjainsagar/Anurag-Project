@@ -1,16 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { BEST_SELLERS } from "@/data/mockData";
+import Link from "next/link";
+import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import { useCart } from "@/context/CartContext";
-import { Heart, Star, ChevronDown, ArrowRight } from "lucide-react";
+import { Heart, Star, ChevronDown, ArrowRight, Eye } from "lucide-react";
+
+interface BestSellersSectionProps {
+  activeCategoryFilter?: string | null;
+  onSelectCategory?: (category: string) => void;
+}
 
 export default function BestSellersSection({
-  activeCategoryFilter,
-}: {
-  activeCategoryFilter?: string | null;
-}) {
+  activeCategoryFilter = "Rice",
+  onSelectCategory,
+}: BestSellersSectionProps) {
   const { addToCart, toggleWishlist, isInWishlist, setIsCartOpen } = useCart();
 
   // Keep track of chosen weight option for each product
@@ -18,7 +23,7 @@ export default function BestSellersSection({
     Record<string, ProductWeightOption>
   >(() => {
     const initial: Record<string, ProductWeightOption> = {};
-    BEST_SELLERS.forEach((prod) => {
+    ALL_PRODUCTS.forEach((prod) => {
       initial[prod.id] = prod.options[0];
     });
     return initial;
@@ -37,41 +42,57 @@ export default function BestSellersSection({
     setIsCartOpen(true);
   };
 
-  const filteredProducts = activeCategoryFilter
-    ? BEST_SELLERS.filter((p) => p.category === activeCategoryFilter)
-    : BEST_SELLERS;
+  // Filter products by selected category (defaulting to Rice)
+  const currentCategory = activeCategoryFilter || "Rice";
+  const filteredProducts = ALL_PRODUCTS.filter(
+    (p) => p.category.toLowerCase() === currentCategory.toLowerCase()
+  );
+
+  // If filtered products is empty (just in case), fall back to all products
+  const displayProducts =
+    filteredProducts.length > 0 ? filteredProducts : ALL_PRODUCTS.slice(0, 4);
 
   return (
     <section id="best-sellers" className="py-8 sm:py-12 bg-white border-t border-[#f0eee6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
           <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">
+              Pure Unadulterated Selection
+            </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
-              Our Best Sellers
+              Featured {currentCategory} & Best Sellers
             </h2>
-            <p className="text-gray-500 text-xs sm:text-sm mt-0.5 sm:mt-1">
-              Premium quality products loved by our customers
-              {activeCategoryFilter && (
-                <span className="ml-2 font-semibold text-[#044a27]">
-                  • {activeCategoryFilter}
-                </span>
-              )}
+            <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
+              Showing premium quality {currentCategory.toLowerCase()} products loved by our customers
             </p>
           </div>
 
-          <a
-            href="#best-sellers"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#044a27] bg-[#f2f8f4] hover:bg-[#044a27] hover:text-white px-3.5 py-1.5 sm:py-2 rounded-full border border-[#cde1d6] transition-all self-start sm:self-auto"
-          >
-            <span>View All Products</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          {/* Quick Category Filter Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+            {CATEGORIES.map((cat) => {
+              const isActive = cat.name.toLowerCase() === currentCategory.toLowerCase();
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => onSelectCategory && onSelectCategory(cat.name)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                    isActive
+                      ? "bg-[#044a27] text-white shadow-xs"
+                      : "bg-[#f4f7f5] text-gray-600 hover:bg-[#e4ede7] hover:text-[#044a27]"
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Products Grid: 1 col on mobile, 2 on tablet, 4 on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {filteredProducts.map((product) => {
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {displayProducts.map((product) => {
             const currentOption =
               selectedOptions[product.id] || product.options[0];
             const isWishlisted = isInWishlist(product.id);
@@ -80,40 +101,64 @@ export default function BestSellersSection({
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#e4ebe6] rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group relative bg-white border border-[#e4ebe6] rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
               >
                 {/* Product Image Area */}
                 <div className="relative aspect-4/3 overflow-hidden bg-[#fbf9f5] border-b border-[#f0f3f1]">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-                  />
-
-                  {/* Wishlist Button (Circular, Top Right) */}
-                  <button
-                    onClick={() => toggleWishlist(product.id)}
-                    className="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer"
-                    aria-label="Add to wishlist"
-                  >
-                    <Heart
-                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${
-                        isWishlisted
-                          ? "fill-[#e11d48] text-[#e11d48]"
-                          : "text-gray-400 hover:text-gray-700"
-                      }`}
+                  <Link href={`/products/${product.id}`} className="block w-full h-full">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-108"
                     />
-                  </button>
+                  </Link>
+
+                  {/* Tag Pill (e.g. Best Seller) */}
+                  {product.tag && (
+                    <span className="absolute top-2.5 left-2.5 bg-[#044a27] text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+                      {product.tag}
+                    </span>
+                  )}
+
+                  {/* Floating Action Buttons (Top Right) */}
+                  <div className="absolute top-2.5 right-2.5 flex flex-col gap-1.5">
+                    {/* Wishlist Button */}
+                    <button
+                      onClick={() => toggleWishlist(product.id)}
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer"
+                      aria-label="Add to wishlist"
+                    >
+                      <Heart
+                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${
+                          isWishlisted
+                            ? "fill-[#e11d48] text-[#e11d48]"
+                            : "text-gray-400 hover:text-gray-700"
+                        }`}
+                      />
+                    </button>
+
+                    {/* Quick View Link */}
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 text-gray-500 hover:text-[#044a27]"
+                      title="Quick View"
+                    >
+                      <Eye className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
 
                 {/* Card Content */}
                 <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-3">
                   {/* Title & Subtitle */}
                   <div>
-                    <h3 className="font-semibold text-xs sm:text-sm text-gray-900 group-hover:text-[#044a27] transition-colors line-clamp-1">
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="font-semibold text-xs sm:text-sm text-gray-900 group-hover:text-[#044a27] transition-colors line-clamp-1 block"
+                    >
                       {product.name}
-                    </h3>
-                    <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 font-medium">
+                    </Link>
+                    <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 font-medium line-clamp-1">
                       {product.subtitle}
                     </p>
                   </div>
@@ -169,14 +214,21 @@ export default function BestSellersSection({
                   </div>
 
                   {/* Rating row */}
-                  <div className="flex items-center gap-1.5 text-xs text-gray-600">
-                    <div className="flex items-center gap-0.5 text-amber-500">
+                  <div className="flex items-center justify-between text-xs text-gray-600">
+                    <div className="flex items-center gap-1 text-amber-500">
                       <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
                       <span className="font-bold text-gray-800 text-[11px] sm:text-xs">
                         {product.rating}
                       </span>
+                      <span className="text-gray-400 text-[11px]">({product.reviewsCount})</span>
                     </div>
-                    <span className="text-gray-400 text-[11px]">({product.reviewsCount})</span>
+
+                    <Link
+                      href={`/products/${product.id}`}
+                      className="text-[11px] text-[#044a27] font-semibold hover:underline"
+                    >
+                      Details →
+                    </Link>
                   </div>
 
                   {/* Action Buttons */}

@@ -15,10 +15,16 @@ export interface Product {
   defaultDiscount: string;
   rating: number;
   reviewsCount: number;
-  image: string;
+  image: string; // primary image
+  images: string[]; // at least 3-4 high-res gallery images
   options: ProductWeightOption[];
   inStock?: boolean;
-  description?: string;
+  description: string;
+  origin?: string;
+  features?: string[];
+  nutritionalFacts?: Record<string, string>;
+  purityParameters?: Record<string, string>;
+  tag?: string;
 }
 
 export interface Category {
@@ -27,6 +33,7 @@ export interface Category {
   image: string;
   itemCount: number;
   slug: string;
+  tagline?: string;
 }
 
 export interface BlogPost {
@@ -36,6 +43,7 @@ export interface BlogPost {
   image: string;
   readTime: string;
   summary: string;
+  author?: string;
 }
 
 export interface WhyChooseFeature {
