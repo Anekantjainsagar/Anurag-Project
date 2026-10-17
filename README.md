@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YOUR BRAND — Pure Food. Better Life. 🌾
 
-## Getting Started
+> **Premium Agricultural Commodities & Global B2B Export E-Commerce Platform**  
+> Built with Next.js 16 (App Router), TypeScript, and Tailwind CSS v4.
 
-First, run the development server:
+---
+
+## 📖 Quick Links
+- **[Full AI Context & Architecture Handover Guide](./PROJECT_CONTEXT.md)**: Read this for complete design tokens, component architecture, TypeScript interfaces, state management details, and future roadmap.
+- **Repository**: [https://github.com/Anekantjainsagar/Anurag-Project.git](https://github.com/Anekantjainsagar/Anurag-Project.git)
+
+---
+
+## 🚀 Features
+
+- **Modern Responsive Design**: Pixel-perfect implementation from brand design mockup, completely optimized across Mobile (<768px), Tablet (768px-1024px), and Desktop (>1024px).
+- **Navigation & Search**: Uncluttered navbar with live autocomplete search modal, wishlist count badge, shopping cart badge, and an off-canvas mobile drawer.
+- **Shop by Category**: 7 staple agricultural categories (Rice, Pulses, Dry Fruits, Millets, Seeds, Spices, Other Items) with smooth mobile horizontal swipe-snap scrolling.
+- **Our Best Sellers**: 4 product cards with interactive sample/weight selector dropdowns (`500g Sample`, `1 Kg Pack`, `5 Kg Bag`), live price recalculation, discount badges, and instant cart actions.
+- **Dual Promo Banners**: Highlights for *Premium Rice Collection* and *Pulses & Dry Fruits*.
+- **Why Choose Us**: 6 key value pillars (Naturally Sourced, Quality Assured, Quality Tested, Rich in Nutrition, Secure Packaging, Global Export).
+- **From Our Blog**: 4 featured food & nutrition articles with interactive preview modal.
+- **Comprehensive Footer**: 5-column layout with brand story, contact info (Indore, M.P. India), site links, categories, newsletter subscription, and payment gateway badges (`VISA`, `Mastercard`, `UPI`, `RuPay`, `AMEX`).
+- **Interactive Modals & Drawers**:
+  - Slide-over **Cart Drawer** with free shipping progress meter.
+  - **Bulk / B2B Enquiry Modal** for wholesale and international container exports.
+  - **Login Modal** with mobile OTP sign-in flow.
+  - **Track Order Modal** with shipment milestones.
+  - **Toast Notifications** for real-time user feedback.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16.4.0 (Turbopack, App Router)
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS v4
+- **Icons**: Lucide React
+- **Typography**: `Playfair Display` (Serif headings) & `Plus Jakarta Sans` (Sans body)
+
+---
+
+## 💻 Getting Started
 
 ```bash
+# Clone the repository
+git clone https://github.com/Anekantjainsagar/Anurag-Project.git
+
+# Navigate into the project directory
+cd Anurag-Project
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Build for Production
 
-## Learn More
+```bash
+# Run production build
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+# Start production server
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤖 For AI Developers & Collaborators
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Please consult **[PROJECT_CONTEXT.md](./PROJECT_CONTEXT.md)** for detailed component maps, color palettes, state management APIs, and prioritized next steps.
