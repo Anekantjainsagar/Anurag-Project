@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import { useCart } from "@/context/CartContext";
-import { Heart, Star, ChevronDown, ArrowRight, Eye } from "lucide-react";
+import { Heart, Star, ChevronDown } from "lucide-react";
 
 interface BestSellersSectionProps {
   activeCategoryFilter?: string | null;
@@ -53,7 +53,7 @@ export default function BestSellersSection({
     filteredProducts.length > 0 ? filteredProducts : ALL_PRODUCTS.slice(0, 4);
 
   return (
-    <section id="best-sellers" className="py-8 sm:py-12 bg-white border-t border-[#f0eee6]">
+    <section id="best-sellers" className="py-8 sm:py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
@@ -65,7 +65,7 @@ export default function BestSellersSection({
               Featured {currentCategory} & Best Sellers
             </h2>
             <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
-              Showing premium quality {currentCategory.toLowerCase()} products loved by our customers
+              Showing premium quality {currentCategory.toLowerCase()} products certified for purity
             </p>
           </div>
 
@@ -77,7 +77,7 @@ export default function BestSellersSection({
                 <button
                   key={cat.id}
                   onClick={() => onSelectCategory && onSelectCategory(cat.name)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                     isActive
                       ? "bg-[#044a27] text-white shadow-xs"
                       : "bg-[#f4f7f5] text-gray-600 hover:bg-[#e4ede7] hover:text-[#044a27]"
@@ -101,55 +101,43 @@ export default function BestSellersSection({
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#e4ebe6] rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+                className="group relative bg-white border border-[#e4ebe6] rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
               >
                 {/* Product Image Area */}
-                <div className="relative aspect-4/3 overflow-hidden bg-[#fbf9f5] border-b border-[#f0f3f1]">
+                <div className="relative aspect-4/3 overflow-hidden bg-[#faf8f4] border-b border-[#edf1ee]">
                   <Link href={`/products/${product.id}`} className="block w-full h-full">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-108"
+                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-104"
                     />
                   </Link>
 
-                  {/* Tag Pill (e.g. Best Seller) */}
+                  {/* Clean Formal Tag Pill */}
                   {product.tag && (
-                    <span className="absolute top-2.5 left-2.5 bg-[#044a27] text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+                    <span className="absolute top-2.5 left-2.5 bg-[#033b20] text-white text-[10px] font-semibold px-2 py-0.5 rounded shadow-2xs">
                       {product.tag}
                     </span>
                   )}
 
-                  {/* Floating Action Buttons (Top Right) */}
-                  <div className="absolute top-2.5 right-2.5 flex flex-col gap-1.5">
-                    {/* Wishlist Button */}
-                    <button
-                      onClick={() => toggleWishlist(product.id)}
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer"
-                      aria-label="Add to wishlist"
-                    >
-                      <Heart
-                        className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${
-                          isWishlisted
-                            ? "fill-[#e11d48] text-[#e11d48]"
-                            : "text-gray-400 hover:text-gray-700"
-                        }`}
-                      />
-                    </button>
-
-                    {/* Quick View Link */}
-                    <Link
-                      href={`/products/${product.id}`}
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 text-gray-500 hover:text-[#044a27]"
-                      title="Quick View"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
+                  {/* Subtle Wishlist Button (Top Right) */}
+                  <button
+                    onClick={() => toggleWishlist(product.id)}
+                    className="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/95 border border-gray-200 shadow-2xs flex items-center justify-center transition-colors hover:border-[#044a27] cursor-pointer"
+                    aria-label="Add to wishlist"
+                  >
+                    <Heart
+                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${
+                        isWishlisted
+                          ? "fill-[#e11d48] text-[#e11d48]"
+                          : "text-gray-400 hover:text-gray-700"
+                      }`}
+                    />
+                  </button>
                 </div>
 
                 {/* Card Content */}
-                <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-3">
+                <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
                   {/* Title & Subtitle */}
                   <div>
                     <Link
@@ -158,20 +146,20 @@ export default function BestSellersSection({
                     >
                       {product.name}
                     </Link>
-                    <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 font-medium line-clamp-1">
+                    <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 font-normal line-clamp-1">
                       {product.subtitle}
                     </p>
                   </div>
 
                   {/* Price Row */}
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-serif font-bold text-sm sm:text-base text-[#044a27]">
+                    <span className="font-serif font-bold text-base text-[#044a27]">
                       ₹{currentOption.price.toFixed(2)}
                     </span>
-                    <span className="text-[11px] sm:text-xs text-gray-400 line-through">
+                    <span className="text-xs text-gray-400 line-through">
                       ₹{currentOption.originalPrice.toFixed(2)}
                     </span>
-                    <span className="text-[9px] sm:text-[10px] font-bold text-emerald-800 bg-emerald-100 px-1.5 py-0.5 rounded-full">
+                    <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
                       {currentOption.discount}
                     </span>
                   </div>
@@ -195,7 +183,7 @@ export default function BestSellersSection({
 
                     {/* Dropdown Menu */}
                     {isDropdownOpen && (
-                      <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-xl z-30 py-1 max-h-48 overflow-y-auto">
+                      <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-30 py-1 max-h-48 overflow-y-auto">
                         {product.options.map((opt, i) => (
                           <button
                             key={i}
@@ -216,8 +204,8 @@ export default function BestSellersSection({
                   {/* Rating row */}
                   <div className="flex items-center justify-between text-xs text-gray-600">
                     <div className="flex items-center gap-1 text-amber-500">
-                      <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
-                      <span className="font-bold text-gray-800 text-[11px] sm:text-xs">
+                      <Star className="w-3.5 h-3.5 fill-current" />
+                      <span className="font-bold text-gray-800 text-xs">
                         {product.rating}
                       </span>
                       <span className="text-gray-400 text-[11px]">({product.reviewsCount})</span>
@@ -225,9 +213,9 @@ export default function BestSellersSection({
 
                     <Link
                       href={`/products/${product.id}`}
-                      className="text-[11px] text-[#044a27] font-semibold hover:underline"
+                      className="text-xs text-[#044a27] font-semibold hover:underline"
                     >
-                      Details →
+                      View Details
                     </Link>
                   </div>
 
@@ -235,15 +223,15 @@ export default function BestSellersSection({
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <button
                       onClick={() => addToCart(product, currentOption, 1)}
-                      className="w-full text-center text-[10.5px] sm:text-xs font-bold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border border-[#044a27] py-2 rounded-lg transition-colors shadow-2xs cursor-pointer truncate"
+                      className="w-full text-center text-xs font-semibold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border border-[#044a27] py-2 rounded-lg transition-colors cursor-pointer truncate"
                     >
-                      ADD TO CART
+                      Add to Cart
                     </button>
                     <button
                       onClick={() => handleBuyNow(product)}
-                      className="w-full text-center text-[10.5px] sm:text-xs font-bold text-white bg-[#044a27] hover:bg-[#03391e] py-2 rounded-lg transition-colors shadow-xs hover:shadow-md cursor-pointer truncate"
+                      className="w-full text-center text-xs font-semibold text-white bg-[#044a27] hover:bg-[#03391e] py-2 rounded-lg transition-colors cursor-pointer truncate shadow-2xs"
                     >
-                      BUY NOW
+                      Buy Now
                     </button>
                   </div>
                 </div>

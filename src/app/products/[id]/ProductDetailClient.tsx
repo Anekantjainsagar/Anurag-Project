@@ -106,29 +106,29 @@ function ProductDetailInner({ product }: { product: Product }) {
           {/* ================= LEFT: MULTI-IMAGE GALLERY (Showing at least 3-4 images!) ================= */}
           <div className="lg:col-span-6 space-y-4">
             {/* Main Active Image Display */}
-            <div className="relative aspect-4/3 rounded-3xl overflow-hidden bg-[#fbf9f4] border border-[#e8ebe7] shadow-md group">
+            <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-[#faf8f4] border border-[#e2e8e4] shadow-sm group">
               <img
                 src={images[activeImageIndex]}
                 alt={`${product.name} - View ${activeImageIndex + 1}`}
-                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-103"
               />
 
-              {/* Tag Pill */}
+              {/* Formal Tag Pill */}
               {product.tag && (
-                <span className="absolute top-4 left-4 bg-[#044a27] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-sm">
+                <span className="absolute top-3.5 left-3.5 bg-[#033b20] text-white text-[10.5px] font-semibold px-2.5 py-0.5 rounded shadow-2xs">
                   {product.tag}
                 </span>
               )}
 
-              {/* Image Counter Badge */}
-              <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-full">
+              {/* Discreet Image Counter Badge */}
+              <div className="absolute bottom-3.5 right-3.5 bg-white/95 border border-gray-200 text-gray-700 text-[11px] font-mono px-2 py-0.5 rounded shadow-2xs">
                 {activeImageIndex + 1} / {images.length}
               </div>
 
               {/* Wishlist Button */}
               <button
                 onClick={() => toggleWishlist(product.id)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs shadow-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer"
+                className="absolute top-3.5 right-3.5 w-8 h-8 rounded-lg bg-white/95 border border-gray-200 shadow-2xs flex items-center justify-center transition-colors hover:border-[#044a27] cursor-pointer"
                 aria-label="Wishlist"
               >
                 <Heart
@@ -301,13 +301,13 @@ function ProductDetailInner({ product }: { product: Product }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 <button
                   onClick={handleAddToCart}
-                  className="w-full text-center text-xs font-bold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border-2 border-[#044a27] py-3.5 rounded-full transition-all shadow-sm cursor-pointer"
+                  className="w-full text-center text-xs font-bold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border border-[#044a27] py-3 rounded-lg transition-all shadow-2xs cursor-pointer uppercase tracking-wider"
                 >
                   ADD TO CART
                 </button>
                 <button
                   onClick={handleBuyNow}
-                  className="w-full text-center text-xs font-bold text-white bg-[#044a27] hover:bg-[#03391e] py-3.5 rounded-full transition-all shadow-md hover:shadow-lg cursor-pointer"
+                  className="w-full text-center text-xs font-bold text-white bg-[#044a27] hover:bg-[#03391e] py-3 rounded-lg transition-all shadow-xs hover:shadow-md cursor-pointer uppercase tracking-wider"
                 >
                   BUY NOW
                 </button>
