@@ -83,10 +83,10 @@ export default function HeroSection() {
   const prevSlide = () =>
     setActiveSlide((prev) => (prev - 1 + slideCount) % slideCount);
 
-  // Auto slide interval
+  // Auto slide interval: auto scroll after 3 seconds
   useEffect(() => {
     if (isPaused) return;
-    const interval = setInterval(nextSlide, 6000);
+    const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, [isPaused, activeSlide]);
 
@@ -261,7 +261,7 @@ export default function HeroSection() {
                 <button
                   key={s.id}
                   onClick={() => setActiveSlide(index)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                  className={`relative overflow-hidden px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                     isActive
                       ? "bg-[#044a27] text-white shadow-xs"
                       : "bg-white/80 text-gray-600 hover:bg-white hover:text-[#044a27] border border-[#e2d8c7]"
@@ -271,6 +271,12 @@ export default function HeroSection() {
                     0{index + 1}
                   </span>
                   <span>{s.label}</span>
+                  {isActive && !isPaused && (
+                    <span
+                      key={activeSlide}
+                      className="absolute bottom-0 left-0 h-0.5 bg-[#facc15] animate-slide-progress"
+                    />
+                  )}
                 </button>
               );
             })}
