@@ -90,15 +90,13 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, [isPaused, activeSlide]);
 
-  const slide = HERO_SLIDES[activeSlide];
-
   return (
     <section
       className="relative overflow-hidden bg-[#faf8f4] border-b border-[#e7e1d4]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background panoramic image layer with subtle cross-fade */}
+      {/* Background panoramic image layer with silky smooth cross-fade */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {HERO_SLIDES.map((s, idx) => (
           <div
@@ -110,7 +108,9 @@ export default function HeroSection() {
             <img
               src={s.bgImage}
               alt={s.titleLine1}
-              className="w-full h-full object-cover object-center scale-105"
+              className={`w-full h-full object-cover object-center transform transition-transform duration-1500 ease-out ${
+                activeSlide === idx ? "scale-100" : "scale-105"
+              }`}
             />
           </div>
         ))}
@@ -122,35 +122,52 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Headlines & CTAs */}
           <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-center lg:text-left">
-            {/* Tagline */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-              <span className="w-2 h-2 rounded-full bg-[#054b28]"></span>
-              <span>{slide.tagline}</span>
+            {/* Dynamic Headline Stack: Smooth, seamless cross-fade without layout jitter */}
+            <div className="relative min-h-[200px] sm:min-h-[220px] md:min-h-[235px] flex flex-col justify-center">
+              {HERO_SLIDES.map((s, idx) => {
+                const isCurrent = activeSlide === idx;
+                return (
+                  <div
+                    key={s.id}
+                    className={`transition-all duration-700 ease-in-out ${
+                      isCurrent
+                        ? "opacity-100 translate-y-0 relative pointer-events-auto"
+                        : "opacity-0 translate-y-2 absolute inset-0 pointer-events-none"
+                    }`}
+                  >
+                    {/* Tagline */}
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-2 sm:mb-3">
+                      <span className="w-2 h-2 rounded-full bg-[#054b28]"></span>
+                      <span>{s.tagline}</span>
+                    </div>
+
+                    {/* Main Headline */}
+                    <div className="space-y-0.5 sm:space-y-1 mb-1.5 sm:mb-2">
+                      <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#073f24] tracking-tight leading-[1.08]">
+                        {s.titleLine1}
+                      </h1>
+                      <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#073f24] tracking-tight leading-[1.08]">
+                        {s.titleLine2}
+                      </h1>
+                    </div>
+
+                    {/* Subheading flourish */}
+                    <div className="flex items-center justify-center lg:justify-start gap-2 text-[#795548] font-serif text-xs sm:text-sm md:text-base font-semibold tracking-wide mb-2 sm:mb-3">
+                      <span>{s.subtext}</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans">
+                      {s.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Main Headline */}
-            <div className="space-y-1">
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#073f24] tracking-tight leading-[1.08]">
-                {slide.titleLine1}
-              </h1>
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#073f24] tracking-tight leading-[1.08]">
-                {slide.titleLine2}
-              </h1>
-            </div>
-
-            {/* Subheading flourish */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-[#795548] font-serif text-xs sm:text-sm md:text-base font-semibold tracking-wide">
-              <span>{slide.subtext}</span>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans">
-              {slide.description}
-            </p>
-
-            {/* 4 Feature Badges */}
+            {/* 4 Feature Badges (Steady, elegant) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-1">
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs">
+              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
                 <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
                   <Leaf className="w-4 h-4" />
                 </div>
@@ -164,7 +181,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs">
+              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
                 <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
                   <Award className="w-4 h-4" />
                 </div>
@@ -178,7 +195,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs">
+              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
                 <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
                   <Sparkles className="w-4 h-4" />
                 </div>
@@ -192,7 +209,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs">
+              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
                 <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
                   <Globe className="w-4 h-4" />
                 </div>
@@ -211,7 +228,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
               <a
                 href="#best-sellers"
-                className="inline-flex items-center justify-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg transition-all shadow-sm hover:shadow-md cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5"
               >
                 <span>SHOP PRODUCTS</span>
                 <ArrowRight className="w-4 h-4" />
@@ -219,7 +236,7 @@ export default function HeroSection() {
 
               <button
                 onClick={() => setIsBulkModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-[#f6f2e9] text-[#044a27] font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg border border-[#044a27] transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-[#f6f2e9] text-[#044a27] font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg border border-[#044a27] transition-all duration-300 cursor-pointer shadow-2xs hover:-translate-y-0.5"
               >
                 <FileSpreadsheet className="w-4 h-4" />
                 <span>BULK / B2B ENQUIRY</span>
@@ -227,23 +244,36 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Artwork Composition in Clean Formal Frame */}
+          {/* Right Column: Hero Visual Artwork Composition with True Cross-Dissolve */}
           <div className="lg:col-span-5 relative flex flex-col items-center">
-            <div className="relative w-full max-w-md sm:max-w-lg aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-[#e0d8ca] bg-white group">
-              <img
-                key={slide.showcaseImage}
-                src={slide.showcaseImage}
-                alt={slide.titleLine1}
-                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-104"
-              />
+            <div className="relative w-full max-w-md sm:max-w-lg aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-[#e0d8ca] bg-[#faf8f4] group">
+              {HERO_SLIDES.map((s, idx) => {
+                const isCurrent = activeSlide === idx;
+                return (
+                  <div
+                    key={s.id}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                      isCurrent ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
+                    }`}
+                  >
+                    <img
+                      src={s.showcaseImage}
+                      alt={s.titleLine1}
+                      className={`w-full h-full object-cover transform transition-transform duration-1200 ease-out ${
+                        isCurrent ? "scale-100" : "scale-105"
+                      }`}
+                    />
 
-              {/* Clean Formal Quality Badge in top corner */}
-              <div className="absolute top-3 right-3 bg-[#033b20] text-white px-3 py-1 rounded-md text-[11px] font-semibold tracking-wide border border-white/20 shadow-sm">
-                {slide.badge}
-              </div>
+                    {/* Clean Formal Quality Badge */}
+                    <div className="absolute top-3 right-3 bg-[#033b20]/95 backdrop-blur-xs text-white px-3 py-1 rounded-md text-[11px] font-semibold tracking-wide border border-white/20 shadow-sm transition-all duration-500">
+                      {s.badge}
+                    </div>
+                  </div>
+                );
+              })}
 
-              {/* Discreet Certification Strip in bottom corner */}
-              <div className="absolute bottom-3 left-3 bg-white/95 text-gray-800 px-3 py-1 rounded-md text-[11px] font-semibold border border-gray-200 shadow-sm flex items-center gap-1.5">
+              {/* Discreet Certification Strip */}
+              <div className="absolute bottom-3 left-3 z-20 bg-white/95 backdrop-blur-xs text-gray-800 px-3 py-1 rounded-md text-[11px] font-semibold border border-gray-200 shadow-sm flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#044a27]" />
                 <span>FSSAI & Export Certified</span>
               </div>
@@ -251,7 +281,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Clean, Formal Bottom Navigation Bar (No tacky floating arrows) */}
+        {/* Clean, Formal Bottom Navigation Bar */}
         <div className="mt-8 pt-4 border-t border-[#e8dfcf] flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Slide Tab Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
@@ -261,7 +291,7 @@ export default function HeroSection() {
                 <button
                   key={s.id}
                   onClick={() => setActiveSlide(index)}
-                  className={`relative overflow-hidden px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                  className={`relative overflow-hidden px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer ${
                     isActive
                       ? "bg-[#044a27] text-white shadow-xs"
                       : "bg-white/80 text-gray-600 hover:bg-white hover:text-[#044a27] border border-[#e2d8c7]"
@@ -286,7 +316,7 @@ export default function HeroSection() {
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={prevSlide}
-              className="px-3 py-1.5 rounded-md bg-white border border-[#dcd2c0] hover:border-[#044a27] hover:text-[#044a27] text-gray-700 text-xs font-medium flex items-center gap-1 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-md bg-white border border-[#dcd2c0] hover:border-[#044a27] hover:text-[#044a27] text-gray-700 text-xs font-medium flex items-center gap-1 transition-all duration-200 cursor-pointer hover:shadow-2xs"
               aria-label="Previous slide"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
@@ -299,7 +329,7 @@ export default function HeroSection() {
 
             <button
               onClick={nextSlide}
-              className="px-3 py-1.5 rounded-md bg-white border border-[#dcd2c0] hover:border-[#044a27] hover:text-[#044a27] text-gray-700 text-xs font-medium flex items-center gap-1 transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-md bg-white border border-[#dcd2c0] hover:border-[#044a27] hover:text-[#044a27] text-gray-700 text-xs font-medium flex items-center gap-1 transition-all duration-200 cursor-pointer hover:shadow-2xs"
               aria-label="Next slide"
             >
               <span>Next</span>

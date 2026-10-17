@@ -105,30 +105,42 @@ function ProductDetailInner({ product }: { product: Product }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-14">
           {/* ================= LEFT: MULTI-IMAGE GALLERY (Showing at least 3-4 images!) ================= */}
           <div className="lg:col-span-6 space-y-4">
-            {/* Main Active Image Display */}
+            {/* Main Active Image Display with smooth cross-fade */}
             <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-[#faf8f4] border border-[#e2e8e4] shadow-sm group">
-              <img
-                src={images[activeImageIndex]}
-                alt={`${product.name} - View ${activeImageIndex + 1}`}
-                className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-103"
-              />
+              {images.map((imgUrl, idx) => {
+                const isCurrent = activeImageIndex === idx;
+                return (
+                  <div
+                    key={idx}
+                    className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                      isCurrent ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+                    }`}
+                  >
+                    <img
+                      src={imgUrl}
+                      alt={`${product.name} - View ${idx + 1}`}
+                      className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-103"
+                    />
+                  </div>
+                );
+              })}
 
               {/* Formal Tag Pill */}
               {product.tag && (
-                <span className="absolute top-3.5 left-3.5 bg-[#033b20] text-white text-[10.5px] font-semibold px-2.5 py-0.5 rounded shadow-2xs">
+                <span className="absolute top-3.5 left-3.5 z-20 bg-[#033b20] text-white text-[10.5px] font-semibold px-2.5 py-0.5 rounded shadow-2xs">
                   {product.tag}
                 </span>
               )}
 
               {/* Discreet Image Counter Badge */}
-              <div className="absolute bottom-3.5 right-3.5 bg-white/95 border border-gray-200 text-gray-700 text-[11px] font-mono px-2 py-0.5 rounded shadow-2xs">
+              <div className="absolute bottom-3.5 right-3.5 z-20 bg-white/95 border border-gray-200 text-gray-700 text-[11px] font-mono px-2 py-0.5 rounded shadow-2xs">
                 {activeImageIndex + 1} / {images.length}
               </div>
 
               {/* Wishlist Button */}
               <button
                 onClick={() => toggleWishlist(product.id)}
-                className="absolute top-3.5 right-3.5 w-8 h-8 rounded-lg bg-white/95 border border-gray-200 shadow-2xs flex items-center justify-center transition-colors hover:border-[#044a27] cursor-pointer"
+                className="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-lg bg-white/95 border border-gray-200 shadow-2xs flex items-center justify-center transition-colors hover:border-[#044a27] cursor-pointer"
                 aria-label="Wishlist"
               >
                 <Heart

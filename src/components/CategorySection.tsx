@@ -41,7 +41,7 @@ export default function CategorySection({
                 key={cat.id}
                 id={`cat-${cat.slug}`}
                 onClick={() => onSelectCategory && onSelectCategory(cat.name)}
-                className={`group relative cursor-pointer rounded-xl p-3.5 flex flex-col items-center justify-between text-center transition-all min-w-[120px] sm:min-w-0 shrink-0 sm:shrink ${
+                className={`group relative cursor-pointer rounded-xl p-3.5 flex flex-col items-center justify-between text-center transition-all duration-300 ease-out min-w-[120px] sm:min-w-0 shrink-0 sm:shrink ${
                   isSelected
                     ? "bg-[#f4f8f5] border-2 border-[#044a27] shadow-sm"
                     : "bg-[#faf9f5] hover:bg-[#f2efe6] border border-[#e8e2d4] hover:border-[#d6cbb5]"
@@ -49,7 +49,7 @@ export default function CategorySection({
               >
                 {/* Circular Image Container */}
                 <div
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white p-1 mb-2.5 transition-transform duration-300 group-hover:scale-105 shadow-2xs ${
+                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white p-1 mb-2.5 transition-transform duration-300 ease-out group-hover:scale-105 shadow-2xs ${
                     isSelected
                       ? "border-2 border-[#044a27]"
                       : "border border-[#ded6c5]"
@@ -65,7 +65,7 @@ export default function CategorySection({
                 {/* Name */}
                 <div className="w-full">
                   <h3
-                    className={`text-xs sm:text-sm font-semibold truncate transition-colors ${
+                    className={`text-xs sm:text-sm font-semibold truncate transition-colors duration-200 ${
                       isSelected
                         ? "text-[#044a27] font-bold"
                         : "text-gray-900 group-hover:text-[#044a27]"
@@ -80,7 +80,7 @@ export default function CategorySection({
 
                 {/* Subtle bottom active bar indicator */}
                 <div
-                  className={`w-8 h-1 rounded-full mt-2 transition-all ${
+                  className={`w-8 h-1 rounded-full mt-2 transition-all duration-300 ease-out ${
                     isSelected ? "bg-[#044a27]" : "bg-transparent group-hover:bg-gray-300"
                   }`}
                 />

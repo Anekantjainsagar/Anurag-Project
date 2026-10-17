@@ -90,8 +90,11 @@ export default function BestSellersSection({
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* Products Grid with Smooth Fade-in on Category Change */}
+        <div
+          key={currentCategory}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 animate-fade-in"
+        >
           {displayProducts.map((product) => {
             const currentOption =
               selectedOptions[product.id] || product.options[0];
@@ -101,7 +104,7 @@ export default function BestSellersSection({
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#e4ebe6] rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                className="group relative bg-white border border-[#e4ebe6] rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 ease-out flex flex-col justify-between hover:-translate-y-0.5"
               >
                 {/* Product Image Area */}
                 <div className="relative aspect-4/3 overflow-hidden bg-[#faf8f4] border-b border-[#edf1ee]">
@@ -109,7 +112,7 @@ export default function BestSellersSection({
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-104"
+                      className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-104"
                     />
                   </Link>
 
