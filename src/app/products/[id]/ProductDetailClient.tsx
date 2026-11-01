@@ -388,11 +388,45 @@ function ProductDetailInner({ product }: { product: Product }) {
           {/* Tab Body */}
           <div className="p-6 sm:p-8 bg-white">
             {activeTab === "desc" && (
-              <div className="space-y-4 max-w-3xl leading-relaxed text-xs sm:text-sm text-gray-700">
-                <p>{product.description}</p>
+              <div className="space-y-5 max-w-3xl leading-relaxed text-xs sm:text-sm text-gray-700">
+                <p className="text-gray-800 leading-relaxed text-sm">{product.description}</p>
+
+                {product.healthBenefits && (
+                  <div className="p-4 bg-[#f8faf9] rounded-2xl border border-[#dce8e1] space-y-1.5">
+                    <h4 className="font-bold text-[#044a27] text-xs uppercase tracking-wider flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Health Benefits & Nutritional Vitality</span>
+                    </h4>
+                    <p className="text-xs text-gray-700 leading-relaxed">{product.healthBenefits}</p>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                  {product.ingredients && (
+                    <div className="p-3.5 bg-white rounded-xl border border-gray-200 space-y-1">
+                      <h4 className="font-bold text-gray-900 text-xs uppercase tracking-wider">Ingredients:</h4>
+                      <p className="text-xs text-gray-600 leading-relaxed">{product.ingredients}</p>
+                    </div>
+                  )}
+
+                  {product.storageInstructions && (
+                    <div className="p-3.5 bg-white rounded-xl border border-gray-200 space-y-1">
+                      <h4 className="font-bold text-gray-900 text-xs uppercase tracking-wider">Storage Instructions:</h4>
+                      <p className="text-xs text-gray-600 leading-relaxed">{product.storageInstructions}</p>
+                    </div>
+                  )}
+                </div>
+
+                {product.commonUses && (
+                  <div className="space-y-1">
+                    <h4 className="font-bold text-gray-900 text-xs uppercase tracking-wider">Recommended Uses:</h4>
+                    <p className="text-xs text-gray-600 leading-relaxed">{product.commonUses}</p>
+                  </div>
+                )}
+
                 {product.features && (
                   <div className="space-y-2 pt-2">
-                    <h4 className="font-bold text-gray-900 text-sm">Key Highlights:</h4>
+                    <h4 className="font-bold text-gray-900 text-sm">Key Quality Highlights:</h4>
                     <ul className="space-y-1.5 list-none">
                       {product.features.map((feat, i) => (
                         <li key={i} className="flex items-center gap-2 text-gray-700">
@@ -401,6 +435,12 @@ function ProductDetailInner({ product }: { product: Product }) {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {product.additionalInfo && (
+                  <div className="p-3 bg-gray-50 rounded-xl border border-gray-200 text-[11px] text-gray-500 leading-relaxed">
+                    <strong>Batch & Trade Info:</strong> {product.additionalInfo}
                   </div>
                 )}
               </div>

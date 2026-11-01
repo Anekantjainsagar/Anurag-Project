@@ -13,7 +13,7 @@ interface BestSellersSectionProps {
 }
 
 export default function BestSellersSection({
-  activeCategoryFilter = "Rice",
+  activeCategoryFilter = CATEGORIES[0]?.name || "Pulses",
   onSelectCategory,
 }: BestSellersSectionProps) {
   const { addToCart, toggleWishlist, isInWishlist, setIsCartOpen } = useCart();
@@ -42,8 +42,8 @@ export default function BestSellersSection({
     setIsCartOpen(true);
   };
 
-  // Filter products by selected category (defaulting to Rice)
-  const currentCategory = activeCategoryFilter || "Rice";
+  // Filter products by selected category (defaulting to first category)
+  const currentCategory = activeCategoryFilter || CATEGORIES[0]?.name || "Pulses";
   const filteredProducts = ALL_PRODUCTS.filter(
     (p) => p.category.toLowerCase() === currentCategory.toLowerCase()
   );

@@ -10,7 +10,7 @@ interface CategorySectionProps {
 
 export default function CategorySection({
   onSelectCategory,
-  selectedCategory = "Rice", // First category selected by default!
+  selectedCategory = CATEGORIES[0]?.name || "Pulses", // First category selected by default!
 }: CategorySectionProps) {
   return (
     <section id="categories" className="py-8 sm:py-10 bg-white border-b border-[#f0eee6]">
@@ -28,8 +28,8 @@ export default function CategorySection({
           </p>
         </div>
 
-        {/* 7 Category Cards: Clean, Formal Grid */}
-        <div className="flex sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 overflow-x-auto sm:overflow-x-visible pb-3 sm:pb-0 scrollbar-none">
+        {/* 8 Category Cards: Clean, Formal Grid */}
+        <div className="flex sm:grid sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 overflow-x-auto sm:overflow-x-visible pb-3 sm:pb-0 scrollbar-none">
           {CATEGORIES.map((cat, index) => {
             // First category selected if selectedCategory matches or if index === 0 when null
             const isSelected = selectedCategory

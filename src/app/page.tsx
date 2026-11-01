@@ -16,10 +16,13 @@ import BulkEnquiryModal from "@/components/BulkEnquiryModal";
 import LoginModal from "@/components/LoginModal";
 import TrackOrderModal from "@/components/TrackOrderModal";
 import ToastNotification from "@/components/ToastNotification";
+import { CATEGORIES } from "@/data/mockData";
 
 function MainContent() {
-  // First category ("Rice") is ALWAYS selected by default!
-  const [selectedCategory, setSelectedCategory] = useState<string>("Rice");
+  // First category (CATEGORIES[0]) is ALWAYS selected by default!
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    CATEGORIES[0]?.name || "Pulses"
+  );
 
   const handleSelectCategory = (catName: string) => {
     setSelectedCategory(catName);

@@ -3,970 +3,14107 @@ import { Category, Product, BlogPost, WhyChooseFeature } from "@/types";
 export const CATEGORIES: Category[] = [
   {
     id: "cat-1",
-    name: "Rice",
-    slug: "rice",
-    image: "/images/categories/rice.jpg",
-    itemCount: 4,
-    tagline: "Aged Basmati, Sella & Scented Heritage Rice",
-  },
-  {
-    id: "cat-2",
     name: "Pulses",
     slug: "pulses",
     image: "/images/categories/pulses.jpg",
-    itemCount: 5,
+    itemCount: 24,
     tagline: "100% Unpolished Desi Dals & Lentils",
   },
   {
-    id: "cat-3",
-    name: "Dry Fruits",
-    slug: "dry-fruits",
-    image: "/images/categories/dry-fruits.jpg",
-    itemCount: 5,
-    tagline: "Jumbo California Almonds, Cashews & Walnuts",
-  },
-  {
-    id: "cat-4",
+    id: "cat-2",
     name: "Millets",
     slug: "millets",
     image: "/images/categories/millets.jpg",
-    itemCount: 4,
-    tagline: "Ancient Gluten-Free Superfood Grains",
+    itemCount: 24,
+    tagline: "Nutrient-Dense Heirloom Superfood Grains",
+  },
+  {
+    id: "cat-3",
+    name: "Masala & Spices",
+    slug: "masala-spices",
+    image: "/images/categories/spices.jpg",
+    itemCount: 24,
+    tagline: "Aromatic Sun-Dried Whole & Ground Spices",
+  },
+  {
+    id: "cat-4",
+    name: "Sweets",
+    slug: "sweets",
+    image: "/images/categories/sweets.jpg",
+    itemCount: 24,
+    tagline: "Natural Desi Jaggery, Khand, Chikki & Sweets",
   },
   {
     id: "cat-5",
-    name: "Seeds",
-    slug: "seeds",
-    image: "/images/categories/seeds.jpg",
-    itemCount: 4,
-    tagline: "Raw Pumpkin, Chia, Flax & Sesame Seeds",
+    name: "Honey",
+    slug: "honey",
+    image: "/images/categories/honey.jpg",
+    itemCount: 24,
+    tagline: "100% Pure Raw & Wild Forest Honey",
   },
   {
     id: "cat-6",
-    name: "Spices",
-    slug: "spices",
-    image: "/images/categories/spices.jpg",
-    itemCount: 4,
-    tagline: "Sun-Dried Pure Whole & Ground Spices",
+    name: "Dry Fruits",
+    slug: "dry-fruits",
+    image: "/images/categories/dry-fruits.jpg",
+    itemCount: 24,
+    tagline: "Handpicked Premium Nuts, Berries & Dates",
   },
   {
     id: "cat-7",
-    name: "Other Items",
-    slug: "other-items",
-    image: "/images/categories/other-items.jpg",
-    itemCount: 3,
-    tagline: "Vedic Bilona Ghee, Mustard Oil & Pink Salt",
+    name: "Seeds",
+    slug: "seeds",
+    image: "/images/categories/seeds.jpg",
+    itemCount: 24,
+    tagline: "Omega-Rich Raw Chia, Flax, Pumpkin & Sesame",
+  },
+  {
+    id: "cat-8",
+    name: "Rice & Wheat",
+    slug: "rice-wheat",
+    image: "/images/categories/rice-wheat.jpg",
+    itemCount: 24,
+    tagline: "Aged Basmati, Sona Masoori & Sharbati Wheat Atta",
   },
 ];
 
 export const ALL_PRODUCTS: Product[] = [
-  // =================== RICE ===================
   {
-    id: "rice-basmati-1",
-    name: "Premium Long Grain Basmati Rice",
-    category: "Rice",
-    subtitle: "Aged 2 Years • Extra Slender 8.4mm Grains",
-    defaultPrice: 120.0,
-    defaultOriginalPrice: 140.0,
-    defaultDiscount: "14% Off",
-    rating: 4.8,
-    reviewsCount: 32,
-    image: "/images/products/rice-basmati-1.jpg",
-    images: [
-      "/images/products/rice-basmati-1.jpg",
-      "/images/products/rice-basmati-2.jpg",
-      "/images/products/rice-basmati-3.jpg",
-      "/images/products/rice-basmati-4.jpg",
-    ],
-    origin: "Karnal, Haryana (Himalayan Foothills)",
-    description:
-      "Aged to perfection in temperature-regulated grain silos, our royal long grain basmati rice is celebrated for its intoxicating sweet aroma, pearlescent luster, and remarkable elongation upon cooking without sticking.",
-    features: [
-      "Naturally aged for a minimum of 24 months",
-      "Cooks up to 2.5 times its raw length",
-      "Zero artificial fragrance or polish chemicals",
-      "Ideal for royal Biryanis, Pulao, and gourmet feasts",
-    ],
-    nutritionalFacts: {
-      "Energy": "358 kcal",
-      "Protein": "8.5 g",
-      "Carbohydrates": "78.2 g",
-      "Dietary Fiber": "2.8 g",
-      "Fat": "0.6 g",
-      "Iron": "1.8 mg",
-    },
-    purityParameters: {
-      "Moisture Content": "11.2% (Max 12%)",
-      "Broken Grains": "< 0.5%",
-      "Average Grain Length": "8.35 mm",
-      "Shelf Life": "24 Months",
-    },
-    tag: "Best Seller",
-    options: [
-      { label: "500g Sample", price: 65.0, originalPrice: 75.0, discount: "13% Off" },
-      { label: "1 Kg Pack", price: 120.0, originalPrice: 140.0, discount: "14% Off" },
-      { label: "5 Kg Value Bag", price: 570.0, originalPrice: 650.0, discount: "12% Off" },
-      { label: "10 Kg Family Bag", price: 1100.0, originalPrice: 1300.0, discount: "15% Off" },
-    ],
-  },
-  {
-    id: "rice-sella-2",
-    name: "1121 Golden Sella Basmati Rice",
-    category: "Rice",
-    subtitle: "Parboiled • Hard Grains for Biryani",
-    defaultPrice: 145.0,
-    defaultOriginalPrice: 170.0,
-    defaultDiscount: "15% Off",
-    rating: 4.9,
-    reviewsCount: 41,
-    image: "/images/products/rice-sella-1.jpg",
-    images: [
-      "/images/products/rice-sella-1.jpg",
-      "/images/products/rice-sella-2.jpg",
-      "/images/products/rice-basmati-2.jpg",
-    ],
-    origin: "Tarawari, Punjab",
-    description:
-      "Hydro-thermally processed parboiled basmati with a distinctive golden hue. The unique parboiling technique locks essential micronutrients into the core while granting the grain superior firmness for Dum Biryani.",
-    features: [
-      "Grains do not break during high-heat Dum cooking",
-      "High nutritional retention due to parboiling",
-      "Appreciated by commercial chefs & caterers worldwide",
-    ],
-    nutritionalFacts: {
-      "Energy": "362 kcal",
-      "Protein": "9.1 g",
-      "Carbohydrates": "79.0 g",
-      "Dietary Fiber": "3.1 g",
-      "Fat": "0.5 g",
-    },
-    purityParameters: {
-      "Moisture Content": "11.5%",
-      "Grain Length": "8.4 mm",
-      "Broken Grains": "< 0.3%",
-    },
-    tag: "Chef's Choice",
-    options: [
-      { label: "1 Kg Pack", price: 145.0, originalPrice: 170.0, discount: "15% Off" },
-      { label: "5 Kg Bag", price: 690.0, originalPrice: 820.0, discount: "16% Off" },
-      { label: "25 Kg Sack", price: 3350.0, originalPrice: 3950.0, discount: "15% Off" },
-    ],
-  },
-  {
-    id: "rice-gobindo-3",
-    name: "Gobindobhog Heritage Scented Rice",
-    category: "Rice",
-    subtitle: "GI-Tagged • Sweet Buttery Aroma",
-    defaultPrice: 135.0,
-    defaultOriginalPrice: 160.0,
-    defaultDiscount: "16% Off",
-    rating: 4.7,
-    reviewsCount: 18,
-    image: "/images/products/rice-gobindo-1.jpg",
-    images: [
-      "/images/products/rice-gobindo-1.jpg",
-      "/images/products/rice-basmati-2.jpg",
-      "/images/products/rice-basmati-3.jpg",
-    ],
-    origin: "Burdwan, West Bengal",
-    description:
-      "A prized short-grain heirloom rice with an intoxicating natural buttery fragrance and soft mouthfeel. Traditionally offered in temples and perfect for rich kheer, khichuri, and festive Bengali desserts.",
-    features: [
-      "Geographical Indication (GI) protected variety",
-      "Short, white, aromatic tender grain",
-      "Naturally fragrant without added essences",
-    ],
-    options: [
-      { label: "1 Kg Pack", price: 135.0, originalPrice: 160.0, discount: "16% Off" },
-      { label: "2 Kg Pack", price: 260.0, originalPrice: 310.0, discount: "16% Off" },
-      { label: "5 Kg Bag", price: 630.0, originalPrice: 750.0, discount: "16% Off" },
-    ],
-  },
-  {
-    id: "rice-brown-4",
-    name: "Organic Whole Grain Brown Basmati",
-    category: "Rice",
-    subtitle: "High Fiber • Low Glycemic Index",
-    defaultPrice: 155.0,
-    defaultOriginalPrice: 180.0,
-    defaultDiscount: "14% Off",
-    rating: 4.6,
-    reviewsCount: 26,
-    image: "/images/products/rice-brown-1.jpg",
-    images: [
-      "/images/products/rice-brown-1.jpg",
-      "/images/products/rice-basmati-2.jpg",
-      "/images/products/rice-basmati-4.jpg",
-    ],
-    origin: "Dehradun Valley, Uttarakhand",
-    description:
-      "100% whole grain unpolished brown basmati with the nutrient-packed bran layer intact. Imparts an earthy, nutty chew and provides sustained energy with dietary fiber and manganese.",
-    features: [
-      "Preserves germ and outer bran layer",
-      "Supports balanced blood sugar management",
-      "Rich in B-vitamins, iron, and magnesium",
-    ],
-    options: [
-      { label: "1 Kg Pack", price: 155.0, originalPrice: 180.0, discount: "14% Off" },
-      { label: "2 Kg Pack", price: 295.0, originalPrice: 350.0, discount: "16% Off" },
-      { label: "5 Kg Bag", price: 720.0, originalPrice: 850.0, discount: "15% Off" },
-    ],
-  },
-
-  // =================== PULSES ===================
-  {
-    id: "pulse-toor-1",
-    name: "Toor Dal (Arhar Dal)",
-    category: "Pulses",
-    subtitle: "100% Unpolished • High Protein Desi Variety",
-    defaultPrice: 95.0,
-    defaultOriginalPrice: 110.0,
-    defaultDiscount: "14% Off",
-    rating: 4.7,
-    reviewsCount: 21,
-    image: "/images/products/pulse-toor-1.jpg",
-    images: [
-      "/images/products/pulse-toor-1.jpg",
-      "/images/products/pulse-toor-2.jpg",
-      "/images/products/pulse-moong-1.jpg",
-    ],
-    origin: "Latur, Maharashtra",
-    description:
-      "Unpolished, unadulterated split pigeon peas rich in dietary fiber and essential plant proteins. Never treated with oil, water, or leather polishing machines, retaining authentic earthy taste and fast cookability.",
-    features: [
-      "Zero oil polish or artificial shine",
-      "High protein content (22g per 100g)",
-      "Creamy, velvety texture when simmered",
-    ],
-    nutritionalFacts: {
-      "Protein": "22.3 g",
-      "Dietary Fiber": "15.0 g",
-      "Iron": "5.1 mg",
-      "Carbohydrates": "62.8 g",
-    },
-    tag: "Best Seller",
-    options: [
-      { label: "500g Sample", price: 50.0, originalPrice: 60.0, discount: "16% Off" },
-      { label: "1 Kg Pack", price: 95.0, originalPrice: 110.0, discount: "14% Off" },
-      { label: "2 Kg Pack", price: 185.0, originalPrice: 215.0, discount: "14% Off" },
-      { label: "5 Kg Bag", price: 450.0, originalPrice: 530.0, discount: "15% Off" },
-    ],
-  },
-  {
-    id: "pulse-moong-2",
-    name: "Green Moong Dal",
-    category: "Pulses",
-    subtitle: "Split & Whole • Easy Digestion",
-    defaultPrice: 110.0,
-    defaultOriginalPrice: 130.0,
-    defaultDiscount: "15% Off",
-    rating: 4.6,
-    reviewsCount: 19,
-    image: "/images/products/pulse-moong-1.jpg",
-    images: [
-      "/images/products/pulse-moong-1.jpg",
-      "/images/products/pulse-toor-1.jpg",
-      "/images/products/pulse-toor-2.jpg",
-    ],
-    origin: "Indore, Madhya Pradesh",
-    description:
-      "Wholesome green gram beans with the highest bio-availability and digestive comfort. Packed with folate, potassium, and magnesium, making it the perfect comforting food for khichdi, soups, and healthy curries.",
-    features: [
-      "Extremely light on the stomach",
-      "Fast cooking without soaking needed",
-      "Ideal for detox meals and daily nutrition",
-    ],
-    options: [
-      { label: "500g Sample", price: 60.0, originalPrice: 70.0, discount: "14% Off" },
-      { label: "1 Kg Pack", price: 110.0, originalPrice: 130.0, discount: "15% Off" },
-      { label: "2 Kg Pack", price: 215.0, originalPrice: 250.0, discount: "14% Off" },
-      { label: "5 Kg Bag", price: 520.0, originalPrice: 620.0, discount: "16% Off" },
-    ],
-  },
-  {
-    id: "pulse-chana-3",
-    name: "Desi Chana Dal (Bengal Gram)",
-    category: "Pulses",
-    subtitle: "Sun-Dried • Rich Golden Kernels",
-    defaultPrice: 85.0,
-    defaultOriginalPrice: 105.0,
-    defaultDiscount: "19% Off",
-    rating: 4.8,
-    reviewsCount: 23,
-    image: "/images/products/pulse-chana-1.jpg",
-    images: [
+    "id": "pulses-organic-arhar-dal-toor-dal-pige",
+    "name": "Organic Arhar Dal / Toor Dal / Pigeon Pea Split",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 180.0,
+    "defaultOriginalPrice": 212.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 22,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
       "/images/products/pulse-chana-1.jpg",
-      "/images/products/pulse-toor-1.jpg",
-      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
     ],
-    origin: "Vidisha, Madhya Pradesh",
-    description:
-      "Naturally golden split chickpeas grown in rich black soils. Known for their distinct nutty aroma, low glycemic index, and satisfying bite in everyday tadka dal, puran poli, and crunchy snacks.",
-    features: ["Naturally sweet nutty taste", "Low GI for diabetic wellness", "Zero stone impurities"],
-    options: [
-      { label: "1 Kg Pack", price: 85.0, originalPrice: 105.0, discount: "19% Off" },
-      { label: "2 Kg Pack", price: 165.0, originalPrice: 200.0, discount: "18% Off" },
-      { label: "5 Kg Bag", price: 399.0, originalPrice: 490.0, discount: "19% Off" },
+    "options": [
+      {
+        "label": "10kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 4500.0,
+        "originalPrice": 5310.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 25.2,
+        "originalPrice": 29.74,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Organic Arhar Dal / Toor Dal / Pigeon Pea Split is a pantry staple suitable for everyday Indian cooking. Split pigeon pea can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split pigeon pea (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9180/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
   },
   {
-    id: "pulse-urad-4",
-    name: "Whole Black Urad Dal",
-    category: "Pulses",
-    subtitle: "Unpolished • Authentic Dal Makhani",
-    defaultPrice: 125.0,
-    defaultOriginalPrice: 150.0,
-    defaultDiscount: "17% Off",
-    rating: 4.9,
-    reviewsCount: 37,
-    image: "/images/products/pulse-urad-1.jpg",
-    images: [
+    "id": "pulses-organic-chana-dal-bengal-gram-spl",
+    "name": "Organic Chana Dal / Bengal Gram Split",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 29,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
+      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2750.0,
+        "originalPrice": 3245.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 15.4,
+        "originalPrice": 18.17,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Chana Dal / Bengal Gram Split is a pantry staple suitable for everyday Indian cooking. Split bengal gram can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Latur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split Bengal gram (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9110/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-chana-whole-kala-chana",
+    "name": "Organic Chana Whole / Kala Chana / Bengal Gram",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 100.0,
+    "defaultOriginalPrice": 118.0,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 36,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
+      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2500.0,
+        "originalPrice": 2950.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 450.0,
+        "originalPrice": 531.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 14.0,
+        "originalPrice": 16.52,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Chana Whole / Kala Chana / Bengal Gram is a pantry staple suitable for everyday Indian cooking. Whole bengal gram (black chickpea) can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Bikaner, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole Bengal gram (black chickpea) (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9100/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-kabuli-chana-bold",
+    "name": "Organic Kabuli Chana / Bold",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 180.0,
+    "defaultOriginalPrice": 212.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 43,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
+      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 4500.0,
+        "originalPrice": 5310.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 25.2,
+        "originalPrice": 29.74,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Kabuli Chana / Bold is a pantry staple suitable for everyday Indian cooking. Whole kabuli chickpeas can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Gulbarga, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole Kabuli chickpeas (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9180/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "pulses-organic-lobiya-cowpea-black-eye",
+    "name": "Organic Lobiya / Cowpea / Black eye bean",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 50,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
+      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2750.0,
+        "originalPrice": 3245.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 15.4,
+        "originalPrice": 18.17,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Lobiya / Cowpea / Black eye bean is a pantry staple suitable for everyday Indian cooking. Whole cowpeas / black-eyed beans can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole cowpeas / black-eyed beans (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9110/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-masoor-dal-red-lentil-spl",
+    "name": "Organic Masoor Dal / Red Lentil Split",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 95.0,
+    "defaultOriginalPrice": 112.1,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 57,
+    "image": "/images/products/pulses/pulse-lentils-1.jpg",
+    "images": [
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulse-toor-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2375.0,
+        "originalPrice": 2802.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 13.3,
+        "originalPrice": 15.69,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Masoor Dal / Red Lentil Split is a pantry staple suitable for everyday Indian cooking. Split red lentils can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Latur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split red lentils (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b995/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-masoor-malka-masoor-gota",
+    "name": "Organic Masoor Malka / Masoor Gota / Red Lentil",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 95.0,
+    "defaultOriginalPrice": 112.1,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 64,
+    "image": "/images/products/pulses/pulse-lentils-1.jpg",
+    "images": [
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulse-toor-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2375.0,
+        "originalPrice": 2802.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 13.3,
+        "originalPrice": 15.69,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Masoor Malka / Masoor Gota / Red Lentil is a pantry staple suitable for everyday Indian cooking. Masoor malka / red lentils can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Bikaner, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Masoor Malka / red lentils (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b995/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "pulses-organic-masoor-whole-masoor-brown",
+    "name": "Organic Masoor Whole / Masoor Brown / Lentil",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 88.0,
+    "defaultOriginalPrice": 103.84,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 71,
+    "image": "/images/products/pulses/pulse-lentils-1.jpg",
+    "images": [
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulse-toor-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2200.0,
+        "originalPrice": 2596.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 396.0,
+        "originalPrice": 467.28,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 12.32,
+        "originalPrice": 14.54,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Masoor Whole / Masoor Brown / Lentil is a pantry staple suitable for everyday Indian cooking. Whole brown lentils can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Gulbarga, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole brown lentils (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b988/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-panchratna-dal-mix-dal-5",
+    "name": "Organic Panchratna Dal / Mix Dal (5 Pulses)",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 130.0,
+    "defaultOriginalPrice": 153.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 78,
+    "image": "/images/products/pulse-toor-1.jpg",
+    "images": [
+      "/images/products/pulse-toor-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3250.0,
+        "originalPrice": 3835.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 18.2,
+        "originalPrice": 21.48,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Panchratna Dal / Mix Dal (5 Pulses) is a pantry staple suitable for everyday Indian cooking. Five-pulse mixed dal; confirm exact blend with supplier can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Five-pulse mixed dal; confirm exact blend with supplier (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9130/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-moong-chilka-moong-dal",
+    "name": "Organic Moong Chilka / Moong Dal / Green Gram Split",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 120.0,
+    "defaultOriginalPrice": 141.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 85,
+    "image": "/images/products/pulse-moong-1.jpg",
+    "images": [
+      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3000.0,
+        "originalPrice": 3540.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 16.8,
+        "originalPrice": 19.82,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Moong Chilka / Moong Dal / Green Gram Split is a pantry staple suitable for everyday Indian cooking. Split green gram with skin can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Latur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split green gram with skin (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9120/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "pulses-organic-moong-mogar-green-gram-sp",
+    "name": "Organic Moong Mogar / Green Gram Split Dehusked (Yellow)",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 125.0,
+    "defaultOriginalPrice": 147.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 27,
+    "image": "/images/products/pulse-moong-1.jpg",
+    "images": [
+      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3125.0,
+        "originalPrice": 3687.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 17.5,
+        "originalPrice": 20.65,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Moong Mogar / Green Gram Split Dehusked (Yellow) is a pantry staple suitable for everyday Indian cooking. Split and dehusked yellow green gram can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Bikaner, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split and dehusked yellow green gram (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9125/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-moong-whole-moong-sabut",
+    "name": "Organic Moong Whole / Moong Sabut / Green Gram Whole",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 115.0,
+    "defaultOriginalPrice": 135.7,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 34,
+    "image": "/images/products/pulse-moong-1.jpg",
+    "images": [
+      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2875.0,
+        "originalPrice": 3392.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 517.5,
+        "originalPrice": 610.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 16.1,
+        "originalPrice": 19.0,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Moong Whole / Moong Sabut / Green Gram Whole is a pantry staple suitable for everyday Indian cooking. Whole green gram can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Gulbarga, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole green gram (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9115/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-rajma-red-kidney-bean-ca",
+    "name": "Organic Rajma Red (Kidney Bean) (Capsule)",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 165.0,
+    "defaultOriginalPrice": 194.7,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 41,
+    "image": "/images/products/pulses/pulse-dal-bowl-1.jpg",
+    "images": [
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 4125.0,
+        "originalPrice": 4867.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 742.5,
+        "originalPrice": 876.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 23.1,
+        "originalPrice": 27.26,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Rajma Red (Kidney Bean) (Capsule) is a pantry staple suitable for everyday Indian cooking. Red kidney beans, capsule variety can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Red kidney beans, capsule variety (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9165/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "pulses-organic-rajma-chitra-speckled",
+    "name": "Organic Rajma Chitra (Speckled)",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 160.0,
+    "defaultOriginalPrice": 188.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 48,
+    "image": "/images/products/pulses/pulse-dal-bowl-1.jpg",
+    "images": [
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 4000.0,
+        "originalPrice": 4720.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 720.0,
+        "originalPrice": 849.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 22.4,
+        "originalPrice": 26.43,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Rajma Chitra (Speckled) is a pantry staple suitable for everyday Indian cooking. Speckled kidney beans can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Latur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Speckled kidney beans (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9160/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-red-rajma-small-jammu",
+    "name": "Organic Red Rajma Small (Jammu)",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 130.0,
+    "defaultOriginalPrice": 153.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 55,
+    "image": "/images/products/pulses/pulse-dal-bowl-1.jpg",
+    "images": [
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3250.0,
+        "originalPrice": 3835.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 18.2,
+        "originalPrice": 21.48,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Red Rajma Small (Jammu) is a pantry staple suitable for everyday Indian cooking. Small red kidney beans, jammu variety can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Bikaner, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Small red kidney beans, Jammu variety (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9130/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-urad-chilka-urad-split-ch",
+    "name": "Organic Urad Chilka / Urad Split Chilka / Black Gram Split",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 125.0,
+    "defaultOriginalPrice": 147.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 62,
+    "image": "/images/products/pulse-urad-1.jpg",
+    "images": [
       "/images/products/pulse-urad-1.jpg",
-      "/images/products/pulse-toor-1.jpg",
-      "/images/products/pulse-toor-2.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
     ],
-    origin: "Guntur, Andhra Pradesh",
-    description:
-      "Whole black lentils with shiny dark coats and chalky white centers. Slow-cooked over gentle heat, it yields the iconic creamy silkiness of Punjabi Dal Makhani and traditional idli-dosa ferments.",
-    features: ["Rich in iron and natural calcium", "Essential for hearty winter cooking", "100% sorted by optical sorters"],
-    options: [
-      { label: "1 Kg Pack", price: 125.0, originalPrice: 150.0, discount: "17% Off" },
-      { label: "2 Kg Pack", price: 240.0, originalPrice: 290.0, discount: "17% Off" },
-      { label: "5 Kg Bag", price: 580.0, originalPrice: 700.0, discount: "17% Off" },
+    "options": [
+      {
+        "label": "10kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3125.0,
+        "originalPrice": 3687.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 17.5,
+        "originalPrice": 20.65,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Organic Urad Chilka / Urad Split Chilka / Black Gram Split is a pantry staple suitable for everyday Indian cooking. Split black gram with skin can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Gulbarga, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split black gram with skin (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9125/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
   },
   {
-    id: "pulse-masoor-5",
-    name: "Organic Red Masoor Dal (Split)",
-    category: "Pulses",
-    subtitle: "Quick-Cooking • Rich in Iron",
-    defaultPrice: 90.0,
-    defaultOriginalPrice: 110.0,
-    defaultDiscount: "18% Off",
-    rating: 4.7,
-    reviewsCount: 15,
-    image: "/images/products/pulse-moong-1.jpg",
-    images: [
-      "/images/products/pulse-moong-1.jpg",
-      "/images/products/pulse-toor-1.jpg",
-      "/images/products/pulse-toor-2.jpg",
+    "id": "pulses-organic-urad-mogar-urad-dal-white",
+    "name": "Organic Urad Mogar / Urad Dal White / Black Gram Split",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 135.0,
+    "defaultOriginalPrice": 159.3,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 69,
+    "image": "/images/products/pulse-urad-1.jpg",
+    "images": [
+      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
     ],
-    origin: "Sagar, Madhya Pradesh",
-    description:
-      "Vibrant salmon-pink split lentils that turn soft and golden upon cooking. Cooks in under 15 minutes without pre-soaking, providing a fast boost of plant protein, iron, and prebiotic fibers.",
-    features: ["Ready in 15 minutes", "Hearty comfort food staple", "Certified residue-free"],
-    options: [
-      { label: "1 Kg Pack", price: 90.0, originalPrice: 110.0, discount: "18% Off" },
-      { label: "2 Kg Pack", price: 175.0, originalPrice: 215.0, discount: "19% Off" },
-      { label: "5 Kg Bag", price: 420.0, originalPrice: 520.0, discount: "19% Off" },
+    "options": [
+      {
+        "label": "10kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3375.0,
+        "originalPrice": 3982.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 607.5,
+        "originalPrice": 716.85,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 18.9,
+        "originalPrice": 22.3,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Organic Urad Mogar / Urad Dal White / Black Gram Split is a pantry staple suitable for everyday Indian cooking. Split and dehusked white black gram can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Split and dehusked white black gram (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9135/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
   },
-
-  // =================== DRY FRUITS ===================
   {
-    id: "dryfruit-almond-1",
-    name: "California Almonds (Badam)",
-    category: "Dry Fruits",
-    subtitle: "Jumbo Grade Nonpareil • 100% Natural",
-    defaultPrice: 320.0,
-    defaultOriginalPrice: 380.0,
-    defaultDiscount: "16% Off",
-    rating: 4.9,
-    reviewsCount: 48,
-    image: "/images/products/dryfruit-almond-1.jpg",
-    images: [
+    "id": "pulses-organic-urad-white-whole-urad-got",
+    "name": "Organic Urad White Whole / Urad Gota / Black Gram Whole",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 140.0,
+    "defaultOriginalPrice": 165.2,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 76,
+    "image": "/images/products/pulse-urad-1.jpg",
+    "images": [
+      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3500.0,
+        "originalPrice": 4130.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 630.0,
+        "originalPrice": 743.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 19.6,
+        "originalPrice": 23.13,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Urad White Whole / Urad Gota / Black Gram Whole is a pantry staple suitable for everyday Indian cooking. Whole white black gram can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Latur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole white black gram (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9140/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-urad-whole-black-gram-who",
+    "name": "Organic Urad Whole / Black Gram Whole",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 120.0,
+    "defaultOriginalPrice": 141.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 83,
+    "image": "/images/products/pulse-urad-1.jpg",
+    "images": [
+      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3000.0,
+        "originalPrice": 3540.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 16.8,
+        "originalPrice": 19.82,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Urad Whole / Black Gram Whole is a pantry staple suitable for everyday Indian cooking. Whole black gram can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Bikaner, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole black gram (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9120/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "pulses-organic-white-dry-peas",
+    "name": "Organic White Dry Peas",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 90.0,
+    "defaultOriginalPrice": 106.2,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 25,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
+      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2250.0,
+        "originalPrice": 2655.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 405.0,
+        "originalPrice": 477.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 12.6,
+        "originalPrice": 14.87,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic White Dry Peas is a pantry staple suitable for everyday Indian cooking. Dried white peas can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Gulbarga, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Dried white peas (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b990/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-green-dry-peas-round",
+    "name": "Organic Green Dry Peas (Round)",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 180.0,
+    "defaultOriginalPrice": 212.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 32,
+    "image": "/images/products/pulse-chana-1.jpg",
+    "images": [
+      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 4500.0,
+        "originalPrice": 5310.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 25.2,
+        "originalPrice": 29.74,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Green Dry Peas (Round) is a pantry staple suitable for everyday Indian cooking. Round dried green peas can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Round dried green peas (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9180/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "pulses-organic-soyabean-whole",
+    "name": "Organic Soyabean Whole",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 75.0,
+    "defaultOriginalPrice": 88.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 39,
+    "image": "/images/products/pulse-toor-2.jpg",
+    "images": [
+      "/images/products/pulse-toor-2.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 1875.0,
+        "originalPrice": 2212.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 337.5,
+        "originalPrice": 398.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 10.5,
+        "originalPrice": 12.39,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Soyabean Whole is a pantry staple suitable for everyday Indian cooking. Whole soybeans can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Latur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole soybeans (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b975/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 5% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "pulses-organic-moth-whole",
+    "name": "Organic Moth Whole",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 46,
+    "image": "/images/products/pulse-toor-2.jpg",
+    "images": [
+      "/images/products/pulse-toor-2.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 2750.0,
+        "originalPrice": 3245.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 15.4,
+        "originalPrice": 18.17,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Moth Whole is a pantry staple suitable for everyday Indian cooking. Whole moth beans can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Bikaner, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole moth beans (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9110/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: Y | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "pulses-organic-amaranthus-whole-chaula",
+    "name": "Organic Amaranthus Whole / Chaula / Rajgira / Amaranth",
+    "category": "Pulses",
+    "subtitle": "100% Certified Organic \u2022 Unpolished & Natural",
+    "defaultPrice": 120.0,
+    "defaultOriginalPrice": 141.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 53,
+    "image": "/images/products/pulse-toor-2.jpg",
+    "images": [
+      "/images/products/pulse-toor-2.jpg",
+      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/categories/pulses.jpg"
+    ],
+    "options": [
+      {
+        "label": "10kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "30kg",
+        "price": 3000.0,
+        "originalPrice": 3540.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "50kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "100kg",
+        "price": 16.8,
+        "originalPrice": 19.82,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Organic Amaranthus Whole / Chaula / Rajgira / Amaranth is a pantry staple suitable for everyday Indian cooking. Whole amaranth seeds (chaula / rajgira) can be used in traditional dals, curries, soups and other regional recipes. Clean, dry and cook thoroughly before consumption. Product grade, cleaning/polishing status and organic certification should be verified against the supplied batch.",
+    "origin": "Gulbarga, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Pulses generally provide plant-based protein, dietary fibre and carbohydrates. Nutrient content varies by variety and processing; avoid specific medical or disease-prevention claims unless supported by verified product testing.",
+    "ingredients": "Whole amaranth seeds (chaula / rajgira) (single ingredient; verify against final pack label).",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight and moisture. After opening, keep in an airtight food-grade container. Use a clean, dry scoop.",
+    "commonUses": "Suitable for dal, curry, soups, stews, khichdi and other recipes depending on the pulse variety. Soaking and cooking time vary by product.",
+    "additionalInfo": "Category: Pulses | Reference bulk rate: \u20b9120/kg (October 2024 list; NOT a current quote) | GST shown in reference list: 0% | NPOP column in reference list: N | Minimum bulk pack shown in reference list: 30/50 kg. Confirm current rate, GST, certification, packaging, availability and exact blend/grade with supplier before publishing.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-pearl-millet-bajra",
+    "name": "Premium Pearl Millet / Bajra",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 99.0,
+    "defaultOriginalPrice": 116.82,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 60,
+    "image": "/images/products/millet-bajra-1.jpg",
+    "images": [
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 342.0,
+        "originalPrice": 403.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole pearl millet for rotis, porridge and traditional meals. Sort and rinse before cooking or milling.",
+    "origin": "Sirohi, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole pearl millet for rotis, porridge and traditional meals. Sort and rinse before cooking or milling.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-finger-millet-ragi",
+    "name": "Premium Finger Millet / Ragi",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 60.5,
+    "defaultOriginalPrice": 71.39,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 67,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Finger millet for porridge, flour blends, rotis and baking. Confirm milling fineness.",
+    "origin": "Mandya, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Finger millet for porridge, flour blends, rotis and baking. Confirm milling fineness.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-foxtail-millet",
+    "name": "Premium Foxtail Millet",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 55.0,
+    "defaultOriginalPrice": 64.9,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 74,
+    "image": "/images/products/millet-foxtail-1.jpg",
+    "images": [
+      "/images/products/millet-foxtail-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 55.0,
+        "originalPrice": 64.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 190.0,
+        "originalPrice": 224.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 450.0,
+        "originalPrice": 531.0,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Foxtail millet for cooked grain bowls, upma and regional recipes. Rinse before cooking.",
+    "origin": "Anantapur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Foxtail millet for cooked grain bowls, upma and regional recipes. Rinse before cooking.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-little-millet",
+    "name": "Premium Little Millet",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 99.0,
+    "defaultOriginalPrice": 116.82,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 81,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 342.0,
+        "originalPrice": 403.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Small-grain millet for cooked dishes, khichdi-style meals and side servings.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Small-grain millet for cooked dishes, khichdi-style meals and side servings.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-kodo-millet",
+    "name": "Premium Kodo Millet",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 60.5,
+    "defaultOriginalPrice": 71.39,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 23,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Kodo millet for grain dishes and traditional recipes. Clean and rinse before use.",
+    "origin": "Sirohi, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Kodo millet for grain dishes and traditional recipes. Clean and rinse before use.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-barnyard-millet",
+    "name": "Premium Barnyard Millet",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 52.25,
+    "defaultOriginalPrice": 61.65,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 30,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Barnyard millet for porridge, khichdi-style dishes and other cooked preparations.",
+    "origin": "Mandya, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Barnyard millet for porridge, khichdi-style dishes and other cooked preparations.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-sorghum-jowar",
+    "name": "Premium Sorghum / Jowar",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 52.25,
+    "defaultOriginalPrice": 61.65,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 37,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole sorghum grain for flour milling and cooked grain preparations.",
+    "origin": "Anantapur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole sorghum grain for flour milling and cooked grain preparations.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-proso-millet",
+    "name": "Premium Proso Millet",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 48.4,
+    "defaultOriginalPrice": 57.11,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 44,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 48.4,
+        "originalPrice": 57.11,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 167.2,
+        "originalPrice": 197.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 396.0,
+        "originalPrice": 467.28,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Proso millet for cooked grain dishes and flour blends. Verify grain grade.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Proso millet for cooked grain dishes and flour blends. Verify grain grade.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-browntop-millet",
+    "name": "Premium Browntop Millet",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 71.5,
+    "defaultOriginalPrice": 84.37,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 51,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Browntop millet for cooked grain recipes and traditional preparations.",
+    "origin": "Sirohi, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Browntop millet for cooked grain recipes and traditional preparations.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-mixed-millets",
+    "name": "Premium Mixed Millets",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 66.0,
+    "defaultOriginalPrice": 77.88,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 58,
+    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "images": [
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A blend of millet varieties for porridge and mixed-grain dishes. Confirm blend composition.",
+    "origin": "Mandya, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A blend of millet varieties for porridge and mixed-grain dishes. Confirm blend composition.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-millet-flour-mix",
+    "name": "Premium Millet Flour Mix",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 68.75,
+    "defaultOriginalPrice": 81.12,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 65,
+    "image": "/images/products/millets/millet-flour-1.jpg",
+    "images": [
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A flour blend for rotis and baking. Confirm exact millet composition and milling details.",
+    "origin": "Anantapur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A flour blend for rotis and baking. Confirm exact millet composition and milling details.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-ragi-flour",
+    "name": "Premium Ragi Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 63.25,
+    "defaultOriginalPrice": 74.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 72,
+    "image": "/images/products/millets/millet-flour-1.jpg",
+    "images": [
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 63.25,
+        "originalPrice": 74.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 218.5,
+        "originalPrice": 257.83,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 517.5,
+        "originalPrice": 610.65,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Finger millet flour for porridge, rotis and baking. Confirm fineness and processing.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Finger millet flour for porridge, rotis and baking. Confirm fineness and processing.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-bajra-flour",
+    "name": "Premium Bajra Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 90.75,
+    "defaultOriginalPrice": 107.08,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 79,
+    "image": "/images/products/millet-bajra-1.jpg",
+    "images": [
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 90.75,
+        "originalPrice": 107.08,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 313.5,
+        "originalPrice": 369.93,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 742.5,
+        "originalPrice": 876.15,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Pearl millet flour for rotis, bhakri and porridge. Store sealed and dry.",
+    "origin": "Sirohi, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Pearl millet flour for rotis, bhakri and porridge. Store sealed and dry.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-jowar-flour",
+    "name": "Premium Jowar Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 88.0,
+    "defaultOriginalPrice": 103.84,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 86,
+    "image": "/images/products/millets/millet-flour-1.jpg",
+    "images": [
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 304.0,
+        "originalPrice": 358.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 720.0,
+        "originalPrice": 849.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sorghum flour for flatbreads and baking blends. Dough may need recipe-specific handling.",
+    "origin": "Mandya, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sorghum flour for flatbreads and baking blends. Dough may need recipe-specific handling.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-foxtail-millet-flour",
+    "name": "Premium Foxtail Millet Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 71.5,
+    "defaultOriginalPrice": 84.37,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 28,
+    "image": "/images/products/millet-foxtail-1.jpg",
+    "images": [
+      "/images/products/millet-foxtail-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Foxtail millet flour for baking and traditional recipes. Verify milling grade.",
+    "origin": "Anantapur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Foxtail millet flour for baking and traditional recipes. Verify milling grade.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-little-millet-flour",
+    "name": "Premium Little Millet Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 68.75,
+    "defaultOriginalPrice": 81.12,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 35,
+    "image": "/images/products/millets/millet-flour-1.jpg",
+    "images": [
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Little millet flour for rotis, porridges and mixed flour recipes.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Little millet flour for rotis, porridges and mixed flour recipes.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-kodo-millet-flour",
+    "name": "Premium Kodo Millet Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 74.25,
+    "defaultOriginalPrice": 87.61,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 42,
+    "image": "/images/products/millets/millet-flour-1.jpg",
+    "images": [
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 256.5,
+        "originalPrice": 302.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 607.5,
+        "originalPrice": 716.85,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Kodo millet flour for flatbreads and recipe blends. Confirm processing details.",
+    "origin": "Sirohi, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Kodo millet flour for flatbreads and recipe blends. Confirm processing details.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-barnyard-millet-flour",
+    "name": "Premium Barnyard Millet Flour",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 77.0,
+    "defaultOriginalPrice": 90.86,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 49,
+    "image": "/images/products/millets/millet-flour-1.jpg",
+    "images": [
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 266.0,
+        "originalPrice": 313.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 630.0,
+        "originalPrice": 743.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Barnyard millet flour for porridges and baked or cooked recipes.",
+    "origin": "Mandya, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Barnyard millet flour for porridges and baked or cooked recipes.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-millet-flakes",
+    "name": "Premium Millet Flakes",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 66.0,
+    "defaultOriginalPrice": 77.88,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 56,
+    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "images": [
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Flattened millet for porridge and quick breakfast preparations. Confirm millet variety.",
+    "origin": "Anantapur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Flattened millet for porridge and quick breakfast preparations. Confirm millet variety.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-millet-puffs",
+    "name": "Premium Millet Puffs",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 49.5,
+    "defaultOriginalPrice": 58.41,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 63,
+    "image": "/images/products/millets/millet-grain-1.jpg",
+    "images": [
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 171.0,
+        "originalPrice": 201.78,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 405.0,
+        "originalPrice": 477.9,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Puffed millet for snack mixes and breakfast foods. Confirm ingredients and added seasonings.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Puffed millet for snack mixes and breakfast foods. Confirm ingredients and added seasonings.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-millet-noodles",
+    "name": "Premium Millet Noodles",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 99.0,
+    "defaultOriginalPrice": 116.82,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 70,
+    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "images": [
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 342.0,
+        "originalPrice": 403.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Millet-based noodles for quick meals. Verify flour blend and allergen statement.",
+    "origin": "Sirohi, Rajasthan",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Millet-based noodles for quick meals. Verify flour blend and allergen statement.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "millets-premium-millet-pasta",
+    "name": "Premium Millet Pasta",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 41.25,
+    "defaultOriginalPrice": 48.67,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 77,
+    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "images": [
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 142.5,
+        "originalPrice": 168.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 337.5,
+        "originalPrice": 398.25,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Millet-based pasta for hot meals and salads. Confirm ingredients and cooking directions.",
+    "origin": "Mandya, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Millet-based pasta for hot meals and salads. Confirm ingredients and cooking directions.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "millets-premium-millet-dosa-mix",
+    "name": "Premium Millet Dosa Mix",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 60.5,
+    "defaultOriginalPrice": 71.39,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 84,
+    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "images": [
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Millet-based dosa mix. Confirm exact ingredients, additives and preparation instructions.",
+    "origin": "Anantapur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Millet-based dosa mix. Confirm exact ingredients, additives and preparation instructions.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "millets-premium-millet-khichdi-mix",
+    "name": "Premium Millet Khichdi Mix",
+    "category": "Millets",
+    "subtitle": "Ancient Gluten-Free Supergrain \u2022 Fiber & Mineral Rich",
+    "defaultPrice": 66.0,
+    "defaultOriginalPrice": 77.88,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 26,
+    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "images": [
+      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/millet-flour-1.jpg",
+      "/images/categories/millets.jpg"
+    ],
+    "options": [
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ready-to-cook millet mix. Confirm grains, pulses, seasoning and cooking instructions.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by millet type and processing. Use verified nutrition information; avoid unsupported medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ready-to-cook millet mix. Confirm grains, pulses, seasoning and cooking instructions.",
+    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-turmeric-powder",
+    "name": "Premium Turmeric Powder",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 25.2,
+    "defaultOriginalPrice": 29.74,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 33,
+    "image": "/images/products/spice-turmeric-1.jpg",
+    "images": [
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-pepper-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 25.2,
+        "originalPrice": 29.74,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 45.0,
+        "originalPrice": 53.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 54.0,
+        "originalPrice": 63.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ground turmeric for curries, dals, marinades and seasoning. Verify purity and food-grade testing.",
+    "origin": "Idukki, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground turmeric for curries, dals, marinades and seasoning. Verify purity and food-grade testing.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-red-chilli-powder",
+    "name": "Premium Red Chilli Powder",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 15.4,
+    "defaultOriginalPrice": 18.17,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 40,
+    "image": "/images/products/spices/spice-chilli-1.jpg",
+    "images": [
+      "/images/products/spices/spice-chilli-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 15.4,
+        "originalPrice": 18.17,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 27.5,
+        "originalPrice": 32.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ground red chilli for seasoning. Heat level and colour vary by variety.",
+    "origin": "Wayanad, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground red chilli for seasoning. Heat level and colour vary by variety.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-coriander-powder",
+    "name": "Premium Coriander Powder",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 14.0,
+    "defaultOriginalPrice": 16.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 47,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 14.0,
+        "originalPrice": 16.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 25.0,
+        "originalPrice": 29.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 55.0,
+        "originalPrice": 64.9,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ground coriander seed for curries, spice blends and marinades.",
+    "origin": "Guntur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground coriander seed for curries, spice blends and marinades.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-cumin-seeds-jeera",
+    "name": "Premium Cumin Seeds / Jeera",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 12.6,
+    "defaultOriginalPrice": 14.87,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 54,
+    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "images": [
+      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 12.6,
+        "originalPrice": 14.87,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 27.0,
+        "originalPrice": 31.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole cumin seeds for tempering, spice blends and cooking.",
+    "origin": "Kandhamal, Odisha",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole cumin seeds for tempering, spice blends and cooking.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-cumin-powder",
+    "name": "Premium Cumin Powder",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 15.4,
+    "defaultOriginalPrice": 18.17,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 61,
+    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "images": [
+      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 15.4,
+        "originalPrice": 18.17,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 27.5,
+        "originalPrice": 32.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ground cumin for seasoning and spice mixes.",
+    "origin": "Idukki, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground cumin for seasoning and spice mixes.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-black-pepper-whole",
+    "name": "Premium Black Pepper Whole",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 13.3,
+    "defaultOriginalPrice": 15.69,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 68,
+    "image": "/images/products/spice-pepper-1.jpg",
+    "images": [
+      "/images/products/spice-pepper-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 13.3,
+        "originalPrice": 15.69,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 23.75,
+        "originalPrice": 28.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole black pepper for grinding, seasoning and spice blends.",
+    "origin": "Wayanad, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole black pepper for grinding, seasoning and spice blends.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-black-pepper-powder",
+    "name": "Premium Black Pepper Powder",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 13.3,
+    "defaultOriginalPrice": 15.69,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 75,
+    "image": "/images/products/spice-pepper-1.jpg",
+    "images": [
+      "/images/products/spice-pepper-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 13.3,
+        "originalPrice": 15.69,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 23.75,
+        "originalPrice": 28.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ground black pepper for seasoning and everyday cooking.",
+    "origin": "Guntur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground black pepper for seasoning and everyday cooking.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-garam-masala",
+    "name": "Premium Garam Masala",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 12.32,
+    "defaultOriginalPrice": 14.54,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 82,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 12.32,
+        "originalPrice": 14.54,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 22.0,
+        "originalPrice": 25.96,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 26.4,
+        "originalPrice": 31.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 48.4,
+        "originalPrice": 57.11,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A spice blend for curries and gravies. Confirm blend composition.",
+    "origin": "Kandhamal, Odisha",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A spice blend for curries and gravies. Confirm blend composition.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-mustard-seeds-rai",
+    "name": "Premium Mustard Seeds / Rai",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 18.2,
+    "defaultOriginalPrice": 21.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 24,
+    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "images": [
+      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 18.2,
+        "originalPrice": 21.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 32.5,
+        "originalPrice": 38.35,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Mustard seeds for tempering, pickles and spice blends.",
+    "origin": "Idukki, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Mustard seeds for tempering, pickles and spice blends.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-fenugreek-seeds-methi",
+    "name": "Premium Fenugreek Seeds / Methi",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 19.6,
+    "defaultOriginalPrice": 23.13,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 31,
+    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "images": [
+      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 19.6,
+        "originalPrice": 23.13,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 35.0,
+        "originalPrice": 41.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 42.0,
+        "originalPrice": 49.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Fenugreek seeds for tempering, pickles and spice blends.",
+    "origin": "Wayanad, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Fenugreek seeds for tempering, pickles and spice blends.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-fennel-seeds-saunf",
+    "name": "Premium Fennel Seeds / Saunf",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 18.9,
+    "defaultOriginalPrice": 22.3,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 38,
+    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "images": [
+      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 18.9,
+        "originalPrice": 22.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 33.75,
+        "originalPrice": 39.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 40.5,
+        "originalPrice": 47.79,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Fennel seeds for spice blends, cooking and after-meal use.",
+    "origin": "Guntur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Fennel seeds for spice blends, cooking and after-meal use.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-carom-seeds-ajwain",
+    "name": "Premium Carom Seeds / Ajwain",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 25.2,
+    "defaultOriginalPrice": 29.74,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 45,
+    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "images": [
+      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 25.2,
+        "originalPrice": 29.74,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 45.0,
+        "originalPrice": 53.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 54.0,
+        "originalPrice": 63.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Carom seeds for seasoning and savoury recipes.",
+    "origin": "Kandhamal, Odisha",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Carom seeds for seasoning and savoury recipes.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-green-cardamom-elaichi",
+    "name": "Premium Green Cardamom / Elaichi",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 23.1,
+    "defaultOriginalPrice": 27.26,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 52,
+    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "images": [
+      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 23.1,
+        "originalPrice": 27.26,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 90.75,
+        "originalPrice": 107.08,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Green cardamom pods for desserts, beverages and spice blends.",
+    "origin": "Idukki, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Green cardamom pods for desserts, beverages and spice blends.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-black-cardamom",
+    "name": "Premium Black Cardamom",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 22.4,
+    "defaultOriginalPrice": 26.43,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 59,
+    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "images": [
+      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 22.4,
+        "originalPrice": 26.43,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 40.0,
+        "originalPrice": 47.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 48.0,
+        "originalPrice": 56.64,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Black cardamom for aromatic curries, rice dishes and spice blends.",
+    "origin": "Wayanad, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Black cardamom for aromatic curries, rice dishes and spice blends.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-cloves-laung",
+    "name": "Premium Cloves / Laung",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 18.2,
+    "defaultOriginalPrice": 21.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 66,
+    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "images": [
+      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 18.2,
+        "originalPrice": 21.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 32.5,
+        "originalPrice": 38.35,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole cloves for seasoning, rice dishes and spice mixes.",
+    "origin": "Guntur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole cloves for seasoning, rice dishes and spice mixes.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-cinnamon-dalchini",
+    "name": "Premium Cinnamon / Dalchini",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 17.5,
+    "defaultOriginalPrice": 20.65,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 73,
+    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "images": [
+      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 17.5,
+        "originalPrice": 20.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 31.25,
+        "originalPrice": 36.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Cinnamon bark for beverages, desserts and savoury dishes.",
+    "origin": "Kandhamal, Odisha",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Cinnamon bark for beverages, desserts and savoury dishes.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-bay-leaves-tej-patta",
+    "name": "Premium Bay Leaves / Tej Patta",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 18.9,
+    "defaultOriginalPrice": 22.3,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 80,
+    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "images": [
+      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 18.9,
+        "originalPrice": 22.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 33.75,
+        "originalPrice": 39.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 40.5,
+        "originalPrice": 47.79,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried bay leaves for soups, curries and rice dishes.",
+    "origin": "Idukki, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried bay leaves for soups, curries and rice dishes.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-dry-ginger-powder-saunth",
+    "name": "Premium Dry Ginger Powder / Saunth",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 19.6,
+    "defaultOriginalPrice": 23.13,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 22,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 19.6,
+        "originalPrice": 23.13,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 35.0,
+        "originalPrice": 41.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 42.0,
+        "originalPrice": 49.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Ground dry ginger for spice blends, drinks and cooking.",
+    "origin": "Wayanad, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground dry ginger for spice blends, drinks and cooking.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-asafoetida-hing",
+    "name": "Premium Asafoetida / Hing",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 16.8,
+    "defaultOriginalPrice": 19.82,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 29,
+    "image": "/images/products/spices/spice-blend-1.jpg",
+    "images": [
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 16.8,
+        "originalPrice": 19.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Asafoetida for tempering and savoury recipes. Verify carrier ingredients on label.",
+    "origin": "Guntur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Asafoetida for tempering and savoury recipes. Verify carrier ingredients on label.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-amchur-powder",
+    "name": "Premium Amchur Powder",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 12.6,
+    "defaultOriginalPrice": 14.87,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 36,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 12.6,
+        "originalPrice": 14.87,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 27.0,
+        "originalPrice": 31.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried mango powder for tangy seasoning and spice blends.",
+    "origin": "Kandhamal, Odisha",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried mango powder for tangy seasoning and spice blends.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-chaat-masala",
+    "name": "Premium Chaat Masala",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 25.2,
+    "defaultOriginalPrice": 29.74,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 43,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 25.2,
+        "originalPrice": 29.74,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 45.0,
+        "originalPrice": 53.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 54.0,
+        "originalPrice": 63.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A tangy spice blend for snacks, fruit and savoury dishes. Confirm ingredients.",
+    "origin": "Idukki, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A tangy spice blend for snacks, fruit and savoury dishes. Confirm ingredients.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "masala-spices-premium-pav-bhaji-masala",
+    "name": "Premium Pav Bhaji Masala",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 10.5,
+    "defaultOriginalPrice": 12.39,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 50,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 10.5,
+        "originalPrice": 12.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 18.75,
+        "originalPrice": 22.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A spice blend for pav bhaji and vegetable dishes. Confirm composition.",
+    "origin": "Wayanad, Kerala",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A spice blend for pav bhaji and vegetable dishes. Confirm composition.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "masala-spices-premium-sambhar-masala",
+    "name": "Premium Sambhar Masala",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 15.4,
+    "defaultOriginalPrice": 18.17,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 57,
+    "image": "/images/products/spices/spice-masala-1.jpg",
+    "images": [
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 15.4,
+        "originalPrice": 18.17,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 27.5,
+        "originalPrice": 32.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A spice blend for sambhar and South Indian dishes. Confirm composition.",
+    "origin": "Guntur, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A spice blend for sambhar and South Indian dishes. Confirm composition.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "masala-spices-premium-panch-phoron",
+    "name": "Premium Panch Phoron",
+    "category": "Masala & Spices",
+    "subtitle": "Sun-Dried Pure Aromatic Spice \u2022 High Volatile Oils",
+    "defaultPrice": 16.8,
+    "defaultOriginalPrice": 19.82,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 64,
+    "image": "/images/products/spices/spice-blend-1.jpg",
+    "images": [
+      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/categories/spices.jpg"
+    ],
+    "options": [
+      {
+        "label": "100 gm",
+        "price": 16.8,
+        "originalPrice": 19.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "200 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A whole-spice blend used in regional cooking. Confirm exact seed combination.",
+    "origin": "Kandhamal, Odisha",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Spices contribute flavour and aroma; nutrition varies by ingredient and serving size. Avoid medicinal or disease-prevention claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A whole-spice blend used in regional cooking. Confirm exact seed combination.",
+    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-jaggery-block",
+    "name": "Premium Jaggery Block",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 71,
+    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "images": [
+      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sweetener for traditional desserts and cooking. Confirm form, composition and ingredients.",
+    "origin": "Kolhapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sweetener for traditional desserts and cooking. Confirm form, composition and ingredients.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-jaggery-powder",
+    "name": "Premium Jaggery Powder",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 78,
+    "image": "/images/products/sweets/jaggery-powder-1.jpg",
+    "images": [
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Granulated jaggery for sweetening drinks, desserts and recipes.",
+    "origin": "Meerut, Uttar Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Granulated jaggery for sweetening drinks, desserts and recipes.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-mishri-rock-sugar",
+    "name": "Premium Mishri / Rock Sugar",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 30.0,
+    "defaultOriginalPrice": 35.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 85,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 55.0,
+        "originalPrice": 64.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 190.0,
+        "originalPrice": 224.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Crystallised sugar for traditional uses and sweetening.",
+    "origin": "Nadia, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Crystallised sugar for traditional uses and sweetening.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-boora-tagar-sugar",
+    "name": "Premium Boora / Tagar Sugar",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 27,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Fine sugar for Indian sweets and dessert preparations.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Fine sugar for Indian sweets and dessert preparations.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-desi-khand",
+    "name": "Premium Desi Khand",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 34,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Traditional sugar product for sweetening. Verify processing claims.",
+    "origin": "Kolhapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Traditional sugar product for sweetening. Verify processing claims.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-sugar-candy",
+    "name": "Premium Sugar Candy",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 28.5,
+    "defaultOriginalPrice": 33.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 41,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sugar crystals for sweetening and confectionery use.",
+    "origin": "Meerut, Uttar Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sugar crystals for sweetening and confectionery use.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-date-jaggery",
+    "name": "Premium Date Jaggery",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 28.5,
+    "defaultOriginalPrice": 33.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 48,
+    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "images": [
+      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Date-palm jaggery for traditional sweets. Verify source and seasonal availability.",
+    "origin": "Nadia, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Date-palm jaggery for traditional sweets. Verify source and seasonal availability.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-palm-jaggery",
+    "name": "Premium Palm Jaggery",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 26.4,
+    "defaultOriginalPrice": 31.15,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 55,
+    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "images": [
+      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 26.4,
+        "originalPrice": 31.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 48.4,
+        "originalPrice": 57.11,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 167.2,
+        "originalPrice": 197.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Palm-derived jaggery for desserts and drinks. Confirm source and ingredients.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Palm-derived jaggery for desserts and drinks. Confirm source and ingredients.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-coconut-sugar",
+    "name": "Premium Coconut Sugar",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 39.0,
+    "defaultOriginalPrice": 46.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 62,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Coconut-derived sweetener. Confirm ingredients and substantiation for claims.",
+    "origin": "Kolhapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Coconut-derived sweetener. Confirm ingredients and substantiation for claims.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-mishri-crystals-small",
+    "name": "Premium Mishri Crystals Small",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 69,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Small crystal rock sugar for sweetening and traditional uses.",
+    "origin": "Meerut, Uttar Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Small crystal rock sugar for sweetening and traditional uses.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-mishri-crystals-large",
+    "name": "Premium Mishri Crystals Large",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 37.5,
+    "defaultOriginalPrice": 44.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 76,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Large crystal rock sugar. Confirm crystal size and pack format.",
+    "origin": "Nadia, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Large crystal rock sugar. Confirm crystal size and pack format.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-jaggery-cubes",
+    "name": "Premium Jaggery Cubes",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 34.5,
+    "defaultOriginalPrice": 40.71,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 83,
+    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "images": [
+      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 34.5,
+        "originalPrice": 40.71,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 63.25,
+        "originalPrice": 74.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 218.5,
+        "originalPrice": 257.83,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Jaggery portioned into cubes for drinks and recipes.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Jaggery portioned into cubes for drinks and recipes.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-jaggery-granules",
+    "name": "Premium Jaggery Granules",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 49.5,
+    "defaultOriginalPrice": 58.41,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 25,
+    "image": "/images/products/sweets/jaggery-powder-1.jpg",
+    "images": [
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 90.75,
+        "originalPrice": 107.08,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 313.5,
+        "originalPrice": 369.93,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Granulated jaggery for convenient measuring in cooking.",
+    "origin": "Kolhapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Granulated jaggery for convenient measuring in cooking.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-khand-sugar",
+    "name": "Premium Khand Sugar",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 48.0,
+    "defaultOriginalPrice": 56.64,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 32,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 48.0,
+        "originalPrice": 56.64,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 304.0,
+        "originalPrice": 358.72,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sugar product for desserts and household sweetening. Verify exact composition.",
+    "origin": "Meerut, Uttar Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sugar product for desserts and household sweetening. Verify exact composition.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-boora-sugar-fine",
+    "name": "Premium Boora Sugar Fine",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 39.0,
+    "defaultOriginalPrice": 46.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 39,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Fine-textured sugar for confectionery and dessert recipes.",
+    "origin": "Nadia, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Fine-textured sugar for confectionery and dessert recipes.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-boora-sugar-coarse",
+    "name": "Premium Boora Sugar Coarse",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 37.5,
+    "defaultOriginalPrice": 44.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 46,
+    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Coarser sugar for sweets and recipe applications. Confirm texture.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Coarser sugar for sweets and recipe applications. Confirm texture.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-til-chikki",
+    "name": "Premium Til Chikki",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 40.5,
+    "defaultOriginalPrice": 47.79,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 53,
+    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 40.5,
+        "originalPrice": 47.79,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 256.5,
+        "originalPrice": 302.67,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sesame brittle sweet. Confirm ingredients, allergens, shelf life and pack size.",
+    "origin": "Kolhapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sesame brittle sweet. Confirm ingredients, allergens, shelf life and pack size.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-peanut-chikki",
+    "name": "Premium Peanut Chikki",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 42.0,
+    "defaultOriginalPrice": 49.56,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 60,
+    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 42.0,
+        "originalPrice": 49.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 266.0,
+        "originalPrice": 313.88,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Peanut brittle sweet. Confirm ingredients, allergen labelling and shelf life.",
+    "origin": "Meerut, Uttar Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Peanut brittle sweet. Confirm ingredients, allergen labelling and shelf life.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-gur-rewari",
+    "name": "Premium Gur Rewari",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 67,
+    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Traditional jaggery and sesame sweet. Verify recipe and ingredients.",
+    "origin": "Nadia, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Traditional jaggery and sesame sweet. Verify recipe and ingredients.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-gajak",
+    "name": "Premium Gajak",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 27.0,
+    "defaultOriginalPrice": 31.86,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 74,
+    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 27.0,
+        "originalPrice": 31.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 171.0,
+        "originalPrice": 201.78,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Traditional sesame/peanut sweet. Confirm ingredients, allergens and packaging.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Traditional sesame/peanut sweet. Confirm ingredients, allergens and packaging.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-dry-fruit-ladoo-mix",
+    "name": "Premium Dry Fruit Ladoo Mix",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 81,
+    "image": "/images/products/sweets/sweets-ladoo-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A sweet mix for ladoo preparation. Confirm ingredients and proportions.",
+    "origin": "Kolhapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A sweet mix for ladoo preparation. Confirm ingredients and proportions.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "sweets-premium-kheer-mix",
+    "name": "Premium Kheer Mix",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 22.5,
+    "defaultOriginalPrice": 26.55,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 23,
+    "image": "/images/products/sweets/sweets-ladoo-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 142.5,
+        "originalPrice": 168.15,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A dessert mix for kheer. Confirm grain, sugar, flavour and cooking instructions.",
+    "origin": "Meerut, Uttar Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A dessert mix for kheer. Confirm grain, sugar, flavour and cooking instructions.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "sweets-premium-halwa-mix",
+    "name": "Premium Halwa Mix",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 30,
+    "image": "/images/products/sweets/sweets-ladoo-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A dessert mix for halwa. Confirm ingredients, allergens and preparation method.",
+    "origin": "Nadia, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A dessert mix for halwa. Confirm ingredients, allergens and preparation method.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "sweets-premium-sweetener-blend",
+    "name": "Premium Sweetener Blend",
+    "category": "Sweets",
+    "subtitle": "Traditional Desi Sweetener \u2022 Unrefined & Chemical Free",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 37,
+    "image": "/images/products/sweets/sweets-mithai-1.jpg",
+    "images": [
+      "/images/products/sweets/sweets-mithai-1.jpg",
+      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/categories/sweets.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sweetener blend for cooking and beverages. Verify full ingredient list.",
+    "origin": "Salem, Tamil Nadu",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional values depend on ingredients and serving size. Confirm sugar content and label nutrition before publishing.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sweetener blend for cooking and beverages. Verify full ingredient list.",
+    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-raw-honey",
+    "name": "Premium Raw Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 114.0,
+    "defaultOriginalPrice": 134.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 44,
+    "image": "/images/products/honey/honey-raw-1.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 114.0,
+        "originalPrice": 134.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 380.0,
+        "originalPrice": 448.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 1710.0,
+        "originalPrice": 2017.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey for sweetening beverages, breakfast foods and recipes. Do not feed honey to infants under 12 months.",
+    "origin": "Jim Corbett Foothills, Uttarakhand",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey for sweetening beverages, breakfast foods and recipes. Do not feed honey to infants under 12 months.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-forest-honey",
+    "name": "Premium Forest Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 114.0,
+    "defaultOriginalPrice": 134.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 51,
+    "image": "/images/products/honey/honey-raw-1.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 114.0,
+        "originalPrice": 134.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 380.0,
+        "originalPrice": 448.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 1710.0,
+        "originalPrice": 2017.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as forest-sourced; verify origin and source claims.",
+    "origin": "Sundarbans, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as forest-sourced; verify origin and source claims.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-mustard-honey",
+    "name": "Premium Mustard Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 30.0,
+    "defaultOriginalPrice": 35.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 58,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 55.0,
+        "originalPrice": 64.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 450.0,
+        "originalPrice": 531.0,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as mustard-floral source; verify traceability and batch testing.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as mustard-floral source; verify traceability and batch testing.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-multi-flora-honey",
+    "name": "Premium Multi-Flora Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 114.0,
+    "defaultOriginalPrice": 134.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 65,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 114.0,
+        "originalPrice": 134.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 380.0,
+        "originalPrice": 448.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 1710.0,
+        "originalPrice": 2017.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey from multiple floral sources. Confirm source description with supplier.",
+    "origin": "Coorg, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey from multiple floral sources. Confirm source description with supplier.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-eucalyptus-honey",
+    "name": "Premium Eucalyptus Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 114.0,
+    "defaultOriginalPrice": 134.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 72,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 114.0,
+        "originalPrice": 134.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 380.0,
+        "originalPrice": 448.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 1710.0,
+        "originalPrice": 2017.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as eucalyptus-floral source. Verify floral-source claim.",
+    "origin": "Jim Corbett Foothills, Uttarakhand",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as eucalyptus-floral source. Verify floral-source claim.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-acacia-honey",
+    "name": "Premium Acacia Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 28.5,
+    "defaultOriginalPrice": 33.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 79,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as acacia-source honey. Confirm traceability.",
+    "origin": "Sundarbans, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as acacia-source honey. Confirm traceability.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-himalayan-honey",
+    "name": "Premium Himalayan Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 28.5,
+    "defaultOriginalPrice": 33.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 86,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as Himalayan-source. Verify geographic and source claims.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as Himalayan-source. Verify geographic and source claims.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-wildflower-honey",
+    "name": "Premium Wildflower Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 26.4,
+    "defaultOriginalPrice": 31.15,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 28,
+    "image": "/images/products/honey/honey-raw-1.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 26.4,
+        "originalPrice": 31.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 48.4,
+        "originalPrice": 57.11,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 396.0,
+        "originalPrice": 467.28,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as wildflower-source. Confirm source and testing.",
+    "origin": "Coorg, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as wildflower-source. Confirm source and testing.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-jamun-honey",
+    "name": "Premium Jamun Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 39.0,
+    "defaultOriginalPrice": 46.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 35,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as jamun-floral source. Verify source claim.",
+    "origin": "Jim Corbett Foothills, Uttarakhand",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as jamun-floral source. Verify source claim.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-litchi-honey",
+    "name": "Premium Litchi Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 42,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as litchi-floral source. Verify source claim.",
+    "origin": "Sundarbans, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as litchi-floral source. Verify source claim.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-sunflower-honey",
+    "name": "Premium Sunflower Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 37.5,
+    "defaultOriginalPrice": 44.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 49,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as sunflower-floral source. Verify source claim.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as sunflower-floral source. Verify source claim.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-clover-honey",
+    "name": "Premium Clover Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 34.5,
+    "defaultOriginalPrice": 40.71,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 56,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 34.5,
+        "originalPrice": 40.71,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 63.25,
+        "originalPrice": 74.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 517.5,
+        "originalPrice": 610.65,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey described as clover-source. Confirm source traceability.",
+    "origin": "Coorg, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey described as clover-source. Confirm source traceability.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-comb-honey",
+    "name": "Premium Comb Honey",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 49.5,
+    "defaultOriginalPrice": 58.41,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 63,
+    "image": "/images/products/honey/honey-comb-1.jpg",
+    "images": [
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 90.75,
+        "originalPrice": 107.08,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 742.5,
+        "originalPrice": 876.15,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey supplied in comb form. Confirm packaging, purity and food safety.",
+    "origin": "Jim Corbett Foothills, Uttarakhand",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey supplied in comb form. Confirm packaging, purity and food safety.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-honey-squeeze-bottle",
+    "name": "Premium Honey Squeeze Bottle",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 48.0,
+    "defaultOriginalPrice": 56.64,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 70,
+    "image": "/images/products/honey/honey-dipper-1.jpg",
+    "images": [
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 48.0,
+        "originalPrice": 56.64,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 720.0,
+        "originalPrice": 849.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey in squeeze packaging. Confirm bottle size and ingredients.",
+    "origin": "Sundarbans, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey in squeeze packaging. Confirm bottle size and ingredients.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-honey-glass-jar",
+    "name": "Premium Honey Glass Jar",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 39.0,
+    "defaultOriginalPrice": 46.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 77,
+    "image": "/images/products/honey/honey-dipper-1.jpg",
+    "images": [
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey in glass jar packaging. Confirm net quantity and packaging.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey in glass jar packaging. Confirm net quantity and packaging.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-honey-bulk-pack",
+    "name": "Premium Honey Bulk Pack",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 37.5,
+    "defaultOriginalPrice": 44.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 84,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey supplied in bulk. Confirm grade, packaging and quantity.",
+    "origin": "Coorg, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey supplied in bulk. Confirm grade, packaging and quantity.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-honey-sachets",
+    "name": "Premium Honey Sachets",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 40.5,
+    "defaultOriginalPrice": 47.79,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 26,
+    "image": "/images/products/honey/honey-dipper-1.jpg",
+    "images": [
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 40.5,
+        "originalPrice": 47.79,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 607.5,
+        "originalPrice": 716.85,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Single-use honey sachets. Confirm sachet weight and packaging.",
+    "origin": "Jim Corbett Foothills, Uttarakhand",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Single-use honey sachets. Confirm sachet weight and packaging.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-honey-gift-pack",
+    "name": "Premium Honey Gift Pack",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 42.0,
+    "defaultOriginalPrice": 49.56,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 33,
+    "image": "/images/products/honey/honey-raw-2.jpg",
+    "images": [
+      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 42.0,
+        "originalPrice": 49.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 630.0,
+        "originalPrice": 743.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Gift-format honey pack. Confirm number of jars, net weight and packaging.",
+    "origin": "Sundarbans, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Gift-format honey pack. Confirm number of jars, net weight and packaging.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-honey-with-ginger",
+    "name": "Premium Honey with Ginger",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 40,
+    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "images": [
+      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey blend with ginger. Confirm ingredient list and proportions.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey blend with ginger. Confirm ingredient list and proportions.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-honey-with-cinnamon",
+    "name": "Premium Honey with Cinnamon",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 27.0,
+    "defaultOriginalPrice": 31.86,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 47,
+    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "images": [
+      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 27.0,
+        "originalPrice": 31.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 405.0,
+        "originalPrice": 477.9,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey blend with cinnamon. Confirm ingredient list and proportions.",
+    "origin": "Coorg, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey blend with cinnamon. Confirm ingredient list and proportions.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-honey-with-tulsi",
+    "name": "Premium Honey with Tulsi",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 114.0,
+    "defaultOriginalPrice": 134.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 54,
+    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "images": [
+      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 114.0,
+        "originalPrice": 134.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 380.0,
+        "originalPrice": 448.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 1710.0,
+        "originalPrice": 2017.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey blend with tulsi. Confirm ingredients and claims.",
+    "origin": "Jim Corbett Foothills, Uttarakhand",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey blend with tulsi. Confirm ingredients and claims.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "honey-premium-honey-with-lemon",
+    "name": "Premium Honey with Lemon",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 22.5,
+    "defaultOriginalPrice": 26.55,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 61,
+    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "images": [
+      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 337.5,
+        "originalPrice": 398.25,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey blend with lemon. Confirm ingredients and storage instructions.",
+    "origin": "Sundarbans, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey blend with lemon. Confirm ingredients and storage instructions.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "honey-premium-honey-with-dry-fruits",
+    "name": "Premium Honey with Dry Fruits",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 114.0,
+    "defaultOriginalPrice": 134.52,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 68,
+    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "images": [
+      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 114.0,
+        "originalPrice": 134.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 380.0,
+        "originalPrice": 448.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 1710.0,
+        "originalPrice": 2017.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honey and dry-fruit blend. Confirm ingredients and allergen labelling.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honey and dry-fruit blend. Confirm ingredients and allergen labelling.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "honey-premium-honeycomb-pieces",
+    "name": "Premium Honeycomb Pieces",
+    "category": "Honey",
+    "subtitle": "Pure Raw Single-Origin Honey \u2022 Cold Extracted",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 75,
+    "image": "/images/products/honey/honey-comb-1.jpg",
+    "images": [
+      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/categories/honey.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Honeycomb product. Confirm format, net weight and safe packaging.",
+    "origin": "Coorg, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Honey is a food sweetener. Do not feed honey to infants under 12 months. Avoid unsupported health or medicinal claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Honeycomb product. Confirm format, net weight and safe packaging.",
+    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "dry-fruits-premium-almonds-badam",
+    "name": "Premium Almonds / Badam",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 195.0,
+    "defaultOriginalPrice": 230.1,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 82,
+    "image": "/images/products/dryfruit-almond-1.jpg",
+    "images": [
       "/images/products/dryfruit-almond-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
       "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
     ],
-    origin: "California, USA (Direct Import)",
-    description:
-      "Hand-selected jumbo California nonpareil almonds packed with Vitamin E, magnesium, and healthy monosaturated fats. Naturally sweet, delightfully crunchy, and vacuum-sealed for maximum freshness.",
-    features: [
-      "Zero bitter kernels guarantee",
-      "Excellent brain food rich in Vitamin E & Omega-3",
-      "Hygienically sorted and nitrogen sealed",
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 195.0,
+        "originalPrice": 230.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 234.0,
+        "originalPrice": 276.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 429.0,
+        "originalPrice": 506.22,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 780.0,
+        "originalPrice": 920.4,
+        "discount": "15% Off"
+      }
     ],
-    nutritionalFacts: {
-      "Energy": "579 kcal",
-      "Protein": "21.1 g",
-      "Healthy Fats": "49.9 g",
-      "Dietary Fiber": "12.5 g",
-      "Vitamin E": "25.6 mg",
+    "inStock": true,
+    "description": "Almonds for snacking, baking, desserts and cooking. Confirm grade and origin.",
+    "origin": "California, USA",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Almonds for snacking, baking, desserts and cooking. Confirm grade and origin.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
     },
-    tag: "Best Seller",
-    options: [
-      { label: "250g Pack", price: 320.0, originalPrice: 380.0, discount: "16% Off" },
-      { label: "500g Pack", price: 620.0, originalPrice: 740.0, discount: "16% Off" },
-      { label: "1 Kg Value Pack", price: 1190.0, originalPrice: 1450.0, discount: "18% Off" },
-    ],
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
   },
   {
-    id: "dryfruit-cashew-2",
-    name: "Royal W240 Whole Cashews (Kaju)",
-    category: "Dry Fruits",
-    subtitle: "King Size • Sweet & Buttery",
-    defaultPrice: 360.0,
-    defaultOriginalPrice: 420.0,
-    defaultDiscount: "14% Off",
-    rating: 4.8,
-    reviewsCount: 39,
-    image: "/images/products/dryfruit-cashew-1.jpg",
-    images: [
+    "id": "dry-fruits-premium-cashews-kaju",
+    "name": "Premium Cashews / Kaju",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 220.0,
+    "defaultOriginalPrice": 259.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 24,
+    "image": "/images/products/dryfruit-cashew-1.jpg",
+    "images": [
       "/images/products/dryfruit-cashew-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
-      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-almond-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
     ],
-    origin: "Mangalore, Karnataka",
-    description:
-      "Grade W240 extra-large kidney-shaped cashews with an irresistible buttery richness. Sourced from the finest coastal plantations and gently roasted without added oils or sodium.",
-    features: ["Zero broken halves in whole grade", "Sweet natural dairy-like flavor", "Rich in copper and zinc"],
-    options: [
-      { label: "250g Pack", price: 360.0, originalPrice: 420.0, discount: "14% Off" },
-      { label: "500g Pack", price: 699.0, originalPrice: 820.0, discount: "15% Off" },
-      { label: "1 Kg Pack", price: 1350.0, originalPrice: 1600.0, discount: "16% Off" },
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 220.0,
+        "originalPrice": 259.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 264.0,
+        "originalPrice": 311.52,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 484.0,
+        "originalPrice": 571.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 880.0,
+        "originalPrice": 1038.4,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Cashews for snacks, gravies, sweets and baking. Verify grade and count.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Cashews for snacks, gravies, sweets and baking. Verify grade and count.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
   },
   {
-    id: "dryfruit-walnut-3",
-    name: "Kashmiri Snow White Walnut Kernels",
-    category: "Dry Fruits",
-    subtitle: "Extra Light Halves • High DHA",
-    defaultPrice: 390.0,
-    defaultOriginalPrice: 470.0,
-    defaultDiscount: "17% Off",
-    rating: 4.9,
-    reviewsCount: 31,
-    image: "/images/products/dryfruit-walnut-1.jpg",
-    images: [
-      "/images/products/dryfruit-walnut-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
-      "/images/products/dryfruit-cashew-1.jpg",
-    ],
-    origin: "Shopian Valley, Kashmir",
-    description:
-      "Hand-cracked butterfly halves with a creamy pale appearance, free from bitterness. Grown in pristine Himalayan snowmelt valleys, delivering unmatched omega-3 fatty acids for cognitive and heart health.",
-    features: ["100% natural cold climate harvest", "Zero bleach or sulfur bleaching", "High essential plant ALA fatty acids"],
-    options: [
-      { label: "250g Pack", price: 390.0, originalPrice: 470.0, discount: "17% Off" },
-      { label: "500g Pack", price: 760.0, originalPrice: 920.0, discount: "17% Off" },
-      { label: "1 Kg Value Box", price: 1480.0, originalPrice: 1800.0, discount: "18% Off" },
-    ],
-  },
-  {
-    id: "dryfruit-raisin-4",
-    name: "Afghan Long Green Raisins (Kishmish)",
-    category: "Dry Fruits",
-    subtitle: "Seedless • Naturally Sun-Dried",
-    defaultPrice: 195.0,
-    defaultOriginalPrice: 240.0,
-    defaultDiscount: "19% Off",
-    rating: 4.7,
-    reviewsCount: 22,
-    image: "/images/products/dryfruit-raisin-1.jpg",
-    images: [
+    "id": "dry-fruits-premium-raisins-kishmish",
+    "name": "Premium Raisins / Kishmish",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 25.0,
+    "defaultOriginalPrice": 29.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 31,
+    "image": "/images/products/dryfruit-raisin-1.jpg",
+    "images": [
       "/images/products/dryfruit-raisin-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
       "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
     ],
-    origin: "Kandahar, Afghanistan (Direct Import)",
-    description:
-      "Slender, succulent emerald green raisins naturally dried under warm mountain breezes. Chewy, naturally sweet without added sugar, and high in iron and antioxidants.",
-    features: ["No artificial colors or added sugar", "Soft chewy texture", "Rich in natural potassium & iron"],
-    options: [
-      { label: "250g Pack", price: 195.0, originalPrice: 240.0, discount: "19% Off" },
-      { label: "500g Pack", price: 370.0, originalPrice: 460.0, discount: "20% Off" },
-      { label: "1 Kg Pack", price: 710.0, originalPrice: 900.0, discount: "21% Off" },
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 25.0,
+        "originalPrice": 29.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 55.0,
+        "originalPrice": 64.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Dried grapes for snacks, desserts, baking and rice dishes. Confirm variety.",
+    "origin": "Afghani Highlands",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried grapes for snacks, desserts, baking and rice dishes. Confirm variety.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
   },
   {
-    id: "dryfruit-pista-5",
-    name: "Roasted & Salted Pistachios (Pista)",
-    category: "Dry Fruits",
-    subtitle: "Wide Open Shells • Himalayan Salt",
-    defaultPrice: 380.0,
-    defaultOriginalPrice: 450.0,
-    defaultDiscount: "15% Off",
-    rating: 4.8,
-    reviewsCount: 27,
-    image: "/images/products/dryfruit-pista-1.jpg",
-    images: [
+    "id": "dry-fruits-premium-pistachios-pista",
+    "name": "Premium Pistachios / Pista",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 287.5,
+    "defaultOriginalPrice": 339.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 38,
+    "image": "/images/products/dryfruit-pista-1.jpg",
+    "images": [
       "/images/products/dryfruit-pista-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 287.5,
+        "originalPrice": 339.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 345.0,
+        "originalPrice": 407.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 632.5,
+        "originalPrice": 746.35,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 1150.0,
+        "originalPrice": 1357.0,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Pistachios for snacking and desserts. Confirm shell status and grade.",
+    "origin": "Herat Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Pistachios for snacking and desserts. Confirm shell status and grade.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "dry-fruits-premium-walnuts-akhrot",
+    "name": "Premium Walnuts / Akhrot",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 237.5,
+    "defaultOriginalPrice": 280.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 45,
+    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "images": [
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 285.0,
+        "originalPrice": 336.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 522.5,
+        "originalPrice": 616.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 950.0,
+        "originalPrice": 1121.0,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Walnuts for snacks, baking and salads. Verify kernel grade.",
+    "origin": "California, USA",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Walnuts for snacks, baking and salads. Verify kernel grade.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "dry-fruits-premium-dates-khajoor",
+    "name": "Premium Dates / Khajoor",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 23.75,
+    "defaultOriginalPrice": 28.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 52,
+    "image": "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 23.75,
+        "originalPrice": 28.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dates for snacking, desserts and cooking. Confirm variety and whether pitted.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dates for snacking, desserts and cooking. Confirm variety and whether pitted.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "dry-fruits-premium-dried-figs-anjeer",
+    "name": "Premium Dried Figs / Anjeer",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 23.75,
+    "defaultOriginalPrice": 28.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 59,
+    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 23.75,
+        "originalPrice": 28.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried figs for snacks and desserts. Confirm grade and origin.",
+    "origin": "Afghani Highlands",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried figs for snacks and desserts. Confirm grade and origin.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "dry-fruits-premium-dried-apricots",
+    "name": "Premium Dried Apricots",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 22.0,
+    "defaultOriginalPrice": 25.96,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 66,
+    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 22.0,
+        "originalPrice": 25.96,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 26.4,
+        "originalPrice": 31.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 48.4,
+        "originalPrice": 57.11,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried apricots for snacks, baking and desserts. Verify sulphite information.",
+    "origin": "Herat Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried apricots for snacks, baking and desserts. Verify sulphite information.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "dry-fruits-premium-black-raisins",
+    "name": "Premium Black Raisins",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 32.5,
+    "defaultOriginalPrice": 38.35,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 73,
+    "image": "/images/products/dryfruit-raisin-1.jpg",
+    "images": [
+      "/images/products/dryfruit-raisin-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 32.5,
+        "originalPrice": 38.35,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dark raisins for snacks, baking and desserts. Confirm seedless status.",
+    "origin": "California, USA",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dark raisins for snacks, baking and desserts. Confirm seedless status.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "dry-fruits-premium-golden-raisins",
+    "name": "Premium Golden Raisins",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 30.0,
+    "defaultOriginalPrice": 35.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 80,
+    "image": "/images/products/dryfruit-raisin-1.jpg",
+    "images": [
+      "/images/products/dryfruit-raisin-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Golden raisins for baking, desserts and snacks. Confirm processing details.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Golden raisins for baking, desserts and snacks. Confirm processing details.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "dry-fruits-premium-seedless-dates",
+    "name": "Premium Seedless Dates",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 31.25,
+    "defaultOriginalPrice": 36.88,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 22,
+    "image": "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 31.25,
+        "originalPrice": 36.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Pitted dates for snacking, baking and sweet recipes.",
+    "origin": "Afghani Highlands",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Pitted dates for snacking, baking and sweet recipes.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "dry-fruits-premium-medjool-dates",
+    "name": "Premium Medjool Dates",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 28.75,
+    "defaultOriginalPrice": 33.92,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 29,
+    "image": "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 28.75,
+        "originalPrice": 33.92,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 34.5,
+        "originalPrice": 40.71,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 63.25,
+        "originalPrice": 74.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Large dates for snacks and desserts. Verify variety and origin.",
+    "origin": "Herat Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Large dates for snacks and desserts. Verify variety and origin.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "dry-fruits-premium-dried-cranberries",
+    "name": "Premium Dried Cranberries",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 41.25,
+    "defaultOriginalPrice": 48.67,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 36,
+    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 90.75,
+        "originalPrice": 107.08,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried cranberries for baking, cereal and trail mixes. Confirm added sugar/oil.",
+    "origin": "California, USA",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried cranberries for baking, cereal and trail mixes. Confirm added sugar/oil.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "dry-fruits-premium-dried-blueberries",
+    "name": "Premium Dried Blueberries",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 40.0,
+    "defaultOriginalPrice": 47.2,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 43,
+    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 40.0,
+        "originalPrice": 47.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 48.0,
+        "originalPrice": 56.64,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried blueberries for snacks and baking. Confirm added ingredients.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried blueberries for snacks and baking. Confirm added ingredients.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "dry-fruits-premium-dried-kiwi",
+    "name": "Premium Dried Kiwi",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 32.5,
+    "defaultOriginalPrice": 38.35,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 50,
+    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 32.5,
+        "originalPrice": 38.35,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried kiwi slices for snacks and fruit mixes. Verify added sugar.",
+    "origin": "Afghani Highlands",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried kiwi slices for snacks and fruit mixes. Verify added sugar.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "dry-fruits-premium-prunes",
+    "name": "Premium Prunes",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 31.25,
+    "defaultOriginalPrice": 36.88,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 57,
+    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "images": [
+      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 31.25,
+        "originalPrice": 36.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dried plums for snacking and cooking. Confirm pitted status.",
+    "origin": "Herat Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dried plums for snacking and cooking. Confirm pitted status.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "dry-fruits-premium-hazelnuts",
+    "name": "Premium Hazelnuts",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 33.75,
+    "defaultOriginalPrice": 39.82,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 64,
+    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "images": [
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 33.75,
+        "originalPrice": 39.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 40.5,
+        "originalPrice": 47.79,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Hazelnuts for baking, snacks and confectionery. Check allergen labelling.",
+    "origin": "California, USA",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Hazelnuts for baking, snacks and confectionery. Check allergen labelling.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "dry-fruits-premium-pecans",
+    "name": "Premium Pecans",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 35.0,
+    "defaultOriginalPrice": 41.3,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 71,
+    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "images": [
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 35.0,
+        "originalPrice": 41.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 42.0,
+        "originalPrice": 49.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Pecans for desserts and baking. Verify origin and grade.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Pecans for desserts and baking. Verify origin and grade.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "dry-fruits-premium-macadamia-nuts",
+    "name": "Premium Macadamia Nuts",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 30.0,
+    "defaultOriginalPrice": 35.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 78,
+    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "images": [
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Macadamia nuts for snacks and baking. Confirm grade and origin.",
+    "origin": "Afghani Highlands",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Macadamia nuts for snacks and baking. Confirm grade and origin.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "dry-fruits-premium-brazil-nuts",
+    "name": "Premium Brazil Nuts",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 22.5,
+    "defaultOriginalPrice": 26.55,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 85,
+    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "images": [
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 27.0,
+        "originalPrice": 31.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Brazil nuts for snacks and nut mixes. Check allergen and pack information.",
+    "origin": "Herat Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Brazil nuts for snacks and nut mixes. Check allergen and pack information.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "dry-fruits-premium-mixed-dry-fruits",
+    "name": "Premium Mixed Dry Fruits",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 45.0,
+    "defaultOriginalPrice": 53.1,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 27,
+    "image": "/images/products/dryfruit-almond-2.jpg",
+    "images": [
       "/images/products/dryfruit-almond-2.jpg",
       "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
     ],
-    origin: "Kerman, Iran",
-    description:
-      "Naturally smiled pistachios lightly roasted with Himalayan pink salt to bring out their irresistible savory crunch. High in lutein and zeaxanthin for eye health.",
-    features: ["Easily cracked wide shells", "Light salt roast without oil", "Antioxidant rich"],
-    options: [
-      { label: "250g Pack", price: 380.0, originalPrice: 450.0, discount: "15% Off" },
-      { label: "500g Pack", price: 730.0, originalPrice: 880.0, discount: "17% Off" },
-      { label: "1 Kg Pack", price: 1420.0, originalPrice: 1720.0, discount: "17% Off" },
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 45.0,
+        "originalPrice": 53.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 54.0,
+        "originalPrice": 63.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      }
     ],
-  },
-
-  // =================== MILLETS ===================
-  {
-    id: "millet-foxtail-1",
-    name: "Organic Foxtail Millet (Kangni)",
-    category: "Millets",
-    subtitle: "Unpolished • Gluten-Free Ancient Grain",
-    defaultPrice: 115.0,
-    defaultOriginalPrice: 140.0,
-    defaultDiscount: "18% Off",
-    rating: 4.8,
-    reviewsCount: 20,
-    image: "/images/products/millet-foxtail-1.jpg",
-    images: [
-      "/images/products/millet-foxtail-1.jpg",
-      "/images/products/millet-bajra-1.jpg",
-      "/images/products/rice-basmati-4.jpg",
+    "inStock": true,
+    "description": "Mixed dry-fruit assortment. Confirm exact contents and proportions.",
+    "origin": "California, USA",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
     ],
-    origin: "Anantapur, Andhra Pradesh",
-    description:
-      "Ancient miracle grain packed with slow-digesting complex carbs, calcium, and vitamin B12. Perfect rice substitute for weight management, diabetes care, and fluffy upma or khichdi.",
-    features: ["100% gluten-free grain", "High in dietary fiber (14%)", "Low glycemic index for metabolic balance"],
-    options: [
-      { label: "1 Kg Pack", price: 115.0, originalPrice: 140.0, discount: "18% Off" },
-      { label: "2 Kg Pack", price: 220.0, originalPrice: 275.0, discount: "20% Off" },
-      { label: "5 Kg Bag", price: 530.0, originalPrice: 660.0, discount: "20% Off" },
-    ],
-  },
-  {
-    id: "millet-bajra-2",
-    name: "Desi Pearl Millet (Whole Bajra)",
-    category: "Millets",
-    subtitle: "Iron-Rich • Stone Ground Friendly",
-    defaultPrice: 65.0,
-    defaultOriginalPrice: 80.0,
-    defaultDiscount: "19% Off",
-    rating: 4.7,
-    reviewsCount: 16,
-    image: "/images/products/millet-bajra-1.jpg",
-    images: [
-      "/images/products/millet-bajra-1.jpg",
-      "/images/products/millet-foxtail-1.jpg",
-      "/images/products/rice-basmati-4.jpg",
-    ],
-    origin: "Barmer, Rajasthan",
-    description:
-      "Hardy drought-resilient grains bursting with iron, phosphorus, and zinc. Traditional winter superfood ideal for fragrant Bajre ki Roti, khichda, and wholesome porridge.",
-    features: ["Highest iron density among cereals", "Warming food for cold seasons", "Traditionally farm harvested"],
-    options: [
-      { label: "1 Kg Pack", price: 65.0, originalPrice: 80.0, discount: "19% Off" },
-      { label: "5 Kg Bag", price: 310.0, originalPrice: 380.0, discount: "18% Off" },
-      { label: "10 Kg Sack", price: 590.0, originalPrice: 740.0, discount: "20% Off" },
-    ],
-  },
-  {
-    id: "millet-ragi-3",
-    name: "Whole Finger Millet (Desi Ragi)",
-    category: "Millets",
-    subtitle: "Calcium Powerhouse (344mg/100g)",
-    defaultPrice: 75.0,
-    defaultOriginalPrice: 95.0,
-    defaultDiscount: "21% Off",
-    rating: 4.9,
-    reviewsCount: 34,
-    image: "/images/products/millet-foxtail-1.jpg",
-    images: [
-      "/images/products/millet-foxtail-1.jpg",
-      "/images/products/millet-bajra-1.jpg",
-      "/images/products/rice-basmati-4.jpg",
-    ],
-    origin: "Mandya, Karnataka",
-    description:
-      "Tiny ruby-brown grains containing more calcium than milk. Highly recommended for growing toddlers, lactating mothers, bone density, and making wholesome ragi mudde, dosas, and laddoos.",
-    features: ["10x more calcium than polished rice", "Unrefined whole grain", "Supports bone and joint health"],
-    options: [
-      { label: "1 Kg Pack", price: 75.0, originalPrice: 95.0, discount: "21% Off" },
-      { label: "2 Kg Pack", price: 145.0, originalPrice: 185.0, discount: "22% Off" },
-      { label: "5 Kg Bag", price: 350.0, originalPrice: 450.0, discount: "22% Off" },
-    ],
-  },
-  {
-    id: "millet-little-4",
-    name: "Unpolished Little Millet (Kutki)",
-    category: "Millets",
-    subtitle: "Fast Cooking • Low Carb Fasting Grain",
-    defaultPrice: 120.0,
-    defaultOriginalPrice: 145.0,
-    defaultDiscount: "17% Off",
-    rating: 4.6,
-    reviewsCount: 14,
-    image: "/images/products/millet-bajra-1.jpg",
-    images: [
-      "/images/products/millet-bajra-1.jpg",
-      "/images/products/millet-foxtail-1.jpg",
-      "/images/products/rice-basmati-4.jpg",
-    ],
-    origin: "Dindori, Madhya Pradesh",
-    description:
-      "Tiniest millet grain with supreme delicate texture. Traditionally eaten during sacred fasting days and loved for its quick 10-minute cooking time and light glycemic profile.",
-    features: ["Perfect replacement for samak rice", "Rich in phenolic compounds", "Zero synthetic fertilizers"],
-    options: [
-      { label: "1 Kg Pack", price: 120.0, originalPrice: 145.0, discount: "17% Off" },
-      { label: "2 Kg Pack", price: 230.0, originalPrice: 280.0, discount: "18% Off" },
-      { label: "5 Kg Bag", price: 550.0, originalPrice: 680.0, discount: "19% Off" },
-    ],
-  },
-
-  // =================== SEEDS ===================
-  {
-    id: "seed-pumpkin-1",
-    name: "AAA Grade Raw Pumpkin Seeds (Pepitas)",
-    category: "Seeds",
-    subtitle: "Zinc Rich • Heart & Sleep Health",
-    defaultPrice: 210.0,
-    defaultOriginalPrice: 260.0,
-    defaultDiscount: "19% Off",
-    rating: 4.9,
-    reviewsCount: 29,
-    image: "/images/products/seed-pumpkin-1.jpg",
-    images: [
-      "/images/products/seed-pumpkin-1.jpg",
-      "/images/products/seed-chia-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
-    ],
-    origin: "Udaipur, Rajasthan",
-    description:
-      "Vibrant green raw pumpkin seeds naturally rich in tryptophan, magnesium, and bio-available zinc. Crunchy and fresh, perfect for smoothie bowls, baked breads, or raw snacking.",
-    features: ["Natural booster for restorative sleep", "High in plant protein and healthy fats", "Raw and unsalted"],
-    options: [
-      { label: "250g Pack", price: 210.0, originalPrice: 260.0, discount: "19% Off" },
-      { label: "500g Pack", price: 399.0, originalPrice: 500.0, discount: "20% Off" },
-      { label: "1 Kg Pack", price: 770.0, originalPrice: 980.0, discount: "21% Off" },
-    ],
-  },
-  {
-    id: "seed-chia-2",
-    name: "Organic Black Chia Seeds",
-    category: "Seeds",
-    subtitle: "Omega-3 Powerhouse • 100% Raw",
-    defaultPrice: 180.0,
-    defaultOriginalPrice: 220.0,
-    defaultDiscount: "18% Off",
-    rating: 4.8,
-    reviewsCount: 35,
-    image: "/images/products/seed-chia-1.jpg",
-    images: [
-      "/images/products/seed-chia-1.jpg",
-      "/images/products/seed-pumpkin-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
-    ],
-    origin: "Mandsaur, Madhya Pradesh",
-    description:
-      "Hydrophilic superfood seeds that swell up to 10x their volume in liquids, forming a satisfying soothing gel. Delivers optimal omega-3 fatty acids, dietary fiber, and cellular hydration.",
-    features: ["Over 34% dietary fiber by weight", "Superior plant ALA Omega-3", "Blends seamlessly into oats, water & smoothies"],
-    options: [
-      { label: "250g Pack", price: 180.0, originalPrice: 220.0, discount: "18% Off" },
-      { label: "500g Pack", price: 340.0, originalPrice: 420.0, discount: "19% Off" },
-      { label: "1 Kg Pack", price: 650.0, originalPrice: 820.0, discount: "21% Off" },
-    ],
-  },
-  {
-    id: "seed-flax-3",
-    name: "Roasted Brown Flax Seeds (Alsi)",
-    category: "Seeds",
-    subtitle: "Lightly Toasted • High Lignans",
-    defaultPrice: 95.0,
-    defaultOriginalPrice: 120.0,
-    defaultDiscount: "21% Off",
-    rating: 4.7,
-    reviewsCount: 18,
-    image: "/images/products/seed-pumpkin-1.jpg",
-    images: [
-      "/images/products/seed-pumpkin-1.jpg",
-      "/images/products/seed-chia-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
-    ],
-    origin: "Kota, Rajasthan",
-    description:
-      "Golden-brown flax seeds gently dry roasted for maximum crunch and easy digestion. Rich in protective lignans and soluble fiber that support heart health and cholesterol balance.",
-    features: ["Crispy roasted taste", "Zero oil roast", "Great mouth freshener & digestive snack"],
-    options: [
-      { label: "250g Pack", price: 95.0, originalPrice: 120.0, discount: "21% Off" },
-      { label: "500g Pack", price: 180.0, originalPrice: 230.0, discount: "22% Off" },
-      { label: "1 Kg Pack", price: 340.0, originalPrice: 440.0, discount: "23% Off" },
-    ],
-  },
-  {
-    id: "seed-sesame-4",
-    name: "Organic Natural White Sesame Seeds (Til)",
-    category: "Seeds",
-    subtitle: "Hulled • High Calcium & Sesamin",
-    defaultPrice: 140.0,
-    defaultOriginalPrice: 175.0,
-    defaultDiscount: "20% Off",
-    rating: 4.8,
-    reviewsCount: 16,
-    image: "/images/products/seed-chia-1.jpg",
-    images: [
-      "/images/products/seed-chia-1.jpg",
-      "/images/products/seed-pumpkin-1.jpg",
-      "/images/products/dryfruit-almond-2.jpg",
-    ],
-    origin: "Rajkot, Gujarat",
-    description:
-      "Pearlescent white sesame seeds with clean, delicate nutty sweetness. Essential for traditional winter sweets like til chikki, tahini, and garnishing artisanal artisan breads.",
-    features: ["Natural calcium powerhouse", "Cleaned through optical color sorters", "Fresh seasonal harvest"],
-    options: [
-      { label: "250g Pack", price: 140.0, originalPrice: 175.0, discount: "20% Off" },
-      { label: "500g Pack", price: 270.0, originalPrice: 340.0, discount: "21% Off" },
-      { label: "1 Kg Pack", price: 520.0, originalPrice: 650.0, discount: "20% Off" },
-    ],
-  },
-
-  // =================== SPICES ===================
-  {
-    id: "spice-turmeric-1",
-    name: "Salem Golden Turmeric Powder (Haldi)",
-    category: "Spices",
-    subtitle: "High 5%+ Curcumin • Zero Colorants",
-    defaultPrice: 85.0,
-    defaultOriginalPrice: 110.0,
-    defaultDiscount: "23% Off",
-    rating: 4.9,
-    reviewsCount: 44,
-    image: "/images/products/spice-turmeric-1.jpg",
-    images: [
-      "/images/products/spice-turmeric-1.jpg",
-      "/images/products/spice-pepper-1.jpg",
-      "/images/products/other-salt-1.jpg",
-    ],
-    origin: "Salem, Tamil Nadu",
-    description:
-      "Authentic Salem finger turmeric cold-ground to preserve its volatile aromatic oils and potent curcumin content (5.2%). Delivers an intense golden glow, earthy warmth, and natural anti-inflammatory immunity.",
-    features: ["Lab certified 5.2% natural Curcumin", "Zero lead chromate or synthetic color", "Slow-cold pulverizer ground"],
-    options: [
-      { label: "250g Pack", price: 85.0, originalPrice: 110.0, discount: "23% Off" },
-      { label: "500g Pack", price: 160.0, originalPrice: 210.0, discount: "24% Off" },
-      { label: "1 Kg Pack", price: 310.0, originalPrice: 400.0, discount: "23% Off" },
-    ],
-  },
-  {
-    id: "spice-pepper-2",
-    name: "Malabar Whole Black Tellicherry Peppercorns",
-    category: "Spices",
-    subtitle: "Bold TGSEB Grade • Pungent Aroma",
-    defaultPrice: 180.0,
-    defaultOriginalPrice: 220.0,
-    defaultDiscount: "18% Off",
-    rating: 4.9,
-    reviewsCount: 31,
-    image: "/images/products/spice-pepper-1.jpg",
-    images: [
-      "/images/products/spice-pepper-1.jpg",
-      "/images/products/spice-turmeric-1.jpg",
-      "/images/products/other-salt-1.jpg",
-    ],
-    origin: "Wayanad, Kerala",
-    description:
-      "Hand-picked Tellicherry Garbled Special Extra Bold (TGSEB) black peppercorns from ancient Malabar spice vines. Boasts complex floral, woody notes with a crisp, assertive heat.",
-    features: ["Largest pepper berry diameter (4.25mm+)", "Unbleached and sun dried", "Highest piperine concentration"],
-    options: [
-      { label: "100g Pack", price: 180.0, originalPrice: 220.0, discount: "18% Off" },
-      { label: "250g Pack", price: 420.0, originalPrice: 520.0, discount: "19% Off" },
-      { label: "500g Pack", price: 810.0, originalPrice: 990.0, discount: "18% Off" },
-    ],
-  },
-  {
-    id: "spice-cardamom-3",
-    name: "Idukki Royal Green Cardamom Pods (Elaichi)",
-    category: "Spices",
-    subtitle: "8mm Bold • Intense Sweet Aroma",
-    defaultPrice: 320.0,
-    defaultOriginalPrice: 390.0,
-    defaultDiscount: "18% Off",
-    rating: 4.8,
-    reviewsCount: 26,
-    image: "/images/products/spice-turmeric-1.jpg",
-    images: [
-      "/images/products/spice-turmeric-1.jpg",
-      "/images/products/spice-pepper-1.jpg",
-      "/images/products/other-salt-1.jpg",
-    ],
-    origin: "Cardamom Hills, Idukki, Kerala",
-    description:
-      "Jumbo 8mm+ pods bursting with glossy black aromatic seeds. Grown amidst high misty rainforest canopies and gently flue-cured to lock in sweet eucalyptus-scented oils.",
-    features: ["8mm extra bold green pods", "Intensely aromatic seeds", "Essential for royal chai, sweets & biryani"],
-    options: [
-      { label: "50g Pack", price: 170.0, originalPrice: 210.0, discount: "19% Off" },
-      { label: "100g Pack", price: 320.0, originalPrice: 390.0, discount: "18% Off" },
-      { label: "250g Pack", price: 770.0, originalPrice: 950.0, discount: "19% Off" },
-    ],
-  },
-  {
-    id: "spice-chilli-4",
-    name: "Guntur Stemless Red Chilli Powder",
-    category: "Spices",
-    subtitle: "Fiery Heat • Pure Sannam S4",
-    defaultPrice: 95.0,
-    defaultOriginalPrice: 120.0,
-    defaultDiscount: "21% Off",
-    rating: 4.7,
-    reviewsCount: 19,
-    image: "/images/products/spice-pepper-1.jpg",
-    images: [
-      "/images/products/spice-pepper-1.jpg",
-      "/images/products/spice-turmeric-1.jpg",
-      "/images/products/other-salt-1.jpg",
-    ],
-    origin: "Guntur, Andhra Pradesh",
-    description:
-      "Destemmed sun-baked red chillies crushed with seeds to provide both vibrant natural red color and authentic spicy punch. Free from added oils or synthetic Sudan dyes.",
-    features: ["100% stemless whole chilli pods", "High natural capsaicin warmth", "Purity tested for zero Sudan dyes"],
-    options: [
-      { label: "250g Pack", price: 95.0, originalPrice: 120.0, discount: "21% Off" },
-      { label: "500g Pack", price: 180.0, originalPrice: 230.0, discount: "22% Off" },
-      { label: "1 Kg Pack", price: 350.0, originalPrice: 450.0, discount: "22% Off" },
-    ],
-  },
-
-  // =================== OTHER ITEMS ===================
-  {
-    id: "other-ghee-1",
-    name: "Vedic A2 Gir Cow Bilona Cultured Ghee",
-    category: "Other Items",
-    subtitle: "Curd Churned • Golden Granular Texture",
-    defaultPrice: 890.0,
-    defaultOriginalPrice: 1050.0,
-    defaultDiscount: "15% Off",
-    rating: 5.0,
-    reviewsCount: 52,
-    image: "/images/products/other-ghee-1.jpg",
-    images: [
-      "/images/products/other-ghee-1.jpg",
-      "/images/products/other-oil-1.jpg",
-      "/images/products/other-salt-1.jpg",
-    ],
-    origin: "Gir Forest Sanctuary, Gujarat",
-    description:
-      "Handcrafted using the ancient 5-step Vedic Bilona method from free-grazing grass-fed Gir cow milk. Whole milk is cultured into curd and hand-churned with bi-directional wooden whisks, yielding pure granular ghee with divine nutty aroma.",
-    features: [
-      "100% pure A2 Beta-Casein milk",
-      "Granular (Danedar) golden texture",
-      "Rich in Omega-3, CLA, and fat-soluble Vitamins A, D, E, K",
-      "Zero preservatives, dairy cream shortcuts, or chemicals",
-    ],
-    nutritionalFacts: {
-      "Energy": "897 kcal",
-      "Total Fat": "99.7 g",
-      "Saturated Fat": "65.0 g",
-      "Omega-3 Fatty Acids": "1.8 g",
-      "Cholesterol": "180 mg",
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Mixed dry-fruit assortment. Confirm exact contents and proportions.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
     },
-    purityParameters: {
-      "Free Fatty Acids": "0.15% (Ultra Low)",
-      "Baudouin Test": "Negative (Zero vegetable oil)",
-      "Reichert Meissl (RM) Value": "28.5 (Pure)",
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
     },
-    tag: "Artisanal",
-    options: [
-      { label: "500 ml Glass Jar", price: 890.0, originalPrice: 1050.0, discount: "15% Off" },
-      { label: "1 Litre Glass Jar", price: 1690.0, originalPrice: 2000.0, discount: "16% Off" },
-      { label: "5 Litre Tin", price: 7990.0, originalPrice: 9500.0, discount: "16% Off" },
-    ],
+    "tag": "Premium Reserve"
   },
   {
-    id: "other-oil-2",
-    name: "Cold-Pressed Wood Churned Mustard Oil (Kachi Ghani)",
-    category: "Other Items",
-    subtitle: "Kolhu Pressed • Pungent & Unrefined",
-    defaultPrice: 195.0,
-    defaultOriginalPrice: 240.0,
-    defaultDiscount: "19% Off",
-    rating: 4.8,
-    reviewsCount: 28,
-    image: "/images/products/other-oil-1.jpg",
-    images: [
-      "/images/products/other-oil-1.jpg",
-      "/images/products/other-ghee-1.jpg",
-      "/images/products/other-salt-1.jpg",
+    "id": "dry-fruits-premium-mixed-nuts",
+    "name": "Premium Mixed Nuts",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 18.75,
+    "defaultOriginalPrice": 22.12,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 34,
+    "image": "/images/products/dryfruit-almond-2.jpg",
+    "images": [
+      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
     ],
-    origin: "Bharatpur, Rajasthan",
-    description:
-      "Cold pressed below 45°C in traditional wooden Kolhu expellers without chemical solvents or bleaching. Retains natural pungent allyl isothiocyanate, rich golden hue, and heart-healthy MUFA/PUFA ratio.",
-    features: ["Single cold pressed unrefined oil", "Naturally high smoking point", "Zero argemone oil adulteration"],
-    options: [
-      { label: "1 Litre Bottle", price: 195.0, originalPrice: 240.0, discount: "19% Off" },
-      { label: "2 Litre Can", price: 380.0, originalPrice: 470.0, discount: "19% Off" },
-      { label: "5 Litre Can", price: 920.0, originalPrice: 1150.0, discount: "20% Off" },
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 18.75,
+        "originalPrice": 22.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Nut assortment for snacking and cooking. Confirm blend and allergen statement.",
+    "origin": "Kashmir Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Nut assortment for snacking and cooking. Confirm blend and allergen statement.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
   },
   {
-    id: "other-salt-3",
-    name: "Himalayan Pink Rock Salt (Sendha Namak)",
-    category: "Other Items",
-    subtitle: "84 Trace Minerals • Unbleached",
-    defaultPrice: 75.0,
-    defaultOriginalPrice: 95.0,
-    defaultDiscount: "21% Off",
-    rating: 4.9,
-    reviewsCount: 38,
-    image: "/images/products/other-salt-1.jpg",
-    images: [
-      "/images/products/other-salt-1.jpg",
-      "/images/products/other-ghee-1.jpg",
-      "/images/products/other-oil-1.jpg",
+    "id": "dry-fruits-premium-dry-fruit-powder",
+    "name": "Premium Dry Fruit Powder",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 27.5,
+    "defaultOriginalPrice": 32.45,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 41,
+    "image": "/images/products/dryfruit-almond-2.jpg",
+    "images": [
+      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
     ],
-    origin: "Himalayan Salt Range",
-    description:
-      "Pristine ancient rock salt crystals formed hundreds of millions of years ago. Unrefined, unbleached, and rich in 84 natural trace minerals that impart its subtle pink glow and smooth, complex salinity.",
-    features: ["Contains 84 essential ionic minerals", "Zero microplastics or anti-caking agents", "Ideal for daily cooking & fasting"],
-    options: [
-      { label: "1 Kg Pack", price: 75.0, originalPrice: 95.0, discount: "21% Off" },
-      { label: "2 Kg Pack", price: 140.0, originalPrice: 180.0, discount: "22% Off" },
-      { label: "5 Kg Value Bag", price: 330.0, originalPrice: 430.0, discount: "23% Off" },
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 27.5,
+        "originalPrice": 32.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      }
     ],
+    "inStock": true,
+    "description": "Ground dry-fruit blend for desserts and beverages. Confirm exact ingredients.",
+    "origin": "Afghani Highlands",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Ground dry-fruit blend for desserts and beverages. Confirm exact ingredients.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
   },
+  {
+    "id": "dry-fruits-premium-dry-fruit-gift-box",
+    "name": "Premium Dry Fruit Gift Box",
+    "category": "Dry Fruits",
+    "subtitle": "Grade-A Jumbo Handpicked \u2022 Nitrogen Sealed Crunch",
+    "defaultPrice": 30.0,
+    "defaultOriginalPrice": 35.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 48,
+    "image": "/images/products/dryfruit-almond-2.jpg",
+    "images": [
+      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/categories/dry-fruits.jpg"
+    ],
+    "options": [
+      {
+        "label": "200 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Gift assortment of dry fruits. Confirm product mix, net weight and packaging.",
+    "origin": "Herat Valley",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by fruit or nut and processing. Check allergen labelling and avoid unsupported health claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Gift assortment of dry fruits. Confirm product mix, net weight and packaging.",
+    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-chia-seeds",
+    "name": "Premium Chia Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 102.0,
+    "defaultOriginalPrice": 120.36,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 55,
+    "image": "/images/products/seed-chia-1.jpg",
+    "images": [
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 102.0,
+        "originalPrice": 120.36,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 187.0,
+        "originalPrice": 220.66,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 340.0,
+        "originalPrice": 401.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 646.0,
+        "originalPrice": 762.28,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Chia seeds for smoothies, porridge, baking and soaked preparations. Verify pack label.",
+    "origin": "Kurnool, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Chia seeds for smoothies, porridge, baking and soaked preparations. Verify pack label.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-flax-seeds-alsi",
+    "name": "Premium Flax Seeds / Alsi",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 33.0,
+    "defaultOriginalPrice": 38.94,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 62,
+    "image": "/images/products/seed-chia-1.jpg",
+    "images": [
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Flax seeds for cereals, baking and recipe blends.",
+    "origin": "Surendranagar, Gujarat",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Flax seeds for cereals, baking and recipe blends.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-pumpkin-seeds",
+    "name": "Premium Pumpkin Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 30.0,
+    "defaultOriginalPrice": 35.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 69,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 30.0,
+        "originalPrice": 35.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 55.0,
+        "originalPrice": 64.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 190.0,
+        "originalPrice": 224.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Pumpkin seeds for snacking, salads and baking. Confirm raw/roasted status.",
+    "origin": "Khargone, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Pumpkin seeds for snacking, salads and baking. Confirm raw/roasted status.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-sunflower-seeds",
+    "name": "Premium Sunflower Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 54.0,
+    "defaultOriginalPrice": 63.72,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 76,
+    "image": "/images/products/seeds/seed-sunflower-1.jpg",
+    "images": [
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/seed-sesame-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 54.0,
+        "originalPrice": 63.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 342.0,
+        "originalPrice": 403.56,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sunflower seeds for snacks, salads, baking and mixes.",
+    "origin": "Solapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sunflower seeds for snacks, salads, baking and mixes.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-sesame-seeds-til",
+    "name": "Premium Sesame Seeds / Til",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 33.0,
+    "defaultOriginalPrice": 38.94,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 83,
+    "image": "/images/products/seeds/seed-sesame-1.jpg",
+    "images": [
+      "/images/products/seeds/seed-sesame-1.jpg",
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sesame seeds for sweets, seasoning and cooking; ensure allergen labelling.",
+    "origin": "Kurnool, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sesame seeds for sweets, seasoning and cooking; ensure allergen labelling.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-watermelon-seeds-magaz",
+    "name": "Premium Watermelon Seeds / Magaz",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 28.5,
+    "defaultOriginalPrice": 33.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 25,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Watermelon seeds for snacks, sweets and traditional mixes.",
+    "origin": "Surendranagar, Gujarat",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Watermelon seeds for snacks, sweets and traditional mixes.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-mustard-seeds",
+    "name": "Premium Mustard Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 28.5,
+    "defaultOriginalPrice": 33.63,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 32,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 28.5,
+        "originalPrice": 33.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 52.25,
+        "originalPrice": 61.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Mustard seeds for cooking, tempering and pickling.",
+    "origin": "Khargone, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Mustard seeds for cooking, tempering and pickling.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-basil-seeds-sabja",
+    "name": "Premium Basil Seeds / Sabja",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 26.4,
+    "defaultOriginalPrice": 31.15,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 39,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 26.4,
+        "originalPrice": 31.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 48.4,
+        "originalPrice": 57.11,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 167.2,
+        "originalPrice": 197.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Basil seeds for soaked beverages and dessert preparations.",
+    "origin": "Solapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Basil seeds for soaked beverages and dessert preparations.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-hemp-seeds",
+    "name": "Premium Hemp Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 39.0,
+    "defaultOriginalPrice": 46.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 46,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Hemp seeds for food use. Confirm local regulatory status and labelling.",
+    "origin": "Kurnool, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Hemp seeds for food use. Confirm local regulatory status and labelling.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-poppy-seeds-khus-khus",
+    "name": "Premium Poppy Seeds / Khus Khus",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 53,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Poppy seeds for cooking and sweets. Confirm local requirements and product grade.",
+    "origin": "Surendranagar, Gujarat",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Poppy seeds for cooking and sweets. Confirm local requirements and product grade.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-cucumber-seeds",
+    "name": "Premium Cucumber Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 37.5,
+    "defaultOriginalPrice": 44.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 60,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Cucumber seeds for food preparations and seed mixes. Verify intended use.",
+    "origin": "Khargone, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Cucumber seeds for food preparations and seed mixes. Verify intended use.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-muskmelon-seeds",
+    "name": "Premium Muskmelon Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 34.5,
+    "defaultOriginalPrice": 40.71,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 67,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 34.5,
+        "originalPrice": 40.71,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 63.25,
+        "originalPrice": 74.63,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 218.5,
+        "originalPrice": 257.83,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Muskmelon seeds for snacks and traditional mixes.",
+    "origin": "Solapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Muskmelon seeds for snacks and traditional mixes.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-garden-cress-seeds-halim",
+    "name": "Premium Garden Cress Seeds / Halim",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 49.5,
+    "defaultOriginalPrice": 58.41,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 74,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 90.75,
+        "originalPrice": 107.08,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 313.5,
+        "originalPrice": 369.93,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Garden cress seeds for traditional recipes. Confirm food use and label guidance.",
+    "origin": "Kurnool, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Garden cress seeds for traditional recipes. Confirm food use and label guidance.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-quinoa-seeds",
+    "name": "Premium Quinoa Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 48.0,
+    "defaultOriginalPrice": 56.64,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 81,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 48.0,
+        "originalPrice": 56.64,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 304.0,
+        "originalPrice": 358.72,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Quinoa for grain-style dishes, salads and bowls. Confirm origin and grade.",
+    "origin": "Surendranagar, Gujarat",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Quinoa for grain-style dishes, salads and bowls. Confirm origin and grade.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-amaranth-seeds-rajgira",
+    "name": "Premium Amaranth Seeds / Rajgira",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 39.0,
+    "defaultOriginalPrice": 46.02,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 23,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 39.0,
+        "originalPrice": 46.02,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 71.5,
+        "originalPrice": 84.37,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Amaranth seeds for porridge, flour and traditional recipes.",
+    "origin": "Khargone, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Amaranth seeds for porridge, flour and traditional recipes.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-nigella-seeds-kalonji",
+    "name": "Premium Nigella Seeds / Kalonji",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 37.5,
+    "defaultOriginalPrice": 44.25,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 30,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 37.5,
+        "originalPrice": 44.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 68.75,
+        "originalPrice": 81.12,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Nigella seeds for seasoning and pickles.",
+    "origin": "Solapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Nigella seeds for seasoning and pickles.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-fennel-seeds-saunf",
+    "name": "Premium Fennel Seeds / Saunf",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 40.5,
+    "defaultOriginalPrice": 47.79,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 37,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 40.5,
+        "originalPrice": 47.79,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 74.25,
+        "originalPrice": 87.61,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 256.5,
+        "originalPrice": 302.67,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Fennel seeds for cooking and spice blends.",
+    "origin": "Kurnool, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Fennel seeds for cooking and spice blends.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-fenugreek-seeds-methi",
+    "name": "Premium Fenugreek Seeds / Methi",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 42.0,
+    "defaultOriginalPrice": 49.56,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 44,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 42.0,
+        "originalPrice": 49.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 77.0,
+        "originalPrice": 90.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 266.0,
+        "originalPrice": 313.88,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Fenugreek seeds for seasoning and sprouting where appropriate.",
+    "origin": "Surendranagar, Gujarat",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Fenugreek seeds for seasoning and sprouting where appropriate.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-coriander-seeds",
+    "name": "Premium Coriander Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 51,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole coriander seeds for spice blends and grinding.",
+    "origin": "Khargone, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole coriander seeds for spice blends and grinding.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-cumin-seeds-jeera",
+    "name": "Premium Cumin Seeds / Jeera",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 27.0,
+    "defaultOriginalPrice": 31.86,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 58,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 27.0,
+        "originalPrice": 31.86,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 49.5,
+        "originalPrice": 58.41,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 171.0,
+        "originalPrice": 201.78,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole cumin seeds for cooking and spice blends.",
+    "origin": "Solapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole cumin seeds for cooking and spice blends.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-carom-seeds-ajwain",
+    "name": "Premium Carom Seeds / Ajwain",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 54.0,
+    "defaultOriginalPrice": 63.72,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 65,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 54.0,
+        "originalPrice": 63.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 99.0,
+        "originalPrice": 116.82,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 342.0,
+        "originalPrice": 403.56,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Carom seeds for seasoning and traditional recipes.",
+    "origin": "Kurnool, Andhra Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Carom seeds for seasoning and traditional recipes.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "seeds-premium-dill-seeds",
+    "name": "Premium Dill Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 22.5,
+    "defaultOriginalPrice": 26.55,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 72,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 22.5,
+        "originalPrice": 26.55,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 41.25,
+        "originalPrice": 48.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 142.5,
+        "originalPrice": 168.15,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dill seeds for pickling and seasoning.",
+    "origin": "Surendranagar, Gujarat",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dill seeds for pickling and seasoning.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "seeds-premium-celery-seeds",
+    "name": "Premium Celery Seeds",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 33.0,
+    "defaultOriginalPrice": 38.94,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 79,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 33.0,
+        "originalPrice": 38.94,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 60.5,
+        "originalPrice": 71.39,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Celery seeds for seasoning and spice blends.",
+    "origin": "Khargone, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Celery seeds for seasoning and spice blends.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "seeds-premium-mixed-seed-blend",
+    "name": "Premium Mixed Seed Blend",
+    "category": "Seeds",
+    "subtitle": "Raw Nutrient-Dense Superfood \u2022 High Dietary Fiber",
+    "defaultPrice": 36.0,
+    "defaultOriginalPrice": 42.48,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 86,
+    "image": "/images/products/seed-pumpkin-1.jpg",
+    "images": [
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/categories/seeds.jpg"
+    ],
+    "options": [
+      {
+        "label": "250 gm",
+        "price": 36.0,
+        "originalPrice": 42.48,
+        "discount": "15% Off"
+      },
+      {
+        "label": "500 gm",
+        "price": 66.0,
+        "originalPrice": 77.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "A blend of edible seeds for toppings and recipe use. Confirm exact seed composition and allergen details.",
+    "origin": "Solapur, Maharashtra",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Nutritional content varies by seed and processing. Use only verified nutrition information and avoid medical claims.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "A blend of edible seeds for toppings and recipe use. Confirm exact seed composition and allergen details.",
+    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-brown-sona-masoori-rice",
+    "name": "Premium Brown Sona Masoori Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 28,
+    "image": "/images/products/rice-brown-1.jpg",
+    "images": [
+      "/images/products/rice-brown-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Medium-grain brown rice for steamed rice, bowls and pulao. Confirm milling details.",
+    "origin": "Karnal, Haryana",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Medium-grain brown rice for steamed rice, bowls and pulao. Confirm milling details.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-white-sona-masoori-rice",
+    "name": "Premium White Sona Masoori Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 35,
+    "image": "/images/products/rice-gobindo-1.jpg",
+    "images": [
+      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Everyday rice for steamed rice, lemon rice and pulao. Confirm grain grade.",
+    "origin": "Raichur, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Everyday rice for steamed rice, lemon rice and pulao. Confirm grain grade.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-brown-basmati-rice",
+    "name": "Premium Brown Basmati Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 100.0,
+    "defaultOriginalPrice": 118.0,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 42,
+    "image": "/images/products/rice-basmati-1.jpg",
+    "images": [
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-brown-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 190.0,
+        "originalPrice": 224.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 450.0,
+        "originalPrice": 531.0,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 100.0,
+        "originalPrice": 118.0,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Long-grain brown rice for pilaf and side dishes. Confirm aroma and origin.",
+    "origin": "Burdwan, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Long-grain brown rice for pilaf and side dishes. Confirm aroma and origin.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-white-gobindobhog-rice-wes",
+    "name": "Premium White Gobindobhog Rice (West Bengal)",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 49,
+    "image": "/images/products/rice-gobindo-1.jpg",
+    "images": [
+      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Short-grain aromatic rice associated with West Bengal, suited to Bengali meals, khichuri and payesh. Confirm origin and grade.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Short-grain aromatic rice associated with West Bengal, suited to Bengali meals, khichuri and payesh. Confirm origin and grade.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-white-basmati-rice",
+    "name": "Premium White Basmati Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 140.0,
+    "defaultOriginalPrice": 165.2,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 56,
+    "image": "/images/products/rice-basmati-1.jpg",
+    "images": [
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-brown-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 266.0,
+        "originalPrice": 313.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 630.0,
+        "originalPrice": 743.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Long-grain rice for biryani, pulao and steamed rice. Confirm grain length and ageing.",
+    "origin": "Karnal, Haryana",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Long-grain rice for biryani, pulao and steamed rice. Confirm grain length and ageing.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-wheat-maida",
+    "name": "Premium Wheat Maida",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 95.0,
+    "defaultOriginalPrice": 112.1,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 63,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Refined wheat flour for baking, breads, biscuits and noodles. Contains wheat/gluten.",
+    "origin": "Raichur, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Refined wheat flour for baking, breads, biscuits and noodles. Contains wheat/gluten.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-buckwheat-flour",
+    "name": "Premium Buckwheat Flour",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 95.0,
+    "defaultOriginalPrice": 112.1,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 70,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 180.5,
+        "originalPrice": 212.99,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 427.5,
+        "originalPrice": 504.45,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 95.0,
+        "originalPrice": 112.1,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Buckwheat flour for pancakes, flatbreads and baking blends. Confirm cross-contact information.",
+    "origin": "Burdwan, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Buckwheat flour for pancakes, flatbreads and baking blends. Confirm cross-contact information.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-jowar-atta-sorghum-flour",
+    "name": "Premium Jowar Atta / Sorghum Flour",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 88.0,
+    "defaultOriginalPrice": 103.84,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 77,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 167.2,
+        "originalPrice": 197.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 396.0,
+        "originalPrice": 467.28,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 88.0,
+        "originalPrice": 103.84,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Sorghum flour for rotis, bhakri, porridge and blended baking.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Sorghum flour for rotis, bhakri, porridge and blended baking.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-makka-atta-maize-flour",
+    "name": "Premium Makka Atta / Maize Flour",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 130.0,
+    "defaultOriginalPrice": 153.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 84,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Maize flour for flatbreads, porridge, batters and cooking.",
+    "origin": "Karnal, Haryana",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Maize flour for flatbreads, porridge, batters and cooking.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-whole-jowar-sorghum-grain",
+    "name": "Premium Whole Jowar / Sorghum Grain",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 120.0,
+    "defaultOriginalPrice": 141.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 26,
+    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole sorghum for grain dishes and milling. Confirm grade.",
+    "origin": "Raichur, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole sorghum for grain dishes and milling. Confirm grade.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-barley-grain",
+    "name": "Premium Barley Grain",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 125.0,
+    "defaultOriginalPrice": 147.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 33,
+    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Barley for soups, stews and grain bowls. Contains gluten.",
+    "origin": "Burdwan, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Barley for soups, stews and grain bowls. Contains gluten.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-whole-maize-makka-deshi",
+    "name": "Premium Whole Maize / Makka (Deshi)",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 115.0,
+    "defaultOriginalPrice": 135.7,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 40,
+    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 218.5,
+        "originalPrice": 257.83,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 517.5,
+        "originalPrice": 610.65,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 115.0,
+        "originalPrice": 135.7,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole maize kernels for traditional preparations and milling.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole maize kernels for traditional preparations and milling.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-dehulled-buckwheat-buckwh",
+    "name": "Premium Dehulled Buckwheat / Buckwheat Grits",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 165.0,
+    "defaultOriginalPrice": 194.7,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 47,
+    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 313.5,
+        "originalPrice": 369.93,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 742.5,
+        "originalPrice": 876.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 165.0,
+        "originalPrice": 194.7,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Buckwheat groats for porridge, grain bowls and side dishes.",
+    "origin": "Karnal, Haryana",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Buckwheat groats for porridge, grain bowls and side dishes.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-whole-wheat-gehu",
+    "name": "Premium Whole Wheat / Gehu",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 160.0,
+    "defaultOriginalPrice": 188.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 54,
+    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 304.0,
+        "originalPrice": 358.72,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 720.0,
+        "originalPrice": 849.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 160.0,
+        "originalPrice": 188.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Whole wheat grain for flour milling and selected preparations. Confirm variety and cleaning grade.",
+    "origin": "Raichur, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Whole wheat grain for flour milling and selected preparations. Confirm variety and cleaning grade.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-wheat-atta",
+    "name": "Premium Wheat Atta",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 130.0,
+    "defaultOriginalPrice": 153.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 61,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 247.0,
+        "originalPrice": 291.46,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 585.0,
+        "originalPrice": 690.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 130.0,
+        "originalPrice": 153.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Wheat flour for chapati, roti and everyday cooking. Confirm milling and fortification details.",
+    "origin": "Burdwan, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Wheat flour for chapati, roti and everyday cooking. Confirm milling and fortification details.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-multigrain-atta",
+    "name": "Premium Multigrain Atta",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 125.0,
+    "defaultOriginalPrice": 147.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 68,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 237.5,
+        "originalPrice": 280.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 562.5,
+        "originalPrice": 663.75,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 125.0,
+        "originalPrice": 147.5,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Flour blend for rotis and baking. Confirm exact grain composition.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Flour blend for rotis and baking. Confirm exact grain composition.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-chakki-fresh-atta",
+    "name": "Premium Chakki Fresh Atta",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 135.0,
+    "defaultOriginalPrice": 159.3,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 75,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 256.5,
+        "originalPrice": 302.67,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 607.5,
+        "originalPrice": 716.85,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 135.0,
+        "originalPrice": 159.3,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Stone-milled-style wheat flour for rotis and parathas. Confirm milling method claim.",
+    "origin": "Karnal, Haryana",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Stone-milled-style wheat flour for rotis and parathas. Confirm milling method claim.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-broken-rice",
+    "name": "Premium Broken Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 140.0,
+    "defaultOriginalPrice": 165.2,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 82,
+    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 266.0,
+        "originalPrice": 313.88,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 630.0,
+        "originalPrice": 743.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 140.0,
+        "originalPrice": 165.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Broken rice for porridge, khichdi and other cooked dishes. Confirm broken percentage.",
+    "origin": "Raichur, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Broken rice for porridge, khichdi and other cooked dishes. Confirm broken percentage.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-poha-flattened-rice",
+    "name": "Premium Poha / Flattened Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 120.0,
+    "defaultOriginalPrice": 141.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 24,
+    "image": "/images/products/rice-sella-1.jpg",
+    "images": [
+      "/images/products/rice-sella-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Flattened rice for poha and snack recipes. Confirm thickness and grain type.",
+    "origin": "Burdwan, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Flattened rice for poha and snack recipes. Confirm thickness and grain type.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-idli-rice",
+    "name": "Premium Idli Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 90.0,
+    "defaultOriginalPrice": 106.2,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "image": "/images/products/rice-sella-1.jpg",
+    "images": [
+      "/images/products/rice-sella-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 171.0,
+        "originalPrice": 201.78,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 405.0,
+        "originalPrice": 477.9,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 90.0,
+        "originalPrice": 106.2,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Rice variety used for idli batter and other South Indian preparations. Confirm grain grade.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Rice variety used for idli batter and other South Indian preparations. Confirm grain grade.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-kolam-rice",
+    "name": "Premium Kolam Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 180.0,
+    "defaultOriginalPrice": 212.4,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "image": "/images/products/rice-gobindo-1.jpg",
+    "images": [
+      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 342.0,
+        "originalPrice": 403.56,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 810.0,
+        "originalPrice": 955.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 180.0,
+        "originalPrice": 212.4,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Rice for everyday meals. Confirm variety, grain length and origin.",
+    "origin": "Karnal, Haryana",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Rice for everyday meals. Confirm variety, grain length and origin.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  },
+  {
+    "id": "rice-wheat-premium-red-rice",
+    "name": "Premium Red Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 75.0,
+    "defaultOriginalPrice": 88.5,
+    "defaultDiscount": "15% Off",
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "image": "/images/products/rice-gobindo-1.jpg",
+    "images": [
+      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 142.5,
+        "originalPrice": 168.15,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 337.5,
+        "originalPrice": 398.25,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 75.0,
+        "originalPrice": 88.5,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Red rice for cooked grain dishes and regional recipes. Confirm variety and milling.",
+    "origin": "Raichur, Karnataka",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Red rice for cooked grain dishes and regional recipes. Confirm variety and milling.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Certified Organic"
+  },
+  {
+    "id": "rice-wheat-premium-black-rice",
+    "name": "Premium Black Rice",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 110.0,
+    "defaultOriginalPrice": 129.8,
+    "defaultDiscount": "15% Off",
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "image": "/images/products/rice-gobindo-1.jpg",
+    "images": [
+      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 209.0,
+        "originalPrice": 246.62,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 495.0,
+        "originalPrice": 584.1,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 110.0,
+        "originalPrice": 129.8,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Dark-coloured rice for grain bowls and desserts. Confirm variety and origin.",
+    "origin": "Burdwan, West Bengal",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Dark-coloured rice for grain bowls and desserts. Confirm variety and origin.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Best Seller"
+  },
+  {
+    "id": "rice-wheat-premium-wheat-dalia-broken-wheat",
+    "name": "Premium Wheat Dalia / Broken Wheat",
+    "category": "Rice & Wheat",
+    "subtitle": "Farm-Fresh Himalayan Harvest \u2022 Sortex Optical Cleaned",
+    "defaultPrice": 120.0,
+    "defaultOriginalPrice": 141.6,
+    "defaultDiscount": "15% Off",
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "images": [
+      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/categories/rice-wheat.jpg"
+    ],
+    "options": [
+      {
+        "label": "1 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      },
+      {
+        "label": "2 kg",
+        "price": 228.0,
+        "originalPrice": 269.04,
+        "discount": "15% Off"
+      },
+      {
+        "label": "5 kg",
+        "price": 540.0,
+        "originalPrice": 637.2,
+        "discount": "15% Off"
+      },
+      {
+        "label": "10 kg",
+        "price": 120.0,
+        "originalPrice": 141.6,
+        "discount": "15% Off"
+      }
+    ],
+    "inStock": true,
+    "description": "Cracked wheat for porridge, upma and savoury dishes. Contains wheat/gluten.",
+    "origin": "Sehore, Madhya Pradesh",
+    "features": [
+      "100% Pure, Unadulterated & Chemical Free",
+      "Triple Optical Sortex Cleaned & Graded",
+      "Directly Sourced from Trusted Farmer Cooperatives",
+      "Hygienically Packed to Retain Freshness & Aroma"
+    ],
+    "healthBenefits": "Grains and flours provide energy; nutrition varies by grain and processing. Wheat and barley contain gluten; verify allergen statements.",
+    "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
+    "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
+    "commonUses": "Cracked wheat for porridge, upma and savoury dishes. Contains wheat/gluten.",
+    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "nutritionalFacts": {
+      "Energy": "354 kcal",
+      "Protein": "8.2 g",
+      "Dietary Fiber": "4.1 g",
+      "Carbohydrates": "74.5 g",
+      "Fat": "1.2 g",
+      "Iron": "2.1 mg"
+    },
+    "purityParameters": {
+      "Moisture Content": "< 11.5%",
+      "Foreign Matter": "Nil (Sortex Cleaned)",
+      "Adulteration Test": "Negative (100% Pure)",
+      "Certification": "FSSAI & NPOP Organic Standards"
+    },
+    "tag": "Premium Reserve"
+  }
 ];
 
 export const BEST_SELLERS: Product[] = [
-  ALL_PRODUCTS[0], // Basmati Rice
-  ALL_PRODUCTS[4], // Toor Dal
-  ALL_PRODUCTS[9], // California Almonds
-  ALL_PRODUCTS[5], // Green Moong Dal
+  ALL_PRODUCTS[0],  // Arhar Dal (Pulses)
+  ALL_PRODUCTS[24], // Pearl Millet (Millets)
+  ALL_PRODUCTS[48], // Turmeric Powder (Spices)
+  ALL_PRODUCTS[72], // Jaggery Block (Sweets)
+  ALL_PRODUCTS[96], // Raw Honey (Honey)
+  ALL_PRODUCTS[120], // Almonds (Dry Fruits)
+  ALL_PRODUCTS[144], // Chia Seeds (Seeds)
+  ALL_PRODUCTS[168], // Brown Sona Masoori (Rice & Wheat)
 ];
 
 export const WHY_CHOOSE_FEATURES: WhyChooseFeature[] = [
-  {
-    id: "feat-1",
-    title: "Naturally Sourced",
-    description: "From trusted farm co-ops",
-    icon: "leaf",
-  },
-  {
-    id: "feat-2",
-    title: "Premium Quality",
-    description: "Carefully selected and graded",
-    icon: "diamond",
-  },
-  {
-    id: "feat-3",
-    title: "Quality Tested",
-    description: "Hygienically processed",
-    icon: "flask",
-  },
-  {
-    id: "feat-4",
-    title: "Rich in Nutrition",
-    description: "Healthy food for a better life",
-    icon: "wheat",
-  },
-  {
-    id: "feat-5",
-    title: "Secure Packaging",
-    description: "Freshness and safety",
-    icon: "package",
-  },
-  {
-    id: "feat-6",
-    title: "Global Export",
-    description: "Bulk supply and worldwide delivery",
-    icon: "globe",
-  },
+  { id: "feat-1", title: "Naturally Sourced", description: "From trusted farm co-ops", icon: "leaf" },
+  { id: "feat-2", title: "Premium Quality", description: "Carefully selected and graded", icon: "diamond" },
+  { id: "feat-3", title: "Quality Tested", description: "Hygienically processed", icon: "flask" },
+  { id: "feat-4", title: "Rich in Nutrition", description: "Healthy food for a better life", icon: "wheat" },
+  { id: "feat-5", title: "Secure Packaging", description: "Freshness and safety", icon: "package" },
+  { id: "feat-6", title: "Global Export", description: "Bulk supply and worldwide delivery", icon: "globe" },
 ];
 
 export const BLOG_POSTS: BlogPost[] = [

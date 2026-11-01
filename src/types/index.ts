@@ -25,6 +25,11 @@ export interface Product {
   nutritionalFacts?: Record<string, string>;
   purityParameters?: Record<string, string>;
   tag?: string;
+  healthBenefits?: string;
+  ingredients?: string;
+  storageInstructions?: string;
+  commonUses?: string;
+  additionalInfo?: string;
 }
 
 export interface Category {

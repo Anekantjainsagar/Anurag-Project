@@ -23,10 +23,10 @@ const HERO_SLIDES = [
     subtext: "— Royal Himalayan Basmati • Unpolished Pulses • California Dry Fruits —",
     description:
       "Harvested from India's most fertile river valleys. Aged naturally, sorted with precision optics, and delivered fresh to your dining table.",
-    bgImage: "/images/categories/rice.jpg",
+    bgImage: "/images/categories/rice-wheat.jpg",
     showcaseImage: "/images/products/rice-basmati-1.jpg",
     badge: "24-Month Naturally Aged",
-    categoryTarget: "Rice",
+    categoryTarget: "Rice & Wheat",
     label: "Aged Basmati",
   },
   {
