@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { CartProvider, useCart } from "@/context/CartContext";
+import { useCart } from "@/context/CartContext";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import LoginModal from "@/components/LoginModal";
 import ToastNotification from "@/components/ToastNotification";
 import {
   Phone,
@@ -17,7 +16,6 @@ import {
   Send,
   Sparkles,
   Package,
-  CheckCircle2,
 } from "lucide-react";
 
 function ContactPageContent() {
@@ -29,7 +27,6 @@ function ContactPageContent() {
     subject: "Retail Order Support",
     message: "",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +34,6 @@ function ContactPageContent() {
       showToast("Please fill in required fields (Name, Phone, Message)");
       return;
     }
-    setIsSubmitted(true);
     showToast("Message sent successfully! Our executive will contact you shortly.");
     setFormData({
       name: "",
@@ -49,69 +45,67 @@ function ContactPageContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
+    <div className="w-full min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
       <TopBar />
       <Navbar />
 
-      {/* Banner */}
-      <section className="bg-gradient-to-b from-[#033b20] to-[#044a27] text-white py-12 sm:py-16 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#58cf8b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold backdrop-blur-xs">
+      {/* Full Width Banner */}
+      <section className="w-full bg-[#014d1e] text-white py-12 sm:py-16 relative overflow-hidden">
+        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
-            <span>Dedicated Customer Care & Wholesale Trade</span>
+            <span>Rajlakshmi Javiks International • Dedicated Client Desk</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-black text-white tracking-tight">
-            Get in Touch With Our Team
+            Contact Us & Wholesale Export Inquiries
           </h1>
           <p className="text-sm sm:text-base text-[#c3decb] max-w-xl mx-auto leading-relaxed">
-            Have questions about grain varieties, custom weight packaging, or
-            institutional supply? We are here to help.
+            Directly connect with our organic sourcing desk, order fulfillment team,
+            or institutional B2B export division.
           </p>
         </div>
       </section>
 
-      {/* Main Content Form & Contact Cards */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-12 flex-1 w-full">
+      {/* Main Full Width Content */}
+      <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-12 sm:py-16 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: Contact Cards (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold text-[#044a27] uppercase tracking-wider">
+              <span className="text-xs font-bold text-[#01722C] uppercase tracking-wider">
                 Direct Channels
               </span>
               <h2 className="font-serif text-2xl font-bold text-gray-900">
-                Reach Our Agro Headquarters
+                Indore Central Headquarters
               </h2>
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                Connect directly with our sourcing desk, order fulfillment team,
-                or wholesale export department.
+                We supply individual health-conscious households nationwide, as well as bulk organic container shipments worldwide.
               </p>
             </div>
 
             <div className="space-y-3.5">
-              <div className="p-4 rounded-2xl bg-[#faf9f5] border border-[#e8e2d4] flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#044a27] flex items-center justify-center shrink-0">
+              <div className="p-4 rounded-2xl bg-white border border-[#e8e2d4] flex items-start gap-3 shadow-2xs">
+                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#01722C] flex items-center justify-center shrink-0">
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                    Customer Support
+                    Customer & Trade Support
                   </div>
                   <a
                     href="tel:+918769215905"
-                    className="text-sm font-bold text-gray-900 hover:text-[#044a27] block transition-colors"
+                    className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    +91-8769215905 / 8769115905
+                    +91-87692 15905, 87691 15905
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
-                    Toll-free customer guidance & order assistance
+                    Monday to Saturday (9:00 AM - 8:00 PM IST)
                   </div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#faf9f5] border border-[#e8e2d4] flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#044a27] flex items-center justify-center shrink-0">
+              <div className="p-4 rounded-2xl bg-white border border-[#e8e2d4] flex items-start gap-3 shadow-2xs">
+                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#01722C] flex items-center justify-center shrink-0">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
@@ -119,77 +113,72 @@ function ContactPageContent() {
                     Email Correspondence
                   </div>
                   <a
-                    href="mailto:contact@yourbrand.com"
-                    className="text-sm font-bold text-gray-900 hover:text-[#044a27] block transition-colors"
+                    href="mailto:contact@rajlakshmijaviks.com"
+                    className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    contact@yourbrand.com
+                    contact@rajlakshmijaviks.com
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
-                    For general inquiries & lab test report requests
+                    For price lists, certification copies & lab analysis
                   </div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#faf9f5] border border-[#e8e2d4] flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#044a27] flex items-center justify-center shrink-0">
+              <div className="p-4 rounded-2xl bg-white border border-[#e8e2d4] flex items-start gap-3 shadow-2xs">
+                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#01722C] flex items-center justify-center shrink-0">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                    Corporate & Logistics Center
+                    Central Office & Packaging Hub
                   </div>
-                  <p className="text-xs font-semibold text-gray-800 leading-snug">
+                  <p className="text-xs font-semibold text-gray-800 leading-snug mt-0.5">
                     11, Manish Bag Colony, Near Vikram Tower, Sapna Sangeeta,
-                    Indore - 452001 M. P. INDIA
+                    Indore - 452001, Madhya Pradesh, INDIA
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#faf9f5] border border-[#e8e2d4] flex items-start gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#044a27] flex items-center justify-center shrink-0">
+              <div className="p-4 rounded-2xl bg-white border border-[#e8e2d4] flex items-start gap-3 shadow-2xs">
+                <div className="w-9 h-9 rounded-xl bg-[#edf7f1] text-[#01722C] flex items-center justify-center shrink-0">
                   <Clock className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                    Operational Hours
+                    Dispatch Operations
                   </div>
-                  <div className="text-xs font-semibold text-gray-800">
-                    Monday - Saturday: 9:00 AM - 8:00 PM IST
-                  </div>
-                  <div className="text-[11px] text-gray-500 mt-0.5">
-                    Sunday: Closed (Farm maintenance day)
+                  <div className="text-xs font-semibold text-gray-800 mt-0.5">
+                    Orders dispatched daily with live courier tracking
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Bulk Order Banner */}
-            <div className="bg-[#edf7f1] border border-[#b8ddc6] p-5 rounded-2xl space-y-2">
-              <div className="flex items-center gap-2 text-[#044a27] font-bold text-sm">
+            {/* B2B Wholesale Supply Box */}
+            <div className="bg-[#edf7f1] border border-[#b8ddc6] p-6 rounded-2xl space-y-2.5">
+              <div className="flex items-center gap-2 text-[#01722C] font-bold text-sm">
                 <Package className="w-4 h-4" />
-                <span>Looking for Commercial / Wholesale Supply?</span>
+                <span>Commercial / Institutional Wholesale</span>
               </div>
               <p className="text-xs text-gray-600 leading-relaxed">
-                We supply bulk container loads of unpolished pulses, aged basmati
-                rice, and cold-pressed spices to hotels, restaurants, and retail
-                chains across India and worldwide.
+                Bulk 25kg / 50kg export bags available for organic food brands, Ayurvedic pharmacies, retail chains, and star hotels with custom private labeling.
               </p>
               <button
                 onClick={() => setIsBulkModalOpen(true)}
-                className="bg-[#044a27] hover:bg-[#03391e] text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors cursor-pointer"
+                className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors cursor-pointer"
               >
-                Open Bulk Enquiry Form
+                Open B2B Quotation Form
               </button>
             </div>
           </div>
 
           {/* Right Column: Contact Message Form (7 cols) */}
-          <div className="lg:col-span-7 bg-[#faf9f5] p-6 sm:p-8 rounded-3xl border border-[#e8e2d4] shadow-2xs">
+          <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-[#e8e2d4] shadow-2xs">
             <h3 className="font-serif text-xl sm:text-2xl font-bold text-gray-900 mb-2">
               Send Us a Direct Message
             </h3>
             <p className="text-xs text-gray-500 mb-6">
-              Fill in your details below and an agricultural specialist will reply within 2 business hours.
+              Our organic food consultant will respond within 2 business hours.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -206,7 +195,7 @@ function ContactPageContent() {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full bg-white border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27]"
+                    className="w-full bg-[#faf9f5] border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
                   />
                 </div>
 
@@ -222,7 +211,7 @@ function ContactPageContent() {
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
                     }
-                    className="w-full bg-white border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27]"
+                    className="w-full bg-[#faf9f5] border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
                   />
                 </div>
               </div>
@@ -239,7 +228,7 @@ function ContactPageContent() {
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
                     }
-                    className="w-full bg-white border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27]"
+                    className="w-full bg-[#faf9f5] border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
                   />
                 </div>
 
@@ -252,7 +241,7 @@ function ContactPageContent() {
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
                     }
-                    className="w-full bg-white border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27] cursor-pointer"
+                    className="w-full bg-[#faf9f5] border border-[#dcd6c8] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] cursor-pointer"
                   >
                     <option value="Retail Order Support">Retail Order Support</option>
                     <option value="Bulk Purchase & Institutional">Bulk Purchase & Institutional</option>
@@ -270,18 +259,18 @@ function ContactPageContent() {
                 <textarea
                   rows={4}
                   required
-                  placeholder="Tell us what products you need, quantities, or questions..."
+                  placeholder="Detail your requirements, preferred grain varieties, or dispatch destination..."
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full bg-white border border-[#dcd6c8] text-xs sm:text-sm rounded-xl p-3.5 focus:outline-none focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27]"
+                  className="w-full bg-[#faf9f5] border border-[#dcd6c8] text-xs sm:text-sm rounded-xl p-3.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-[#044a27] hover:bg-[#03391e] text-white text-xs sm:text-sm font-bold py-3 px-6 rounded-xl transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full bg-[#01722C] hover:bg-[#0b542c] text-white text-xs sm:text-sm font-bold py-3.5 px-6 rounded-xl transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
                 <span>Submit Inquiry</span>
@@ -294,16 +283,11 @@ function ContactPageContent() {
       <Footer />
       <CartDrawer />
       <BulkEnquiryModal />
-      <LoginModal />
       <ToastNotification />
     </div>
   );
 }
 
 export default function ContactPage() {
-  return (
-    <CartProvider>
-      <ContactPageContent />
-    </CartProvider>
-  );
+  return <ContactPageContent />;
 }

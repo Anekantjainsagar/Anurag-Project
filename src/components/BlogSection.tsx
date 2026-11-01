@@ -223,9 +223,9 @@ export default function BlogSection() {
   return (
     <section
       id="blogs"
-      className="py-10 sm:py-14 bg-[#faf8f4] border-t border-[#f0ece1]"
+      className="py-10 sm:py-14 bg-[#faf8f4] border-t border-[#f0ece1] w-full"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* Section Header (Clean, Formal, Direct) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-[#e7decb]">
           <div>

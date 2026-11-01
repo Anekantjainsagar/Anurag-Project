@@ -2,41 +2,39 @@
 
 import React, { useState, useMemo, Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { CartProvider, useCart } from "@/context/CartContext";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import LoginModal from "@/components/LoginModal";
 import ToastNotification from "@/components/ToastNotification";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import {
   Search,
-  Filter,
   Heart,
   Star,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Sparkles,
-  SlidersHorizontal,
-  CheckCircle2,
   X,
   ArrowUpDown,
   ShoppingBag,
+  ShoppingCart,
+  ShieldCheck,
 } from "lucide-react";
 
 function ProductsCatalogContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const initialCategoryParam = searchParams.get("category");
   const initialSearchParam = searchParams.get("search");
 
-  const { addToCart, toggleWishlist, isInWishlist, setIsCartOpen } = useCart();
+  const { addToCart, toggleWishlist, isInWishlist } = useCart();
 
-  // Active category filter state (defaults to param if provided, else "All")
   const [selectedCategory, setSelectedCategory] = useState<string>(
     initialCategoryParam || "All"
   );
@@ -75,21 +73,19 @@ function ProductsCatalogContent() {
     e.stopPropagation();
     const option = selectedOptions[product.id] || product.options[0];
     addToCart(product, option, 1);
-    setIsCartOpen(true);
+    router.push("/checkout");
   };
 
   // Filter & Sort Logic
   const filteredProducts = useMemo(() => {
     let result = [...ALL_PRODUCTS];
 
-    // Filter by Category
     if (selectedCategory !== "All") {
       result = result.filter(
         (p) => p.category.toLowerCase() === selectedCategory.toLowerCase()
       );
     }
 
-    // Filter by Search Query
     if (searchQuery.trim() !== "") {
       const q = searchQuery.toLowerCase().trim();
       result = result.filter(
@@ -102,7 +98,6 @@ function ProductsCatalogContent() {
       );
     }
 
-    // Sort
     if (sortBy === "price-asc") {
       result.sort((a, b) => a.defaultPrice - b.defaultPrice);
     } else if (sortBy === "price-desc") {
@@ -114,7 +109,6 @@ function ProductsCatalogContent() {
     return result;
   }, [selectedCategory, searchQuery, sortBy]);
 
-  // Pagination calculation
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage) || 1;
   const paginatedProducts = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
@@ -127,47 +121,46 @@ function ProductsCatalogContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fcfbf9] text-gray-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans w-full">
       <TopBar />
       <Navbar />
 
-      {/* Hero Banner Header */}
-      <section className="bg-gradient-to-b from-[#033b20] to-[#044a27] text-white py-10 sm:py-14 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#58cf8b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold backdrop-blur-xs">
+      {/* Full-Width Header Banner */}
+      <section className="w-full bg-[#014d1e] text-white py-10 sm:py-14 relative overflow-hidden">
+        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
-                <span>100% Farm-Direct Certified Staples</span>
+                <span>Rajlakshmi Javiks • 100% Certified Organic Staples</span>
               </div>
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-                Our Complete Harvest Catalogue
+                Complete Organic Catalogue (192 Harvests)
               </h1>
               <p className="text-sm sm:text-base text-[#c3decb] max-w-2xl leading-relaxed">
-                Explore 192 lab-tested pulses, millets, cold-pressed spices, pure
-                raw honey, dry fruits, and unpolished heritage grains.
+                Explore our full spectrum of unpolished pulses, aged basmati rice,
+                heirloom millets, cold-pressed spices, pure honey, and California dry fruits.
               </p>
             </div>
 
-            {/* Quick Stats Pill */}
+            {/* Quick Stats */}
             <div className="flex items-center gap-4 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/15 shrink-0">
-              <div className="text-center px-3 border-r border-white/20">
+              <div className="text-center px-4 border-r border-white/20">
                 <div className="text-2xl font-black text-white">192</div>
                 <div className="text-[11px] text-[#9fc7ad] uppercase tracking-wider font-semibold">
                   Items
                 </div>
               </div>
-              <div className="text-center px-3 border-r border-white/20">
+              <div className="text-center px-4 border-r border-white/20">
                 <div className="text-2xl font-black text-white">8</div>
                 <div className="text-[11px] text-[#9fc7ad] uppercase tracking-wider font-semibold">
                   Categories
                 </div>
               </div>
-              <div className="text-center px-3">
+              <div className="text-center px-4">
                 <div className="text-2xl font-black text-[#58cf8b]">100%</div>
                 <div className="text-[11px] text-[#9fc7ad] uppercase tracking-wider font-semibold">
-                  Purity Tested
+                  Pure Tested
                 </div>
               </div>
             </div>
@@ -175,25 +168,24 @@ function ProductsCatalogContent() {
         </div>
       </section>
 
-      {/* Main Catalog Workspace */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+      {/* Main Catalog Workspace - Full Width Fluid Container */}
+      <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 flex-1">
         {/* Controls Toolbar: Search, Category Pills, Sort */}
         <div className="space-y-4 mb-8">
-          {/* Top Row: Search & Sort */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3 sm:p-4 rounded-2xl border border-[#e8e4db] shadow-2xs">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-[#e8e4db] shadow-2xs">
             {/* Search Input */}
             <div className="relative flex-1">
               <input
                 type="text"
-                placeholder="Search products by name, benefit, or ingredient..."
+                placeholder="Search products by name, benefit, or culinary use..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full bg-[#f9f8f5] border border-[#dcd6c8] text-gray-900 text-xs sm:text-sm rounded-xl pl-9 pr-9 py-2.5 focus:outline-none focus:border-[#044a27] focus:bg-white focus:ring-1 focus:ring-[#044a27]"
+                className="w-full bg-[#f9f8f5] border border-[#dcd6c8] text-gray-900 text-xs sm:text-sm rounded-xl pl-10 pr-9 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
               />
-              <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
+              <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
@@ -218,7 +210,7 @@ function ProductsCatalogContent() {
                   onChange={(e) => setSortBy(e.target.value as any)}
                   className="bg-transparent border-none text-xs font-semibold text-gray-900 focus:outline-none cursor-pointer"
                 >
-                  <option value="featured">Featured / Best Sellers</option>
+                  <option value="featured">Featured Bestsellers</option>
                   <option value="price-asc">Price: Low to High</option>
                   <option value="price-desc">Price: High to Low</option>
                   <option value="rating">Highest Rated</option>
@@ -233,8 +225,8 @@ function ProductsCatalogContent() {
               onClick={() => handleCategoryChange("All")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                 selectedCategory === "All"
-                  ? "bg-[#044a27] text-white shadow-sm"
-                  : "bg-white text-gray-700 border border-[#e2ddd3] hover:border-[#044a27] hover:bg-[#f6f9f7]"
+                  ? "bg-[#01722C] text-white shadow-sm"
+                  : "bg-white text-gray-700 border border-[#e2ddd3] hover:border-[#01722C] hover:bg-[#edf7f1]"
               }`}
             >
               All Harvests (192)
@@ -249,8 +241,8 @@ function ProductsCatalogContent() {
                   onClick={() => handleCategoryChange(cat.name)}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                     isSelected
-                      ? "bg-[#044a27] text-white shadow-sm"
-                      : "bg-white text-gray-700 border border-[#e2ddd3] hover:border-[#044a27] hover:bg-[#f6f9f7]"
+                      ? "bg-[#01722C] text-white shadow-sm"
+                      : "bg-white text-gray-700 border border-[#e2ddd3] hover:border-[#01722C] hover:bg-[#edf7f1]"
                   }`}
                 >
                   <img
@@ -263,7 +255,7 @@ function ProductsCatalogContent() {
                     className={`text-[10px] px-1.5 py-0.2 rounded-full ${
                       isSelected
                         ? "bg-white/20 text-white"
-                        : "bg-gray-100 text-gray-500"
+                        : "bg-gray-100 text-gray-500 font-bold"
                     }`}
                   >
                     24
@@ -274,9 +266,9 @@ function ProductsCatalogContent() {
           </div>
         </div>
 
-        {/* Product Grid */}
+        {/* Product Cards Full-Width Responsive Grid */}
         {paginatedProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-5">
             {paginatedProducts.map((product) => {
               const currentOption =
                 selectedOptions[product.id] || product.options[0];
@@ -286,13 +278,12 @@ function ProductsCatalogContent() {
               return (
                 <div
                   key={product.id}
-                  className="group bg-white rounded-2xl border border-[#e8e4db] hover:border-[#b8cbbd] hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group bg-white rounded-2xl border border-[#e4ebe6] hover:border-[#01722C] hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Card Header & Image */}
                   <div className="relative">
-                    {/* Top Badges */}
-                    <div className="absolute top-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between">
-                      <span className="bg-[#044a27] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
+                    <div className="absolute top-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between pointer-events-none">
+                      <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs pointer-events-auto">
                         {product.tag || product.category}
                       </span>
                       <button
@@ -301,7 +292,7 @@ function ProductsCatalogContent() {
                           e.stopPropagation();
                           toggleWishlist(product.id);
                         }}
-                        className={`w-7 h-7 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs ${
+                        className={`w-7 h-7 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs pointer-events-auto ${
                           isFav
                             ? "bg-rose-50 text-rose-600"
                             : "bg-white/90 backdrop-blur-xs text-gray-500 hover:text-rose-600 hover:bg-white"
@@ -316,7 +307,6 @@ function ProductsCatalogContent() {
                       </button>
                     </div>
 
-                    {/* Image linking to PDP */}
                     <Link
                       href={`/products/${product.id}`}
                       className="block aspect-square w-full bg-[#f8f6f0] overflow-hidden relative"
@@ -335,7 +325,7 @@ function ProductsCatalogContent() {
                     <div>
                       {/* Category & Rating */}
                       <div className="flex items-center justify-between gap-1 mb-1 text-[11px] text-gray-500">
-                        <span className="font-semibold uppercase text-[#044a27]">
+                        <span className="font-semibold uppercase text-[#01722C]">
                           {product.category}
                         </span>
                         <div className="flex items-center gap-0.5 text-amber-500 font-bold">
@@ -350,7 +340,7 @@ function ProductsCatalogContent() {
                       {/* Product Name */}
                       <Link
                         href={`/products/${product.id}`}
-                        className="font-serif text-xs sm:text-sm font-bold text-gray-900 group-hover:text-[#044a27] transition-colors line-clamp-2 leading-snug"
+                        className="font-serif text-xs sm:text-sm font-bold text-gray-900 group-hover:text-[#01722C] transition-colors line-clamp-2 leading-snug"
                         title={product.name}
                       >
                         {product.name}
@@ -365,7 +355,7 @@ function ProductsCatalogContent() {
                               isDropdownOpen ? null : product.id
                             )
                           }
-                          className="w-full flex items-center justify-between px-2.5 py-1.5 bg-[#fbfaf7] border border-[#e5dfd2] rounded-lg text-xs font-semibold text-gray-700 hover:border-[#044a27] transition-colors cursor-pointer"
+                          className="w-full flex items-center justify-between px-2.5 py-1.5 bg-[#fbfaf7] border border-[#e5dfd2] rounded-lg text-xs font-semibold text-gray-700 hover:border-[#01722C] transition-colors cursor-pointer"
                         >
                           <span className="truncate mr-1">{currentOption.label}</span>
                           <ChevronDown
@@ -386,7 +376,7 @@ function ProductsCatalogContent() {
                                 }
                                 className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${
                                   opt.label === currentOption.label
-                                    ? "bg-[#edf7f1] text-[#044a27] font-bold"
+                                    ? "bg-[#edf7f1] text-[#01722C] font-bold"
                                     : "text-gray-700 hover:bg-gray-50"
                                 }`}
                               >
@@ -414,7 +404,7 @@ function ProductsCatalogContent() {
                             </span>
                           )}
                         </div>
-                        <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+                        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
                           In Stock
                         </span>
                       </div>
@@ -423,13 +413,13 @@ function ProductsCatalogContent() {
                       <div className="grid grid-cols-2 gap-1.5">
                         <button
                           onClick={(e) => handleAddToCart(product, e)}
-                          className="bg-white hover:bg-[#edf7f1] text-[#044a27] border border-[#044a27] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center"
+                          className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center"
                         >
                           Add to Cart
                         </button>
                         <button
                           onClick={(e) => handleBuyNow(product, e)}
-                          className="bg-[#044a27] hover:bg-[#03391e] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center"
+                          className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center"
                         >
                           Buy Now
                         </button>
@@ -442,7 +432,7 @@ function ProductsCatalogContent() {
           </div>
         ) : (
           <div className="bg-white rounded-3xl border border-[#e8e4db] p-12 text-center max-w-xl mx-auto space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#f4f7f5] text-[#044a27] flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-full bg-[#edf7f1] text-[#01722C] flex items-center justify-center mx-auto">
               <ShoppingBag className="w-8 h-8" />
             </div>
             <h3 className="font-serif text-xl font-bold text-gray-900">
@@ -450,15 +440,14 @@ function ProductsCatalogContent() {
             </h3>
             <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
               We couldn&apos;t find any products matching &quot;{searchQuery}&quot;
-              in category &quot;{selectedCategory}&quot;. Try adjusting your search
-              or resetting filters.
+              in category &quot;{selectedCategory}&quot;.
             </p>
             <button
               onClick={() => {
                 setSearchQuery("");
                 setSelectedCategory("All");
               }}
-              className="bg-[#044a27] text-white text-xs font-bold px-6 py-2.5 rounded-xl hover:bg-[#03391e] transition-colors cursor-pointer"
+              className="bg-[#01722C] text-white text-xs font-bold px-6 py-2.5 rounded-xl hover:bg-[#0b542c] transition-colors cursor-pointer"
             >
               Reset All Filters
             </button>
@@ -496,7 +485,7 @@ function ProductsCatalogContent() {
                   }}
                   className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors cursor-pointer ${
                     currentPage === pg
-                      ? "bg-[#044a27] text-white shadow-xs"
+                      ? "bg-[#01722C] text-white shadow-xs"
                       : "text-gray-700 hover:bg-gray-100"
                   }`}
                 >
@@ -523,7 +512,6 @@ function ProductsCatalogContent() {
       <Footer />
       <CartDrawer />
       <BulkEnquiryModal />
-      <LoginModal />
       <ToastNotification />
     </div>
   );
@@ -531,16 +519,14 @@ function ProductsCatalogContent() {
 
 export default function ProductsPage() {
   return (
-    <CartProvider>
-      <Suspense
-        fallback={
-          <div className="min-h-screen flex items-center justify-center bg-white text-gray-500 text-sm">
-            Loading harvest catalogue...
-          </div>
-        }
-      >
-        <ProductsCatalogContent />
-      </Suspense>
-    </CartProvider>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-white text-gray-500 text-sm">
+          Loading organic catalogue...
+        </div>
+      }
+    >
+      <ProductsCatalogContent />
+    </Suspense>
   );
 }

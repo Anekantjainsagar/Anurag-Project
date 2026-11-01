@@ -2,10 +2,11 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import { useCart } from "@/context/CartContext";
-import { Heart, Star, ChevronDown, ArrowRight } from "lucide-react";
+import { Heart, Star, ChevronDown, ArrowRight, ShoppingCart, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface BestSellersSectionProps {
   activeCategoryFilter?: string | null;
@@ -18,17 +19,16 @@ export default function BestSellersSection({
   onSelectCategory,
   limit = 8,
 }: BestSellersSectionProps) {
+  const router = useRouter();
   const { addToCart, toggleWishlist, isInWishlist, setIsCartOpen } = useCart();
 
-  // Keep track of chosen weight option for each product
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<string, ProductWeightOption>
-  >(() => {
-    const initial: Record<string, ProductWeightOption> = {};
+  // Selected weight options for each product
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>(() => {
+    const init: Record<string, ProductWeightOption> = {};
     ALL_PRODUCTS.forEach((prod) => {
-      initial[prod.id] = prod.options[0];
+      init[prod.id] = prod.options[0];
     });
-    return initial;
+    return init;
   });
 
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
@@ -41,50 +41,49 @@ export default function BestSellersSection({
   const handleBuyNow = (product: Product) => {
     const option = selectedOptions[product.id] || product.options[0];
     addToCart(product, option, 1);
-    setIsCartOpen(true);
+    router.push("/checkout");
   };
 
-  // Filter products by selected category (defaulting to first category)
   const currentCategory = activeCategoryFilter || CATEGORIES[0]?.name || "Pulses";
   const filteredProducts = ALL_PRODUCTS.filter(
     (p) => p.category.toLowerCase() === currentCategory.toLowerCase()
   );
 
-  // Slice to limit so home page stays crisp and not overwhelming
   const displayProducts =
     filteredProducts.length > 0
       ? filteredProducts.slice(0, limit)
       : ALL_PRODUCTS.slice(0, limit);
 
   return (
-    <section id="best-sellers" className="py-8 sm:py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
+    <section id="best-sellers" className="py-12 sm:py-16 bg-[#faf8f4] w-full font-sans">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        {/* Full Width Header & Category Filter Tabs */}
+        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 mb-8 pb-4 border-b border-[#e7decb]">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">
-              Pure Unadulterated Selection
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-[#01722C]" />
+              <span>Certified Organic Bestsellers</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
-              Featured {currentCategory} & Best Sellers
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
+              Featured {currentCategory} Selection
             </h2>
-            <p className="text-gray-500 text-xs sm:text-sm mt-0.5">
-              Showing premium quality {currentCategory.toLowerCase()} products certified for purity
+            <p className="text-gray-500 text-xs sm:text-sm mt-1">
+              Hand-graded, sortex-inspected and farm-sealed for authentic nutritional integrity
             </p>
           </div>
 
           {/* Quick Category Filter Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
             {CATEGORIES.map((cat) => {
               const isActive = cat.name.toLowerCase() === currentCategory.toLowerCase();
               return (
                 <button
                   key={cat.id}
                   onClick={() => onSelectCategory && onSelectCategory(cat.name)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                     isActive
-                      ? "bg-[#044a27] text-white shadow-xs"
-                      : "bg-[#f4f7f5] text-gray-600 hover:bg-[#e4ede7] hover:text-[#044a27]"
+                      ? "bg-[#01722C] text-white shadow-sm"
+                      : "bg-white text-gray-700 hover:bg-[#edf7f1] hover:text-[#01722C] border border-[#e2ddd3]"
                   }`}
                 >
                   {cat.name}
@@ -94,21 +93,17 @@ export default function BestSellersSection({
           </div>
         </div>
 
-        {/* Products Grid with Smooth Fade-in on Category Change */}
-        <div
-          key={currentCategory}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 animate-fade-in"
-        >
+        {/* Product Cards Full-Width Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6">
           {displayProducts.map((product) => {
-            const currentOption =
-              selectedOptions[product.id] || product.options[0];
+            const currentOption = selectedOptions[product.id] || product.options[0];
             const isWishlisted = isInWishlist(product.id);
             const isDropdownOpen = openDropdownId === product.id;
 
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#e4ebe6] rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 ease-out flex flex-col justify-between hover:-translate-y-0.5"
+                className="group relative bg-white border border-[#e4ebe6] hover:border-[#01722C] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
               >
                 {/* Product Image Area */}
                 <div className="relative aspect-4/3 overflow-hidden bg-[#faf8f4] border-b border-[#edf1ee]">
@@ -116,130 +111,138 @@ export default function BestSellersSection({
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-104"
+                      className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
                     />
                   </Link>
 
-                  {/* Clean Formal Tag Pill */}
-                  {product.tag && (
-                    <span className="absolute top-2.5 left-2.5 bg-[#033b20] text-white text-[10px] font-semibold px-2 py-0.5 rounded shadow-2xs">
-                      {product.tag}
+                  {/* Organic Badge & Discount Tag */}
+                  <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 pointer-events-none">
+                    <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                      {product.tag || "Organic"}
                     </span>
-                  )}
-
-                  {/* Subtle Wishlist Button (Top Right) */}
-                  <button
-                    onClick={() => toggleWishlist(product.id)}
-                    className="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/95 border border-gray-200 shadow-2xs flex items-center justify-center transition-colors hover:border-[#044a27] cursor-pointer"
-                    aria-label="Add to wishlist"
-                  >
-                    <Heart
-                      className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${
-                        isWishlisted
-                          ? "fill-[#e11d48] text-[#e11d48]"
-                          : "text-gray-400 hover:text-gray-700"
-                      }`}
-                    />
-                  </button>
-                </div>
-
-                {/* Card Content */}
-                <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
-                  {/* Title & Subtitle */}
-                  <div>
-                    <Link
-                      href={`/products/${product.id}`}
-                      className="font-semibold text-xs sm:text-sm text-gray-900 group-hover:text-[#044a27] transition-colors line-clamp-1 block"
-                    >
-                      {product.name}
-                    </Link>
-                    <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5 font-normal line-clamp-1">
-                      {product.subtitle}
-                    </p>
-                  </div>
-
-                  {/* Price Row */}
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-serif font-bold text-base text-[#044a27]">
-                      ₹{currentOption.price.toFixed(2)}
-                    </span>
-                    <span className="text-xs text-gray-400 line-through">
-                      ₹{currentOption.originalPrice.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">
-                      {currentOption.discount}
-                    </span>
-                  </div>
-
-                  {/* Weight Selector Dropdown */}
-                  <div className="relative">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setOpenDropdownId(isDropdownOpen ? null : product.id)
-                      }
-                      className="w-full flex items-center justify-between text-xs font-medium text-gray-700 bg-[#f9faf9] hover:bg-[#f0f4f2] border border-[#d6e0da] px-2.5 py-1.5 sm:py-2 rounded-lg transition-colors cursor-pointer"
-                    >
-                      <span className="truncate">{currentOption.label}</span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 text-gray-500 transition-transform shrink-0 ml-1 ${
-                          isDropdownOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {/* Dropdown Menu */}
-                    {isDropdownOpen && (
-                      <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-30 py-1 max-h-48 overflow-y-auto">
-                        {product.options.map((opt, i) => (
-                          <button
-                            key={i}
-                            type="button"
-                            onClick={() => handleOptionSelect(product.id, opt)}
-                            className="w-full text-left px-3 py-1.5 text-xs flex items-center justify-between hover:bg-[#f0f7f3] text-gray-700 transition-colors cursor-pointer"
-                          >
-                            <span className="font-medium truncate mr-2">{opt.label}</span>
-                            <span className="text-gray-500 font-semibold shrink-0">
-                              ₹{opt.price.toFixed(2)}
-                            </span>
-                          </button>
-                        ))}
-                      </div>
+                    {currentOption.discount && (
+                      <span className="bg-[#facc15] text-[#014d1e] text-[9.5px] font-black px-1.5 py-0.5 rounded shadow-xs">
+                        {currentOption.discount}
+                      </span>
                     )}
                   </div>
 
-                  {/* Rating row */}
-                  <div className="flex items-center justify-between text-xs text-gray-600">
-                    <div className="flex items-center gap-1 text-amber-500">
-                      <Star className="w-3.5 h-3.5 fill-current" />
-                      <span className="font-bold text-gray-800 text-xs">
-                        {product.rating}
+                  {/* Wishlist Button */}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      toggleWishlist(product.id);
+                    }}
+                    className={`absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all cursor-pointer shadow-xs ${
+                      isWishlisted
+                        ? "bg-rose-50 text-rose-600"
+                        : "bg-white/90 backdrop-blur-xs text-gray-500 hover:text-rose-600 hover:bg-white"
+                    }`}
+                    aria-label="Wishlist"
+                  >
+                    <Heart className={`w-4 h-4 ${isWishlisted ? "fill-rose-600 text-rose-600" : ""}`} />
+                  </button>
+                </div>
+
+                {/* Product Details Area */}
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                  <div>
+                    {/* Category & Rating */}
+                    <div className="flex items-center justify-between text-xs mb-1 text-gray-500">
+                      <span className="font-semibold uppercase text-[#01722C] text-[11px]">
+                        {product.category}
                       </span>
-                      <span className="text-gray-400 text-[11px]">({product.reviewsCount})</span>
+                      <div className="flex items-center gap-1 text-amber-500 font-bold text-xs">
+                        <Star className="w-3.5 h-3.5 fill-current" />
+                        <span>{product.rating.toFixed(1)}</span>
+                        <span className="text-gray-400 text-[10px]">({product.reviewsCount})</span>
+                      </div>
                     </div>
 
+                    {/* Title */}
                     <Link
                       href={`/products/${product.id}`}
-                      className="text-xs text-[#044a27] font-semibold hover:underline"
+                      className="font-serif font-bold text-sm sm:text-base text-gray-900 group-hover:text-[#01722C] transition-colors line-clamp-2 leading-snug"
+                      title={product.name}
                     >
-                      View Details
+                      {product.name}
                     </Link>
+
+                    {/* Weight Variant Selector Dropdown */}
+                    <div className="mt-3 relative">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpenDropdownId(isDropdownOpen ? null : product.id)
+                        }
+                        className="w-full flex items-center justify-between px-3 py-1.5 bg-[#fbfaf7] border border-[#e0dad0] rounded-xl text-xs font-semibold text-gray-800 hover:border-[#01722C] transition-colors cursor-pointer"
+                      >
+                        <span className="truncate">{currentOption.label}</span>
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 text-gray-500 shrink-0 transition-transform ${
+                            isDropdownOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {isDropdownOpen && (
+                        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl py-1 z-30 animate-fade-in max-h-48 overflow-y-auto">
+                          {product.options.map((opt, i) => (
+                            <button
+                              key={i}
+                              type="button"
+                              onClick={() => handleOptionSelect(product.id, opt)}
+                              className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${
+                                opt.label === currentOption.label
+                                  ? "bg-[#edf7f1] text-[#01722C] font-bold"
+                                  : "text-gray-700 hover:bg-gray-50"
+                              }`}
+                            >
+                              <span>{opt.label}</span>
+                              <span className="font-bold">₹{opt.price.toFixed(2)}</span>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="grid grid-cols-2 gap-2 pt-1">
-                    <button
-                      onClick={() => addToCart(product, currentOption, 1)}
-                      className="w-full text-center text-xs font-semibold text-[#044a27] bg-white hover:bg-[#044a27] hover:text-white border border-[#044a27] py-2 rounded-lg transition-colors cursor-pointer truncate"
-                    >
-                      Add to Cart
-                    </button>
-                    <button
-                      onClick={() => handleBuyNow(product)}
-                      className="w-full text-center text-xs font-semibold text-white bg-[#044a27] hover:bg-[#03391e] py-2 rounded-lg transition-colors cursor-pointer truncate shadow-2xs"
-                    >
-                      Buy Now
-                    </button>
+                  {/* Pricing & CTA */}
+                  <div className="pt-2 border-t border-gray-100 space-y-2.5">
+                    <div className="flex items-baseline justify-between">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-base sm:text-lg font-black text-gray-900 font-sans">
+                          ₹{currentOption.price.toFixed(2)}
+                        </span>
+                        {currentOption.originalPrice && (
+                          <span className="text-xs text-gray-400 line-through">
+                            ₹{currentOption.originalPrice.toFixed(2)}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                        In Stock
+                      </span>
+                    </div>
+
+                    {/* Dual Action Buttons */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => addToCart(product, currentOption, 1)}
+                        className="w-full text-center text-xs font-bold text-[#01722C] bg-white hover:bg-[#edf7f1] border border-[#01722C] py-2 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1"
+                      >
+                        <ShoppingCart className="w-3.5 h-3.5" />
+                        <span>Add</span>
+                      </button>
+                      <button
+                        onClick={() => handleBuyNow(product)}
+                        className="w-full text-center text-xs font-bold text-white bg-[#01722C] hover:bg-[#0b542c] py-2 rounded-xl transition-all shadow-xs cursor-pointer"
+                      >
+                        Buy Now
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -247,27 +250,27 @@ export default function BestSellersSection({
           })}
         </div>
 
-        {/* View All In Category & Full Catalogue Button */}
-        <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-gray-500 text-center sm:text-left">
+        {/* View All In Category & Full Catalogue CTA */}
+        <div className="mt-10 pt-6 border-t border-[#e7decb] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs sm:text-sm text-gray-600 text-center sm:text-left">
             Showing <strong className="text-gray-900">{displayProducts.length}</strong> of{" "}
             <strong className="text-gray-900">{filteredProducts.length}</strong> items in{" "}
-            <span className="font-semibold text-[#044a27]">{currentCategory}</span>
+            <span className="font-bold text-[#01722C]">{currentCategory}</span>
           </div>
 
           <div className="flex items-center gap-3">
             <Link
               href={`/products?category=${encodeURIComponent(currentCategory)}`}
-              className="inline-flex items-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-all shadow-xs"
+              className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-xs"
             >
-              <span>View All {filteredProducts.length} {currentCategory} Items</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Explore All 24 {currentCategory} Products</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/products"
-              className="inline-flex items-center gap-1.5 bg-[#f4f8f5] hover:bg-[#e4efe7] text-[#044a27] text-xs font-bold px-4 py-2.5 rounded-xl transition-colors border border-[#cbe1d3]"
+              className="inline-flex items-center gap-1.5 bg-white hover:bg-[#edf7f1] text-[#01722C] text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-colors border border-[#01722C]"
             >
-              <span>Full 192 Catalogue</span>
+              <span>Full 192 Harvests</span>
             </Link>
           </div>
         </div>

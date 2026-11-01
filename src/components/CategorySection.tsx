@@ -12,38 +12,37 @@ interface CategorySectionProps {
 
 export default function CategorySection({
   onSelectCategory,
-  selectedCategory = CATEGORIES[0]?.name || "Pulses", // First category selected by default!
+  selectedCategory = CATEGORIES[0]?.name || "Pulses",
 }: CategorySectionProps) {
   return (
-    <section id="categories" className="py-8 sm:py-10 bg-white border-b border-[#f0eee6]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 sm:mb-8 text-center sm:text-left">
+    <section id="categories" className="py-10 sm:py-14 bg-white border-b border-[#f0eee6] w-full font-sans">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        {/* Full Width Section Header */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 mb-8 pb-4 border-b border-gray-100">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">
-              Agricultural Commodities & Staples
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider mb-2">
+              Agricultural Commodities & Pure Groceries
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
-              Shop by Category
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
+              Explore Our Product Categories
             </h2>
-            <p className="text-gray-500 text-xs sm:text-sm">
-              Select a category to view freshly harvested, graded products
+            <p className="text-gray-500 text-xs sm:text-sm mt-1">
+              Select a category to view unadulterated, sortex-cleaned, farm-direct staples
             </p>
           </div>
 
           <Link
             href="/products"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#054b28] hover:text-[#03391e] bg-[#edf7f1] hover:bg-[#e1f1e7] px-4 py-2 rounded-xl transition-all"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#01722C] hover:text-[#0b542c] bg-[#edf7f1] hover:bg-[#e1f1e7] px-5 py-2.5 rounded-xl transition-all shadow-2xs"
           >
-            <span>Explore All 192 Harvests</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>View All 192 Harvests</span>
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* 8 Category Cards: Clean, Formal Grid */}
-        <div className="flex sm:grid sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 overflow-x-auto sm:overflow-x-visible pb-3 sm:pb-0 scrollbar-none">
+        {/* 8 Categories Full Width Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 md:gap-5">
           {CATEGORIES.map((cat, index) => {
-            // First category selected if selectedCategory matches or if index === 0 when null
             const isSelected = selectedCategory
               ? selectedCategory.toLowerCase() === cat.name.toLowerCase()
               : index === 0;
@@ -53,18 +52,16 @@ export default function CategorySection({
                 key={cat.id}
                 id={`cat-${cat.slug}`}
                 onClick={() => onSelectCategory && onSelectCategory(cat.name)}
-                className={`group relative cursor-pointer rounded-xl p-3.5 flex flex-col items-center justify-between text-center transition-all duration-300 ease-out min-w-[120px] sm:min-w-0 shrink-0 sm:shrink ${
+                className={`group relative cursor-pointer rounded-2xl p-4 flex flex-col items-center justify-between text-center transition-all duration-300 ease-out border ${
                   isSelected
-                    ? "bg-[#f4f8f5] border-2 border-[#044a27] shadow-sm"
-                    : "bg-[#faf9f5] hover:bg-[#f2efe6] border border-[#e8e2d4] hover:border-[#d6cbb5]"
+                    ? "bg-[#edf7f1] border-[#01722C] shadow-sm scale-102"
+                    : "bg-[#fcfbf7] hover:bg-[#f6f3eb] border-[#e8e2d4] hover:border-[#01722C] hover:shadow-md"
                 }`}
               >
-                {/* Circular Image Container */}
+                {/* Image Container */}
                 <div
-                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-white p-1 mb-2.5 transition-transform duration-300 ease-out group-hover:scale-105 shadow-2xs ${
-                    isSelected
-                      ? "border-2 border-[#044a27]"
-                      : "border border-[#ded6c5]"
+                  className={`w-18 h-18 sm:w-22 sm:h-22 rounded-full overflow-hidden bg-white p-1 mb-3 transition-transform duration-300 group-hover:scale-106 shadow-xs ${
+                    isSelected ? "border-2 border-[#01722C]" : "border border-[#ded6c5]"
                   }`}
                 >
                   <img
@@ -74,26 +71,26 @@ export default function CategorySection({
                   />
                 </div>
 
-                {/* Name */}
+                {/* Category Name */}
                 <div className="w-full">
                   <h3
-                    className={`text-xs sm:text-sm font-semibold truncate transition-colors duration-200 ${
+                    className={`text-xs sm:text-sm font-bold truncate transition-colors ${
                       isSelected
-                        ? "text-[#044a27] font-bold"
-                        : "text-gray-900 group-hover:text-[#044a27]"
+                        ? "text-[#01722C]"
+                        : "text-gray-900 group-hover:text-[#01722C]"
                     }`}
                   >
                     {cat.name}
                   </h3>
-                  <div className="text-[10px] text-gray-500 mt-0.5">
-                    {cat.itemCount} Items
+                  <div className="text-[11px] text-gray-500 font-medium mt-0.5">
+                    24 Products
                   </div>
                 </div>
 
-                {/* Subtle bottom active bar indicator */}
+                {/* Bottom Active Indicator */}
                 <div
-                  className={`w-8 h-1 rounded-full mt-2 transition-all duration-300 ease-out ${
-                    isSelected ? "bg-[#044a27]" : "bg-transparent group-hover:bg-gray-300"
+                  className={`w-10 h-1 rounded-full mt-2.5 transition-all duration-300 ${
+                    isSelected ? "bg-[#01722C]" : "bg-transparent group-hover:bg-[#01722C]/40"
                   }`}
                 />
               </div>

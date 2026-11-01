@@ -2,340 +2,129 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Leaf,
-  Award,
-  Sparkles,
-  Globe,
-  FileSpreadsheet,
-  ChevronLeft,
-  ChevronRight,
-  ShieldCheck,
-} from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { ChevronLeft, ChevronRight, ArrowRight, ShieldCheck, Sparkles } from "lucide-react";
 
-const HERO_SLIDES = [
+const BANNERS = [
   {
-    id: "slide-rice",
-    tagline: "NATURAL • NUTRITIOUS • PREMIUM",
-    titleLine1: "PURE QUALITY.",
-    titleLine2: "PREMIUM TASTE.",
-    subtext: "— Royal Himalayan Basmati • Unpolished Pulses • California Dry Fruits —",
-    description:
-      "Harvested from India's most fertile river valleys. Aged naturally, sorted with precision optics, and delivered fresh to your dining table.",
-    bgImage: "/images/categories/rice-wheat.jpg",
-    showcaseImage: "/images/products/rice-basmati-1.jpg",
-    badge: "24-Month Naturally Aged",
-    categoryTarget: "Rice & Wheat",
-    label: "Aged Basmati",
+    id: "banner-1",
+    image: "/images/banners/hero-banner-1.jpg",
+    title: "100% Certified Organic & Pure Staples",
+    subtitle: "From India's Trusted Organic Farmers • Lab Tested & Export Graded",
+    targetCategory: "Pulses",
   },
   {
-    id: "slide-pulses",
-    tagline: "100% UNPOLISHED • DESI HARVEST",
-    titleLine1: "RICH IN NUTRITION.",
-    titleLine2: "HONEST HARVEST.",
-    subtext: "— Farm-Direct Toor, Moong, Chana & Urad Lentils —",
-    description:
-      "Zero artificial leather polish or chemical glazing. Retaining 100% of natural dietary fiber, plant proteins, and authentic earthy taste.",
-    bgImage: "/images/categories/pulses.jpg",
-    showcaseImage: "/images/products/pulse-toor-1.jpg",
-    badge: "100% Chemical & Oil Free",
-    categoryTarget: "Pulses",
-    label: "Desi Pulses",
+    id: "banner-2",
+    image: "/images/banners/hero-banner-2.jpg",
+    title: "A2 Gir Cow Bilona Ghee & Cold-Pressed Spices",
+    subtitle: "Traditional Wooden Churned • Zero Adulteration • Pan-India Delivery",
+    targetCategory: "Rice & Wheat",
   },
   {
-    id: "slide-dryfruits",
-    tagline: "GLOBAL EXPORT GRADE • ISO 22000",
-    titleLine1: "HANDPICKED NUTS.",
-    titleLine2: "VEDIC SUPERFOODS.",
-    subtext: "— Jumbo California Almonds, Kashmiri Walnuts & A2 Cow Ghee —",
-    description:
-      "Vacuum nitrogen-flushed packaging ensures peak crunchiness, enzymatic vitality, and authentic farm-fresh aroma in every single pack.",
-    bgImage: "/images/categories/dry-fruits.jpg",
-    showcaseImage: "/images/products/dryfruit-almond-1.jpg",
-    badge: "Triple Sortex Inspected",
-    categoryTarget: "Dry Fruits",
-    label: "Dry Fruits",
-  },
-  {
-    id: "slide-millets",
-    tagline: "CLIMATE RESILIENT • NUTRI-CEREALS",
-    titleLine1: "ANCIENT MILLETS.",
-    titleLine2: "PURE SPICES.",
-    subtext: "— Gluten-Free Supergrains, High-Curcumin Spices & Cold-Pressed Oils —",
-    description:
-      "Traditional heirloom seeds cultivated by organic farmer collectives. Rich in bioavailable iron, dietary fiber, and natural minerals.",
-    bgImage: "/images/categories/millets.jpg",
-    showcaseImage: "/images/products/millet-bajra-1.jpg",
-    badge: "Certified Nutrient Dense",
-    categoryTarget: "Millets",
-    label: "Millets & Spices",
+    id: "banner-3",
+    image: "/images/banners/hero-banner-3.jpg",
+    title: "Unpolished Heritage Millets & Natural Raw Honey",
+    subtitle: "Ancient Nutri-Cereals • Pure Forest Blossom • Nutrient Dense",
+    targetCategory: "Millets",
   },
 ];
 
 export default function HeroSection() {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const { setIsBulkModalOpen } = useCart();
-  const slideCount = HERO_SLIDES.length;
 
-  const nextSlide = () => setActiveSlide((prev) => (prev + 1) % slideCount);
-  const prevSlide = () =>
-    setActiveSlide((prev) => (prev - 1 + slideCount) % slideCount);
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % BANNERS.length);
+  };
 
-  // Auto slide interval: auto scroll after 3 seconds
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + BANNERS.length) % BANNERS.length);
+  };
+
+  // Auto-scroll every 3.5 seconds
   useEffect(() => {
     if (isPaused) return;
-    const interval = setInterval(nextSlide, 3000);
+    const interval = setInterval(nextSlide, 3500);
     return () => clearInterval(interval);
-  }, [isPaused, activeSlide]);
+  }, [isPaused, currentSlide]);
 
   return (
     <section
-      className="relative overflow-hidden bg-[#faf8f4] border-b border-[#e7e1d4]"
+      className="relative w-full overflow-hidden bg-[#faf8f4]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background panoramic image layer with silky smooth cross-fade */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        {HERO_SLIDES.map((s, idx) => (
-          <div
-            key={s.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              activeSlide === idx ? "opacity-15" : "opacity-0"
-            }`}
-          >
-            <img
-              src={s.bgImage}
-              alt={s.titleLine1}
-              className={`w-full h-full object-cover object-center transform transition-transform duration-1500 ease-out ${
-                activeSlide === idx ? "scale-100" : "scale-105"
+      {/* Full-Bleed Edge-to-Edge Slider Container */}
+      <div className="relative w-full aspect-16/9 sm:aspect-21/9 md:aspect-24/9 lg:aspect-28/10 max-h-[560px] overflow-hidden">
+        {BANNERS.map((banner, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={banner.id}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+              }`}
+            >
+              <Link href="/products" className="block w-full h-full relative cursor-pointer">
+                <img
+                  src={banner.image}
+                  alt={banner.title}
+                  className="w-full h-full object-cover object-center transform transition-transform duration-1200 ease-out hover:scale-101"
+                />
+              </Link>
+            </div>
+          );
+        })}
+
+        {/* Carousel Navigation Arrows */}
+        <button
+          onClick={prevSlide}
+          aria-label="Previous Slide"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/85 hover:bg-white text-gray-800 hover:text-[#01722C] flex items-center justify-center shadow-lg transition-all cursor-pointer backdrop-blur-xs"
+        >
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          aria-label="Next Slide"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/85 hover:bg-white text-gray-800 hover:text-[#01722C] flex items-center justify-center shadow-lg transition-all cursor-pointer backdrop-blur-xs"
+        >
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+
+        {/* Carousel Indicators */}
+        <div className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+          {BANNERS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              aria-label={`Jump to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                i === currentSlide ? "w-8 bg-[#01722C]" : "w-2 bg-white/70 hover:bg-white"
               }`}
             />
-          </div>
-        ))}
-        {/* Soft gradient wash */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f4] via-[#faf8f4]/90 to-[#faf8f4]/70"></div>
+          ))}
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Headlines & CTAs */}
-          <div className="lg:col-span-7 space-y-4 sm:space-y-5 text-center lg:text-left">
-            {/* Dynamic Headline Stack: Smooth, seamless cross-fade without layout jitter */}
-            <div className="relative min-h-[200px] sm:min-h-[220px] md:min-h-[235px] flex flex-col justify-center">
-              {HERO_SLIDES.map((s, idx) => {
-                const isCurrent = activeSlide === idx;
-                return (
-                  <div
-                    key={s.id}
-                    className={`transition-all duration-700 ease-in-out ${
-                      isCurrent
-                        ? "opacity-100 translate-y-0 relative pointer-events-auto"
-                        : "opacity-0 translate-y-2 absolute inset-0 pointer-events-none"
-                    }`}
-                  >
-                    {/* Tagline */}
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-2 sm:mb-3">
-                      <span className="w-2 h-2 rounded-full bg-[#054b28]"></span>
-                      <span>{s.tagline}</span>
-                    </div>
-
-                    {/* Main Headline */}
-                    <div className="space-y-0.5 sm:space-y-1 mb-1.5 sm:mb-2">
-                      <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#073f24] tracking-tight leading-[1.08]">
-                        {s.titleLine1}
-                      </h1>
-                      <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#073f24] tracking-tight leading-[1.08]">
-                        {s.titleLine2}
-                      </h1>
-                    </div>
-
-                    {/* Subheading flourish */}
-                    <div className="flex items-center justify-center lg:justify-start gap-2 text-[#795548] font-serif text-xs sm:text-sm md:text-base font-semibold tracking-wide mb-2 sm:mb-3">
-                      <span>{s.subtext}</span>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-600 text-xs sm:text-sm md:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans">
-                      {s.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* 4 Feature Badges (Steady, elegant) */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 pt-1">
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
-                  <Leaf className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[11px] font-bold text-gray-800 leading-tight">
-                    Naturally
-                  </div>
-                  <div className="text-[10px] text-gray-500 leading-tight">
-                    Sourced
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
-                  <Award className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[11px] font-bold text-gray-800 leading-tight">
-                    Quality
-                  </div>
-                  <div className="text-[10px] text-gray-500 leading-tight">
-                    Assured
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[11px] font-bold text-gray-800 leading-tight">
-                    Rich in
-                  </div>
-                  <div className="text-[10px] text-gray-500 leading-tight">
-                    Nutrition
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 bg-white p-2.5 rounded-xl border border-[#e5ded0] shadow-2xs hover:border-[#054b28] transition-colors duration-300">
-                <div className="w-8 h-8 rounded-lg bg-[#054b28]/10 flex items-center justify-center text-[#054b28] shrink-0">
-                  <Globe className="w-4 h-4" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[11px] font-bold text-gray-800 leading-tight">
-                    Export
-                  </div>
-                  <div className="text-[10px] text-gray-500 leading-tight">
-                    Quality
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
-              <Link
-                href="/products"
-                className="inline-flex items-center justify-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5"
-              >
-                <span>EXPLORE ALL 192 PRODUCTS</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-
-              <button
-                onClick={() => setIsBulkModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-[#f6f2e9] text-[#044a27] font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg border border-[#044a27] transition-all duration-300 cursor-pointer shadow-2xs hover:-translate-y-0.5"
-              >
-                <FileSpreadsheet className="w-4 h-4" />
-                <span>BULK / B2B ENQUIRY</span>
-              </button>
-            </div>
+      {/* Full Width Quick Trust Ribbon Beneath Hero */}
+      <div className="w-full bg-[#01722C] text-white py-3 px-4 sm:px-8 lg:px-12 xl:px-16 shadow-xs font-sans">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 text-center text-xs sm:text-sm font-semibold">
+          <div className="flex items-center justify-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#7de0a8] shrink-0" />
+            <span>100% Certified Organic</span>
           </div>
-
-          {/* Right Column: Hero Visual Artwork Composition with True Cross-Dissolve */}
-          <div className="lg:col-span-5 relative flex flex-col items-center">
-            <div className="relative w-full max-w-md sm:max-w-lg aspect-4/3 rounded-2xl overflow-hidden shadow-xl border border-[#e0d8ca] bg-[#faf8f4] group">
-              {HERO_SLIDES.map((s, idx) => {
-                const isCurrent = activeSlide === idx;
-                return (
-                  <div
-                    key={s.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                      isCurrent ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
-                    }`}
-                  >
-                    <img
-                      src={s.showcaseImage}
-                      alt={s.titleLine1}
-                      className={`w-full h-full object-cover transform transition-transform duration-1200 ease-out ${
-                        isCurrent ? "scale-100" : "scale-105"
-                      }`}
-                    />
-
-                    {/* Clean Formal Quality Badge */}
-                    <div className="absolute top-3 right-3 bg-[#033b20]/95 backdrop-blur-xs text-white px-3 py-1 rounded-md text-[11px] font-semibold tracking-wide border border-white/20 shadow-sm transition-all duration-500">
-                      {s.badge}
-                    </div>
-                  </div>
-                );
-              })}
-
-              {/* Discreet Certification Strip */}
-              <div className="absolute bottom-3 left-3 z-20 bg-white/95 backdrop-blur-xs text-gray-800 px-3 py-1 rounded-md text-[11px] font-semibold border border-gray-200 shadow-sm flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#044a27]" />
-                <span>FSSAI & Export Certified</span>
-              </div>
-            </div>
+          <div className="flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#7de0a8] shrink-0" />
+            <span>Unpolished & Chemical Free</span>
           </div>
-        </div>
-
-        {/* Clean, Formal Bottom Navigation Bar */}
-        <div className="mt-8 pt-4 border-t border-[#e8dfcf] flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Slide Tab Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
-            {HERO_SLIDES.map((s, index) => {
-              const isActive = activeSlide === index;
-              return (
-                <button
-                  key={s.id}
-                  onClick={() => setActiveSlide(index)}
-                  className={`relative overflow-hidden px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? "bg-[#044a27] text-white shadow-xs"
-                      : "bg-white/80 text-gray-600 hover:bg-white hover:text-[#044a27] border border-[#e2d8c7]"
-                  }`}
-                >
-                  <span className="opacity-70 mr-1.5 font-mono text-[10px]">
-                    0{index + 1}
-                  </span>
-                  <span>{s.label}</span>
-                  {isActive && !isPaused && (
-                    <span
-                      key={activeSlide}
-                      className="absolute bottom-0 left-0 h-0.5 bg-[#facc15] animate-slide-progress"
-                    />
-                  )}
-                </button>
-              );
-            })}
+          <div className="flex items-center justify-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#7de0a8] shrink-0" />
+            <span>Lab Tested Every Batch</span>
           </div>
-
-          {/* Understated formal Prev / Next Controls */}
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={prevSlide}
-              className="px-3 py-1.5 rounded-md bg-white border border-[#dcd2c0] hover:border-[#044a27] hover:text-[#044a27] text-gray-700 text-xs font-medium flex items-center gap-1 transition-all duration-200 cursor-pointer hover:shadow-2xs"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" />
-              <span>Prev</span>
-            </button>
-
-            <span className="text-xs text-gray-400 font-mono px-1">
-              0{activeSlide + 1} / 0{slideCount}
-            </span>
-
-            <button
-              onClick={nextSlide}
-              className="px-3 py-1.5 rounded-md bg-white border border-[#dcd2c0] hover:border-[#044a27] hover:text-[#044a27] text-gray-700 text-xs font-medium flex items-center gap-1 transition-all duration-200 cursor-pointer hover:shadow-2xs"
-              aria-label="Next slide"
-            >
-              <span>Next</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
+          <div className="flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#7de0a8] shrink-0" />
+            <span>PAN India & Global Export</span>
           </div>
         </div>
       </div>

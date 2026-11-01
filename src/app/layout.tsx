@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { CartProvider } from "@/context/CartContext";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -15,9 +16,9 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Your Brand - Pure Quality. Premium Taste. | Pure Food. Better Life.",
+  title: "Rajlakshmi Javiks International - 100% Certified Organic Food Products",
   description:
-    "We bring you premium quality Rice, Pulses, Dry Fruits, Millets, Spices and more, sourced from trusted farms and delivered with purity and care to your table.",
+    "Shop certified organic Pulses, Millets, Spices, Honey, Dry Fruits, Seeds & Grains sourced directly from certified organic farms. NPOP, FSSAI & Jaivik Bharat certified. Fast delivery across India.",
 };
 
 export default function RootLayout({
@@ -30,8 +31,8 @@ export default function RootLayout({
       lang="en"
       className={`${jakarta.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-white text-gray-900 selection:bg-[#074326] selection:text-white">
-        {children}
+      <body className="min-h-full flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white">
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );

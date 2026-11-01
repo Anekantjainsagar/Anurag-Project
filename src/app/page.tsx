@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { CartProvider } from "@/context/CartContext";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -13,12 +12,10 @@ import BlogHighlights from "@/components/BlogHighlights";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import LoginModal from "@/components/LoginModal";
 import ToastNotification from "@/components/ToastNotification";
 import { CATEGORIES } from "@/data/mockData";
 
-function MainContent() {
-  // First category (CATEGORIES[0]) is ALWAYS selected by default!
+export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>(
     CATEGORIES[0]?.name || "Pulses"
   );
@@ -32,54 +29,45 @@ function MainContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
-      {/* 1. Top Announcement Bar */}
+    <div className="w-full min-h-screen flex flex-col bg-white text-gray-900 font-sans">
+      {/* 1. Top Announcement Bar (Full Width) */}
       <TopBar />
 
-      {/* 2. Main Sticky Multi-Page Navbar */}
+      {/* 2. Main Sticky Multi-Page Navbar (Full Width) */}
       <Navbar />
 
-      {/* 3. Hero Carousel Section (Auto-scrolling, Smooth Transitions) */}
+      {/* 3. Hero Carousel Section (Full Bleed Edge-to-Edge) */}
       <HeroSection />
 
-      {/* 4. Shop by Category (8 Categories Grid with First Selected by Default) */}
+      {/* 4. Shop by Category (Full Width 8-Category Grid) */}
       <CategorySection
         onSelectCategory={handleSelectCategory}
         selectedCategory={selectedCategory}
       />
 
-      {/* 5. Our Best Sellers & Category Highlights (Top 8 Curated with Link to Full Catalogue) */}
+      {/* 5. Our Best Sellers & Category Highlights (Full Width Grid) */}
       <BestSellersSection
         activeCategoryFilter={selectedCategory}
         onSelectCategory={handleSelectCategory}
         limit={8}
       />
 
-      {/* 6. Dual Promo Banners */}
+      {/* 6. Dual Promo Banners (Full Width) */}
       <PromoBanners />
 
-      {/* 7. Why Choose Our Products (6 Trust Pillars) */}
+      {/* 7. Why Choose Our Products (Full Width 6 Pillars) */}
       <WhyChooseUs />
 
-      {/* 8. Journal Highlights (Clean 3-Article Preview Linking to /blog) */}
+      {/* 8. Journal Highlights (Full Width 3-Article Preview) */}
       <BlogHighlights />
 
-      {/* 9. Comprehensive Multi-Page Footer */}
+      {/* 9. Comprehensive Multi-Page Footer (Full Width) */}
       <Footer />
 
       {/* Global Interactive Drawers & Modals */}
       <CartDrawer />
       <BulkEnquiryModal />
-      <LoginModal />
       <ToastNotification />
     </div>
-  );
-}
-
-export default function Home() {
-  return (
-    <CartProvider>
-      <MainContent />
-    </CartProvider>
   );
 }

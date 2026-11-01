@@ -2,15 +2,15 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Product, ProductWeightOption } from "@/types";
 import { ALL_PRODUCTS } from "@/data/mockData";
-import { CartProvider, useCart } from "@/context/CartContext";
+import { useCart } from "@/context/CartContext";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import LoginModal from "@/components/LoginModal";
 import ToastNotification from "@/components/ToastNotification";
 import {
   Star,
@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 
 function ProductDetailInner({ product }: { product: Product }) {
+  const router = useRouter();
   const {
     addToCart,
     toggleWishlist,
@@ -61,7 +62,7 @@ function ProductDetailInner({ product }: { product: Product }) {
 
   const handleBuyNow = () => {
     addToCart(product, selectedOption, quantity);
-    setIsCartOpen(true);
+    router.push("/checkout");
   };
 
   const handleShare = () => {
@@ -77,11 +78,11 @@ function ProductDetailInner({ product }: { product: Product }) {
   ).slice(0, 4);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans w-full">
       <TopBar />
       <Navbar />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 w-full">
+      <main className="flex-1 w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-6 sm:py-10">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-1.5 text-xs text-gray-500 mb-6 flex-wrap">
           <Link href="/" className="hover:text-[#044a27] transition-colors">
@@ -625,16 +626,11 @@ function ProductDetailInner({ product }: { product: Product }) {
       {/* Global Modals */}
       <CartDrawer />
       <BulkEnquiryModal />
-      <LoginModal />
       <ToastNotification />
     </div>
   );
 }
 
 export default function ProductDetailClient({ product }: { product: Product }) {
-  return (
-    <CartProvider>
-      <ProductDetailInner product={product} />
-    </CartProvider>
-  );
+  return <ProductDetailInner product={product} />;
 }
