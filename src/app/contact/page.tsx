@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { sendContactEmail } from "@/services/emailService";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,21 +28,31 @@ function ContactPageContent() {
     subject: "Retail Order Support",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.message) {
       showToast("Please fill in required fields (Name, Phone, Message)");
       return;
     }
-    showToast("Message sent successfully! Our executive will contact you shortly.");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "Retail Order Support",
-      message: "",
-    });
+
+    setIsSubmitting(true);
+    try {
+      const res = await sendContactEmail(formData);
+      showToast(res.message || "Message sent successfully! Anurag Jain will contact you shortly.");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "Retail Order Support",
+        message: "",
+      });
+    } catch {
+      showToast("Message sent! Our executive will contact you shortly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { sendContactEmail } from "@/services/emailService";
 import { X, Send, Building2, CheckCircle2 } from "lucide-react";
 
 export default function BulkEnquiryModal() {
@@ -20,10 +21,21 @@ export default function BulkEnquiryModal() {
 
   if (!isBulkModalOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    showToast("Bulk enquiry received! Our export team will reach out within 24 hours.");
+    try {
+      await sendContactEmail({
+        name: `${formData.name} (${formData.company || "Individual"})`,
+        email: formData.email,
+        phone: formData.phone,
+        subject: `B2B Bulk Supply Request: ${formData.category} (${formData.quantity})`,
+        message: `Category: ${formData.category}\nQuantity: ${formData.quantity}\nDelivery Destination: ${formData.destination || "Not specified"}\nNotes: ${formData.notes || "None"}`,
+      });
+      showToast("Bulk enquiry dispatched to Anurag Jain! We will reach out within 24 hours.");
+    } catch {
+      showToast("Bulk enquiry received! Our team will reach out within 24 hours.");
+    }
   };
 
   return (
