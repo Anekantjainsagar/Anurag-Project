@@ -22,7 +22,7 @@ import {
 
 function OrderSuccessContent() {
   const searchParams = useSearchParams();
-  const orderIdParam = searchParams.get("orderId") || "RJ-2026-CONFIRMED";
+  const orderIdParam = searchParams.get("orderId") || "YB-2026-CONFIRMED";
   const [order, setOrder] = useState<OrderPayload | null>(null);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function OrderSuccessContent() {
   const paymentMethod = order?.paymentMethod || "Cash on Delivery (COD)";
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Rajlakshmi Javiks International, I have placed order #${orderIdParam} for ${totalAmount}. Please confirm dispatch status.`
+    `Hello YOUR BRAND Support, I have placed order #${orderIdParam} for ${totalAmount}. Please confirm dispatch status.`
   );
 
   return (
@@ -88,7 +88,7 @@ function OrderSuccessContent() {
               <p className="text-xs sm:text-sm text-gray-600 max-w-md mx-auto leading-relaxed">
                 We have received your order. A detailed confirmation receipt has been
                 dispatched to <strong className="text-gray-900">{customerEmail}</strong> and
-                our Indore fulfillment desk is preparing your items.
+                our central fulfillment desk is preparing your items.
               </p>
             </div>
 
@@ -189,7 +189,7 @@ function OrderSuccessContent() {
 
             <div className="flex items-center gap-3 w-full sm:w-auto">
               <a
-                href={`https://wa.me/918769215905?text=${whatsappMessage}`}
+                href={`https://wa.me/919876543210?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#1ebd5b] text-white text-xs font-bold px-5 py-3 rounded-xl transition-colors shadow-xs"

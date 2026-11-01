@@ -41,7 +41,7 @@ export default function BlogHighlights() {
             const authorName =
               typeof article.author === "string"
                 ? article.author
-                : article.author?.name || "Rajlakshmi Editorial";
+                : article.author?.name || "YOUR BRAND Editorial";
 
             return (
               <article

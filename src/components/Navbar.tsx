@@ -430,7 +430,7 @@ export default function Navbar() {
             <div className="p-4 border-t border-gray-100 bg-gray-50 text-[11px] text-gray-500 space-y-1">
               <div className="flex items-center gap-2 text-gray-800 font-bold">
                 <Phone className="w-3.5 h-3.5 text-[#01722C]" />
-                <span>+91-87692 15905</span>
+                <span>+91-98765 43210</span>
               </div>
               <div>Mon - Sat: 9:00 AM - 8:00 PM IST</div>
             </div>

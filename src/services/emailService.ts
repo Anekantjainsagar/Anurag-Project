@@ -1,5 +1,5 @@
 /**
- * EmailJS Order Notification Service for Rajlakshmi Javiks International
+ * EmailJS Order Notification Service for YOUR BRAND
  * Dispatches confirmation emails to both:
  * 1) The Customer (Order receipt, itemized breakdown, tracking info)
  * 2) The Merchant / Store Manager (New order dispatch alert with delivery address & customer phone)
@@ -45,7 +45,7 @@ export interface EmailSendResult {
   message?: string;
 }
 
-const MERCHANT_EMAIL = "contact@rajlakshmijaviks.com";
+const MERCHANT_EMAIL = process.env.NEXT_PUBLIC_MERCHANT_EMAIL || "orders@yourbrand.com";
 const MERCHANT_BACKUP_EMAIL = "sankyjain.2008@gmail.com";
 
 export async function sendOrderEmails(order: OrderPayload): Promise<EmailSendResult> {
@@ -83,14 +83,14 @@ export async function sendOrderEmails(order: OrderPayload): Promise<EmailSendRes
     shipping_fee: order.shippingFee === 0 ? "FREE Standard Delivery" : `₹${order.shippingFee.toFixed(2)}`,
     total_amount: `₹${order.totalAmount.toFixed(2)}`,
     payment_method: order.paymentMethod,
-    support_phone: "+91-87692 15905",
-    support_email: MERCHANT_EMAIL,
-    brand_name: "Rajlakshmi Javiks International",
+    support_phone: "+91-98765 43210",
+    support_email: "support@yourbrand.com",
+    brand_name: "YOUR BRAND",
   };
 
   // Parameters for Merchant / Store Manager Alert Email
   const merchantTemplateParams = {
-    to_name: "Rajlakshmi Javiks Dispatch Desk",
+    to_name: "YOUR BRAND Order Dispatch Desk",
     to_email: MERCHANT_EMAIL,
     backup_email: MERCHANT_BACKUP_EMAIL,
     order_id: order.orderId,

@@ -29,13 +29,13 @@ export default function AboutPage() {
           <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
-              <span>Rajlakshmi Javiks International • Rooted in Earth, Committed to Purity</span>
+              <span>YOUR BRAND • Rooted in Earth, Committed to Purity</span>
             </div>
             <h1 className="font-serif text-3xl sm:text-5xl font-black text-white tracking-tight">
               Our Heritage & Quality Standards
             </h1>
             <p className="text-sm sm:text-base text-[#c3decb] leading-relaxed max-w-3xl mx-auto">
-              Cultivating, sorting, and exporting certified authentic organic commodities
+              Cultivating, sorting, and delivering certified authentic organic commodities
               directly from smallholder farmer co-operatives to health-conscious kitchens worldwide.
             </p>
           </div>
@@ -46,16 +46,16 @@ export default function AboutPage() {
           <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-4">
               <span className="text-xs font-bold text-[#01722C] uppercase tracking-wider">
-                The Rajlakshmi Javiks Legacy
+                The YOUR BRAND Commitment
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl font-black text-gray-900 leading-tight">
-                Restoring Pure Indian Agriculture Without Chemical Compromise
+                Restoring Pure Agriculture Without Chemical Compromise
               </h2>
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                Headquartered in Indore, Madhya Pradesh—the heartland of India&apos;s most fertile black-soil agricultural valleys—Rajlakshmi Javiks International was built with a singular mission: to eliminate chemical adulteration, toxic pesticide buffing, and synthetic polishing from everyday kitchen staples.
+                YOUR BRAND was built with a singular mission: to eliminate chemical adulteration, toxic pesticide buffing, and synthetic polishing from everyday kitchen staples.
               </p>
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                We work in direct partnership with certified organic farmer clusters across Madhya Pradesh, Rajasthan, Gujarat, and Kashmir. By paying fair trade premiums directly to growers, we preserve traditional cultivation: heirloom non-GMO seeds, natural cow dung composting, and ancient harvesting practices.
+                We work in direct partnership with certified organic farmer clusters across India&apos;s most fertile agricultural valleys. By paying fair trade premiums directly to growers, we preserve traditional cultivation: heirloom non-GMO seeds, natural bio-composting, and ancient harvesting practices.
               </p>
               <div className="pt-2">
                 <Link

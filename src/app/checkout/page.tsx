@@ -56,7 +56,7 @@ export default function CheckoutPage() {
     flatNo: "",
     street: "",
     landmark: "",
-    city: "Indore",
+    city: "",
     state: "Madhya Pradesh",
     pincode: "",
     orderNotes: "",
@@ -109,7 +109,7 @@ export default function CheckoutPage() {
 
     // Generate authentic sequential order number
     const randomDigits = Math.floor(10000 + Math.random() * 90000);
-    const orderId = `RJ-2026-${randomDigits}`;
+    const orderId = `YB-2026-${randomDigits}`;
     const orderDate = new Date().toLocaleDateString("en-IN", {
       day: "2-digit",
       month: "short",
@@ -314,7 +314,7 @@ export default function CheckoutPage() {
                           type="text"
                           name="street"
                           required
-                          placeholder="e.g. Sapna Sangeeta Main Road"
+                          placeholder="e.g. MG Road, Sector 4, Commercial Belt"
                           value={formData.street}
                           onChange={handleInputChange}
                           className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
@@ -345,7 +345,7 @@ export default function CheckoutPage() {
                           type="text"
                           name="city"
                           required
-                          placeholder="e.g. Indore"
+                          placeholder="e.g. New Delhi, Mumbai, Indore"
                           value={formData.city}
                           onChange={handleInputChange}
                           className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
@@ -599,11 +599,11 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex items-center gap-1.5 text-gray-700 font-medium">
                       <Truck className="w-3.5 h-3.5 text-[#01722C]" />
-                      <span>Dispatch within 24 hours from Indore central warehouse</span>
+                      <span>Dispatch within 24 hours from central warehouse</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-gray-700 font-medium">
                       <Phone className="w-3.5 h-3.5 text-[#01722C]" />
-                      <span>Helpline: +91-87692 15905 (9 AM - 8 PM IST)</span>
+                      <span>Helpline: +91-98765 43210 (9 AM - 8 PM IST)</span>
                     </div>
                   </div>
                 </div>

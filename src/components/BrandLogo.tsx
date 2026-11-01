@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Leaf } from "lucide-react";
 
 interface BrandLogoProps {
   variant?: "dark" | "light";
@@ -34,24 +35,25 @@ export default function BrandLogo({
 
   return (
     <div className={`flex items-center gap-2.5 sm:gap-3 select-none ${className}`}>
-      {/* Official Rajlakshmi Javiks Brand Logo */}
-      <img
-        src="/images/logo.png"
-        alt="Rajlakshmi Javiks International"
-        className={`${imgSize} object-contain shrink-0 rounded-full bg-white p-0.5 shadow-2xs`}
-      />
+      {/* Brand Emblem */}
+      <div
+        className={`${imgSize} rounded-full bg-[#01722C] border-2 border-[#d4af37] flex items-center justify-center text-white shadow-2xs shrink-0 relative overflow-hidden`}
+      >
+        <Leaf className="w-5 h-5 text-[#f4d068] transform -rotate-12" />
+        <span className="sr-only">YOUR BRAND</span>
+      </div>
 
       <div className="flex flex-col leading-none">
         <span
-          className={`font-serif font-black tracking-tight ${titleSize} ${titleColor}`}
+          className={`font-serif font-black tracking-wider ${titleSize} ${titleColor}`}
         >
-          Rajlakshmi Javiks
+          YOUR BRAND
         </span>
         <span
-          className={`font-sans font-bold tracking-widest uppercase mt-0.5 text-[8px] sm:text-[9px] ${subtitleColor}`}
+          className={`font-sans font-semibold tracking-widest uppercase mt-0.5 text-[8px] sm:text-[9px] ${subtitleColor}`}
           style={{ letterSpacing: "0.14em" }}
         >
-          International • Pure Organic Food
+          ORGANIC FOODS • PURE & NATURAL
         </span>
       </div>
     </div>

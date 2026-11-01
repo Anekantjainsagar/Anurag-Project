@@ -54,14 +54,14 @@ function ContactPageContent() {
         <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
-            <span>Rajlakshmi Javiks International • Dedicated Client Desk</span>
+            <span>YOUR BRAND • Dedicated Support & Wholesale Desk</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-black text-white tracking-tight">
-            Contact Us & Wholesale Export Inquiries
+            Contact Us & Wholesale Enquiries
           </h1>
           <p className="text-sm sm:text-base text-[#c3decb] max-w-xl mx-auto leading-relaxed">
             Directly connect with our organic sourcing desk, order fulfillment team,
-            or institutional B2B export division.
+            or institutional B2B bulk division.
           </p>
         </div>
       </section>
@@ -76,10 +76,10 @@ function ContactPageContent() {
                 Direct Channels
               </span>
               <h2 className="font-serif text-2xl font-bold text-gray-900">
-                Indore Central Headquarters
+                Customer Care & Supply Desk
               </h2>
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                We supply individual health-conscious households nationwide, as well as bulk organic container shipments worldwide.
+                We supply individual health-conscious households nationwide, as well as bulk organic institutional orders.
               </p>
             </div>
 
@@ -93,10 +93,10 @@ function ContactPageContent() {
                     Customer & Trade Support
                   </div>
                   <a
-                    href="tel:+918769215905"
+                    href="tel:+919876543210"
                     className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    +91-87692 15905, 87691 15905
+                    +91-98765 43210
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
                     Monday to Saturday (9:00 AM - 8:00 PM IST)
@@ -113,13 +113,13 @@ function ContactPageContent() {
                     Email Correspondence
                   </div>
                   <a
-                    href="mailto:contact@rajlakshmijaviks.com"
+                    href="mailto:support@yourbrand.com"
                     className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    contact@rajlakshmijaviks.com
+                    support@yourbrand.com
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
-                    For price lists, certification copies & lab analysis
+                    For price lists, certification copies & batch analysis
                   </div>
                 </div>
               </div>
@@ -130,12 +130,14 @@ function ContactPageContent() {
                 </div>
                 <div>
                   <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                    Central Office & Packaging Hub
+                    Central Distribution & Logistics
                   </div>
-                  <p className="text-xs font-semibold text-gray-800 leading-snug mt-0.5">
-                    11, Manish Bag Colony, Near Vikram Tower, Sapna Sangeeta,
-                    Indore - 452001, Madhya Pradesh, INDIA
-                  </p>
+                  <div className="text-sm font-bold text-gray-900 mt-0.5">
+                    Plot 104, Organic Agro Park, Central Logistics Zone
+                  </div>
+                  <div className="text-xs text-gray-500 mt-0.5">
+                    Madhya Pradesh - 452001, India
+                  </div>
                 </div>
               </div>
 

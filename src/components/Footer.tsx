@@ -19,7 +19,7 @@ export default function Footer() {
       return;
     }
     setIsSubscribed(true);
-    showToast("Thank you for subscribing to Rajlakshmi Javiks updates!");
+    showToast("Thank you for subscribing to YOUR BRAND updates!");
     setEmail("");
   };
 
@@ -35,16 +35,15 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs text-[#a9cfbe] leading-relaxed">
-              Rajlakshmi Javiks International is a premier cultivator, trader,
-              and exporter of certified organic food products based in Indore,
-              Madhya Pradesh. Dedicated to revitalizing traditional Indian
-              nutrition through chemical-free farming.
+              YOUR BRAND is dedicated to bringing 100% certified organic, pure,
+              unadulterated farm staples to households across India. Hand-harvested,
+              pesticide-free, and ethically cultivated directly with farmer collectives.
             </p>
 
             {/* Certifications Mini Badges */}
             <div className="pt-1 flex items-center gap-2 flex-wrap text-[11px] text-[#86caa3]">
               <span className="bg-[#024a1e] px-2.5 py-1 rounded-md border border-[#046128]">
-                FSSAI Licensed
+                FSSAI Certified
               </span>
               <span className="bg-[#024a1e] px-2.5 py-1 rounded-md border border-[#046128]">
                 NPOP India Organic
@@ -55,10 +54,10 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Official Contact Info (3 cols) */}
+          {/* Col 2: Contact Info (3 cols) */}
           <div className="lg:col-span-3 space-y-3.5">
             <h4 className="font-serif font-bold text-sm text-white tracking-wide border-b border-[#055724] pb-2">
-              Indore Headquarters
+              Customer Support & Enquiries
             </h4>
 
             <div className="space-y-3 text-xs text-[#b8d6c7]">
@@ -67,12 +66,12 @@ export default function Footer() {
                   <Phone className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="text-[10.5px] text-[#7eb59a] font-medium">Customer Support & B2B</div>
+                  <div className="text-[10.5px] text-[#7eb59a] font-medium">Helpline & WhatsApp</div>
                   <a
-                    href="tel:+918769215905"
+                    href="tel:+919876543210"
                     className="hover:text-white transition-colors font-bold text-white block text-xs mt-0.5"
                   >
-                    +91-87692 15905, 87691 15905
+                    +91-98765 43210
                   </a>
                 </div>
               </div>
@@ -82,12 +81,12 @@ export default function Footer() {
                   <Mail className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="text-[10.5px] text-[#7eb59a] font-medium">Email Enquiries</div>
+                  <div className="text-[10.5px] text-[#7eb59a] font-medium">Customer Support Email</div>
                   <a
-                    href="mailto:contact@rajlakshmijaviks.com"
+                    href="mailto:support@yourbrand.com"
                     className="hover:text-white transition-colors font-bold text-white block text-xs mt-0.5"
                   >
-                    contact@rajlakshmijaviks.com
+                    support@yourbrand.com
                   </a>
                 </div>
               </div>
@@ -97,10 +96,10 @@ export default function Footer() {
                   <MapPin className="w-3.5 h-3.5" />
                 </div>
                 <div>
-                  <div className="text-[10.5px] text-[#7eb59a] font-medium">Corporate Office & Warehouse</div>
+                  <div className="text-[10.5px] text-[#7eb59a] font-medium">Central Office & Logistics Hub</div>
                   <p className="leading-snug text-white font-medium text-xs mt-0.5">
-                    11, Manish Bag Colony, Near Vikram Tower, Sapna Sangeeta,
-                    Indore - 452001, Madhya Pradesh, INDIA
+                    Plot 104, Organic Agro Park, Central Logistics Zone,
+                    Madhya Pradesh - 452001, INDIA
                   </p>
                 </div>
               </div>
@@ -192,7 +191,7 @@ export default function Footer() {
       <div className="border-t border-[#014d1f] py-4 text-xs text-[#86b59e] px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
           <div>
-            Copyright 2026 © <strong>Rajlakshmi Javiks International</strong>. All Rights Reserved.
+            Copyright 2026 © <strong>YOUR BRAND</strong>. All Rights Reserved.
           </div>
 
           <div className="flex items-center gap-3 flex-wrap justify-center text-xs">
@@ -214,7 +213,7 @@ export default function Footer() {
           </div>
 
           <div>
-            Indore, Madhya Pradesh, India
+            100% Certified Organic Food Products • India
           </div>
         </div>
       </div>

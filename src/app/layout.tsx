@@ -16,9 +16,9 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Rajlakshmi Javiks International - 100% Certified Organic Food Products",
+  title: "YOUR BRAND - 100% Certified Organic Food Products | Pure Food. Better Life.",
   description:
-    "Shop certified organic Pulses, Millets, Spices, Honey, Dry Fruits, Seeds & Grains sourced directly from certified organic farms. NPOP, FSSAI & Jaivik Bharat certified. Fast delivery across India.",
+    "Shop certified organic Pulses, Millets, Spices, Honey, Dry Fruits, Seeds & Grains sourced directly from certified organic farms. 100% pure, unpolished, and lab-tested. Fast delivery across India.",
 };
 
 export default function RootLayout({

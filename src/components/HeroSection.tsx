@@ -8,23 +8,29 @@ const BANNERS = [
   {
     id: "banner-1",
     image: "/images/banners/hero-banner-1.jpg",
-    title: "100% Certified Organic & Pure Staples",
-    subtitle: "From India's Trusted Organic Farmers • Lab Tested & Export Graded",
-    targetCategory: "Pulses",
+    badge: "YOUR BRAND • 100% CERTIFIED ORGANIC",
+    title: "Pure Nourishment Directly From Nature's Soil",
+    subtitle: "Hand-harvested heritage pulses, aromatic whole spices, and unpolished grains for a vibrant life.",
+    buttonText: "EXPLORE ORGANIC CATALOGUE",
+    targetHref: "/products",
   },
   {
     id: "banner-2",
     image: "/images/banners/hero-banner-2.jpg",
-    title: "A2 Gir Cow Bilona Ghee & Cold-Pressed Spices",
-    subtitle: "Traditional Wooden Churned • Zero Adulteration • Pan-India Delivery",
-    targetCategory: "Rice & Wheat",
+    badge: "YOUR BRAND • FARM TO TABLE EXCELLENCE",
+    title: "Golden Harvest Grains & Traditional Essentials",
+    subtitle: "Ancient heirloom wheat, stone-ground flours, and wood-pressed staples cultured with purity.",
+    buttonText: "DISCOVER WHOLE GRAINS",
+    targetHref: "/products?category=Rice%20%26%20Wheat",
   },
   {
     id: "banner-3",
     image: "/images/banners/hero-banner-3.jpg",
-    title: "Unpolished Heritage Millets & Natural Raw Honey",
-    subtitle: "Ancient Nutri-Cereals • Pure Forest Blossom • Nutrient Dense",
-    targetCategory: "Millets",
+    badge: "YOUR BRAND • ANCIENT SUPERFOODS",
+    title: "Heritage Millets, Raw Wild Honey & Dry Fruits",
+    subtitle: "Nutrient-dense, low-glycemic, non-GMO staples lab-tested for zero pesticide residues.",
+    buttonText: "SHOP SUPERFOODS",
+    targetHref: "/products?category=Millets",
   },
 ];
 
@@ -54,7 +60,7 @@ export default function HeroSection() {
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Full-Bleed Edge-to-Edge Slider Container */}
-      <div className="relative w-full aspect-16/9 sm:aspect-21/9 md:aspect-24/9 lg:aspect-28/10 max-h-[560px] overflow-hidden">
+      <div className="relative w-full aspect-16/10 sm:aspect-21/9 md:aspect-24/9 lg:aspect-28/10 min-h-[380px] sm:min-h-[460px] max-h-[560px] overflow-hidden">
         {BANNERS.map((banner, index) => {
           const isActive = index === currentSlide;
           return (
@@ -64,13 +70,43 @@ export default function HeroSection() {
                 isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
               }`}
             >
-              <Link href="/products" className="block w-full h-full relative cursor-pointer">
-                <img
-                  src={banner.image}
-                  alt={banner.title}
-                  className="w-full h-full object-cover object-center transform transition-transform duration-1200 ease-out hover:scale-101"
-                />
-              </Link>
+              {/* Background Image */}
+              <img
+                src={banner.image}
+                alt={banner.title}
+                className="w-full h-full object-cover object-center transform transition-transform duration-1200 ease-out scale-100"
+              />
+
+              {/* Gradient Scrim for maximum legibility */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+
+              {/* Content Overlay */}
+              <div className="absolute inset-0 z-10 flex items-center px-6 sm:px-12 md:px-16 lg:px-20">
+                <div className="max-w-2xl text-white space-y-3 sm:space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[#88e8b2] text-[10px] sm:text-xs font-bold uppercase tracking-wider border border-white/20">
+                    <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
+                    <span>{banner.badge}</span>
+                  </div>
+
+                  <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight drop-shadow-sm">
+                    {banner.title}
+                  </h1>
+
+                  <p className="text-xs sm:text-sm md:text-base text-gray-200 line-clamp-2 sm:line-clamp-none max-w-xl leading-relaxed">
+                    {banner.subtitle}
+                  </p>
+
+                  <div className="pt-2">
+                    <Link
+                      href={banner.targetHref}
+                      className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] active:scale-95 text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl shadow-lg transition-all"
+                    >
+                      <span>{banner.buttonText}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           );
         })}

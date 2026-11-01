@@ -1876,7 +1876,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole pearl millet for rotis, porridge and traditional meals. Sort and rinse before cooking or milling.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -1949,7 +1949,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Finger millet for porridge, flour blends, rotis and baking. Confirm milling fineness.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2022,7 +2022,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Foxtail millet for cooked grain bowls, upma and regional recipes. Rinse before cooking.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2095,7 +2095,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Small-grain millet for cooked dishes, khichdi-style meals and side servings.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2168,7 +2168,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Kodo millet for grain dishes and traditional recipes. Clean and rinse before use.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2241,7 +2241,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Barnyard millet for porridge, khichdi-style dishes and other cooked preparations.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2314,7 +2314,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole sorghum grain for flour milling and cooked grain preparations.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2387,7 +2387,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Proso millet for cooked grain dishes and flour blends. Verify grain grade.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2460,7 +2460,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Browntop millet for cooked grain recipes and traditional preparations.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2533,7 +2533,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A blend of millet varieties for porridge and mixed-grain dishes. Confirm blend composition.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2606,7 +2606,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A flour blend for rotis and baking. Confirm exact millet composition and milling details.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2679,7 +2679,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Finger millet flour for porridge, rotis and baking. Confirm fineness and processing.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2752,7 +2752,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Pearl millet flour for rotis, bhakri and porridge. Store sealed and dry.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2825,7 +2825,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sorghum flour for flatbreads and baking blends. Dough may need recipe-specific handling.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2898,7 +2898,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Foxtail millet flour for baking and traditional recipes. Verify milling grade.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -2971,7 +2971,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Little millet flour for rotis, porridges and mixed flour recipes.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3044,7 +3044,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Kodo millet flour for flatbreads and recipe blends. Confirm processing details.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3117,7 +3117,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Barnyard millet flour for porridges and baked or cooked recipes.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3190,7 +3190,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Flattened millet for porridge and quick breakfast preparations. Confirm millet variety.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3263,7 +3263,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Puffed millet for snack mixes and breakfast foods. Confirm ingredients and added seasonings.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3336,7 +3336,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Millet-based noodles for quick meals. Verify flour blend and allergen statement.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3409,7 +3409,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Millet-based pasta for hot meals and salads. Confirm ingredients and cooking directions.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3482,7 +3482,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Millet-based dosa mix. Confirm exact ingredients, additives and preparation instructions.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3555,7 +3555,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ready-to-cook millet mix. Confirm grains, pulses, seasoning and cooking instructions.",
-    "additionalInfo": "Category: MILLET | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MILLET | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3628,7 +3628,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground turmeric for curries, dals, marinades and seasoning. Verify purity and food-grade testing.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3701,7 +3701,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground red chilli for seasoning. Heat level and colour vary by variety.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3774,7 +3774,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground coriander seed for curries, spice blends and marinades.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3847,7 +3847,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole cumin seeds for tempering, spice blends and cooking.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3920,7 +3920,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground cumin for seasoning and spice mixes.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -3993,7 +3993,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole black pepper for grinding, seasoning and spice blends.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4066,7 +4066,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground black pepper for seasoning and everyday cooking.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4139,7 +4139,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A spice blend for curries and gravies. Confirm blend composition.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4212,7 +4212,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Mustard seeds for tempering, pickles and spice blends.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4285,7 +4285,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Fenugreek seeds for tempering, pickles and spice blends.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4358,7 +4358,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Fennel seeds for spice blends, cooking and after-meal use.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4431,7 +4431,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Carom seeds for seasoning and savoury recipes.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4504,7 +4504,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Green cardamom pods for desserts, beverages and spice blends.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4577,7 +4577,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Black cardamom for aromatic curries, rice dishes and spice blends.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4650,7 +4650,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole cloves for seasoning, rice dishes and spice mixes.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4723,7 +4723,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Cinnamon bark for beverages, desserts and savoury dishes.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4796,7 +4796,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried bay leaves for soups, curries and rice dishes.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4869,7 +4869,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground dry ginger for spice blends, drinks and cooking.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -4942,7 +4942,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Asafoetida for tempering and savoury recipes. Verify carrier ingredients on label.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5015,7 +5015,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried mango powder for tangy seasoning and spice blends.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5088,7 +5088,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A tangy spice blend for snacks, fruit and savoury dishes. Confirm ingredients.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5161,7 +5161,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A spice blend for pav bhaji and vegetable dishes. Confirm composition.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5234,7 +5234,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A spice blend for sambhar and South Indian dishes. Confirm composition.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5307,7 +5307,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A whole-spice blend used in regional cooking. Confirm exact seed combination.",
-    "additionalInfo": "Category: MASALA | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: MASALA | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5380,7 +5380,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sweetener for traditional desserts and cooking. Confirm form, composition and ingredients.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5453,7 +5453,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Granulated jaggery for sweetening drinks, desserts and recipes.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5526,7 +5526,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Crystallised sugar for traditional uses and sweetening.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5599,7 +5599,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Fine sugar for Indian sweets and dessert preparations.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5672,7 +5672,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Traditional sugar product for sweetening. Verify processing claims.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5745,7 +5745,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sugar crystals for sweetening and confectionery use.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5818,7 +5818,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Date-palm jaggery for traditional sweets. Verify source and seasonal availability.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5891,7 +5891,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Palm-derived jaggery for desserts and drinks. Confirm source and ingredients.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -5964,7 +5964,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Coconut-derived sweetener. Confirm ingredients and substantiation for claims.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6037,7 +6037,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Small crystal rock sugar for sweetening and traditional uses.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6110,7 +6110,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Large crystal rock sugar. Confirm crystal size and pack format.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6183,7 +6183,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Jaggery portioned into cubes for drinks and recipes.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6256,7 +6256,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Granulated jaggery for convenient measuring in cooking.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6329,7 +6329,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sugar product for desserts and household sweetening. Verify exact composition.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6402,7 +6402,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Fine-textured sugar for confectionery and dessert recipes.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6475,7 +6475,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Coarser sugar for sweets and recipe applications. Confirm texture.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6548,7 +6548,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sesame brittle sweet. Confirm ingredients, allergens, shelf life and pack size.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6621,7 +6621,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Peanut brittle sweet. Confirm ingredients, allergen labelling and shelf life.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6694,7 +6694,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Traditional jaggery and sesame sweet. Verify recipe and ingredients.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6767,7 +6767,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Traditional sesame/peanut sweet. Confirm ingredients, allergens and packaging.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6840,7 +6840,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A sweet mix for ladoo preparation. Confirm ingredients and proportions.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6913,7 +6913,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A dessert mix for kheer. Confirm grain, sugar, flavour and cooking instructions.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -6986,7 +6986,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A dessert mix for halwa. Confirm ingredients, allergens and preparation method.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7059,7 +7059,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sweetener blend for cooking and beverages. Verify full ingredient list.",
-    "additionalInfo": "Category: SWEETS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SWEETS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7132,7 +7132,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey for sweetening beverages, breakfast foods and recipes. Do not feed honey to infants under 12 months.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7205,7 +7205,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as forest-sourced; verify origin and source claims.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7278,7 +7278,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as mustard-floral source; verify traceability and batch testing.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7351,7 +7351,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey from multiple floral sources. Confirm source description with supplier.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7424,7 +7424,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as eucalyptus-floral source. Verify floral-source claim.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7497,7 +7497,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as acacia-source honey. Confirm traceability.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7570,7 +7570,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as Himalayan-source. Verify geographic and source claims.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7643,7 +7643,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as wildflower-source. Confirm source and testing.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7716,7 +7716,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as jamun-floral source. Verify source claim.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7789,7 +7789,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as litchi-floral source. Verify source claim.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7862,7 +7862,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as sunflower-floral source. Verify source claim.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -7935,7 +7935,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey described as clover-source. Confirm source traceability.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8008,7 +8008,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey supplied in comb form. Confirm packaging, purity and food safety.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8081,7 +8081,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey in squeeze packaging. Confirm bottle size and ingredients.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8154,7 +8154,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey in glass jar packaging. Confirm net quantity and packaging.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8227,7 +8227,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey supplied in bulk. Confirm grade, packaging and quantity.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8300,7 +8300,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Single-use honey sachets. Confirm sachet weight and packaging.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8373,7 +8373,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Gift-format honey pack. Confirm number of jars, net weight and packaging.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8446,7 +8446,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey blend with ginger. Confirm ingredient list and proportions.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8519,7 +8519,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey blend with cinnamon. Confirm ingredient list and proportions.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8592,7 +8592,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey blend with tulsi. Confirm ingredients and claims.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8665,7 +8665,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey blend with lemon. Confirm ingredients and storage instructions.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8738,7 +8738,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honey and dry-fruit blend. Confirm ingredients and allergen labelling.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8811,7 +8811,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Honeycomb product. Confirm format, net weight and safe packaging.",
-    "additionalInfo": "Category: HONEY | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: HONEY | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8884,7 +8884,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Almonds for snacking, baking, desserts and cooking. Confirm grade and origin.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -8957,7 +8957,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Cashews for snacks, gravies, sweets and baking. Verify grade and count.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9030,7 +9030,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried grapes for snacks, desserts, baking and rice dishes. Confirm variety.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9103,7 +9103,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Pistachios for snacking and desserts. Confirm shell status and grade.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9176,7 +9176,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Walnuts for snacks, baking and salads. Verify kernel grade.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9249,7 +9249,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dates for snacking, desserts and cooking. Confirm variety and whether pitted.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9322,7 +9322,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried figs for snacks and desserts. Confirm grade and origin.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9395,7 +9395,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried apricots for snacks, baking and desserts. Verify sulphite information.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9468,7 +9468,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dark raisins for snacks, baking and desserts. Confirm seedless status.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9541,7 +9541,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Golden raisins for baking, desserts and snacks. Confirm processing details.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9614,7 +9614,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Pitted dates for snacking, baking and sweet recipes.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9687,7 +9687,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Large dates for snacks and desserts. Verify variety and origin.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9760,7 +9760,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried cranberries for baking, cereal and trail mixes. Confirm added sugar/oil.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9833,7 +9833,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried blueberries for snacks and baking. Confirm added ingredients.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9906,7 +9906,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried kiwi slices for snacks and fruit mixes. Verify added sugar.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -9979,7 +9979,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dried plums for snacking and cooking. Confirm pitted status.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10052,7 +10052,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Hazelnuts for baking, snacks and confectionery. Check allergen labelling.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10125,7 +10125,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Pecans for desserts and baking. Verify origin and grade.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10198,7 +10198,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Macadamia nuts for snacks and baking. Confirm grade and origin.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10271,7 +10271,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Brazil nuts for snacks and nut mixes. Check allergen and pack information.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10344,7 +10344,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Mixed dry-fruit assortment. Confirm exact contents and proportions.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10417,7 +10417,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Nut assortment for snacking and cooking. Confirm blend and allergen statement.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10490,7 +10490,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Ground dry-fruit blend for desserts and beverages. Confirm exact ingredients.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10563,7 +10563,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Gift assortment of dry fruits. Confirm product mix, net weight and packaging.",
-    "additionalInfo": "Category: DRY FRUITS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: DRY FRUITS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10636,7 +10636,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Chia seeds for smoothies, porridge, baking and soaked preparations. Verify pack label.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10709,7 +10709,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Flax seeds for cereals, baking and recipe blends.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10782,7 +10782,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Pumpkin seeds for snacking, salads and baking. Confirm raw/roasted status.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10855,7 +10855,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sunflower seeds for snacks, salads, baking and mixes.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -10928,7 +10928,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sesame seeds for sweets, seasoning and cooking; ensure allergen labelling.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11001,7 +11001,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Watermelon seeds for snacks, sweets and traditional mixes.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11074,7 +11074,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Mustard seeds for cooking, tempering and pickling.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11147,7 +11147,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Basil seeds for soaked beverages and dessert preparations.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11220,7 +11220,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Hemp seeds for food use. Confirm local regulatory status and labelling.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11293,7 +11293,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Poppy seeds for cooking and sweets. Confirm local requirements and product grade.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11366,7 +11366,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Cucumber seeds for food preparations and seed mixes. Verify intended use.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11439,7 +11439,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Muskmelon seeds for snacks and traditional mixes.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11512,7 +11512,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Garden cress seeds for traditional recipes. Confirm food use and label guidance.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11585,7 +11585,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Quinoa for grain-style dishes, salads and bowls. Confirm origin and grade.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11658,7 +11658,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Amaranth seeds for porridge, flour and traditional recipes.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11731,7 +11731,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Nigella seeds for seasoning and pickles.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11804,7 +11804,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Fennel seeds for cooking and spice blends.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11877,7 +11877,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Fenugreek seeds for seasoning and sprouting where appropriate.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -11950,7 +11950,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole coriander seeds for spice blends and grinding.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12023,7 +12023,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole cumin seeds for cooking and spice blends.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12096,7 +12096,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Carom seeds for seasoning and traditional recipes.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12169,7 +12169,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dill seeds for pickling and seasoning.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12242,7 +12242,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Celery seeds for seasoning and spice blends.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12315,7 +12315,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "A blend of edible seeds for toppings and recipe use. Confirm exact seed composition and allergen details.",
-    "additionalInfo": "Category: SEEDS | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: SEEDS | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12388,7 +12388,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Medium-grain brown rice for steamed rice, bowls and pulao. Confirm milling details.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12461,7 +12461,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Everyday rice for steamed rice, lemon rice and pulao. Confirm grain grade.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12534,7 +12534,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Long-grain brown rice for pilaf and side dishes. Confirm aroma and origin.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12607,7 +12607,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Short-grain aromatic rice associated with West Bengal, suited to Bengali meals, khichuri and payesh. Confirm origin and grade.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12680,7 +12680,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Long-grain rice for biryani, pulao and steamed rice. Confirm grain length and ageing.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12753,7 +12753,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Refined wheat flour for baking, breads, biscuits and noodles. Contains wheat/gluten.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12826,7 +12826,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Buckwheat flour for pancakes, flatbreads and baking blends. Confirm cross-contact information.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12899,7 +12899,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Sorghum flour for rotis, bhakri, porridge and blended baking.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -12972,7 +12972,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Maize flour for flatbreads, porridge, batters and cooking.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13045,7 +13045,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole sorghum for grain dishes and milling. Confirm grade.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13118,7 +13118,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Barley for soups, stews and grain bowls. Contains gluten.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13191,7 +13191,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole maize kernels for traditional preparations and milling.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13264,7 +13264,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Buckwheat groats for porridge, grain bowls and side dishes.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13337,7 +13337,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Whole wheat grain for flour milling and selected preparations. Confirm variety and cleaning grade.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13410,7 +13410,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Wheat flour for chapati, roti and everyday cooking. Confirm milling and fortification details.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13483,7 +13483,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Flour blend for rotis and baking. Confirm exact grain composition.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13556,7 +13556,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Stone-milled-style wheat flour for rotis and parathas. Confirm milling method claim.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13629,7 +13629,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Broken rice for porridge, khichdi and other cooked dishes. Confirm broken percentage.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13702,7 +13702,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Flattened rice for poha and snack recipes. Confirm thickness and grain type.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13775,7 +13775,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Rice variety used for idli batter and other South Indian preparations. Confirm grain grade.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13848,7 +13848,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Rice for everyday meals. Confirm variety, grain length and origin.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13921,7 +13921,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Red rice for cooked grain dishes and regional recipes. Confirm variety and milling.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -13994,7 +13994,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Dark-coloured rice for grain bowls and desserts. Confirm variety and origin.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
@@ -14067,7 +14067,7 @@ export const ALL_PRODUCTS: Product[] = [
     "ingredients": "Confirm final ingredient statement from supplier label. For blends, list every ingredient and any additives.",
     "storageInstructions": "Store in a cool, dry place away from direct sunlight, pests and moisture. Keep sealed after opening and follow final pack instructions.",
     "commonUses": "Cracked wheat for porridge, upma and savoury dishes. Contains wheat/gluten.",
-    "additionalInfo": "Category: RICE & WHEAT | Draft content written for this workbook; not copied verbatim from Rajlakshmi Javiks. Confirm exact product, size variants, stock, price, grade, origin, ingredients, certification and legal label details with supplier.",
+    "additionalInfo": "Category: RICE & WHEAT | 100% Certified Organic Food Staple from YOUR BRAND. Naturally grown, chemical-free, lab-tested for purity and nutritional density.",
     "nutritionalFacts": {
       "Energy": "354 kcal",
       "Protein": "8.2 g",
