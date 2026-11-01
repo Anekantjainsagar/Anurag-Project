@@ -43,7 +43,19 @@ export interface BlogPost {
   image: string;
   readTime: string;
   summary: string;
-  author?: string;
+  category?: string;
+  author?: {
+    name: string;
+    role: string;
+  } | string;
+  tags?: string[];
+  content?: string[];
+  keyBenefits?: string[];
+  healthTip?: string;
+  nutritionalHighlights?: {
+    label: string;
+    value: string;
+  }[];
 }
 
 export interface WhyChooseFeature {

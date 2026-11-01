@@ -31,26 +31,29 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [wishlist, setWishlist] = useState<string[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = localStorage.getItem("yourbrand_cart");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [wishlist, setWishlist] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = localStorage.getItem("yourbrand_wishlist");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isTrackModalOpen, setIsTrackModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-
-  // Load initial cart and wishlist from localStorage if available
-  useEffect(() => {
-    try {
-      const savedCart = localStorage.getItem("yourbrand_cart");
-      if (savedCart) setCartItems(JSON.parse(savedCart));
-
-      const savedWishlist = localStorage.getItem("yourbrand_wishlist");
-      if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
-    } catch {
-      // ignore
-    }
-  }, []);
 
   // Save changes
   useEffect(() => {

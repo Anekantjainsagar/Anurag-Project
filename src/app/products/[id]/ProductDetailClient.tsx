@@ -363,15 +363,17 @@ function ProductDetailInner({ product }: { product: Product }) {
         <div className="border border-gray-200 rounded-3xl overflow-hidden mb-16 shadow-2xs">
           {/* Tab Headers */}
           <div className="flex border-b border-gray-200 bg-[#f9faf9] overflow-x-auto scrollbar-none">
-            {[
-              { id: "desc", label: "Description & Heritage" },
-              { id: "nutrition", label: "Nutritional Facts" },
-              { id: "purity", label: "Quality & Lab Parameters" },
-              { id: "reviews", label: `Reviews (${product.reviewsCount})` },
-            ].map((tab) => (
+            {(
+              [
+                { id: "desc", label: "Description & Heritage" },
+                { id: "nutrition", label: "Nutritional Facts" },
+                { id: "purity", label: "Quality & Lab Parameters" },
+                { id: "reviews", label: `Reviews (${product.reviewsCount})` },
+              ] as const
+            ).map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 className={`px-5 py-3.5 text-xs font-bold whitespace-nowrap transition-colors cursor-pointer border-b-2 ${
                   activeTab === tab.id
                     ? "border-[#044a27] text-[#044a27] bg-white"

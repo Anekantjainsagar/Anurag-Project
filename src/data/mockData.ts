@@ -972,38 +972,410 @@ export const WHY_CHOOSE_FEATURES: WhyChooseFeature[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: "blog-1",
-    title: "How to Choose the Best Aged Basmati Rice",
-    date: "10 Apr 2026",
-    image: "/images/products/rice-basmati-1.jpg",
-    readTime: "4 min read",
+    title: "The Basmati Secret: Why Aged Long-Grain Rice is Easier to Digest & Lower GI",
+    category: "Grains & Basmati",
+    date: "14 Apr 2026",
+    image: "/images/blog-basmati.jpg",
+    readTime: "5 min read",
     summary:
-      "Learn the art of identifying authentic aged basmati rice by grain elongation, aroma, and color clarity to elevate every feast.",
+      "Learn why traditional 2-year aged Himalayan basmati rice is easier on blood sugar, packs high resistant starch, and unlocks unmatched floral aroma.",
+    author: {
+      name: "Dr. Ananya Sharma",
+      role: "Holistic Nutritionist & Food Biochemist",
+    },
+    tags: ["Basmati Rice", "Low GI", "Gut Health", "Gluten-Free"],
+    keyBenefits: [
+      "Aged for 24+ months for retrograded resistant starch",
+      "Significantly lower glycemic index (52-58) than common rice",
+      "Elongates up to 2.5x without clumping or stickiness",
+      "Rich in amylose for clean, sustained cellular energy",
+    ],
+    healthTip:
+      "Soak aged basmati rice for 30 minutes in cold water before boiling. This gelatinizes the starch evenly, prevents grain breakage, and lowers postprandial glucose surges.",
+    nutritionalHighlights: [
+      { label: "Glycemic Index", value: "52 (Low)" },
+      { label: "Resistant Starch", value: "3.2g / 100g" },
+      { label: "Protein", value: "8.1g / 100g" },
+      { label: "Gluten Content", value: "0% (Naturally Free)" },
+    ],
+    content: [
+      "Not all white rice is created equal. While commercial quick-milled white rice often spikes blood sugar rapidly, authentic aged Himalayan Basmati behaves differently in the human digestive tract. Traditional rice masters store freshly harvested paddy in humidity-controlled aerated silos for 12 to 24 months before milling.",
+      "During this prolonged natural aging phase, the grain undergoes biochemical transformation: moisture content drops below 10%, enzymatic amylase activity modifies the starch granules, and the ratio of amylose to amylopectin increases. Higher amylose forms 'retrograded resistant starch' upon cooling, which acts as a prebiotic fiber feeding beneficial Bifidobacteria in the large intestine rather than turning immediately into blood glucose.",
+      "Furthermore, unadulterated aged basmati contains 2-acetyl-1-pyrroline—the natural compound responsible for its signature royal fragrance—without any chemical sprays. For athletes, diabetics, and conscious eaters, aged basmati offers clean carbohydrates without digestive bloating.",
+    ],
   },
   {
     id: "blog-2",
-    title: "Health Benefits of Unpolished Pulses in Everyday Diet",
-    date: "05 Apr 2026",
-    image: "/images/products/pulse-toor-1.jpg",
-    readTime: "5 min read",
+    title: "The Golden Lentil: Why Unpolished Toor & Moong Dal Beat Processed Protein Powders",
+    category: "Plant Protein",
+    date: "10 Apr 2026",
+    image: "/images/blog-pulses.jpg",
+    readTime: "6 min read",
     summary:
-      "Explore why ancient grains and unpolished lentils form the cornerstone of balanced nutrition, gut health, and vitality.",
+      "Discover the bioavailable protein, prebiotic fiber, and essential minerals locked inside unpolished pulses, completely free from harmful mineral oil polishing.",
+    author: {
+      name: "Vikas Deshmukh",
+      role: "Agronomist & Pulse Specialist",
+    },
+    tags: ["Unpolished Dals", "Plant Protein", "Zero Polish", "Heart Health"],
+    keyBenefits: [
+      "100% natural grain seed coat preserved with aleurone layer",
+      "Zero mineral oil, marble powder, or artificial colorants",
+      "24g plant protein per 100g serving with complete fiber matrix",
+      "Naturally dense in folate, iron, and potassium",
+    ],
+    healthTip:
+      "Always combine unpolished lentils with whole grains like basmati or millets to achieve a complete amino acid profile (combining lysine from lentils with methionine from grains).",
+    nutritionalHighlights: [
+      { label: "Protein", value: "24.5g / 100g" },
+      { label: "Dietary Fiber", value: "11.2g" },
+      { label: "Iron RDA", value: "38%" },
+      { label: "Chemical Polish", value: "0% Guarantee" },
+    ],
+    content: [
+      "In modern supermarkets, shiny pulses glisten under bright lights. Sadly, that aesthetic luster is frequently achieved through industrial processing using leather polishing drums, liquid paraffin, or water-oil emulsions that strip away the nutrient-rich aleurone layer and bran coat.",
+      "Unpolished Toor, Moong, and Chana dal retain their natural matte finish, subtle hue variations, and intact outer germ. This preservation means you consume intact insoluble and soluble fiber, which slows gastric emptying and moderates cholesterol absorption in the hepatic system.",
+      "A single 100g portion of unpolished toor dal delivers over 24 grams of bioavailable protein alongside 38% of your daily iron needs. By soaking lentils with a pinch of cumin or ginger before pressure cooking, you break down oligosaccharides that cause gas, unlocking clean vitality.",
+    ],
   },
   {
     id: "blog-3",
-    title: "Top 5 Dry Fruits for a Healthy Brain and Heart",
-    date: "01 Apr 2026",
-    image: "/images/products/dryfruit-almond-1.jpg",
-    readTime: "3 min read",
+    title: "Brain & Heart Powerhouse: The Science-Backed Daily Portion of Almonds & Walnuts",
+    category: "Nuts & Healthy Fats",
+    date: "06 Apr 2026",
+    image: "/images/blog-dryfruits.jpg",
+    readTime: "4 min read",
     summary:
-      "From memory-boosting almonds to heart-healthy walnuts, discover the optimal daily portion for maximum wellness benefits.",
+      "From memory-boosting vitamin E to plant-based Omega-3 ALA, learn why soaking 6-8 almonds and 2 walnut halves transforms morning cognitive performance.",
+    author: {
+      name: "Pooja Malhotra",
+      role: "Clinical Dietitian & Lifestyle Coach",
+    },
+    tags: ["California Almonds", "Walnuts", "Omega-3", "Brain Health"],
+    keyBenefits: [
+      "High in Alpha-Linolenic Acid (ALA) for cardiovascular defense",
+      "Natural Vitamin E (alpha-tocopherol) shields neural cells",
+      "Tannin deactivation through overnight water soaking",
+      "Sustained satiety prevents afternoon sugar cravings",
+    ],
+    healthTip:
+      "Soak raw almonds in clean water for 8 hours and gently peel the brown skin before eating. This neutralizes enzyme inhibitors (tannins and phytic acid), dramatically increasing zinc and magnesium absorption.",
+    nutritionalHighlights: [
+      { label: "Vitamin E", value: "48% Daily Value" },
+      { label: "Omega-3 ALA", value: "2.5g / serving" },
+      { label: "Magnesium", value: "76mg" },
+      { label: "Antioxidants", value: "High ORAC" },
+    ],
+    content: [
+      "Walnuts are nature's visual clue: their convoluted shape mirrors the human cerebral cortex. Clinical research confirms that regular consumption of raw walnuts and whole almonds protects endothelial function and stimulates brain-derived neurotrophic factor (BDNF).",
+      "Walnuts are uniquely endowed with plant-based Omega-3 fatty acid (alpha-linolenic acid / ALA), while almonds boast one of the densest plant concentrations of d-alpha-tocopherol (natural Vitamin E). This synergistic lipid profile combats oxidative stress caused by blue light exposure and urban pollution.",
+      "To unlock their full potency, avoid fried or salted commercial varieties. Opt for raw, jumbo-graded, unpasteurized nuts stored in moisture-barrier packaging to prevent delicate polyunsaturated fatty acids from turning rancid.",
+    ],
   },
   {
     id: "blog-4",
-    title: "Different Types of Millets and Their Proven Benefits",
-    date: "28 Mar 2026",
-    image: "/images/products/millet-foxtail-1.jpg",
+    title: "The Ancient Millet Revolution: Healing Your Gut with Ragi, Jowar & Foxtail Millets",
+    category: "Millets & Digestion",
+    date: "02 Apr 2026",
+    image: "/images/blog-millets.jpg",
+    readTime: "5 min read",
+    summary:
+      "Why the United Nations declared the Year of Millets: Rediscover naturally gluten-free ancient grains that restore gut microbiome diversity and regulate insulin.",
+    author: {
+      name: "Dr. Raghuveer Reddy",
+      role: "Traditional Grain Researcher",
+    },
+    tags: ["Millets", "Gluten-Free", "Calcium Rich", "Low Carb Grains"],
+    keyBenefits: [
+      "Ragi (Finger Millet) contains 344mg calcium per 100g—higher than cow milk",
+      "Naturally gluten-free grain structure suitable for celiac digestion",
+      "Low glycemic index prevents rapid insulin spikes",
+      "Drought-resilient supercrop with zero heavy pesticide residue",
+    ],
+    healthTip:
+      "Fermenting millet batter (like Ragi or Foxtail dosa) overnight fosters lactic acid bacteria that pre-digest complex starches, doubling bioavailability of micronutrients like zinc and iron.",
+    nutritionalHighlights: [
+      { label: "Calcium (Ragi)", value: "344mg / 100g" },
+      { label: "Fiber Content", value: "12.5g" },
+      { label: "Gluten Content", value: "0.0%" },
+      { label: "Mineral Density", value: "3x vs Wheat" },
+    ],
+    content: [
+      "Thousands of years before hybridized dwarf wheat dominated modern farming, ancient civilizations across the Deccan plateau and Indo-Gangetic plains thrived on hardy, golden-hued millets: Ragi (Finger Millet), Jowar (Sorghum), Bajra (Pearl Millet), and Kangni (Foxtail Millet).",
+      "Millets possess an exceptional dietary fiber architecture comprising both lignans and beta-glucans. These complex polysaccharides nourish short-chain fatty acid (SCFA)-producing microbes in the gut lining, dampening systemic low-grade inflammation.",
+      "Finger millet (Ragi) stands out as the world's most concentrated botanical source of calcium, offering 344mg per 100g—over three times more than standard milk per equivalent weight. Substituting just one meal a day with a millet bowl brings sustained energy and effortless metabolic stability.",
+    ],
+  },
+  {
+    id: "blog-5",
+    title: "The Miracle of Cold-Pressed Oils: Traditional Kachi Ghani Mustard & Sesame Secrets",
+    category: "Cold-Pressed Oils",
+    date: "29 Mar 2026",
+    image: "/images/blog-coldpressed-oil.jpg",
+    readTime: "5 min read",
+    summary:
+      "Say goodbye to refined oils extracted with toxic hexane solvent. Learn how wood-pressed (Kolhu/Kachi Ghani) oils preserve native micronutrients and fatty acids.",
+    author: {
+      name: "Meera Kulkarni",
+      role: "Holistic Health Educator",
+    },
+    tags: ["Cold Pressed", "Mustard Oil", "Sesame Oil", "Hexane Free"],
+    keyBenefits: [
+      "Extracted below 45°C without chemical solvents or bleaching agents",
+      "Retains natural plant sterols, tocopherols, and pungent allyl isothiocyanate",
+      "Optimal Omega-3 to Omega-6 ratio for heart wellness",
+      "High natural smoke point for authentic Indian tempering (tadka)",
+    ],
+    healthTip:
+      "Authentic cold-pressed mustard oil should produce a gentle eye-watering aroma upon unsealing. This pungency is proof of active sinigrin, a powerful compound known for antimicrobial respiratory support.",
+    nutritionalHighlights: [
+      { label: "Extraction Temp", value: "< 45°C" },
+      { label: "Chemical Solvents", value: "0 ppm" },
+      { label: "Monounsaturated Fat", value: "65%" },
+      { label: "Vitamin E", value: "Preserved" },
+    ],
+    content: [
+      "Commercial clear 'vegetable' oils undergo brutal chemical refinement: high-heat expelling above 200°C, washing with petroleum-derived hexane solvent, bleaching with acid clays, and deodorizing with superheated steam. This strips vitamins and introduces lipid peroxides.",
+      "In contrast, traditional Kachi Ghani uses slow-turning wooden pestles that crush black mustard and unhulled sesame seeds at ambient temperatures under 45°C. This gentle mechanical extraction keeps the fragile polyphenol bonds unbroken.",
+      "Cold-pressed sesame oil contains two extraordinary antioxidant lignans—sesamin and sesamolin—which inhibit lipid peroxidation and support balanced arterial pressure. Using a single spoonful of pure wood-pressed oil elevates everyday cooking into a restorative ritual.",
+    ],
+  },
+  {
+    id: "blog-6",
+    title: "Turmeric with Black Pepper: Activating India's Most Potent Anti-Inflammatory Spice",
+    category: "Immunity & Spices",
+    date: "24 Mar 2026",
+    image: "/images/blog-turmeric-spices.jpg",
+    readTime: "4 min read",
+    summary:
+      "Why eating turmeric alone wastes 95% of curcumin: The culinary biochemistry behind combining golden turmeric with piperine-rich Malabar black peppercorns.",
+    author: {
+      name: "Dr. Ananya Sharma",
+      role: "Holistic Nutritionist & Food Biochemist",
+    },
+    tags: ["Curcumin", "Lakadong Turmeric", "Black Pepper", "Anti-Inflammatory"],
+    keyBenefits: [
+      "Piperine boosts curcumin bioavailability by up to 2000%",
+      "Lakadong turmeric contains high 7-9% native curcumin content",
+      "Calms joint inflammation and accelerates post-workout recovery",
+      "Zero synthetic lead chromate or artificial coloring",
+    ],
+    healthTip:
+      "Curcumin is fat-soluble. Always combine turmeric and black pepper with a healthy lipid like warm A2 cow ghee or coconut oil to facilitate lymphatic transport directly into the bloodstream.",
+    nutritionalHighlights: [
+      { label: "Curcumin Level", value: "7.5% - 8.2%" },
+      { label: "Absorption Boost", value: "+2000% w/ Pepper" },
+      { label: "Purity Grade", value: "Export Standard" },
+      { label: "Additives", value: "None" },
+    ],
+    content: [
+      "Turmeric (Curcuma longa) has been revered for millennia in Indian pharmacology. However, modern pharmacology discovered a major hurdle: native curcumin has extremely poor bioavailability due to rapid hepatic glucuronidation in the liver.",
+      "Ancient culinary wisdom already solved this puzzle centuries ago by pairing Haldi with Kali Mirch (Black Pepper). Black pepper contains piperine, an alkaloid that inhibits UDP-glucuronosyltransferase in the gut wall, allowing curcumin to bypass liver breakdown and elevate systemic blood plasma levels by up to 2000%.",
+      "When selecting turmeric, look for high-curcumin varieties like Meghalaya Lakadong turmeric. Its deep orange hue, earthy aroma, and lack of chalky residue ensure you are receiving pure rhizome goodness without adulteration.",
+    ],
+  },
+  {
+    id: "blog-7",
+    title: "Chia, Flax & Pumpkin Seeds: Tiny Seeds with Monumental Hormonal & Heart Benefits",
+    category: "Seeds & Superfoods",
+    date: "19 Mar 2026",
+    image: "/images/blog-superfood-seeds.jpg",
+    readTime: "5 min read",
+    summary:
+      "A daily tablespoon of raw seeds delivers concentrated plant lignans, zinc, and soluble mucilage fiber to balance hormones, stabilize blood glucose, and promote glowing skin.",
+    author: {
+      name: "Pooja Malhotra",
+      role: "Clinical Dietitian & Lifestyle Coach",
+    },
+    tags: ["Chia Seeds", "Flax Seeds", "Pumpkin Seeds", "Hormonal Balance"],
+    keyBenefits: [
+      "Flax lignans support natural estrogen metabolism in both women and men",
+      "Chia seed soluble gel coats intestinal lining, delaying carbohydrate breakdown",
+      "Raw green pumpkin seeds supply bioavailable elemental zinc and magnesium",
+      "Supports restful deep sleep via natural tryptophan precursors",
+    ],
+    healthTip:
+      "Whole flax seeds pass through the digestive system undigested. Always freshly grind your flax seeds into a coarse powder and store in an airtight glass jar in the refrigerator.",
+    nutritionalHighlights: [
+      { label: "Fiber / 2 tbsp", value: "10g Soluble Fiber" },
+      { label: "Zinc (Pumpkin)", value: "7.5mg" },
+      { label: "Omega-3 ALA", value: "4.8g" },
+      { label: "Protein / oz", value: "9g" },
+    ],
+    content: [
+      "Seeds are biological embryonic vaults: they contain all the concentrated genetic materials, micronutrients, and healthy fatty acids needed to germinate an entire living plant. Incorporating a seed trio into your daily diet yields profound hormonal advantages.",
+      "Flax seeds stand as the richest dietary source of secoisolariciresinol diglucoside (SDG) lignans, which intestinal bacteria convert into beneficial enterolactone. This helps balance circulating estrogens and supports cardiovascular flexibility.",
+      "Meanwhile, chia seeds absorb twelve times their weight in water, creating a hydrophilic colloidal gel that slows carbohydrate breakdown into simple sugars. Sprinkled over morning oats, fresh curd, or blended into smoothies, these seeds supply clean sustained fuel.",
+    ],
+  },
+  {
+    id: "blog-8",
+    title: "Natural Sweeteners vs Refined Sugar: Pure Organic Jaggery & Raw Forest Honey",
+    category: "Natural Sweeteners",
+    date: "15 Mar 2026",
+    image: "/images/blog-organic-jaggery.jpg",
+    readTime: "4 min read",
+    summary:
+      "Why bleached white sugar causes metabolic havoc while unrefined golden gur (jaggery) and raw forest honey cleanse respiratory channels and supply vital iron.",
+    author: {
+      name: "Vikas Deshmukh",
+      role: "Agronomist & Pulse Specialist",
+    },
+    tags: ["Organic Jaggery", "Raw Honey", "Iron Rich", "Unrefined Sweetener"],
+    keyBenefits: [
+      "Natural sugarcane molasses preserved without sulphur bleaching agents",
+      "Dense with non-heme iron, magnesium, potassium, and phosphorus",
+      "Aids digestive enzyme secretion when eaten after heavy meals",
+      "Raw forest honey retains active bee pollen and amylase enzymes",
+    ],
+    healthTip:
+      "Never boil raw honey in boiling liquids above 40°C, as high heat denatures delicate enzymes. Add honey to herbal teas only after the liquid cools to warm drinking temperature.",
+    nutritionalHighlights: [
+      { label: "Iron Content", value: "11mg / 100g (Gur)" },
+      { label: "Chemical Sulphur", value: "0 ppm" },
+      { label: "Potassium", value: "1050mg" },
+      { label: "Glycemic Stability", value: "Gradual Release" },
+    ],
+    content: [
+      "Refined white sugar is an industrial artifact: through repeated carbonation, bone-char filtration, and sulphur dioxide bleaching, 99.9% of sugarcane's native vitamins and trace minerals are stripped away, leaving only empty sucrose calories.",
+      "Traditional unrefined jaggery (Gur), slow-simmered in open iron cauldrons, retains the complete mineral spectrum of sugarcane juice. It contains significant amounts of iron, potassium, and magnesium, giving it an alkaline digestive effect.",
+      "In traditional Indian households, a coin-sized bite of unrefined dark jaggery after lunch activates salivary and digestive enzymes, preventing sluggish post-meal heaviness and cleansing the respiratory tract of environmental airborne dust.",
+    ],
+  },
+  {
+    id: "blog-9",
+    title: "Kashmiri Saffron (Kesar): The Golden Spice for Mood, Skin Radiance & Cognitive Clarity",
+    category: "Herbal Wellness",
+    date: "11 Mar 2026",
+    image: "/images/blog-saffron.jpg",
+    readTime: "4 min read",
+    summary:
+      "Harvested by hand in the valleys of Pampore: The science of active crocin and safranal compounds for natural dopamine support and radiant cellular health.",
+    author: {
+      name: "Dr. Ananya Sharma",
+      role: "Holistic Nutritionist & Food Biochemist",
+    },
+    tags: ["Kashmiri Saffron", "Mongra Grade", "Mood Support", "Radiant Skin"],
+    keyBenefits: [
+      "Highest natural crocin content (coloring strength > 240)",
+      "Clinically studied natural mood elevator and serotonin stabilizer",
+      "Potent retinal carotenoids support eye health against screen fatigue",
+      "Authentic Kashmiri Mongra with thick trumpet-shaped crimson stigmas",
+    ],
+    healthTip:
+      "To test authentic saffron: place two strands in warm water. Pure Kashmiri saffron slowly tints the liquid a rich golden yellow while the physical thread remains intensely red.",
+    nutritionalHighlights: [
+      { label: "Crocin Level", value: "> 240 (Grade 1)" },
+      { label: "Safranal Aroma", value: "High Volatile" },
+      { label: "Origin", value: "Pampore, Kashmir" },
+      { label: "Artificial Color", value: "Zero" },
+    ],
+    content: [
+      "Known as 'Red Gold', authentic Kashmiri Saffron (Crocus sativus) from the high-altitude alluvial soils of Pampore is considered the world's most prized spice. Each crimson thread represents a hand-plucked stigma harvested during a brief two-week autumn flowering window.",
+      "Contemporary neuropharmacology has isolated two unique bioactive carotenoids in saffron: crocin and crocetin, alongside the aromatic compound safranal. Double-blind clinical trials indicate that 30mg of pure saffron daily supports healthy dopamine and serotonin levels, acting as a gentle mood stabilizer.",
+      "Steeping 4 to 5 strands of pure saffron in warm almond milk or water at bedtime relaxes the central nervous system, enhances microcirculation to epidermal layers, and encourages deep restorative REM sleep.",
+    ],
+  },
+  {
+    id: "blog-10",
+    title: "The Ayurvedic Food Combining Guide: Optimizing Bioavailability with Pure Farm Staples",
+    category: "Ayurvedic Nutrition",
+    date: "07 Mar 2026",
+    image: "/images/blog-ayurvedic-diet.jpg",
     readTime: "6 min read",
     summary:
-      "Rediscover superfoods: Ragi, Jowar, Bajra, and Foxtail millets that are naturally gluten-free and packed with essential minerals.",
+      "Master the timeless wisdom of Ahara: How conscious sequencing of whole grains, spices, and lentils maximizes Agni (digestive fire) and cellular rejuvenation.",
+    author: {
+      name: "Dr. Raghuveer Reddy",
+      role: "Traditional Grain Researcher",
+    },
+    tags: ["Ayurvedic Diet", "Agni", "Food Combining", "Gut Harmony"],
+    keyBenefits: [
+      "Optimizes digestive enzyme sequencing to prevent Ama (toxic buildup)",
+      "Balances the 6 Ayurvedic tastes (Shad Rasa) in every main meal",
+      "Enhances nutrient absorption through strategic spice pairing",
+      "Emphasizes farm-fresh, seasonal, unadulterated staple sourcing",
+    ],
+    healthTip:
+      "Never consume ice-cold water during meals, as it dampens Agni (digestive fire). Sip lukewarm water spiced with roasted fennel and cumin seeds to stimulate gastric bile release.",
+    nutritionalHighlights: [
+      { label: "Six Tastes Balance", value: "100% Complete" },
+      { label: "Digestion Ease", value: "Optimal" },
+      { label: "Bioavailability", value: "Enhanced" },
+      { label: "Processed Foods", value: "Zero" },
+    ],
+    content: [
+      "In ancient classical texts like the Charaka Samhita, food is regarded as Mahabheshaja—the ultimate supreme medicine. Yet health is dictated not solely by what you eat, but by how completely your digestive fire (Agni) breaks down and assimilates those nutrients.",
+      "A foundational principle of Ayurvedic nutrition is Shad Rasa (the inclusion of six distinct tastes: sweet, sour, salty, pungent, bitter, and astringent in a single meal). Whole grains supply sweet nourishment, unpolished lentils offer grounding astringency, and traditional spices supply pungent and bitter enzymes.",
+      "Sourcing unadulterated farm staples—grains free from chemical fumigation, pulses free from talc, and cold-pressed unheated oils—ensures the food possesses abundant Prana (vital energy), nourishing both body and mind.",
+    ],
+  },
+  {
+    id: "blog-11",
+    title: "Green Moong & Sprouting Magic: How Germination Multiplies Vitamins by 300%",
+    category: "Enzymes & Sprouting",
+    date: "03 Mar 2026",
+    image: "/images/blog-sprouted-moong.jpg",
+    readTime: "4 min read",
+    summary:
+      "Turn simple whole green moong beans into living enzymes: Discover how 24 hours of soaking and sprouting skyrockets Vitamin C, riboflavin, and active antioxidants.",
+    author: {
+      name: "Meera Kulkarni",
+      role: "Holistic Health Educator",
+    },
+    tags: ["Sprouted Moong", "Living Enzymes", "High Vitamin C", "Easy Digestion"],
+    keyBenefits: [
+      "Sprouting multiplies Vitamin C content by over 300%",
+      "Enzymatically breaks down gas-producing complex oligosaccharides",
+      "Doubles bioavailability of zinc, iron, and calcium",
+      "Crisp, refreshing living snack with zero empty calories",
+    ],
+    healthTip:
+      "For optimal tender sprouts, soak whole green moong for 8 hours, drain thoroughly, wrap in a damp breathable muslin cotton cloth, and let rest in a warm dark cabinet for 18 to 24 hours.",
+    nutritionalHighlights: [
+      { label: "Vitamin C Boost", value: "+300% via Sprouting" },
+      { label: "Digestibility", value: "98% Clean" },
+      { label: "Calories / cup", value: "31 kcal" },
+      { label: "Folate RDA", value: "40%" },
+    ],
+    content: [
+      "Dry whole green moong beans lie dormant, protected by natural enzyme inhibitors and phytic acid shields designed to prevent premature decay. The moment they are soaked in pure water, an astonishing biochemical awakening takes place.",
+      "During germination, the seed releases dormant hydrolytic enzymes that convert stored starches into simple sugars, and split storage proteins into readily absorbable free amino acids. Scientific assays reveal that sprouting increases Vitamin C content threefold and significantly elevates Vitamin B-complex and folate.",
+      "Because the sprouting process deactivates phytic acid and lectins, sprouted moong beans are exceptionally gentle on sensitive digestive tracts. Tossed with a squeeze of fresh lemon, pink Himalayan rock salt, and chopped coriander, it becomes an energizing superfood.",
+    ],
+  },
+  {
+    id: "blog-12",
+    title: "Pure Cow Ghee: Why Healthy Saturated Fats Are Essential for Nutrient Absorption",
+    category: "Traditional Healthy Fats",
+    date: "27 Feb 2026",
+    image: "/images/blog-pure-ghee.jpg",
+    readTime: "5 min read",
+    summary:
+      "Debunking the low-fat myth: Why authentic A2 bilona cow ghee provides crucial butyric acid to heal the gut barrier and transports fat-soluble vitamins.",
+    author: {
+      name: "Dr. Raghuveer Reddy",
+      role: "Traditional Grain Researcher",
+    },
+    tags: ["A2 Cow Ghee", "Bilona Method", "Butyric Acid", "Fat-Soluble Vitamins"],
+    keyBenefits: [
+      "Rich in short-chain fatty acid (Butyric Acid) to nourish intestinal epithelial cells",
+      "High smoke point (250°C / 485°F) prevents harmful lipid oxidation during cooking",
+      "Contains Conjugated Linoleic Acid (CLA) which supports lean muscle metabolic rate",
+      "Lactose and casein free, making it gut-friendly even for dairy-sensitive individuals",
+    ],
+    healthTip:
+      "Drizzle half a teaspoon of warm liquid ghee over your cooked pulses or basmati rice just before eating. Ghee lowers the glycemic surge of the meal while facilitating absorption of vitamins A, D, E, and K.",
+    nutritionalHighlights: [
+      { label: "Smoke Point", value: "250°C (485°F)" },
+      { label: "Butyrate Content", value: "High SCFA" },
+      { label: "Lactose & Casein", value: "0% (Purified)" },
+      { label: "CLA Level", value: "Natural Source" },
+    ],
+    content: [
+      "For decades, dietary guidelines mistakenly vilified all saturated fats. Modern nutritional science has corrected this oversight: traditional clarified butter (ghee) made using the ancient Bilona method (churning cultured curd rather than industrial cream) is a metabolic superfood.",
+      "Ghee is one of the richest dietary sources of butyric acid, a short-chain fatty acid that serves as the primary metabolic fuel for colonocytes (the cells lining your large intestine). Regular consumption of pure ghee strengthens tight junctions in the gut barrier, calming systemic inflammation.",
+      "Additionally, many of the most vital micronutrients in healthy food—such as carotenoids in carrots, vitamin E in nuts, and lycopene in tomatoes—are strictly fat-soluble. Without healthy cooking fats like ghee, up to 80% of these vitamins pass through the body unabsorbed.",
+    ],
   },
 ];
