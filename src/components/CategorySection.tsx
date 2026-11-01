@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { CATEGORIES } from "@/data/mockData";
+import { ArrowRight } from "lucide-react";
 
 interface CategorySectionProps {
   onSelectCategory?: (categoryName: string) => void;
@@ -16,16 +18,26 @@ export default function CategorySection({
     <section id="categories" className="py-8 sm:py-10 bg-white border-b border-[#f0eee6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center space-y-1 mb-6 sm:mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-            Agricultural Commodities & Staples
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 sm:mb-8 text-center sm:text-left">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#054b28]/10 text-[#054b28] text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1">
+              Agricultural Commodities & Staples
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
+              Shop by Category
+            </h2>
+            <p className="text-gray-500 text-xs sm:text-sm">
+              Select a category to view freshly harvested, graded products
+            </p>
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">
-            Shop by Category
-          </h2>
-          <p className="text-gray-500 text-xs sm:text-sm">
-            Select a category to view freshly harvested, graded products
-          </p>
+
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#054b28] hover:text-[#03391e] bg-[#edf7f1] hover:bg-[#e1f1e7] px-4 py-2 rounded-xl transition-all"
+          >
+            <span>Explore All 192 Harvests</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
 
         {/* 8 Category Cards: Clean, Formal Grid */}

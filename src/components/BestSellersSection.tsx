@@ -5,16 +5,18 @@ import Link from "next/link";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import { useCart } from "@/context/CartContext";
-import { Heart, Star, ChevronDown } from "lucide-react";
+import { Heart, Star, ChevronDown, ArrowRight } from "lucide-react";
 
 interface BestSellersSectionProps {
   activeCategoryFilter?: string | null;
   onSelectCategory?: (category: string) => void;
+  limit?: number;
 }
 
 export default function BestSellersSection({
   activeCategoryFilter = CATEGORIES[0]?.name || "Pulses",
   onSelectCategory,
+  limit = 8,
 }: BestSellersSectionProps) {
   const { addToCart, toggleWishlist, isInWishlist, setIsCartOpen } = useCart();
 
@@ -48,9 +50,11 @@ export default function BestSellersSection({
     (p) => p.category.toLowerCase() === currentCategory.toLowerCase()
   );
 
-  // If filtered products is empty (just in case), fall back to all products
+  // Slice to limit so home page stays crisp and not overwhelming
   const displayProducts =
-    filteredProducts.length > 0 ? filteredProducts : ALL_PRODUCTS.slice(0, 4);
+    filteredProducts.length > 0
+      ? filteredProducts.slice(0, limit)
+      : ALL_PRODUCTS.slice(0, limit);
 
   return (
     <section id="best-sellers" className="py-8 sm:py-12 bg-white">
@@ -241,6 +245,31 @@ export default function BestSellersSection({
               </div>
             );
           })}
+        </div>
+
+        {/* View All In Category & Full Catalogue Button */}
+        <div className="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-gray-500 text-center sm:text-left">
+            Showing <strong className="text-gray-900">{displayProducts.length}</strong> of{" "}
+            <strong className="text-gray-900">{filteredProducts.length}</strong> items in{" "}
+            <span className="font-semibold text-[#044a27]">{currentCategory}</span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link
+              href={`/products?category=${encodeURIComponent(currentCategory)}`}
+              className="inline-flex items-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-all shadow-xs"
+            >
+              <span>View All {filteredProducts.length} {currentCategory} Items</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-1.5 bg-[#f4f8f5] hover:bg-[#e4efe7] text-[#044a27] text-xs font-bold px-4 py-2.5 rounded-xl transition-colors border border-[#cbe1d3]"
+            >
+              <span>Full 192 Catalogue</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import BrandLogo from "./BrandLogo";
 import { Phone, Mail, MapPin, ChevronRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { CATEGORIES } from "@/data/mockData";
 
 export default function Footer() {
-  const { setIsTrackModalOpen, showToast } = useCart();
+  const { showToast } = useCart();
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -28,12 +30,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-7 lg:gap-6">
           {/* Col 1: Brand Info (3 cols) */}
           <div className="sm:col-span-2 lg:col-span-3 space-y-3.5">
-            <BrandLogo variant="light" />
+            <Link href="/" className="inline-block">
+              <BrandLogo variant="light" />
+            </Link>
 
             <p className="text-xs text-[#a9cfbe] leading-relaxed pt-1">
-              We bring you premium quality Rice, Pulses, Dry Fruits, Millets,
-              Spices and more, sourced from trusted farms and delivered with
-              purity and care to your table.
+              Bringing you 100% authentic, unpolished and lab-tested agro staples
+              sourced directly from trusted farmers. Preserving traditional Indian
+              nutrition without chemical compromise.
             </p>
 
             {/* Social Icons */}
@@ -140,42 +144,27 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 3: Our Site (2 cols) */}
+          {/* Col 3: Quick Navigation (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="font-serif font-bold text-xs sm:text-sm text-white tracking-wide border-b border-[#0b4d2c] pb-2">
-              Our Site
+              Explore Pages
             </h4>
             <ul className="space-y-1 text-xs text-[#a9cfbe]">
               {[
-                { name: "About Us", href: "#" },
-                { name: "Certifications", href: "#certifications" },
-                {
-                  name: "Track Order",
-                  action: () => setIsTrackModalOpen(true),
-                },
-                { name: "FAQs", href: "#" },
-                { name: "Lab Report", href: "#certifications" },
-                { name: "Blogs", href: "#blogs" },
-                { name: "Gallery", href: "#" },
+                { name: "Home", href: "/" },
+                { name: "All Products (192)", href: "/products" },
+                { name: "Our Heritage & Standards", href: "/about" },
+                { name: "Health & Nutrition Journal", href: "/blog" },
+                { name: "Contact & Wholesale Enquiries", href: "/contact" },
               ].map((link, idx) => (
                 <li key={idx}>
-                  {link.action ? (
-                    <button
-                      onClick={link.action}
-                      className="flex items-center gap-1 hover:text-white transition-colors group cursor-pointer text-left"
-                    >
-                      <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
-                      <span>{link.name}</span>
-                    </button>
-                  ) : (
-                    <a
-                      href={link.href}
-                      className="flex items-center gap-1 hover:text-white transition-colors group"
-                    >
-                      <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
-                      <span>{link.name}</span>
-                    </a>
-                  )}
+                  <Link
+                    href={link.href}
+                    className="flex items-center gap-1 hover:text-white transition-colors group"
+                  >
+                    <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
+                    <span>{link.name}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -187,23 +176,15 @@ export default function Footer() {
               Categories
             </h4>
             <ul className="space-y-1 text-xs text-[#a9cfbe] uppercase font-semibold">
-              {[
-                "PULSES",
-                "MILLET",
-                "RICE & WHEAT",
-                "MASALA",
-                "DRY FRUITS",
-                "SEEDS",
-                "OTHER ITEMS",
-              ].map((cat, idx) => (
-                <li key={idx}>
-                  <a
-                    href="#categories"
+              {CATEGORIES.map((cat) => (
+                <li key={cat.id}>
+                  <Link
+                    href={`/products?category=${encodeURIComponent(cat.name)}`}
                     className="flex items-center gap-1 hover:text-white transition-colors group"
                   >
                     <ChevronRight className="w-2.5 h-2.5 text-[#58cf8b] group-hover:translate-x-0.5 transition-transform" />
-                    <span>{cat}</span>
-                  </a>
+                    <span>{cat.name}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -216,7 +197,7 @@ export default function Footer() {
             </h4>
 
             <p className="text-xs text-[#a9cfbe] leading-relaxed">
-              Get latest updates, new arrivals and special offers.
+              Get harvest notifications, seasonal discounts and wellness guides.
             </p>
 
             {/* Newsletter Form */}
@@ -239,7 +220,7 @@ export default function Footer() {
             {/* Secure Payments Row */}
             <div className="pt-1">
               <div className="text-[10px] font-semibold text-[#81bba0] mb-1.5 uppercase tracking-wider">
-                Secure Payments
+                Certified Secure
               </div>
               <div className="flex items-center gap-1.5 flex-wrap">
                 <div className="bg-white rounded px-1.5 py-0.5 text-[9px] font-black text-[#1a1f71] tracking-tighter">
@@ -267,29 +248,28 @@ export default function Footer() {
       {/* Sub-footer Bar */}
       <div className="border-t border-[#064223] py-3.5 text-[10.5px] sm:text-[11px] text-[#86b59e] px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5 text-center md:text-left">
-          <div>© 2026 Your Brand. All Rights Reserved.</div>
+          <div>© 2026 Your Brand Agro. All Rights Reserved.</div>
 
           <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy Policy
-            </a>
+            <Link href="/about" className="hover:text-white transition-colors">
+              About Us
+            </Link>
             <span>|</span>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms & Conditions
-            </a>
+            <Link href="/products" className="hover:text-white transition-colors">
+              Products
+            </Link>
             <span>|</span>
-            <a href="#" className="hover:text-white transition-colors">
-              Shipping Policy
-            </a>
+            <Link href="/blog" className="hover:text-white transition-colors">
+              Health Journal
+            </Link>
             <span>|</span>
-            <a href="#" className="hover:text-white transition-colors">
-              Return Policy
-            </a>
+            <Link href="/contact" className="hover:text-white transition-colors">
+              Contact
+            </Link>
           </div>
 
           <div>
-            Designed with <span className="text-red-400">❤️</span> for Better
-            Food & A Healthier Life.
+            100% Pure, Unadulterated & Lab-Certified Staples
           </div>
         </div>
       </div>

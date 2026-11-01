@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function PromoBanners() {
@@ -35,13 +36,13 @@ export default function PromoBanners() {
               </p>
 
               <div className="pt-1 sm:pt-2">
-                <a
-                  href="#best-sellers"
+                <Link
+                  href="/products?category=Rice%20%26%20Wheat"
                   className="inline-flex items-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-2.5 rounded-lg transition-all shadow-xs"
                 >
-                  <span>Explore Rice</span>
+                  <span>Explore Rice (24)</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -73,13 +74,13 @@ export default function PromoBanners() {
               </p>
 
               <div className="pt-1 sm:pt-2">
-                <a
-                  href="#best-sellers"
+                <Link
+                  href="/products?category=Pulses"
                   className="inline-flex items-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white text-[11px] sm:text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-2.5 rounded-lg transition-all shadow-xs"
                 >
-                  <span>Explore Collection</span>
+                  <span>Explore Pulses (24)</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

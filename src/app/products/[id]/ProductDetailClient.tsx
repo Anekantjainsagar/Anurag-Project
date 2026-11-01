@@ -11,7 +11,6 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
 import LoginModal from "@/components/LoginModal";
-import TrackOrderModal from "@/components/TrackOrderModal";
 import ToastNotification from "@/components/ToastNotification";
 import {
   Star,
@@ -90,7 +89,14 @@ function ProductDetailInner({ product }: { product: Product }) {
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
           <Link
-            href="/#categories"
+            href="/products"
+            className="hover:text-[#044a27] transition-colors"
+          >
+            All Products
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+          <Link
+            href={`/products?category=${encodeURIComponent(product.category)}`}
             className="hover:text-[#044a27] transition-colors"
           >
             {product.category}
@@ -620,7 +626,6 @@ function ProductDetailInner({ product }: { product: Product }) {
       <CartDrawer />
       <BulkEnquiryModal />
       <LoginModal />
-      <TrackOrderModal />
       <ToastNotification />
     </div>
   );

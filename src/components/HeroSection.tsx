@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   ArrowRight,
   Leaf,
@@ -226,13 +227,13 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
-              <a
-                href="#best-sellers"
+              <Link
+                href="/products"
                 className="inline-flex items-center justify-center gap-2 bg-[#044a27] hover:bg-[#03391e] text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer hover:-translate-y-0.5"
               >
-                <span>SHOP PRODUCTS</span>
+                <span>EXPLORE ALL 192 PRODUCTS</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
 
               <button
                 onClick={() => setIsBulkModalOpen(true)}

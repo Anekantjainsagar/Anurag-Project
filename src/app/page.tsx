@@ -9,12 +9,11 @@ import CategorySection from "@/components/CategorySection";
 import BestSellersSection from "@/components/BestSellersSection";
 import PromoBanners from "@/components/PromoBanners";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import BlogSection from "@/components/BlogSection";
+import BlogHighlights from "@/components/BlogHighlights";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
 import LoginModal from "@/components/LoginModal";
-import TrackOrderModal from "@/components/TrackOrderModal";
 import ToastNotification from "@/components/ToastNotification";
 import { CATEGORIES } from "@/data/mockData";
 
@@ -33,45 +32,45 @@ function MainContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
       {/* 1. Top Announcement Bar */}
       <TopBar />
 
-      {/* 2. Main Sticky Navbar */}
+      {/* 2. Main Sticky Multi-Page Navbar */}
       <Navbar />
 
-      {/* 3. Hero Carousel Section */}
+      {/* 3. Hero Carousel Section (Auto-scrolling, Smooth Transitions) */}
       <HeroSection />
 
-      {/* 4. Shop by Category (First category selected by default) */}
+      {/* 4. Shop by Category (8 Categories Grid with First Selected by Default) */}
       <CategorySection
         onSelectCategory={handleSelectCategory}
         selectedCategory={selectedCategory}
       />
 
-      {/* 5. Our Best Sellers & Category Catalog */}
+      {/* 5. Our Best Sellers & Category Highlights (Top 8 Curated with Link to Full Catalogue) */}
       <BestSellersSection
         activeCategoryFilter={selectedCategory}
         onSelectCategory={handleSelectCategory}
+        limit={8}
       />
 
       {/* 6. Dual Promo Banners */}
       <PromoBanners />
 
-      {/* 7. Why Choose Our Products */}
+      {/* 7. Why Choose Our Products (6 Trust Pillars) */}
       <WhyChooseUs />
 
-      {/* 8. From Our Blog */}
-      <BlogSection />
+      {/* 8. Journal Highlights (Clean 3-Article Preview Linking to /blog) */}
+      <BlogHighlights />
 
-      {/* 9. Comprehensive Footer */}
+      {/* 9. Comprehensive Multi-Page Footer */}
       <Footer />
 
       {/* Global Interactive Drawers & Modals */}
       <CartDrawer />
       <BulkEnquiryModal />
       <LoginModal />
-      <TrackOrderModal />
       <ToastNotification />
     </div>
   );
