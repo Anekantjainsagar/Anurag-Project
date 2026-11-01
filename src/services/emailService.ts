@@ -84,7 +84,8 @@ export async function sendOrderEmails(order: OrderPayload): Promise<EmailSendRes
     subtotal: `₹${order.subtotal.toFixed(2)}`,
     shipping_fee: order.shippingFee === 0 ? "FREE Standard Delivery" : `₹${order.shippingFee.toFixed(2)}`,
     total_amount: `₹${order.totalAmount.toFixed(2)}`,
-    payment_method: order.paymentMethod,
+    payment_method: order.paymentMethod || "Pay on Delivery / COD (Vendor Contact)",
+    payment_status: "Pay on Delivery / COD (Zero advance payment required)",
     support_phone: "+91-98765 43210",
     support_email: "support@yourbrand.com",
     brand_name: "YOUR BRAND",
@@ -103,7 +104,8 @@ export async function sendOrderEmails(order: OrderPayload): Promise<EmailSendRes
     delivery_address: fullAddress,
     order_items: formattedItemsList,
     total_amount: `₹${order.totalAmount.toFixed(2)}`,
-    payment_method: order.paymentMethod,
+    payment_method: order.paymentMethod || "Pay on Delivery / COD (Vendor Contact)",
+    payment_action: "Contact customer via phone/WhatsApp to verify dispatch and collect payment upon delivery",
     order_notes: order.customer.orderNotes || "None",
   };
 

@@ -105,8 +105,25 @@ function OrderSuccessContent() {
               </div>
               <div className="h-6 w-px bg-gray-200"></div>
               <div>
-                <span className="text-gray-400 block text-[10px] uppercase font-bold">Payment Method</span>
-                <strong className="text-gray-900">{paymentMethod}</strong>
+                <span className="text-gray-400 block text-[10px] uppercase font-bold">Payment Status</span>
+                <strong className="text-emerald-700 font-semibold">{paymentMethod || "Pay on Delivery / COD"}</strong>
+              </div>
+            </div>
+
+            {/* Vendor Contact Notice */}
+            <div className="p-4 rounded-2xl bg-[#edf7f1] border border-[#b8dfc7] text-left max-w-xl mx-auto flex items-start gap-3 mt-2 shadow-2xs">
+              <div className="w-9 h-9 rounded-xl bg-[#01722C] text-white flex items-center justify-center shrink-0 mt-0.5">
+                <Phone className="w-4 h-4" />
+              </div>
+              <div className="space-y-0.5 text-xs text-gray-700">
+                <div className="font-bold text-[#013816] text-sm">
+                  Vendor Verification & Payment Coordination
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                  Confirmation emails have been dispatched to both you and our vendor fulfillment team.
+                  Our representative will contact you via Phone / WhatsApp to verify delivery details and
+                  collect payment upon arrival (Cash or UPI on delivery).
+                </p>
               </div>
             </div>
           </div>

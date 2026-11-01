@@ -64,7 +64,7 @@ export default function CheckoutPage() {
     state: "Madhya Pradesh",
     pincode: "",
     orderNotes: "",
-    paymentMethod: "Cash on Delivery",
+    paymentMethod: "Pay on Delivery / COD (Vendor Contact)",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -496,95 +496,70 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                {/* 3. Payment Method Card */}
+                {/* 3. Payment & Order Confirmation Terms */}
                 <div className="bg-white p-6 sm:p-7 rounded-3xl border border-[#e4ebe6] shadow-2xs space-y-4">
-                  <div className="flex items-center gap-2.5 pb-3 border-b border-gray-100">
-                    <div className="w-8 h-8 rounded-full bg-[#01722C] text-white flex items-center justify-center font-bold text-xs">
-                      3
+                  <div className="flex items-center justify-between pb-3 border-b border-gray-100 flex-wrap gap-2">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-[#01722C] text-white flex items-center justify-center font-bold text-xs">
+                        3
+                      </div>
+                      <h3 className="font-serif text-lg font-bold text-gray-900">
+                        Order Confirmation & Payment
+                      </h3>
                     </div>
-                    <h3 className="font-serif text-lg font-bold text-gray-900">
-                      Payment Options
-                    </h3>
+                    <span className="text-[11px] font-bold text-[#01722C] bg-[#edf7f1] px-3 py-1 rounded-full border border-[#b8dfc7]">
+                      Zero Upfront Payment Required
+                    </span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <label
-                      className={`flex flex-col p-4 rounded-2xl border cursor-pointer transition-all ${
-                        formData.paymentMethod === "Cash on Delivery"
-                          ? "bg-[#edf7f1] border-[#01722C] shadow-xs"
-                          : "bg-[#faf9f5] border-[#d8dfda] hover:border-gray-400"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
+                  {/* Payment Terms Information Card */}
+                  <div className="p-5 rounded-2xl bg-[#fcfaf5] border border-[#e8e2d4] space-y-4">
+                    <div className="flex items-start gap-3.5">
+                      <div className="w-10 h-10 rounded-xl bg-[#edf7f1] text-[#01722C] flex items-center justify-center shrink-0 mt-0.5">
                         <Banknote className="w-5 h-5 text-[#01722C]" />
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          value="Cash on Delivery"
-                          checked={formData.paymentMethod === "Cash on Delivery"}
-                          onChange={handleInputChange}
-                          className="accent-[#01722C]"
-                        />
                       </div>
-                      <span className="font-bold text-xs text-gray-900">
-                        Cash on Delivery (COD)
-                      </span>
-                      <span className="text-[10px] text-gray-500 mt-0.5">
-                        Pay cash or scan UPI upon doorstep arrival
-                      </span>
-                    </label>
+                      <div className="space-y-1">
+                        <div className="font-serif font-bold text-sm sm:text-base text-gray-900">
+                          Pay on Delivery / COD (Vendor Contact Mode)
+                        </div>
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          You do not need to make any payment right now. When you click <strong>&quot;Confirm Order&quot;</strong>,
+                          our automated system immediately dispatches detailed emails to you and our vendor fulfillment desk.
+                        </p>
+                      </div>
+                    </div>
 
-                    <label
-                      className={`flex flex-col p-4 rounded-2xl border cursor-pointer transition-all ${
-                        formData.paymentMethod === "Direct UPI Transfer"
-                          ? "bg-[#edf7f1] border-[#01722C] shadow-xs"
-                          : "bg-[#faf9f5] border-[#d8dfda] hover:border-gray-400"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <QrCode className="w-5 h-5 text-[#01722C]" />
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          value="Direct UPI Transfer"
-                          checked={formData.paymentMethod === "Direct UPI Transfer"}
-                          onChange={handleInputChange}
-                          className="accent-[#01722C]"
-                        />
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+                      <div className="p-3.5 bg-white rounded-xl border border-[#e8e2d4] space-y-1.5 shadow-2xs">
+                        <div className="flex items-center gap-1.5 text-[#01722C] font-bold">
+                          <Mail className="w-4 h-4" />
+                          <span>1. Email Notification</span>
+                        </div>
+                        <p className="text-[11px] text-gray-500 leading-snug">
+                          Itemized order invoice sent immediately to customer and vendor.
+                        </p>
                       </div>
-                      <span className="font-bold text-xs text-gray-900">
-                        Direct UPI / QR
-                      </span>
-                      <span className="text-[10px] text-gray-500 mt-0.5">
-                        GPay, PhonePe, Paytm, BHIM instant transfer
-                      </span>
-                    </label>
 
-                    <label
-                      className={`flex flex-col p-4 rounded-2xl border cursor-pointer transition-all ${
-                        formData.paymentMethod === "Online Payment"
-                          ? "bg-[#edf7f1] border-[#01722C] shadow-xs"
-                          : "bg-[#faf9f5] border-[#d8dfda] hover:border-gray-400"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <CreditCard className="w-5 h-5 text-[#01722C]" />
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          value="Online Payment"
-                          checked={formData.paymentMethod === "Online Payment"}
-                          onChange={handleInputChange}
-                          className="accent-[#01722C]"
-                        />
+                      <div className="p-3.5 bg-white rounded-xl border border-[#e8e2d4] space-y-1.5 shadow-2xs">
+                        <div className="flex items-center gap-1.5 text-[#01722C] font-bold">
+                          <Phone className="w-4 h-4" />
+                          <span>2. Vendor Contact</span>
+                        </div>
+                        <p className="text-[11px] text-gray-500 leading-snug">
+                          Our dispatch team will call or WhatsApp you to confirm delivery.
+                        </p>
                       </div>
-                      <span className="font-bold text-xs text-gray-900">
-                        Card / Netbanking
-                      </span>
-                      <span className="text-[10px] text-gray-500 mt-0.5">
-                        Debit/Credit card, Netbanking gateway
-                      </span>
-                    </label>
+
+                      <div className="p-3.5 bg-white rounded-xl border border-[#e8e2d4] space-y-1.5 shadow-2xs">
+                        <div className="flex items-center gap-1.5 text-[#01722C] font-bold">
+                          <Truck className="w-4 h-4" />
+                          <span>3. Pay on Arrival</span>
+                        </div>
+                        <p className="text-[11px] text-gray-500 leading-snug">
+                          Inspect your organic package and pay cash or UPI at your doorstep.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -759,11 +734,11 @@ export default function CheckoutPage() {
                     className="w-full bg-[#01722C] hover:bg-[#0b542c] active:scale-98 text-white font-bold text-xs uppercase tracking-wider py-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                   >
                     {isSubmitting ? (
-                      <span>DISPATCHING ORDER & CONFIRMING...</span>
+                      <span>DISPATCHING ORDER & NOTIFYING VENDOR...</span>
                     ) : (
                       <>
-                        <Lock className="w-4 h-4" />
-                        <span>PLACE CONFIRMED ORDER (₹{grandTotal.toFixed(2)})</span>
+                        <CheckCircle2 className="w-4 h-4" />
+                        <span>PLACE CONFIRMED ORDER (PAY ₹{grandTotal.toFixed(2)} ON DELIVERY)</span>
                       </>
                     )}
                   </button>
@@ -772,15 +747,15 @@ export default function CheckoutPage() {
                   <div className="space-y-1.5 pt-2 text-[11px] text-gray-500 border-t border-gray-100">
                     <div className="flex items-center gap-1.5 text-gray-700 font-medium">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#01722C]" />
-                      <span>Confirmation email dispatched immediately to customer & store</span>
+                      <span>Zero advance payment needed today • Pay on delivery</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-gray-700 font-medium">
-                      <Truck className="w-3.5 h-3.5 text-[#01722C]" />
-                      <span>Dispatch within 24 hours from central warehouse</span>
+                      <Mail className="w-3.5 h-3.5 text-[#01722C]" />
+                      <span>Confirmation email dispatched immediately to customer & vendor</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-gray-700 font-medium">
                       <Phone className="w-3.5 h-3.5 text-[#01722C]" />
-                      <span>Helpline: +91-98765 43210 (9 AM - 8 PM IST)</span>
+                      <span>Vendor desk will contact you to verify delivery: +91-98765 43210</span>
                     </div>
                   </div>
                 </div>
