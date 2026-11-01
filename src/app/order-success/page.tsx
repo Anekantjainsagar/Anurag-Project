@@ -157,6 +157,12 @@ function OrderSuccessContent() {
                   <span>Subtotal</span>
                   <span className="font-bold text-gray-900">₹{order.subtotal.toFixed(2)}</span>
                 </div>
+                {order.discount && order.discount > 0 && (
+                  <div className="flex justify-between text-emerald-700 font-bold">
+                    <span>Coupon Discount {order.couponCode ? `(${order.couponCode})` : ""}</span>
+                    <span>-₹{order.discount.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <span>Shipping Fee</span>
                   <span>

@@ -9,6 +9,7 @@ import TopBar from "@/components/TopBar";
 import Footer from "@/components/Footer";
 import ToastNotification from "@/components/ToastNotification";
 import { sendOrderEmails, OrderPayload } from "@/services/emailService";
+import { isCouponRedeemed, markCouponAsRedeemed } from "@/utils/cookieUtils";
 import {
   ShieldCheck,
   Truck,
@@ -83,6 +84,11 @@ export default function CheckoutPage() {
           saved.toUpperCase() === "WELCOME10" ||
           saved.toUpperCase() === "ORGANIC10")
       ) {
+        // If this coupon was already redeemed on this browser's cookies, prevent auto-applying
+        if (isCouponRedeemed(saved)) {
+          localStorage.removeItem("yourbrand_active_coupon");
+          return null;
+        }
         return {
           code: saved.toUpperCase(),
           discountPercent: 10,
@@ -108,6 +114,12 @@ export default function CheckoutPage() {
     const code = (codeToApply || couponInput).trim().toUpperCase();
     if (!code) {
       showToast("Please enter a coupon code");
+      return;
+    }
+
+    // Cookie Differentiator: Check if this browser has already redeemed this code
+    if (isCouponRedeemed(code)) {
+      showToast(`Coupon "${code}" has already been redeemed on this browser. It is valid for first-time orders only.`);
       return;
     }
 
@@ -200,6 +212,8 @@ export default function CheckoutPage() {
         total: item.price * item.quantity,
       })),
       subtotal: cartTotal,
+      discount: discountAmount,
+      couponCode: appliedCoupon?.code,
       shippingFee,
       totalAmount: grandTotal,
       paymentMethod: formData.paymentMethod,
@@ -212,6 +226,16 @@ export default function CheckoutPage() {
       // Save active order details in sessionStorage for the Success page receipt
       if (typeof window !== "undefined") {
         sessionStorage.setItem("rj_last_order", JSON.stringify(orderPayload));
+        try {
+          localStorage.removeItem("yourbrand_active_coupon");
+        } catch {
+          // ignore
+        }
+      }
+
+      // Mark the coupon as permanently redeemed in the browser's cookies (differentiator)
+      if (appliedCoupon) {
+        markCouponAsRedeemed(appliedCoupon.code);
       }
 
       // Clear the shopping cart
@@ -609,6 +633,80 @@ export default function CheckoutPage() {
                     ))}
                   </div>
 
+                  {/* Coupon Code Section */}
+                  <div className="pt-3 border-t border-gray-100 space-y-2">
+                    <div className="text-xs font-bold text-gray-700 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <Tag className="w-3.5 h-3.5 text-[#01722C]" />
+                        <span>Have a Promo / Coupon Code?</span>
+                      </span>
+                      {appliedCoupon && (
+                        <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                          10% OFF APPLIED
+                        </span>
+                      )}
+                    </div>
+
+                    {appliedCoupon ? (
+                      <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl text-xs">
+                        <div className="flex items-center gap-2">
+                          <Check className="w-4 h-4 text-emerald-700" />
+                          <span className="font-bold text-emerald-900">
+                            {appliedCoupon.code}
+                          </span>
+                          <span className="text-emerald-700 font-medium">
+                            (-10% • saves ₹{discountAmount.toFixed(2)})
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleRemoveCoupon}
+                          className="text-xs text-rose-600 hover:text-rose-800 font-bold cursor-pointer"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-1.5">
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            placeholder="e.g. HARVEST10"
+                            value={couponInput}
+                            onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
+                            className="flex-1 bg-[#faf9f5] border border-[#d8dfda] text-xs rounded-xl px-3 py-2 uppercase font-mono tracking-wider focus:outline-none focus:border-[#01722C] focus:bg-white"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleApplyCoupon()}
+                            className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold px-4 py-2 rounded-xl transition-all cursor-pointer shrink-0 active:scale-95"
+                          >
+                            Apply
+                          </button>
+                        </div>
+
+                        {/* Quick Tap Helper */}
+                        {isCouponRedeemed("HARVEST10") ? (
+                          <div className="flex items-center gap-1.5 text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded-lg border border-gray-200">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                            <span>Welcome coupon HARVEST10 has already been used on this browser</span>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
+                            <span>First order?</span>
+                            <button
+                              type="button"
+                              onClick={() => handleApplyCoupon("HARVEST10")}
+                              className="text-[#01722C] font-bold underline hover:text-[#0b542c] cursor-pointer"
+                            >
+                              Apply HARVEST10 for 10% off
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
                   {/* Calculations */}
                   <div className="pt-3 border-t border-gray-100 space-y-2 text-xs text-gray-600">
                     <div className="flex justify-between">
@@ -622,6 +720,16 @@ export default function CheckoutPage() {
                       <div className="flex justify-between text-emerald-700 font-bold">
                         <span>Organic Savings</span>
                         <span>-₹{totalSavings.toFixed(2)}</span>
+                      </div>
+                    )}
+
+                    {discountAmount > 0 && (
+                      <div className="flex justify-between text-emerald-700 font-bold bg-emerald-50/60 p-1.5 rounded-lg border border-emerald-100">
+                        <span className="flex items-center gap-1">
+                          <Tag className="w-3 h-3" />
+                          <span>Coupon Discount ({appliedCoupon?.code} - 10%)</span>
+                        </span>
+                        <span>-₹{discountAmount.toFixed(2)}</span>
                       </div>
                     )}
 

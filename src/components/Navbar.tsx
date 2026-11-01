@@ -24,6 +24,7 @@ export default function Navbar() {
   const router = useRouter();
   const { cartCount, setIsCartOpen, wishlist } = useCart();
 
+  const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
@@ -32,6 +33,10 @@ export default function Navbar() {
 
   const searchRef = useRef<HTMLDivElement>(null);
   const categoryRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close dropdowns on outside click
   useEffect(() => {
@@ -259,7 +264,7 @@ export default function Navbar() {
             aria-label="Wishlist"
           >
             <Heart className="w-5 h-5" />
-            {wishlist.length > 0 && (
+            {mounted && wishlist.length > 0 && (
               <span className="absolute top-0.5 right-0.5 bg-[#e11d48] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 {wishlist.length}
               </span>
@@ -275,14 +280,14 @@ export default function Navbar() {
           >
             <div className="relative">
               <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
-              {cartCount > 0 && (
+              {mounted && cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-[#facc15] text-[#014d1e] text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
                   {cartCount}
                 </span>
               )}
             </div>
             <span className="text-xs sm:text-sm font-bold hidden sm:inline">
-              Cart {cartCount > 0 && `(${cartCount})`}
+              Cart {mounted && cartCount > 0 && `(${cartCount})`}
             </span>
           </button>
 
@@ -372,7 +377,7 @@ export default function Navbar() {
                     <Heart className="w-3.5 h-3.5 text-[#e11d48]" />
                     <span>My Wishlist</span>
                   </span>
-                  {wishlist.length > 0 ? (
+                  {mounted && wishlist.length > 0 ? (
                     <span className="bg-[#e11d48] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                       {wishlist.length}
                     </span>

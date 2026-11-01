@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Mail, Sparkles, Check, ArrowRight, ShieldCheck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { isCouponRedeemed } from "@/utils/cookieUtils";
 
 export default function FarmClubNewsletter() {
   const { showToast } = useCart();
@@ -16,12 +17,17 @@ export default function FarmClubNewsletter() {
       return;
     }
     setIsSubmitted(true);
-    try {
-      localStorage.setItem("yourbrand_active_coupon", "HARVEST10");
-    } catch {
-      // ignore
+
+    if (isCouponRedeemed("HARVEST10")) {
+      showToast("Thank you for subscribing to our Farm Club!");
+    } else {
+      try {
+        localStorage.setItem("yourbrand_active_coupon", "HARVEST10");
+      } catch {
+        // ignore
+      }
+      showToast("Welcome! Coupon HARVEST10 activated for 10% off at checkout.");
     }
-    showToast("Welcome! Coupon HARVEST10 activated for 10% off at checkout.");
     setEmail("");
   };
 
@@ -49,10 +55,16 @@ export default function FarmClubNewsletter() {
             <div className="p-4 bg-white/10 border border-[#58cf8b]/40 rounded-2xl max-w-md mx-auto text-center space-y-1 animate-fade-in">
               <div className="flex items-center justify-center gap-2 text-sm font-bold text-[#7de0a8]">
                 <Check className="w-4 h-4" />
-                <span>Coupon Code Activated: HARVEST10</span>
+                <span>
+                  {isCouponRedeemed("HARVEST10")
+                    ? "Welcome to the Farm Club Community!"
+                    : "Coupon Code Activated: HARVEST10"}
+                </span>
               </div>
               <p className="text-xs text-[#c3decb]">
-                Apply at checkout for 10% discount on your order.
+                {isCouponRedeemed("HARVEST10")
+                  ? "You will receive exclusive seasonal harvest updates and recipes in your inbox."
+                  : "Apply at checkout for 10% discount on your order."}
               </p>
             </div>
           ) : (

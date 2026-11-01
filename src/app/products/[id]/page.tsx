@@ -13,7 +13,7 @@ interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+async function ProductContent({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = ALL_PRODUCTS.find((p) => p.id === id);
 
@@ -21,15 +21,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
+  return <ProductDetailClient product={product} />;
+}
+
+export default function ProductPage({ params }: ProductPageProps) {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center bg-white text-gray-500 text-sm">
+        <div className="min-h-screen flex items-center justify-center bg-[#faf8f4] text-gray-500 text-sm">
           Loading product details...
         </div>
       }
     >
-      <ProductDetailClient product={product} />
+      <ProductContent params={params} />
     </Suspense>
   );
 }
