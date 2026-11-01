@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, { useState, useMemo } from "react";
+import Link from "next/link";
 import { BLOG_POSTS } from "@/data/mockData";
 import { BlogPost } from "@/types";
 import { useCart } from "@/context/CartContext";
@@ -13,17 +14,14 @@ import {
   Sparkles,
   Share2,
   CheckCircle2,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   Search,
   ArrowUp,
-  LayoutGrid,
   Check,
   User,
   Tag,
   Leaf,
-  Loader2,
   Camera,
 } from "lucide-react";
 
@@ -39,17 +37,8 @@ function getAuthorRole(author?: string | { name: string; role: string }) {
 }
 
 // -------------------------------------------------------------
-// SUB-COMPONENT: Interactive Image Carousel for Blog Cards
+// SUB-COMPONENT: BlogImageCarousel (Interactive Photo Carousel)
 // -------------------------------------------------------------
-interface BlogImageCarouselProps {
-  images: string[];
-  title: string;
-  category?: string;
-  readTime: string;
-  badgeIndex?: number;
-  className?: string;
-}
-
 function BlogImageCarousel({
   images,
   title,
@@ -57,134 +46,136 @@ function BlogImageCarousel({
   readTime,
   badgeIndex,
   className = "",
-}: BlogImageCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const gallery = images.length > 0 ? images : ["/images/blog-basmati.jpg"];
+}: {
+  images: string[];
+  title: string;
+  category?: string;
+  readTime?: string;
+  badgeIndex?: number;
+  className?: string;
+}) {
+  const [currentIdx, setCurrentIdx] = useState(0);
 
-  const handleNext = (e: React.MouseEvent) => {
+  const prevImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % gallery.length);
+    setCurrentIdx((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const handlePrev = (e: React.MouseEvent) => {
+  const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
-  };
-
-  const handleSelectDot = (index: number, e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentIndex(index);
-  };
-
-  const handleImageClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    // Clicking image scrolls/cycles to the next image
-    setCurrentIndex((prev) => (prev + 1) % gallery.length);
+    setCurrentIdx((prev) => (prev + 1) % images.length);
   };
 
   return (
     <div
-      onClick={handleImageClick}
-      className={`group/carousel relative overflow-hidden bg-gray-900 select-none cursor-pointer ${className}`}
-      title="Click image to scroll to next photo"
+      className={`relative overflow-hidden bg-gray-900 group/carousel ${className}`}
     >
-      {/* Current Active Image with smooth cross-fade */}
-      <img
-        src={gallery[currentIndex]}
-        alt={`${title} - Photo ${currentIndex + 1}`}
-        className="w-full h-full object-cover transform transition-transform duration-700 group-hover/carousel:scale-105"
-        loading="lazy"
-      />
-
-      {/* Top Badges */}
-      <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-10">
-        <div className="flex items-center gap-1.5">
-          {badgeIndex !== undefined && (
-            <span className="bg-[#044a27] text-white text-[11px] font-bold w-6 h-6 rounded-full flex items-center justify-center shadow-md">
-              {badgeIndex}
-            </span>
-          )}
-          {category && (
-            <span className="bg-black/70 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-full shadow-sm">
-              {category}
-            </span>
-          )}
+      {/* Sliding Images */}
+      {images.map((img, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+            i === currentIdx ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+          }`}
+        >
+          <img
+            src={img}
+            alt={`${title} - photo ${i + 1}`}
+            className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/carousel:scale-105"
+            loading="lazy"
+          />
         </div>
+      ))}
 
-        {/* Multi-Image Counter Pill */}
-        {gallery.length > 1 && (
-          <span className="bg-black/65 backdrop-blur-xs text-white text-[10.5px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
-            <Camera className="w-3 h-3 text-[#facc15]" />
+      {/* Subtle Dark Gradient at Bottom & Top */}
+      <div className="absolute inset-0 bg-linear-to-t from-black/75 via-transparent to-black/30 z-20 pointer-events-none" />
+
+      {/* Top Left: Category Pill */}
+      {category && (
+        <span className="absolute top-3 left-3 z-30 bg-[#044a27]/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+          {category}
+        </span>
+      )}
+
+      {/* Top Right: Sequential Index or Camera Counter */}
+      <div className="absolute top-3 right-3 z-30 flex items-center gap-1.5">
+        {images.length > 1 && (
+          <span className="bg-black/60 backdrop-blur-xs text-white text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1">
+            <Camera className="w-2.5 h-2.5 text-[#facc15]" />
             <span>
-              {currentIndex + 1} / {gallery.length}
+              {currentIdx + 1}/{images.length}
             </span>
+          </span>
+        )}
+        {badgeIndex && (
+          <span className="bg-white/90 text-[#044a27] text-[10px] font-black px-2 py-0.5 rounded-full shadow-2xs font-mono">
+            #{badgeIndex}
           </span>
         )}
       </div>
 
-      {/* Bottom Read Time Pill */}
-      <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
-        <span className="bg-white/95 backdrop-blur-xs text-gray-800 text-[11px] font-semibold px-2.5 py-0.5 rounded-md flex items-center gap-1 shadow-xs">
-          <Clock className="w-3 h-3 text-[#044a27]" />
-          {readTime}
-        </span>
-      </div>
-
-      {/* Carousel Navigation Arrows (Always visible on mobile, hover on desktop) */}
-      {gallery.length > 1 && (
+      {/* Left / Right Carousel Arrow Buttons (Visible on hover or mobile) */}
+      {images.length > 1 && (
         <>
           <button
-            onClick={handlePrev}
-            aria-label="Previous photo"
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center opacity-80 md:opacity-0 group-hover/carousel:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-108"
+            onClick={prevImage}
+            aria-label="Previous article image"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-7 h-7 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center opacity-80 sm:opacity-0 group-hover/carousel:opacity-100 transition-opacity cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
-            onClick={handleNext}
-            aria-label="Next photo"
-            className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center opacity-80 md:opacity-0 group-hover/carousel:opacity-100 transition-all z-20 cursor-pointer shadow-md hover:scale-108"
+            onClick={nextImage}
+            aria-label="Next article image"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-7 h-7 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center opacity-80 sm:opacity-0 group-hover/carousel:opacity-100 transition-opacity cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
-
-          {/* Dot Indicators */}
-          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 bg-black/40 backdrop-blur-xs px-2 py-1 rounded-full pointer-events-auto">
-            {gallery.map((_, dotIdx) => (
-              <button
-                key={dotIdx}
-                onClick={(e) => handleSelectDot(dotIdx, e)}
-                aria-label={`Jump to slide ${dotIdx + 1}`}
-                className={`transition-all rounded-full cursor-pointer ${
-                  currentIndex === dotIdx
-                    ? "w-4 h-1.5 bg-[#facc15]"
-                    : "w-1.5 h-1.5 bg-white/60 hover:bg-white"
-                }`}
-              />
-            ))}
-          </div>
         </>
+      )}
+
+      {/* Bottom Floating Bar with Read Time */}
+      {readTime && (
+        <div className="absolute bottom-2.5 right-3 z-30 flex items-center gap-1 text-[11px] font-semibold text-white/90 bg-black/40 backdrop-blur-xs px-2 py-0.5 rounded-md">
+          <Clock className="w-3 h-3 text-[#facc15]" />
+          <span>{readTime}</span>
+        </div>
+      )}
+
+      {/* Bottom Carousel Dot Indicators */}
+      {images.length > 1 && (
+        <div className="absolute bottom-2.5 left-3 z-30 flex items-center gap-1">
+          {images.map((_, dotIdx) => (
+            <button
+              key={dotIdx}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIdx(dotIdx);
+              }}
+              aria-label={`Jump to image ${dotIdx + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                dotIdx === currentIdx
+                  ? "w-4 bg-[#facc15]"
+                  : "w-1.5 bg-white/60 hover:bg-white"
+              }`}
+            />
+          ))}
+        </div>
       )}
     </div>
   );
 }
 
 // -------------------------------------------------------------
-// MAIN COMPONENT: BlogSection
+// MAIN COMPONENT: BlogSection (Shows ALL blogs by default)
 // -------------------------------------------------------------
 export default function BlogSection() {
   const { showToast } = useCart();
   const [activeBlog, setActiveBlog] = useState<BlogPost | null>(null);
   const [modalImageIndex, setModalImageIndex] = useState(0);
-  const [viewMode, setViewMode] = useState<"featured" | "all">("featured");
-  const [visibleCount, setVisibleCount] = useState<number>(5);
-  const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
-
-  const sentinelRef = useRef<HTMLDivElement | null>(null);
-  const sectionRef = useRef<HTMLElement | null>(null);
 
   // Extract unique categories for filter pills
   const categories = useMemo(() => {
@@ -212,533 +203,291 @@ export default function BlogSection() {
     });
   }, [selectedCategory, searchQuery]);
 
-  // Blogs currently visible in "one by one" feed
-  const displayedBlogs = useMemo(() => {
-    return filteredBlogs.slice(0, visibleCount);
-  }, [filteredBlogs, visibleCount]);
-
-  const hasMore = visibleCount < filteredBlogs.length;
-
-  // Load more handler
-  const loadMore = useCallback(() => {
-    if (isLoadingMore || !hasMore) return;
-    setIsLoadingMore(true);
-    setTimeout(() => {
-      setVisibleCount((prev) => Math.min(prev + 3, filteredBlogs.length));
-      setIsLoadingMore(false);
-    }, 450);
-  }, [isLoadingMore, hasMore, filteredBlogs.length]);
-
-  // Infinite scroll observer on sentinel
-  useEffect(() => {
-    if (viewMode !== "all" || !hasMore) return;
-
-    const currentSentinel = sentinelRef.current;
-    if (!currentSentinel) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const first = entries[0];
-        if (first.isIntersecting && !isLoadingMore) {
-          loadMore();
-        }
-      },
-      {
-        root: null,
-        rootMargin: "200px",
-        threshold: 0.1,
-      }
-    );
-
-    observer.observe(currentSentinel);
-
-    return () => {
-      if (currentSentinel) observer.unobserve(currentSentinel);
-      observer.disconnect();
-    };
-  }, [viewMode, hasMore, isLoadingMore, loadMore]);
-
-  // Fallback scroll listener for smooth loading
-  useEffect(() => {
-    if (viewMode !== "all" || !hasMore) return;
-
-    const handleScroll = () => {
-      if (isLoadingMore) return;
-      const scrollPosition = window.innerHeight + window.scrollY;
-      const documentHeight = document.documentElement.offsetHeight;
-      if (documentHeight - scrollPosition < 300) {
-        loadMore();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [viewMode, hasMore, isLoadingMore, loadMore]);
-
-  // Handle switching to "All Blogs"
-  const handleViewAll = () => {
-    setViewMode("all");
-    setVisibleCount(5);
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  // Handle switching back to Featured
-  const handleBackToFeatured = () => {
-    setViewMode("featured");
-    setVisibleCount(5);
-    if (sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   // Open modal handler (resets image index)
   const handleOpenBlog = (blog: BlogPost) => {
     setActiveBlog(blog);
     setModalImageIndex(0);
   };
 
-  // Share article handler
-  const handleShare = (blog: BlogPost, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    const url = typeof window !== "undefined" ? window.location.href : "";
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(`${url}#${blog.id}`);
+  // Share link handler
+  const handleShare = (blog: BlogPost, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (typeof window !== "undefined") {
+      navigator.clipboard?.writeText(window.location.href);
       setCopiedId(blog.id);
-      showToast(`Link copied for "${blog.title.slice(0, 32)}..."`);
+      showToast("Article link copied to clipboard!");
       setTimeout(() => setCopiedId(null), 2500);
     }
   };
 
-  // Keyboard shortcut to close modal
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveBlog(null);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="blogs"
-      className="py-10 sm:py-16 bg-[#fcfaf5] border-t border-[#ede7d8] scroll-mt-14"
+      className="py-10 sm:py-14 bg-[#faf8f4] border-t border-[#f0ece1]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10 pb-6 border-b border-[#e7decb]">
+        {/* Section Header (Clean, Formal, Direct) */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-6 border-b border-[#e7decb]">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e8f3ec] text-[#044a27] text-xs font-bold tracking-wide uppercase mb-2">
               <Leaf className="w-3.5 h-3.5 text-[#044a27]" />
               <span>Healthy Living & Nutrition</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
-              {viewMode === "all"
-                ? "All Healthy Food & Wellness Articles"
-                : "From Our Healthy Living Blog"}
+              All Healthy Food & Wellness Articles
             </h2>
             <p className="text-gray-600 text-xs sm:text-sm mt-1 max-w-2xl">
-              {viewMode === "all"
-                ? "Browse our complete collection of 12 science-backed guides. Click images to scroll through photos, explore verified nutritional highlights, and discover farm purity."
-                : "Science-backed nutrition advice, traditional harvesting wisdom, and delicious recipes for a pure and vibrant life."}
+              Browse our complete collection of 12 science-backed guides. Click images to scroll through photos, explore verified nutritional highlights, and discover farm purity.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 self-start md:self-auto">
-            {viewMode === "featured" ? (
-              <button
-                onClick={handleViewAll}
-                className="inline-flex items-center gap-2 text-xs font-bold text-white bg-[#044a27] hover:bg-[#033b20] active:scale-95 px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer"
-              >
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>View All Blogs ({BLOG_POSTS.length})</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            ) : (
-              <button
-                onClick={handleBackToFeatured}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#044a27] bg-white hover:bg-[#e8f3ec] border border-[#cde1d6] px-4 py-2 rounded-full transition-all cursor-pointer"
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span>Back to Featured Grid</span>
-              </button>
-            )}
+          <div className="text-xs text-gray-500 font-medium">
+            Showing <strong className="text-[#044a27] font-bold">{filteredBlogs.length}</strong> of{" "}
+            <strong>{BLOG_POSTS.length}</strong> articles
           </div>
         </div>
 
-        {/* ------------------------------------------------------------- */}
-        {/* VIEW MODE 1: FEATURED GRID (Compact 4-Card View)             */}
-        {/* ------------------------------------------------------------- */}
-        {viewMode === "featured" && (
-          <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-              {BLOG_POSTS.slice(0, 4).map((post) => {
-                const postImages =
-                  post.images && post.images.length > 0
-                    ? post.images
-                    : [post.image];
-                return (
-                  <article
-                    key={post.id}
-                    onClick={() => handleOpenBlog(post)}
-                    className="group cursor-pointer bg-white border border-[#e4ebe6] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5"
-                  >
-                    {/* Multi-Image Interactive Carousel on card */}
-                    <BlogImageCarousel
-                      images={postImages}
-                      title={post.title}
-                      category={post.category}
-                      readTime={post.readTime}
-                      className="w-full aspect-16/10"
-                    />
-
-                    {/* Blog Details */}
-                    <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
-                      <div>
-                        <div className="flex items-center gap-1.5 text-[11px] text-gray-400 mb-1.5">
-                          <Calendar className="w-3 h-3 text-[#c29336]" />
-                          <span>{post.date}</span>
-                        </div>
-
-                        <h3 className="font-serif font-bold text-sm sm:text-base text-gray-900 group-hover:text-[#044a27] transition-colors leading-snug line-clamp-2">
-                          {post.title}
-                        </h3>
-
-                        <p className="text-gray-500 text-xs mt-2 line-clamp-2 leading-relaxed">
-                          {post.summary}
-                        </p>
-                      </div>
-
-                      <div className="pt-2 border-t border-gray-100 flex items-center justify-between text-xs">
-                        <span className="text-[11px] text-gray-500 font-medium">
-                          {getAuthorName(post.author)}
-                        </span>
-                        <span className="text-[#044a27] font-bold group-hover:underline flex items-center gap-1">
-                          Read Story{" "}
-                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
+        {/* Filter Pills & Live Search Bar */}
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#e4ebe6] shadow-xs mb-8 space-y-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search articles by topic (e.g. Basmati, Curcumin, Protein, GI)..."
+                className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-[#faf9f5] border border-[#d8e2dc] rounded-full focus:outline-hidden focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27] transition-all"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
 
-            {/* Quick banner to explore all 12 blogs */}
-            <div className="mt-8 p-4 sm:p-5 bg-linear-to-r from-[#043e23] to-[#065430] rounded-2xl text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                  <Sparkles className="w-5 h-5 text-[#facc15]" />
-                </div>
-                <div>
-                  <h4 className="font-serif font-bold text-sm sm:text-base">
-                    Want to explore more farm-fresh food insights?
-                  </h4>
-                  <p className="text-white/80 text-xs">
-                    We have 12 in-depth articles on pure grains, cold-pressed oils, unpolished dals, and spices.
-                  </p>
-                </div>
-              </div>
+            {/* Quick Reset Button if filtered */}
+            {(selectedCategory !== "All" || searchQuery) && (
               <button
-                onClick={handleViewAll}
-                className="shrink-0 bg-[#facc15] hover:bg-[#eab308] text-[#033b20] font-bold text-xs px-5 py-2.5 rounded-full transition-transform active:scale-95 shadow-sm cursor-pointer flex items-center gap-1.5"
+                onClick={() => {
+                  setSelectedCategory("All");
+                  setSearchQuery("");
+                }}
+                className="text-xs font-semibold text-[#044a27] hover:underline self-end sm:self-center cursor-pointer"
               >
-                <span>Browse All 12 Articles</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                Clear all filters
               </button>
-            </div>
+            )}
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all cursor-pointer text-xs ${
+                    isSelected
+                      ? "bg-[#044a27] text-white shadow-2xs"
+                      : "bg-[#f5f3ec] text-gray-600 hover:bg-[#e7e3d6]"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Empty Search Result */}
+        {filteredBlogs.length === 0 && (
+          <div className="bg-white rounded-2xl p-10 text-center border border-gray-100 my-6">
+            <BookOpen className="w-10 h-10 text-gray-300 mx-auto mb-2" />
+            <h3 className="font-serif font-bold text-base text-gray-800">
+              No articles found
+            </h3>
+            <p className="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
+              We couldn&apos;t find any articles matching &quot;{searchQuery}&quot;. Try selecting a different category or clearing your search.
+            </p>
+            <button
+              onClick={() => {
+                setSelectedCategory("All");
+                setSearchQuery("");
+              }}
+              className="mt-4 text-xs font-semibold text-[#044a27] underline cursor-pointer"
+            >
+              Reset all filters
+            </button>
           </div>
         )}
 
-        {/* ------------------------------------------------------------- */}
-        {/* VIEW MODE 2: ALL BLOGS "ONE BY ONE" FEED WITH SCROLL-TO-LOAD */}
-        {/* ------------------------------------------------------------- */}
-        {viewMode === "all" && (
-          <div>
-            {/* Filter Pills & Search Bar */}
-            <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#e4ebe6] shadow-xs mb-8 space-y-4">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                {/* Search Input */}
-                <div className="relative flex-1 max-w-md">
-                  <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value);
-                      setVisibleCount(5);
-                    }}
-                    placeholder="Search articles by topic (e.g. Basmati, Curcumin, Protein, GI)..."
-                    className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm bg-[#faf9f5] border border-[#d8e2dc] rounded-full focus:outline-hidden focus:border-[#044a27] focus:ring-1 focus:ring-[#044a27] transition-all"
+        {/* ALL BLOG ARTICLES LIST (All 12 Shown by Default!) */}
+        <div className="space-y-6">
+          {filteredBlogs.map((blog, idx) => {
+            const blogImages =
+              blog.images && blog.images.length > 0
+                ? blog.images
+                : [blog.image];
+
+            return (
+              <article
+                key={blog.id}
+                onClick={() => handleOpenBlog(blog)}
+                className="group cursor-pointer bg-white border border-[#e2eae4] hover:border-[#b8d6c5] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row hover:-translate-y-1"
+              >
+                {/* Left Column: Fixed Uniform Dimension Gallery Carousel */}
+                <div className="w-full md:w-[380px] lg:w-[420px] h-[240px] sm:h-[270px] md:h-auto md:min-h-[310px] shrink-0 relative overflow-hidden bg-gray-900">
+                  <BlogImageCarousel
+                    images={blogImages}
+                    title={blog.title}
+                    category={blog.category}
+                    readTime={blog.readTime}
+                    badgeIndex={idx + 1}
+                    className="w-full h-full"
                   />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery("")}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  )}
                 </div>
 
-                {/* Article Counter */}
-                <div className="text-xs text-gray-500 font-medium self-end sm:self-center">
-                  Showing{" "}
-                  <strong className="text-[#044a27]">
-                    {Math.min(displayedBlogs.length, filteredBlogs.length)}
-                  </strong>{" "}
-                  of <strong>{filteredBlogs.length}</strong> articles
-                </div>
-              </div>
-
-              {/* Category Pills */}
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none text-xs">
-                {categories.map((cat) => {
-                  const isSelected = selectedCategory === cat;
-                  return (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setSelectedCategory(cat);
-                        setVisibleCount(5);
-                      }}
-                      className={`whitespace-nowrap px-3.5 py-1.5 rounded-full font-medium transition-all cursor-pointer text-xs ${
-                        isSelected
-                          ? "bg-[#044a27] text-white shadow-2xs"
-                          : "bg-[#f5f3ec] text-gray-600 hover:bg-[#e7e3d6]"
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Empty Search Result */}
-            {filteredBlogs.length === 0 && (
-              <div className="bg-white rounded-2xl p-8 text-center border border-gray-100 my-6">
-                <BookOpen className="w-10 h-10 text-gray-300 mx-auto mb-2" />
-                <h3 className="font-serif font-bold text-base text-gray-800">
-                  No articles found
-                </h3>
-                <p className="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
-                  We couldn&apos;t find any articles matching &quot;{searchQuery}&quot;. Try selecting a different category or clearing your search.
-                </p>
-                <button
-                  onClick={() => {
-                    setSelectedCategory("All");
-                    setSearchQuery("");
-                  }}
-                  className="mt-4 text-xs font-semibold text-[#044a27] underline cursor-pointer"
-                >
-                  Reset all filters
-                </button>
-              </div>
-            )}
-
-            {/* ONE BY ONE LIST OF BLOG ARTICLES (Starts at 5, loads more on scroll) */}
-            <div className="space-y-6">
-              {displayedBlogs.map((blog, idx) => {
-                const blogImages =
-                  blog.images && blog.images.length > 0
-                    ? blog.images
-                    : [blog.image];
-
-                return (
-                  <article
-                    key={blog.id}
-                    onClick={() => handleOpenBlog(blog)}
-                    className="group cursor-pointer bg-white border border-[#e2eae4] hover:border-[#b8d6c5] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row hover:-translate-y-1"
-                  >
-                    {/* Left Column: Fixed Uniform Dimension Gallery Carousel (Strictly Equal Sizing!) */}
-                    <div className="w-full md:w-[380px] lg:w-[420px] h-[240px] sm:h-[270px] md:h-auto md:min-h-[310px] shrink-0 relative overflow-hidden bg-gray-900">
-                      <BlogImageCarousel
-                        images={blogImages}
-                        title={blog.title}
-                        category={blog.category}
-                        readTime={blog.readTime}
-                        badgeIndex={idx + 1}
-                        className="w-full h-full"
-                      />
+                {/* Right Column: Filled, Balanced Content with Verified Nutritional Highlights */}
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-3 min-w-0">
+                  <div>
+                    {/* Date & Author */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-1.5">
+                      <span className="flex items-center gap-1 text-[#c29336] font-medium">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {blog.date}
+                      </span>
+                      {blog.author && (
+                        <>
+                          <span>•</span>
+                          <span className="flex items-center gap-1 text-gray-600">
+                            <User className="w-3 h-3 text-gray-400" />
+                            <strong>{getAuthorName(blog.author)}</strong>
+                            <span className="hidden sm:inline text-gray-400">
+                              ({getAuthorRole(blog.author)})
+                            </span>
+                          </span>
+                        </>
+                      )}
                     </div>
 
-                    {/* Right Column: Filled, Balanced Content with ALL Verified Nutritional Highlights */}
-                    <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-3 min-w-0">
-                      <div>
-                        {/* Date & Author */}
-                        <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mb-1.5">
-                          <span className="flex items-center gap-1 text-[#c29336] font-medium">
-                            <Calendar className="w-3.5 h-3.5" />
-                            {blog.date}
-                          </span>
-                          {blog.author && (
-                            <>
-                              <span>•</span>
-                              <span className="flex items-center gap-1 text-gray-600">
-                                <User className="w-3 h-3 text-gray-400" />
-                                <strong>{getAuthorName(blog.author)}</strong>
-                                <span className="hidden sm:inline text-gray-400">
-                                  ({getAuthorRole(blog.author)})
-                                </span>
-                              </span>
-                            </>
-                          )}
+                    {/* Title */}
+                    <h3 className="font-serif font-black text-base sm:text-lg lg:text-xl text-gray-900 group-hover:text-[#044a27] transition-colors leading-snug">
+                      {blog.title}
+                    </h3>
+
+                    {/* Summary */}
+                    <p className="text-gray-600 text-xs sm:text-sm mt-1.5 leading-relaxed line-clamp-2">
+                      {blog.summary}
+                    </p>
+
+                    {/* Key Health Benefits Checklist (Pills) */}
+                    {blog.keyBenefits && (
+                      <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                        {blog.keyBenefits.slice(0, 2).map((benefit, i) => (
+                          <div
+                            key={i}
+                            className="flex items-start gap-1.5 text-xs text-gray-700"
+                          >
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#044a27] shrink-0 mt-0.5" />
+                            <span className="line-clamp-1">{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* VERIFIED NUTRITIONAL HIGHLIGHTS */}
+                  {blog.nutritionalHighlights &&
+                    blog.nutritionalHighlights.length > 0 && (
+                      <div className="pt-2 border-t border-[#f0eee6]">
+                        <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#044a27] uppercase tracking-wide mb-1.5">
+                          <Sparkles className="w-3 h-3 text-[#c29336]" />
+                          <span>Verified Nutritional Highlights</span>
                         </div>
-
-                        {/* Title */}
-                        <h3 className="font-serif font-black text-base sm:text-lg lg:text-xl text-gray-900 group-hover:text-[#044a27] transition-colors leading-snug">
-                          {blog.title}
-                        </h3>
-
-                        {/* Summary */}
-                        <p className="text-gray-600 text-xs sm:text-sm mt-1.5 leading-relaxed line-clamp-2">
-                          {blog.summary}
-                        </p>
-
-                        {/* Key Health Benefits Checklist (Pills) */}
-                        {blog.keyBenefits && (
-                          <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                            {blog.keyBenefits.slice(0, 2).map((benefit, i) => (
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                          {blog.nutritionalHighlights
+                            .slice(0, 4)
+                            .map((stat, i) => (
                               <div
                                 key={i}
-                                className="flex items-start gap-1.5 text-xs text-gray-700"
+                                className="bg-[#fbf9f4] hover:bg-[#f6f2e8] transition-colors p-2 rounded-xl border border-[#ece4d4] text-center"
                               >
-                                <CheckCircle2 className="w-3.5 h-3.5 text-[#044a27] shrink-0 mt-0.5" />
-                                <span className="line-clamp-1">{benefit}</span>
+                                <div className="text-[10px] text-gray-500 font-medium truncate">
+                                  {stat.label}
+                                </div>
+                                <div className="font-bold text-xs text-[#044a27] mt-0.5 truncate">
+                                  {stat.value}
+                                </div>
                               </div>
                             ))}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* VERIFIED NUTRITIONAL HIGHLIGHTS: Displayed directly on article card! */}
-                      {blog.nutritionalHighlights &&
-                        blog.nutritionalHighlights.length > 0 && (
-                          <div className="pt-2 border-t border-[#f0eee6]">
-                            <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#044a27] uppercase tracking-wide mb-1.5">
-                              <Sparkles className="w-3 h-3 text-[#c29336]" />
-                              <span>Verified Nutritional Highlights</span>
-                            </div>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                              {blog.nutritionalHighlights
-                                .slice(0, 4)
-                                .map((stat, i) => (
-                                  <div
-                                    key={i}
-                                    className="bg-[#fbf9f4] hover:bg-[#f6f2e8] transition-colors p-2 rounded-xl border border-[#ece4d4] text-center"
-                                  >
-                                    <div className="text-[10px] text-gray-500 font-medium truncate">
-                                      {stat.label}
-                                    </div>
-                                    <div className="font-bold text-xs text-[#044a27] mt-0.5 truncate">
-                                      {stat.value}
-                                    </div>
-                                  </div>
-                                ))}
-                            </div>
-                          </div>
-                        )}
-
-                      {/* Footer Row: Tags & Read Button */}
-                      <div className="pt-2 border-t border-gray-100 flex items-center justify-between gap-3">
-                        <div className="text-xs text-gray-400 font-medium">
-                          Click image or arrows to preview photos
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={(e) => handleShare(blog, e)}
-                            title="Share article link"
-                            className="p-1.5 text-gray-400 hover:text-[#044a27] hover:bg-[#e8f3ec] rounded-full transition-colors"
-                          >
-                            {copiedId === blog.id ? (
-                              <Check className="w-4 h-4 text-green-600" />
-                            ) : (
-                              <Share2 className="w-4 h-4" />
-                            )}
-                          </button>
-                          <span className="inline-flex items-center gap-1.5 bg-[#044a27] group-hover:bg-[#033b20] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-2xs transition-all">
-                            <span>Read Full Story</span>
-                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                          </span>
                         </div>
                       </div>
+                    )}
+
+                  {/* Footer Row: Tags & Read Button */}
+                  <div className="pt-2 border-t border-gray-100 flex items-center justify-between gap-3">
+                    <div className="text-xs text-gray-400 font-medium">
+                      Click image or arrows to preview photos
                     </div>
-                  </article>
-                );
-              })}
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={(e) => handleShare(blog, e)}
+                        title="Share article link"
+                        className="p-1.5 text-gray-400 hover:text-[#044a27] hover:bg-[#e8f3ec] rounded-full transition-colors cursor-pointer"
+                      >
+                        {copiedId === blog.id ? (
+                          <Check className="w-4 h-4 text-green-600" />
+                        ) : (
+                          <Share2 className="w-4 h-4" />
+                        )}
+                      </button>
+                      <span className="inline-flex items-center gap-1.5 bg-[#044a27] group-hover:bg-[#033b20] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-2xs transition-all">
+                        <span>Read Full Story</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* Bottom Back-to-Top Bar */}
+        {filteredBlogs.length > 0 && (
+          <div className="mt-10 p-6 bg-white rounded-2xl border border-[#dce8e1] text-center shadow-xs">
+            <div className="w-10 h-10 rounded-full bg-[#e8f3ec] text-[#044a27] flex items-center justify-center mx-auto mb-2">
+              <Leaf className="w-5 h-5 text-[#044a27]" />
             </div>
-
-            {/* SCROLL SENTINEL & LOAD MORE ANIMATION */}
-            {hasMore && (
-              <div
-                ref={sentinelRef}
-                className="py-10 flex flex-col items-center justify-center text-center"
+            <h4 className="font-serif font-bold text-sm sm:text-base text-gray-900">
+              Viewing All {filteredBlogs.length} Healthy Living Articles
+            </h4>
+            <p className="text-xs text-gray-500 mt-1 max-w-md mx-auto">
+              Every harvest is unadulterated, farm-fresh, and tested for pure nutrition.
+            </p>
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-gray-900 bg-[#f5f3ec] hover:bg-[#ebe7dc] px-4 py-2 rounded-full transition-all cursor-pointer"
               >
-                {isLoadingMore ? (
-                  <div className="flex items-center gap-2.5 bg-white px-5 py-3 rounded-full border border-[#cde1d6] shadow-sm animate-fade-in">
-                    <Loader2 className="w-4 h-4 text-[#044a27] animate-spin" />
-                    <span className="text-xs font-semibold text-[#044a27]">
-                      Loading more healthy food stories...
-                    </span>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <p className="text-xs text-gray-400">
-                      Scroll down to automatically load more articles (
-                      {filteredBlogs.length - visibleCount} remaining)
-                    </p>
-                    <button
-                      onClick={loadMore}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#044a27] bg-white hover:bg-[#e8f3ec] border border-[#cde1d6] px-4 py-2 rounded-full shadow-2xs transition-all cursor-pointer"
-                    >
-                      <span>Load Next Articles</span>
-                      <ChevronDown className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* ALL BLOGS LOADED COMPLETION NOTICE */}
-            {!hasMore && filteredBlogs.length > 0 && (
-              <div className="mt-10 p-6 bg-white rounded-2xl border border-[#dce8e1] text-center shadow-xs">
-                <div className="w-10 h-10 rounded-full bg-[#e8f3ec] text-[#044a27] flex items-center justify-center mx-auto mb-2">
-                  <Leaf className="w-5 h-5 text-[#044a27]" />
-                </div>
-                <h4 className="font-serif font-bold text-sm sm:text-base text-gray-900">
-                  You&apos;ve reached the end of our healthy living articles!
-                </h4>
-                <p className="text-xs text-gray-500 mt-1 max-w-md mx-auto">
-                  Every product we harvest and pack is unadulterated, farm-fresh, and tested for pure nutrition.
-                </p>
-                <div className="mt-4 flex items-center justify-center gap-3">
-                  <button
-                    onClick={() => {
-                      if (sectionRef.current) {
-                        sectionRef.current.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-gray-900 bg-[#f5f3ec] hover:bg-[#ebe7dc] px-3.5 py-1.5 rounded-full transition-all cursor-pointer"
-                  >
-                    <ArrowUp className="w-3.5 h-3.5" />
-                    <span>Back to Top</span>
-                  </button>
-                  <button
-                    onClick={handleBackToFeatured}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#044a27] bg-[#e8f3ec] hover:bg-[#d6ebd9] px-3.5 py-1.5 rounded-full transition-all cursor-pointer"
-                  >
-                    <LayoutGrid className="w-3.5 h-3.5" />
-                    <span>Return to Grid View</span>
-                  </button>
-                </div>
-              </div>
-            )}
+                <ArrowUp className="w-3.5 h-3.5" />
+                <span>Back to Top</span>
+              </button>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-[#044a27] hover:bg-[#033b20] px-4 py-2 rounded-full transition-all shadow-2xs"
+              >
+                <span>Browse Products (192)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         )}
       </div>
@@ -970,14 +719,14 @@ export default function BlogSection() {
 
             {/* Modal Footer Actions */}
             <div className="p-4 sm:p-5 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
-              <a
-                href="#best-sellers"
+              <Link
+                href="/products"
                 onClick={() => setActiveBlog(null)}
                 className="text-xs font-bold text-[#044a27] hover:underline flex items-center gap-1"
               >
                 <span>Shop Related Farm-Fresh Commodities</span>
                 <ArrowRight className="w-3 h-3" />
-              </a>
+              </Link>
 
               <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                 <button
