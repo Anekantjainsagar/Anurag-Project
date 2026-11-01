@@ -976,6 +976,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Grains & Basmati",
     date: "14 Apr 2026",
     image: "/images/blog-basmati.jpg",
+    images: [
+      "/images/blog-basmati.jpg",
+      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-basmati-2.jpg",
+      "/images/products/rice-basmati-4.jpg",
+    ],
     readTime: "5 min read",
     summary:
       "Learn why traditional 2-year aged Himalayan basmati rice is easier on blood sugar, packs high resistant starch, and unlocks unmatched floral aroma.",
@@ -1010,6 +1016,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Plant Protein",
     date: "10 Apr 2026",
     image: "/images/blog-pulses.jpg",
+    images: [
+      "/images/blog-pulses.jpg",
+      "/images/products/pulse-toor-1.jpg",
+      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulse-chana-1.jpg",
+    ],
     readTime: "6 min read",
     summary:
       "Discover the bioavailable protein, prebiotic fiber, and essential minerals locked inside unpolished pulses, completely free from harmful mineral oil polishing.",
@@ -1044,6 +1056,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Nuts & Healthy Fats",
     date: "06 Apr 2026",
     image: "/images/blog-dryfruits.jpg",
+    images: [
+      "/images/blog-dryfruits.jpg",
+      "/images/products/dryfruit-almond-1.jpg",
+      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dryfruit-cashew-1.jpg",
+    ],
     readTime: "4 min read",
     summary:
       "From memory-boosting vitamin E to plant-based Omega-3 ALA, learn why soaking 6-8 almonds and 2 walnut halves transforms morning cognitive performance.",
@@ -1078,6 +1096,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Millets & Digestion",
     date: "02 Apr 2026",
     image: "/images/blog-millets.jpg",
+    images: [
+      "/images/blog-millets.jpg",
+      "/images/products/millet-foxtail-1.jpg",
+      "/images/products/millet-bajra-1.jpg",
+      "/images/categories/millets.jpg",
+    ],
     readTime: "5 min read",
     summary:
       "Why the United Nations declared the Year of Millets: Rediscover naturally gluten-free ancient grains that restore gut microbiome diversity and regulate insulin.",
@@ -1112,6 +1136,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Cold-Pressed Oils",
     date: "29 Mar 2026",
     image: "/images/blog-coldpressed-oil.jpg",
+    images: [
+      "/images/blog-coldpressed-oil.jpg",
+      "/images/products/other-oil-1.jpg",
+      "/images/blog-oil-2.jpg",
+      "/images/blog-oil-3.jpg",
+    ],
     readTime: "5 min read",
     summary:
       "Say goodbye to refined oils extracted with toxic hexane solvent. Learn how wood-pressed (Kolhu/Kachi Ghani) oils preserve native micronutrients and fatty acids.",
@@ -1146,6 +1176,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Immunity & Spices",
     date: "24 Mar 2026",
     image: "/images/blog-turmeric-spices.jpg",
+    images: [
+      "/images/blog-turmeric-spices.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+      "/images/products/spice-pepper-1.jpg",
+      "/images/blog-golden-milk.jpg",
+    ],
     readTime: "4 min read",
     summary:
       "Why eating turmeric alone wastes 95% of curcumin: The culinary biochemistry behind combining golden turmeric with piperine-rich Malabar black peppercorns.",
@@ -1180,6 +1216,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Seeds & Superfoods",
     date: "19 Mar 2026",
     image: "/images/blog-superfood-seeds.jpg",
+    images: [
+      "/images/blog-superfood-seeds.jpg",
+      "/images/products/seed-chia-1.jpg",
+      "/images/products/seed-pumpkin-1.jpg",
+      "/images/categories/seeds.jpg",
+    ],
     readTime: "5 min read",
     summary:
       "A daily tablespoon of raw seeds delivers concentrated plant lignans, zinc, and soluble mucilage fiber to balance hormones, stabilize blood glucose, and promote glowing skin.",
@@ -1214,6 +1256,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Natural Sweeteners",
     date: "15 Mar 2026",
     image: "/images/blog-organic-jaggery.jpg",
+    images: [
+      "/images/blog-organic-jaggery.jpg",
+      "/images/blog-honey-2.jpg",
+      "/images/blog-honey-3.jpg",
+      "/images/categories/other-items.jpg",
+    ],
     readTime: "4 min read",
     summary:
       "Why bleached white sugar causes metabolic havoc while unrefined golden gur (jaggery) and raw forest honey cleanse respiratory channels and supply vital iron.",
@@ -1248,6 +1296,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Herbal Wellness",
     date: "11 Mar 2026",
     image: "/images/blog-saffron.jpg",
+    images: [
+      "/images/blog-saffron.jpg",
+      "/images/blog-saffron-2.jpg",
+      "/images/categories/spices.jpg",
+      "/images/products/spice-turmeric-1.jpg",
+    ],
     readTime: "4 min read",
     summary:
       "Harvested by hand in the valleys of Pampore: The science of active crocin and safranal compounds for natural dopamine support and radiant cellular health.",
@@ -1282,6 +1336,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Ayurvedic Nutrition",
     date: "07 Mar 2026",
     image: "/images/blog-ayurvedic-diet.jpg",
+    images: [
+      "/images/blog-ayurvedic-diet.jpg",
+      "/images/blog-ayurveda-2.jpg",
+      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/pulse-toor-2.jpg",
+    ],
     readTime: "6 min read",
     summary:
       "Master the timeless wisdom of Ahara: How conscious sequencing of whole grains, spices, and lentils maximizes Agni (digestive fire) and cellular rejuvenation.",
@@ -1316,6 +1376,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Enzymes & Sprouting",
     date: "03 Mar 2026",
     image: "/images/blog-sprouted-moong.jpg",
+    images: [
+      "/images/blog-sprouted-moong.jpg",
+      "/images/blog-sprouts-2.jpg",
+      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulse-urad-1.jpg",
+    ],
     readTime: "4 min read",
     summary:
       "Turn simple whole green moong beans into living enzymes: Discover how 24 hours of soaking and sprouting skyrockets Vitamin C, riboflavin, and active antioxidants.",
@@ -1350,6 +1416,12 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Traditional Healthy Fats",
     date: "27 Feb 2026",
     image: "/images/blog-pure-ghee.jpg",
+    images: [
+      "/images/blog-pure-ghee.jpg",
+      "/images/products/other-ghee-1.jpg",
+      "/images/blog-ghee-2.jpg",
+      "/images/products/other-salt-1.jpg",
+    ],
     readTime: "5 min read",
     summary:
       "Debunking the low-fat myth: Why authentic A2 bilona cow ghee provides crucial butyric acid to heal the gut barrier and transports fat-soluble vitamins.",

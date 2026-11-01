@@ -41,6 +41,7 @@ export interface BlogPost {
   title: string;
   date: string;
   image: string;
+  images?: string[];
   readTime: string;
   summary: string;
   category?: string;
