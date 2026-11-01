@@ -252,19 +252,19 @@ export default function Navbar() {
           </button>
 
           {/* Wishlist Button */}
-          <button
-            onClick={() => router.push("/products")}
+          <Link
+            href="/wishlist"
             className="relative p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer"
             title="Wishlist"
             aria-label="Wishlist"
           >
             <Heart className="w-5 h-5" />
             {wishlist.length > 0 && (
-              <span className="absolute 0 top-0.5 right-0.5 bg-[#e11d48] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute top-0.5 right-0.5 bg-[#e11d48] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                 {wishlist.length}
               </span>
             )}
-          </button>
+          </Link>
 
           {/* Shopping Cart Icon with Cart Total Amount */}
           <button
@@ -362,6 +362,23 @@ export default function Navbar() {
                 >
                   <span>All Products (192 Items)</span>
                   <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                </Link>
+                <Link
+                  href="/wishlist"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-3 py-2 text-xs font-medium text-gray-700 hover:bg-gray-50 rounded-lg"
+                >
+                  <span className="flex items-center gap-2">
+                    <Heart className="w-3.5 h-3.5 text-[#e11d48]" />
+                    <span>My Wishlist</span>
+                  </span>
+                  {wishlist.length > 0 ? (
+                    <span className="bg-[#e11d48] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                      {wishlist.length}
+                    </span>
+                  ) : (
+                    <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
+                  )}
                 </Link>
                 <Link
                   href="/about"

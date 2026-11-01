@@ -78,9 +78,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 22,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-arhar-dal-toor-dal-pigeon-pea-split.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-arhar-dal-toor-dal-pigeon-pea-split.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -151,9 +151,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 29,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-chana-dal-bengal-gram-split.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-chana-dal-bengal-gram-split.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -224,9 +224,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 36,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-chana-whole-kala-chana-bengal-gram.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-chana-whole-kala-chana-bengal-gram.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -297,9 +297,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 43,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-kabuli-chana-bold.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-kabuli-chana-bold.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -370,9 +370,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 50,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-lobiya-cowpea-black-eye-bean.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-lobiya-cowpea-black-eye-bean.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -443,9 +443,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 57,
-    "image": "/images/products/pulses/pulse-lentils-1.jpg",
+    "image": "/images/products/pulses/organic-masoor-dal-red-lentil-split.webp",
     "images": [
-      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/products/pulses/organic-masoor-dal-red-lentil-split.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulse-toor-1.jpg",
       "/images/categories/pulses.jpg"
@@ -516,9 +516,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 64,
-    "image": "/images/products/pulses/pulse-lentils-1.jpg",
+    "image": "/images/products/pulses/organic-masoor-malka-masoor-gota-red-lentil.webp",
     "images": [
-      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/products/pulses/organic-masoor-malka-masoor-gota-red-lentil.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulse-toor-1.jpg",
       "/images/categories/pulses.jpg"
@@ -589,9 +589,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 71,
-    "image": "/images/products/pulses/pulse-lentils-1.jpg",
+    "image": "/images/products/pulses/organic-masoor-whole-masoor-brown-lentil.webp",
     "images": [
-      "/images/products/pulses/pulse-lentils-1.jpg",
+      "/images/products/pulses/organic-masoor-whole-masoor-brown-lentil.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulse-toor-1.jpg",
       "/images/categories/pulses.jpg"
@@ -662,9 +662,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 78,
-    "image": "/images/products/pulse-toor-1.jpg",
+    "image": "/images/products/pulses/organic-panchratna-dal-mix-dal-5-pulses.webp",
     "images": [
-      "/images/products/pulse-toor-1.jpg",
+      "/images/products/pulses/organic-panchratna-dal-mix-dal-5-pulses.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -735,9 +735,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 85,
-    "image": "/images/products/pulse-moong-1.jpg",
+    "image": "/images/products/pulses/organic-moong-chilka-moong-dal-green-gram-split.webp",
     "images": [
-      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/organic-moong-chilka-moong-dal-green-gram-split.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -808,9 +808,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 27,
-    "image": "/images/products/pulse-moong-1.jpg",
+    "image": "/images/products/pulses/organic-moong-mogar-green-gram-split-dehusked-yellow.webp",
     "images": [
-      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/organic-moong-mogar-green-gram-split-dehusked-yellow.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -881,9 +881,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 34,
-    "image": "/images/products/pulse-moong-1.jpg",
+    "image": "/images/products/pulses/organic-moong-whole-moong-sabut-green-gram-whole.webp",
     "images": [
-      "/images/products/pulse-moong-1.jpg",
+      "/images/products/pulses/organic-moong-whole-moong-sabut-green-gram-whole.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -954,9 +954,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 41,
-    "image": "/images/products/pulses/pulse-dal-bowl-1.jpg",
+    "image": "/images/products/pulses/organic-rajma-red-kidney-bean-capsule.webp",
     "images": [
-      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/organic-rajma-red-kidney-bean-capsule.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1027,9 +1027,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 48,
-    "image": "/images/products/pulses/pulse-dal-bowl-1.jpg",
+    "image": "/images/products/pulses/organic-rajma-chitra-speckled.webp",
     "images": [
-      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/organic-rajma-chitra-speckled.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1100,9 +1100,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 55,
-    "image": "/images/products/pulses/pulse-dal-bowl-1.jpg",
+    "image": "/images/products/pulses/organic-red-rajma-small-jammu.webp",
     "images": [
-      "/images/products/pulses/pulse-dal-bowl-1.jpg",
+      "/images/products/pulses/organic-red-rajma-small-jammu.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1173,9 +1173,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 62,
-    "image": "/images/products/pulse-urad-1.jpg",
+    "image": "/images/products/pulses/organic-urad-chilka-urad-split-chilka-black-gram-split.webp",
     "images": [
-      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/organic-urad-chilka-urad-split-chilka-black-gram-split.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1246,9 +1246,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 69,
-    "image": "/images/products/pulse-urad-1.jpg",
+    "image": "/images/products/pulses/organic-urad-mogar-urad-dal-white-black-gram-split.webp",
     "images": [
-      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/organic-urad-mogar-urad-dal-white-black-gram-split.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1319,9 +1319,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 76,
-    "image": "/images/products/pulse-urad-1.jpg",
+    "image": "/images/products/pulses/organic-urad-white-whole-urad-gota-black-gram-wh.webp",
     "images": [
-      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/organic-urad-white-whole-urad-gota-black-gram-wh.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1392,9 +1392,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 83,
-    "image": "/images/products/pulse-urad-1.jpg",
+    "image": "/images/products/pulses/organic-urad-whole-black-gram-whole.webp",
     "images": [
-      "/images/products/pulse-urad-1.jpg",
+      "/images/products/pulses/organic-urad-whole-black-gram-whole.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1465,9 +1465,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 25,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-white-dry-peas.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-white-dry-peas.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1538,9 +1538,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 32,
-    "image": "/images/products/pulse-chana-1.jpg",
+    "image": "/images/products/pulses/organic-green-dry-peas-round.webp",
     "images": [
-      "/images/products/pulse-chana-1.jpg",
+      "/images/products/pulses/organic-green-dry-peas-round.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1611,9 +1611,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 39,
-    "image": "/images/products/pulse-toor-2.jpg",
+    "image": "/images/products/pulses/organic-soyabean-whole.webp",
     "images": [
-      "/images/products/pulse-toor-2.jpg",
+      "/images/products/pulses/organic-soyabean-whole.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1684,9 +1684,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 46,
-    "image": "/images/products/pulse-toor-2.jpg",
+    "image": "/images/products/pulses/organic-kabuli-chana-bold.webp",
     "images": [
-      "/images/products/pulse-toor-2.jpg",
+      "/images/products/pulses/organic-kabuli-chana-bold.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1757,9 +1757,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 53,
-    "image": "/images/products/pulse-toor-2.jpg",
+    "image": "/images/products/millets/organic-amaranthus-whole-chaula-rajgira-amaranth.webp",
     "images": [
-      "/images/products/pulse-toor-2.jpg",
+      "/images/products/millets/organic-amaranthus-whole-chaula-rajgira-amaranth.webp",
       "/images/products/pulses/pulse-dal-bowl-1.jpg",
       "/images/products/pulses/pulse-lentils-1.jpg",
       "/images/categories/pulses.jpg"
@@ -1830,9 +1830,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 60,
-    "image": "/images/products/millet-bajra-1.jpg",
+    "image": "/images/products/millets/organic-bajra-whole-pearl-millet-whole.webp",
     "images": [
-      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/organic-bajra-whole-pearl-millet-whole.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -1903,9 +1903,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 67,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-ragi-atta-finger-millet-flour.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-ragi-atta-finger-millet-flour.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -1976,9 +1976,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 74,
-    "image": "/images/products/millet-foxtail-1.jpg",
+    "image": "/images/products/millets/organic-foxtail-millet.webp",
     "images": [
-      "/images/products/millet-foxtail-1.jpg",
+      "/images/products/millets/organic-foxtail-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2049,9 +2049,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 81,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2122,9 +2122,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 23,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-kodo-millet.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-kodo-millet.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2195,9 +2195,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 30,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-barnyard-millet.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-barnyard-millet.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2268,9 +2268,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 37,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2341,9 +2341,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 44,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-proso-millet.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-proso-millet.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2414,9 +2414,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 51,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-browntop-millet.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-browntop-millet.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2487,9 +2487,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 58,
-    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "image": "/images/products/millets/organic-maize-whole-makka-deshi.webp",
     "images": [
-      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/organic-maize-whole-makka-deshi.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-flour-1.jpg",
       "/images/categories/millets.jpg"
@@ -2560,9 +2560,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 65,
-    "image": "/images/products/millets/millet-flour-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2633,9 +2633,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 72,
-    "image": "/images/products/millets/millet-flour-1.jpg",
+    "image": "/images/products/millets/organic-ragi-atta-finger-millet-flour.webp",
     "images": [
-      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/organic-ragi-atta-finger-millet-flour.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2706,9 +2706,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 79,
-    "image": "/images/products/millet-bajra-1.jpg",
+    "image": "/images/products/millets/organic-bajra-whole-pearl-millet-whole.webp",
     "images": [
-      "/images/products/millet-bajra-1.jpg",
+      "/images/products/millets/organic-bajra-whole-pearl-millet-whole.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2779,9 +2779,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 86,
-    "image": "/images/products/millets/millet-flour-1.jpg",
+    "image": "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
     "images": [
-      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2852,9 +2852,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 28,
-    "image": "/images/products/millet-foxtail-1.jpg",
+    "image": "/images/products/millets/organic-foxtail-millet.webp",
     "images": [
-      "/images/products/millet-foxtail-1.jpg",
+      "/images/products/millets/organic-foxtail-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2925,9 +2925,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 35,
-    "image": "/images/products/millets/millet-flour-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -2998,9 +2998,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 42,
-    "image": "/images/products/millets/millet-flour-1.jpg",
+    "image": "/images/products/millets/organic-kodo-millet.webp",
     "images": [
-      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/organic-kodo-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -3071,9 +3071,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 49,
-    "image": "/images/products/millets/millet-flour-1.jpg",
+    "image": "/images/products/millets/organic-barnyard-millet.webp",
     "images": [
-      "/images/products/millets/millet-flour-1.jpg",
+      "/images/products/millets/organic-barnyard-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -3144,9 +3144,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 56,
-    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-flour-1.jpg",
       "/images/categories/millets.jpg"
@@ -3217,9 +3217,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 63,
-    "image": "/images/products/millets/millet-grain-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-grain-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millet-bajra-1.jpg",
       "/images/products/millets/millet-bowl-1.jpg",
       "/images/categories/millets.jpg"
@@ -3290,9 +3290,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 70,
-    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-flour-1.jpg",
       "/images/categories/millets.jpg"
@@ -3363,9 +3363,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 77,
-    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-flour-1.jpg",
       "/images/categories/millets.jpg"
@@ -3436,9 +3436,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 84,
-    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-flour-1.jpg",
       "/images/categories/millets.jpg"
@@ -3509,9 +3509,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 26,
-    "image": "/images/products/millets/millet-bowl-1.jpg",
+    "image": "/images/products/millets/organic-little-millet.webp",
     "images": [
-      "/images/products/millets/millet-bowl-1.jpg",
+      "/images/products/millets/organic-little-millet.webp",
       "/images/products/millets/millet-grain-1.jpg",
       "/images/products/millets/millet-flour-1.jpg",
       "/images/categories/millets.jpg"
@@ -3582,9 +3582,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 33,
-    "image": "/images/products/spice-turmeric-1.jpg",
+    "image": "/images/products/spices/organic-lakadong-turmeric-powder.webp",
     "images": [
-      "/images/products/spice-turmeric-1.jpg",
+      "/images/products/spices/organic-lakadong-turmeric-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-pepper-1.jpg",
       "/images/categories/spices.jpg"
@@ -3655,9 +3655,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 40,
-    "image": "/images/products/spices/spice-chilli-1.jpg",
+    "image": "/images/products/spices/organic-red-chilli-whole-kashmiri.webp",
     "images": [
-      "/images/products/spices/spice-chilli-1.jpg",
+      "/images/products/spices/organic-red-chilli-whole-kashmiri.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -3728,9 +3728,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 47,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-coriander-powder.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-coriander-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -3801,9 +3801,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 54,
-    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "image": "/images/products/spices/organic-cumin-powder-jeera-powder.webp",
     "images": [
-      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/organic-cumin-powder-jeera-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -3874,9 +3874,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 61,
-    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "image": "/images/products/spices/organic-black-cumin-kalonji.webp",
     "images": [
-      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/organic-black-cumin-kalonji.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -3947,9 +3947,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 68,
-    "image": "/images/products/spice-pepper-1.jpg",
+    "image": "/images/products/spices/organic-black-pepper-powder-kali-mirch-powder.webp",
     "images": [
-      "/images/products/spice-pepper-1.jpg",
+      "/images/products/spices/organic-black-pepper-powder-kali-mirch-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4020,9 +4020,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 75,
-    "image": "/images/products/spice-pepper-1.jpg",
+    "image": "/images/products/spices/organic-black-pepper-powder-kali-mirch-powder.webp",
     "images": [
-      "/images/products/spice-pepper-1.jpg",
+      "/images/products/spices/organic-black-pepper-powder-kali-mirch-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4093,9 +4093,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 82,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-garam-masala-powder.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-garam-masala-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4166,9 +4166,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 24,
-    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "image": "/images/products/spices/organic-small-mustard-rai.webp",
     "images": [
-      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/organic-small-mustard-rai.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4239,9 +4239,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 31,
-    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "image": "/images/products/spices/organic-fenugreek-methi.webp",
     "images": [
-      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/organic-fenugreek-methi.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4312,9 +4312,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 38,
-    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "image": "/images/products/spices/organic-fennel-saunf.webp",
     "images": [
-      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/organic-fennel-saunf.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4385,9 +4385,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 45,
-    "image": "/images/products/spices/spice-seeds-1.jpg",
+    "image": "/images/products/spices/organic-ajwain-carom-seed.webp",
     "images": [
-      "/images/products/spices/spice-seeds-1.jpg",
+      "/images/products/spices/organic-ajwain-carom-seed.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4458,9 +4458,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 52,
-    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "image": "/images/products/spices/organic-cardamom-green-elaichi-9.webp",
     "images": [
-      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/organic-cardamom-green-elaichi-9.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4531,9 +4531,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 59,
-    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "image": "/images/products/spices/organic-cardamom-black-doda-elaichi.webp",
     "images": [
-      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/organic-cardamom-black-doda-elaichi.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4604,9 +4604,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 66,
-    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "image": "/images/products/spices/organic-cloves-loung.webp",
     "images": [
-      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/organic-cloves-loung.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4677,9 +4677,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 73,
-    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "image": "/images/products/spices/organic-cinnamon-powder.webp",
     "images": [
-      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/organic-cinnamon-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4750,9 +4750,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 80,
-    "image": "/images/products/spices/spice-cinnamon-1.jpg",
+    "image": "/images/products/spices/organic-bay-leaf-tej-patta.webp",
     "images": [
-      "/images/products/spices/spice-cinnamon-1.jpg",
+      "/images/products/spices/organic-bay-leaf-tej-patta.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4823,9 +4823,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 22,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-ginger-whole-dry.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-ginger-whole-dry.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4896,9 +4896,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 29,
-    "image": "/images/products/spices/spice-blend-1.jpg",
+    "image": "/images/products/spices/organic-kashmiri-chilli-powder.webp",
     "images": [
-      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spices/organic-kashmiri-chilli-powder.webp",
       "/images/products/spices/spice-masala-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -4969,9 +4969,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 36,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-fenugreek-methi.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-fenugreek-methi.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -5042,9 +5042,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 43,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-garam-masala-powder.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-garam-masala-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -5115,9 +5115,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 50,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-garam-masala-powder.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-garam-masala-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -5188,9 +5188,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 57,
-    "image": "/images/products/spices/spice-masala-1.jpg",
+    "image": "/images/products/spices/organic-garam-masala-powder.webp",
     "images": [
-      "/images/products/spices/spice-masala-1.jpg",
+      "/images/products/spices/organic-garam-masala-powder.webp",
       "/images/products/spices/spice-blend-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -5261,9 +5261,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 64,
-    "image": "/images/products/spices/spice-blend-1.jpg",
+    "image": "/images/products/spices/organic-black-cumin-kalonji.webp",
     "images": [
-      "/images/products/spices/spice-blend-1.jpg",
+      "/images/products/spices/organic-black-cumin-kalonji.webp",
       "/images/products/spices/spice-masala-1.jpg",
       "/images/products/spice-turmeric-1.jpg",
       "/images/categories/spices.jpg"
@@ -5334,9 +5334,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 71,
-    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5407,9 +5407,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 78,
-    "image": "/images/products/sweets/jaggery-powder-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-block-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5480,9 +5480,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 85,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5553,9 +5553,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 27,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5626,9 +5626,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 34,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-powder.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-jaggery-powder.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5699,9 +5699,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 41,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5772,9 +5772,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 48,
-    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5845,9 +5845,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 55,
-    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5918,9 +5918,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 62,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/oils-ghee/organic-coconut-oil-khopra-cold-pressed-250-ml.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/oils-ghee/organic-coconut-oil-khopra-cold-pressed-250-ml.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -5991,9 +5991,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 69,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6064,9 +6064,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 76,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6137,9 +6137,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 83,
-    "image": "/images/products/sweets/jaggery-block-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/jaggery-block-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6210,9 +6210,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 25,
-    "image": "/images/products/sweets/jaggery-powder-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/jaggery-powder-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-block-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6283,9 +6283,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 32,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6356,9 +6356,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 39,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6429,9 +6429,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 46,
-    "image": "/images/products/sweets/sweets-sugar-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-sugar-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6502,9 +6502,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 53,
-    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "image": "/images/products/spices/organic-black-sesame-til.webp",
     "images": [
-      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/spices/organic-black-sesame-til.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6575,9 +6575,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 60,
-    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "image": "/images/products/seeds/organic-peanut.webp",
     "images": [
-      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/seeds/organic-peanut.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6648,9 +6648,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 67,
-    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6721,9 +6721,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 74,
-    "image": "/images/products/sweets/sweets-chikki-1.jpg",
+    "image": "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
     "images": [
-      "/images/products/sweets/sweets-chikki-1.jpg",
+      "/images/products/sweets/organic-sugar-candy-mishri-candy-dhagge-wali.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6794,9 +6794,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 81,
-    "image": "/images/products/sweets/sweets-ladoo-1.jpg",
+    "image": "/images/products/pulses/organic-green-dry-peas-round.webp",
     "images": [
-      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/products/pulses/organic-green-dry-peas-round.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-sugar-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6867,9 +6867,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 23,
-    "image": "/images/products/sweets/sweets-ladoo-1.jpg",
+    "image": "/images/products/pulses/organic-panchratna-dal-mix-dal-5-pulses.webp",
     "images": [
-      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/products/pulses/organic-panchratna-dal-mix-dal-5-pulses.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-sugar-1.jpg",
       "/images/categories/sweets.jpg"
@@ -6940,9 +6940,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 30,
-    "image": "/images/products/sweets/sweets-ladoo-1.jpg",
+    "image": "/images/products/pulses/organic-panchratna-dal-mix-dal-5-pulses.webp",
     "images": [
-      "/images/products/sweets/sweets-ladoo-1.jpg",
+      "/images/products/pulses/organic-panchratna-dal-mix-dal-5-pulses.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-sugar-1.jpg",
       "/images/categories/sweets.jpg"
@@ -7013,9 +7013,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 37,
-    "image": "/images/products/sweets/sweets-mithai-1.jpg",
+    "image": "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
     "images": [
-      "/images/products/sweets/sweets-mithai-1.jpg",
+      "/images/products/sweets/organic-jaggery-whole-gur-cube-shape.webp",
       "/images/products/sweets/jaggery-powder-1.jpg",
       "/images/products/sweets/sweets-ladoo-1.jpg",
       "/images/categories/sweets.jpg"
@@ -7086,9 +7086,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 44,
-    "image": "/images/products/honey/honey-raw-1.jpg",
+    "image": "/images/products/spices/organic-turmeric-whole-raw-haldi.webp",
     "images": [
-      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/spices/organic-turmeric-whole-raw-haldi.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7159,9 +7159,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 51,
-    "image": "/images/products/honey/honey-raw-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7232,9 +7232,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 58,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/spices/organic-yellow-mustard-sarso.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/spices/organic-yellow-mustard-sarso.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7305,9 +7305,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 65,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7378,9 +7378,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 72,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7451,9 +7451,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 79,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7524,9 +7524,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 86,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/sweets/himalayan-rock-salt-free-flow.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/sweets/himalayan-rock-salt-free-flow.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7597,9 +7597,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 28,
-    "image": "/images/products/honey/honey-raw-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7670,9 +7670,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 35,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/natural-jamun-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/natural-jamun-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7743,9 +7743,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 42,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/drinks/uttarakhand-special-litchi-squash-750-ml.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/drinks/uttarakhand-special-litchi-squash-750-ml.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7816,9 +7816,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 49,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/seeds/organic-sunflower-seed-sunflower-seeds-deshi.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/seeds/organic-sunflower-seed-sunflower-seeds-deshi.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7889,9 +7889,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 56,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -7962,9 +7962,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 63,
-    "image": "/images/products/honey/honey-comb-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-raw-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8035,9 +8035,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 70,
-    "image": "/images/products/honey/honey-dipper-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-raw-2.jpg",
       "/images/categories/honey.jpg"
@@ -8108,9 +8108,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 77,
-    "image": "/images/products/honey/honey-dipper-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-raw-2.jpg",
       "/images/categories/honey.jpg"
@@ -8181,9 +8181,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 84,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8254,9 +8254,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 26,
-    "image": "/images/products/honey/honey-dipper-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-dipper-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-raw-2.jpg",
       "/images/categories/honey.jpg"
@@ -8327,9 +8327,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 33,
-    "image": "/images/products/honey/honey-raw-2.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-raw-2.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8400,9 +8400,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 40,
-    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8473,9 +8473,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 47,
-    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8546,9 +8546,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 54,
-    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "image": "/images/products/honey/natural-van-tulsi-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/natural-van-tulsi-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8619,9 +8619,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 61,
-    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8692,9 +8692,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 68,
-    "image": "/images/products/honey/honey-infusion-1.jpg",
+    "image": "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-infusion-1.jpg",
+      "/images/products/honey/organic-wild-forest-honey-500-gm.webp",
       "/images/products/honey/honey-comb-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8765,9 +8765,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 75,
-    "image": "/images/products/honey/honey-comb-1.jpg",
+    "image": "/images/products/honey/natural-neem-honey-500-gm.webp",
     "images": [
-      "/images/products/honey/honey-comb-1.jpg",
+      "/images/products/honey/natural-neem-honey-500-gm.webp",
       "/images/products/honey/honey-raw-1.jpg",
       "/images/products/honey/honey-dipper-1.jpg",
       "/images/categories/honey.jpg"
@@ -8838,9 +8838,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 82,
-    "image": "/images/products/dryfruit-almond-1.jpg",
+    "image": "/images/products/dry-fruits/organic-almond-badam-kashmiri-mamra.webp",
     "images": [
-      "/images/products/dryfruit-almond-1.jpg",
+      "/images/products/dry-fruits/organic-almond-badam-kashmiri-mamra.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -8911,9 +8911,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 24,
-    "image": "/images/products/dryfruit-cashew-1.jpg",
+    "image": "/images/products/dry-fruits/organic-cashew-kaju-w320.webp",
     "images": [
-      "/images/products/dryfruit-cashew-1.jpg",
+      "/images/products/dry-fruits/organic-cashew-kaju-w320.webp",
       "/images/products/dryfruit-almond-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -8984,9 +8984,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 31,
-    "image": "/images/products/dryfruit-raisin-1.jpg",
+    "image": "/images/products/dry-fruits/organic-raisins-kismis.webp",
     "images": [
-      "/images/products/dryfruit-raisin-1.jpg",
+      "/images/products/dry-fruits/organic-raisins-kismis.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9057,9 +9057,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 38,
-    "image": "/images/products/dryfruit-pista-1.jpg",
+    "image": "/images/products/dry-fruits/pista.webp",
     "images": [
-      "/images/products/dryfruit-pista-1.jpg",
+      "/images/products/dry-fruits/pista.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9130,9 +9130,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 45,
-    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "image": "/images/products/dry-fruits/organic-walnut-akhrot-kashmiri-vacuum-packing.webp",
     "images": [
-      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dry-fruits/organic-walnut-akhrot-kashmiri-vacuum-packing.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9203,9 +9203,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 52,
-    "image": "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+    "image": "/images/products/dry-fruits/dry-dates-yellow-kharak.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/products/dry-fruits/dry-dates-yellow-kharak.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dryfruit-walnut-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9276,9 +9276,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 59,
-    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "image": "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9349,9 +9349,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 66,
-    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "image": "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9422,9 +9422,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 73,
-    "image": "/images/products/dryfruit-raisin-1.jpg",
+    "image": "/images/products/dry-fruits/organic-black-raisins-kismis.webp",
     "images": [
-      "/images/products/dryfruit-raisin-1.jpg",
+      "/images/products/dry-fruits/organic-black-raisins-kismis.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9495,9 +9495,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 80,
-    "image": "/images/products/dryfruit-raisin-1.jpg",
+    "image": "/images/products/dry-fruits/organic-golden-raisins-kismis.webp",
     "images": [
-      "/images/products/dryfruit-raisin-1.jpg",
+      "/images/products/dry-fruits/organic-golden-raisins-kismis.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9568,9 +9568,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 22,
-    "image": "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+    "image": "/images/products/spices/tamarind-seedless-imli-seedles.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/products/spices/tamarind-seedless-imli-seedles.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dryfruit-walnut-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9641,9 +9641,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 29,
-    "image": "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+    "image": "/images/products/dry-fruits/dry-dates-yellow-kharak.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-dates-1.jpg",
+      "/images/products/dry-fruits/dry-dates-yellow-kharak.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dryfruit-walnut-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9714,9 +9714,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 36,
-    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "image": "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9787,9 +9787,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 43,
-    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "image": "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9860,9 +9860,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 50,
-    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "image": "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/spices/organic-dried-kasuri-methi-leaf.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -9933,9 +9933,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 57,
-    "image": "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+    "image": "/images/products/dry-fruits/anjeer.webp",
     "images": [
-      "/images/products/dry-fruits/dryfruit-figs-1.jpg",
+      "/images/products/dry-fruits/anjeer.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10006,9 +10006,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 64,
-    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "image": "/images/products/dry-fruits/pista.webp",
     "images": [
-      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dry-fruits/pista.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10079,9 +10079,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 71,
-    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "image": "/images/products/dry-fruits/organic-cashew-kaju-w240.webp",
     "images": [
-      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dry-fruits/organic-cashew-kaju-w240.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10152,9 +10152,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 78,
-    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "image": "/images/products/dry-fruits/organic-cashew-kaju-w240.webp",
     "images": [
-      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dry-fruits/organic-cashew-kaju-w240.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10225,9 +10225,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 85,
-    "image": "/images/products/dryfruit-walnut-1.jpg",
+    "image": "/images/products/dry-fruits/organic-cashew-kaju-w210.webp",
     "images": [
-      "/images/products/dryfruit-walnut-1.jpg",
+      "/images/products/dry-fruits/organic-cashew-kaju-w210.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10298,9 +10298,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 27,
-    "image": "/images/products/dryfruit-almond-2.jpg",
+    "image": "/images/products/pulses/organic-green-dry-peas-round.webp",
     "images": [
-      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/pulses/organic-green-dry-peas-round.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10371,9 +10371,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 34,
-    "image": "/images/products/dryfruit-almond-2.jpg",
+    "image": "/images/products/dry-fruits/organic-saffron-pampore-kashmir-1gm-packing.webp",
     "images": [
-      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/dry-fruits/organic-saffron-pampore-kashmir-1gm-packing.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10444,9 +10444,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 41,
-    "image": "/images/products/dryfruit-almond-2.jpg",
+    "image": "/images/products/pulses/organic-green-dry-peas-round.webp",
     "images": [
-      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/pulses/organic-green-dry-peas-round.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10517,9 +10517,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 48,
-    "image": "/images/products/dryfruit-almond-2.jpg",
+    "image": "/images/products/pulses/organic-green-dry-peas-round.webp",
     "images": [
-      "/images/products/dryfruit-almond-2.jpg",
+      "/images/products/pulses/organic-green-dry-peas-round.webp",
       "/images/products/dryfruit-cashew-1.jpg",
       "/images/products/dry-fruits/dryfruit-dates-1.jpg",
       "/images/categories/dry-fruits.jpg"
@@ -10590,9 +10590,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 55,
-    "image": "/images/products/seed-chia-1.jpg",
+    "image": "/images/products/seeds/organic-chia-seed.webp",
     "images": [
-      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/organic-chia-seed.webp",
       "/images/products/seed-pumpkin-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -10663,9 +10663,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 62,
-    "image": "/images/products/seed-chia-1.jpg",
+    "image": "/images/products/seeds/organic-pumpkin-seeds.webp",
     "images": [
-      "/images/products/seed-chia-1.jpg",
+      "/images/products/seeds/organic-pumpkin-seeds.webp",
       "/images/products/seed-pumpkin-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -10736,9 +10736,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 69,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-pumpkin-seeds.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-pumpkin-seeds.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -10809,9 +10809,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 76,
-    "image": "/images/products/seeds/seed-sunflower-1.jpg",
+    "image": "/images/products/seeds/organic-sunflower-seed-sunflower-seeds-deshi.webp",
     "images": [
-      "/images/products/seeds/seed-sunflower-1.jpg",
+      "/images/products/seeds/organic-sunflower-seed-sunflower-seeds-deshi.webp",
       "/images/products/seed-pumpkin-1.jpg",
       "/images/products/seeds/seed-sesame-1.jpg",
       "/images/categories/seeds.jpg"
@@ -10882,9 +10882,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 83,
-    "image": "/images/products/seeds/seed-sesame-1.jpg",
+    "image": "/images/products/spices/organic-black-sesame-til.webp",
     "images": [
-      "/images/products/seeds/seed-sesame-1.jpg",
+      "/images/products/spices/organic-black-sesame-til.webp",
       "/images/products/seed-pumpkin-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -10955,9 +10955,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 25,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-peanut.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-peanut.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11028,9 +11028,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 32,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-yellow-mustard-sarso.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-yellow-mustard-sarso.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11101,9 +11101,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 39,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-sabja-seeds.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-sabja-seeds.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11174,9 +11174,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 46,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-sunflower-seed-sunflower-seeds-deshi.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-sunflower-seed-sunflower-seeds-deshi.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11247,9 +11247,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 53,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-flaxseed.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-flaxseed.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11320,9 +11320,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 60,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-flaxseed.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-flaxseed.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11393,9 +11393,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 67,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/quinoa-seed.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/quinoa-seed.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11466,9 +11466,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 74,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-pumpkin-seeds.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-pumpkin-seeds.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11539,9 +11539,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 81,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/quinoa-seed.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/quinoa-seed.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11612,9 +11612,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 23,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/millets/organic-rajgira-atta-amaranth-flour.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/millets/organic-rajgira-atta-amaranth-flour.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11685,9 +11685,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 30,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-black-cumin-kalonji.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-black-cumin-kalonji.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11758,9 +11758,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 37,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-fennel-saunf.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-fennel-saunf.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11831,9 +11831,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 44,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-fenugreek-methi.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-fenugreek-methi.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11904,9 +11904,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 51,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-coriander-powder.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-coriander-powder.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -11977,9 +11977,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 58,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-cumin-powder-jeera-powder.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-cumin-powder-jeera-powder.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -12050,9 +12050,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 65,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/spices/organic-ajwain-carom-seed.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/spices/organic-ajwain-carom-seed.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -12123,9 +12123,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 72,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-pumpkin-seeds.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-pumpkin-seeds.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -12196,9 +12196,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 79,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/organic-pumpkin-seeds.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/organic-pumpkin-seeds.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -12269,9 +12269,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 86,
-    "image": "/images/products/seed-pumpkin-1.jpg",
+    "image": "/images/products/seeds/oat-flakes.webp",
     "images": [
-      "/images/products/seed-pumpkin-1.jpg",
+      "/images/products/seeds/oat-flakes.webp",
       "/images/products/seed-chia-1.jpg",
       "/images/products/seeds/seed-sunflower-1.jpg",
       "/images/categories/seeds.jpg"
@@ -12342,9 +12342,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 28,
-    "image": "/images/products/rice-brown-1.jpg",
+    "image": "/images/products/rice-wheat/organic-sonamasuri-rice-brown-ex-west-bengal.webp",
     "images": [
-      "/images/products/rice-brown-1.jpg",
+      "/images/products/rice-wheat/organic-sonamasuri-rice-brown-ex-west-bengal.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12415,9 +12415,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 35,
-    "image": "/images/products/rice-gobindo-1.jpg",
+    "image": "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
     "images": [
-      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12488,9 +12488,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 42,
-    "image": "/images/products/rice-basmati-1.jpg",
+    "image": "/images/products/rice-wheat/organic-sonamasuri-rice-brown-ex-west-bengal.webp",
     "images": [
-      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/organic-sonamasuri-rice-brown-ex-west-bengal.webp",
       "/images/products/rice-brown-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12561,9 +12561,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 49,
-    "image": "/images/products/rice-gobindo-1.jpg",
+    "image": "/images/products/rice-wheat/organic-sonamasuri-rice-white-ex-west-bengal.webp",
     "images": [
-      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-wheat/organic-sonamasuri-rice-white-ex-west-bengal.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12634,9 +12634,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 56,
-    "image": "/images/products/rice-basmati-1.jpg",
+    "image": "/images/products/rice-wheat/organic-rice-basmati-white-biryani-rice-pusa-1121.webp",
     "images": [
-      "/images/products/rice-basmati-1.jpg",
+      "/images/products/rice-wheat/organic-rice-basmati-white-biryani-rice-pusa-1121.webp",
       "/images/products/rice-brown-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12707,9 +12707,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 63,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/other-items/organic-wheat-grass-powder.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/other-items/organic-wheat-grass-powder.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12780,9 +12780,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 70,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/millets/organic-buckwheat-flour.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/millets/organic-buckwheat-flour.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12853,9 +12853,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 77,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12926,9 +12926,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 84,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/millets/organic-makka-atta-maize-flour.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/millets/organic-makka-atta-maize-flour.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -12999,9 +12999,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 26,
-    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "image": "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/millets/organic-jowar-atta-sorghum-flour.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13072,9 +13072,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 33,
-    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "image": "/images/products/millets/organic-barley-pearl-jau-dehusked-barley-grain.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/millets/organic-barley-pearl-jau-dehusked-barley-grain.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13145,9 +13145,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 40,
-    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "image": "/images/products/millets/organic-maize-whole-makka-deshi.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/millets/organic-maize-whole-makka-deshi.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13218,9 +13218,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 47,
-    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "image": "/images/products/millets/organic-buckwheat-dehulled-buckwheat-grits.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/millets/organic-buckwheat-dehulled-buckwheat-grits.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13291,9 +13291,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 54,
-    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "image": "/images/products/other-items/organic-wheat-grass-powder.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/other-items/organic-wheat-grass-powder.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13364,9 +13364,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 61,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/other-items/organic-wheat-grass-powder.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/other-items/organic-wheat-grass-powder.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13437,9 +13437,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 68,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/millets/organic-barley-atta-jau-flour.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/millets/organic-barley-atta-jau-flour.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13510,9 +13510,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 75,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/millets/organic-barley-atta-jau-flour.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/millets/organic-barley-atta-jau-flour.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13583,9 +13583,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 82,
-    "image": "/images/products/rice-wheat/wheat-grain-1.jpg",
+    "image": "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-grain-1.jpg",
+      "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13656,9 +13656,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 24,
-    "image": "/images/products/rice-sella-1.jpg",
+    "image": "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
     "images": [
-      "/images/products/rice-sella-1.jpg",
+      "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13729,9 +13729,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 31,
-    "image": "/images/products/rice-sella-1.jpg",
+    "image": "/images/products/rice-wheat/organic-idli-rice-ex-tamilnadu.webp",
     "images": [
-      "/images/products/rice-sella-1.jpg",
+      "/images/products/rice-wheat/organic-idli-rice-ex-tamilnadu.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13802,9 +13802,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 38,
-    "image": "/images/products/rice-gobindo-1.jpg",
+    "image": "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
     "images": [
-      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/rice-wheat/organic-poha-white-beaten-rice-white.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13875,9 +13875,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.7,
     "reviewsCount": 45,
-    "image": "/images/products/rice-gobindo-1.jpg",
+    "image": "/images/products/pulses/organic-rajma-red-kidney-bean-capsule.webp",
     "images": [
-      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/pulses/organic-rajma-red-kidney-bean-capsule.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -13948,9 +13948,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.8,
     "reviewsCount": 52,
-    "image": "/images/products/rice-gobindo-1.jpg",
+    "image": "/images/products/pulses/organic-lobiya-cowpea-black-eye-bean.webp",
     "images": [
-      "/images/products/rice-gobindo-1.jpg",
+      "/images/products/pulses/organic-lobiya-cowpea-black-eye-bean.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-flour-1.jpg",
       "/images/categories/rice-wheat.jpg"
@@ -14021,9 +14021,9 @@ export const ALL_PRODUCTS: Product[] = [
     "defaultDiscount": "15% Off",
     "rating": 4.9,
     "reviewsCount": 59,
-    "image": "/images/products/rice-wheat/wheat-flour-1.jpg",
+    "image": "/images/products/other-items/organic-wheat-grass-powder.webp",
     "images": [
-      "/images/products/rice-wheat/wheat-flour-1.jpg",
+      "/images/products/other-items/organic-wheat-grass-powder.webp",
       "/images/products/rice-basmati-1.jpg",
       "/images/products/rice-wheat/wheat-grain-1.jpg",
       "/images/categories/rice-wheat.jpg"

@@ -115,6 +115,7 @@ export default function Footer() {
               {[
                 { name: "Home", href: "/" },
                 { name: "All Products (192)", href: "/products" },
+                { name: "My Saved Wishlist", href: "/wishlist" },
                 { name: "Checkout", href: "/checkout" },
                 { name: "Our Heritage & Standards", href: "/about" },
                 { name: "Health & Nutrition Journal", href: "/blog" },

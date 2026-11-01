@@ -24,6 +24,9 @@ import {
   QrCode,
   Sparkles,
   ShoppingBag,
+  Tag,
+  Check,
+  X,
 } from "lucide-react";
 
 const INDIAN_STATES = [
@@ -65,10 +68,76 @@ export default function CheckoutPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Coupon Discount State
+  const [couponInput, setCouponInput] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState<{
+    code: string;
+    discountPercent: number;
+  } | null>(() => {
+    if (typeof window === "undefined") return null;
+    try {
+      const saved = localStorage.getItem("yourbrand_active_coupon");
+      if (
+        saved &&
+        (saved.toUpperCase() === "HARVEST10" ||
+          saved.toUpperCase() === "WELCOME10" ||
+          saved.toUpperCase() === "ORGANIC10")
+      ) {
+        return {
+          code: saved.toUpperCase(),
+          discountPercent: 10,
+        };
+      }
+    } catch {
+      // ignore
+    }
+    return null;
+  });
+
   const freeDeliveryThreshold = 499;
   const isFreeDelivery = cartTotal >= freeDeliveryThreshold;
   const shippingFee = cartItems.length === 0 ? 0 : isFreeDelivery ? 0 : 50;
-  const grandTotal = cartTotal + shippingFee;
+
+  // Calculate 10% coupon discount
+  const discountAmount = appliedCoupon
+    ? (cartTotal * appliedCoupon.discountPercent) / 100
+    : 0;
+  const grandTotal = Math.max(0, cartTotal - discountAmount) + shippingFee;
+
+  const handleApplyCoupon = (codeToApply?: string) => {
+    const code = (codeToApply || couponInput).trim().toUpperCase();
+    if (!code) {
+      showToast("Please enter a coupon code");
+      return;
+    }
+
+    if (code === "HARVEST10" || code === "WELCOME10" || code === "ORGANIC10") {
+      setAppliedCoupon({
+        code,
+        discountPercent: 10,
+      });
+      try {
+        localStorage.setItem("yourbrand_active_coupon", code);
+      } catch {
+        // ignore
+      }
+      const savedAmount = (cartTotal * 10) / 100;
+      showToast(`Coupon ${code} applied! 10% discount (-₹${savedAmount.toFixed(2)})`);
+      setCouponInput("");
+    } else {
+      showToast(`Invalid coupon "${code}". Try code HARVEST10`);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    try {
+      localStorage.removeItem("yourbrand_active_coupon");
+    } catch {
+      // ignore
+    }
+    showToast("Coupon removed");
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>

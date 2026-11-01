@@ -5,11 +5,18 @@ import { useSearchParams } from "next/navigation";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import ValueTrustStrip from "@/components/ValueTrustStrip";
 import CategorySection from "@/components/CategorySection";
 import BestSellersSection from "@/components/BestSellersSection";
+import SeasonalHarvestSpotlight from "@/components/SeasonalHarvestSpotlight";
 import PromoBanners from "@/components/PromoBanners";
+import StatsSection from "@/components/StatsSection";
+import FarmToTableProcess from "@/components/FarmToTableProcess";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import Testimonials from "@/components/Testimonials";
 import BlogHighlights from "@/components/BlogHighlights";
+import FarmClubNewsletter from "@/components/FarmClubNewsletter";
+import TrustBadges from "@/components/TrustBadges";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
@@ -59,38 +66,59 @@ function HomeContent() {
 
   return (
     <div className="w-full min-h-screen flex flex-col bg-white text-gray-900 font-sans">
-      {/* 1. Top Announcement Bar (Full Width) */}
+      {/* 1. Top Announcement Bar */}
       <TopBar />
 
-      {/* 2. Main Sticky Multi-Page Navbar (Full Width) */}
+      {/* 2. Main Sticky Multi-Page Navbar */}
       <Navbar />
 
-      {/* 3. Hero Carousel Section (Full Bleed Edge-to-Edge) */}
+      {/* 3. Hero Carousel Section */}
       <HeroSection />
 
-      {/* 4. Shop by Category (Full Width 8-Category Grid) */}
+      {/* 4. Value & Trust Assurance Strip */}
+      <ValueTrustStrip />
+
+      {/* 5. Shop by Category (8 Categories) */}
       <CategorySection
         onSelectCategory={handleSelectCategory}
         selectedCategory={selectedCategory}
       />
 
-      {/* 5. Our Best Sellers & Category Highlights (Full Width Grid) */}
+      {/* 6. Our Best Sellers & Category Highlights */}
       <BestSellersSection
         activeCategoryFilter={selectedCategory}
         onSelectCategory={handleSelectCategory}
         limit={8}
       />
 
-      {/* 6. Dual Promo Banners (Full Width) */}
+      {/* 7. Seasonal Signature Harvests & Superfoods Spotlight */}
+      <SeasonalHarvestSpotlight />
+
+      {/* 8. Dual Promo Banners */}
       <PromoBanners />
 
-      {/* 7. Why Choose Our Products (Full Width 6 Pillars) */}
+      {/* 9. Key Impact Numbers & Stats Bar */}
+      <StatsSection />
+
+      {/* 10. Farm-to-Fork 4-Step Purity Journey */}
+      <FarmToTableProcess />
+
+      {/* 11. Why Choose Us (6 Pillars & Certifications) */}
       <WhyChooseUs />
 
-      {/* 8. Journal Highlights (Full Width 3-Article Preview) */}
+      {/* 12. Customer Reviews & Verified Testimonials */}
+      <Testimonials />
+
+      {/* 13. Health & Nutrition Journal Highlights */}
       <BlogHighlights />
 
-      {/* 9. Comprehensive Multi-Page Footer (Full Width) */}
+      {/* 14. Farm Club / Newsletter 10% Off Community Box */}
+      <FarmClubNewsletter />
+
+      {/* 15. Trust Badges Ribbon */}
+      <TrustBadges />
+
+      {/* 16. Comprehensive Multi-Page Footer */}
       <Footer />
 
       {/* Global Interactive Drawers & Modals */}

@@ -36,6 +36,8 @@ export interface OrderPayload {
   shippingFee: number;
   totalAmount: number;
   paymentMethod: string;
+  discount?: number;
+  couponCode?: string;
 }
 
 export interface EmailSendResult {
