@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
+import React, { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
@@ -27,23 +27,79 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+/**
+ * Resolves any category name, slug, or search parameter variant
+ * into the canonical category name from CATEGORIES (e.g. 'millets' -> 'Millets', 'masala-spices' -> 'Masala & Spices').
+ */
+function resolveCategoryName(param?: string | null): string {
+  if (!param || param.toLowerCase() === "all") return "All";
+  let decoded = param;
+  try {
+    decoded = decodeURIComponent(param);
+  } catch {
+    // keep as is
+  }
+  const pLower = decoded.toLowerCase().trim();
+
+  // 1. Exact match by name
+  const exact = CATEGORIES.find((c) => c.name.toLowerCase() === pLower);
+  if (exact) return exact.name;
+
+  // 2. Match by slug
+  const slugMatch = CATEGORIES.find((c) => c.slug.toLowerCase() === pLower);
+  if (slugMatch) return slugMatch.name;
+
+  // 3. Alphanumeric match (handles '&' vs 'and', hyphens, etc.)
+  const pAlpha = pLower.replace(/[^a-z0-9]/g, "");
+  const alphaMatch = CATEGORIES.find((c) => {
+    const cAlpha = c.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const sAlpha = c.slug.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return pAlpha === cAlpha || pAlpha === sAlpha;
+  });
+  if (alphaMatch) return alphaMatch.name;
+
+  // 4. Substring inclusion
+  const partial = CATEGORIES.find(
+    (c) =>
+      c.name.toLowerCase().includes(pLower) ||
+      pLower.includes(c.name.toLowerCase()) ||
+      c.slug.toLowerCase().includes(pLower)
+  );
+  if (partial) return partial.name;
+
+  return decoded;
+}
+
 function ProductsCatalogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialCategoryParam = searchParams.get("category");
-  const initialSearchParam = searchParams.get("search");
 
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
-
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    initialCategoryParam || "All"
-  );
-  const [searchQuery, setSearchQuery] = useState<string>(
-    initialSearchParam || ""
-  );
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    return resolveCategoryName(searchParams.get("category"));
+  });
+  const [searchQuery, setSearchQuery] = useState<string>(() => {
+    return searchParams.get("search") || "";
+  });
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "rating">("featured");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 24;
+
+  // Synchronize category selection whenever URL searchParams change
+  useEffect(() => {
+    const categoryParam = searchParams.get("category");
+    const resolvedCat = resolveCategoryName(categoryParam);
+    setSelectedCategory(resolvedCat);
+    setCurrentPage(1);
+  }, [searchParams]);
+
+  // Synchronize search query whenever URL searchParams change
+  useEffect(() => {
+    const searchParam = searchParams.get("search");
+    setSearchQuery(searchParam || "");
+    setCurrentPage(1);
+  }, [searchParams]);
+
+  const { addToCart, toggleWishlist, isInWishlist } = useCart();
 
   // Selected weight options for each product
   const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>(() => {
@@ -81,8 +137,9 @@ function ProductsCatalogContent() {
     let result = [...ALL_PRODUCTS];
 
     if (selectedCategory !== "All") {
+      const targetCat = resolveCategoryName(selectedCategory);
       result = result.filter(
-        (p) => p.category.toLowerCase() === selectedCategory.toLowerCase()
+        (p) => p.category.toLowerCase() === targetCat.toLowerCase()
       );
     }
 
@@ -116,8 +173,31 @@ function ProductsCatalogContent() {
   }, [filteredProducts, currentPage, itemsPerPage]);
 
   const handleCategoryChange = (catName: string) => {
-    setSelectedCategory(catName);
+    const resolved = resolveCategoryName(catName);
+    setSelectedCategory(resolved);
     setCurrentPage(1);
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (resolved === "All") {
+      params.delete("category");
+    } else {
+      params.set("category", resolved);
+    }
+    const newQuery = params.toString();
+    router.replace(newQuery ? `/products?${newQuery}` : "/products", { scroll: false });
+  };
+
+  const handleSearchInput = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+    const params = new URLSearchParams(searchParams.toString());
+    if (!value.trim()) {
+      params.delete("search");
+    } else {
+      params.set("search", value.trim());
+    }
+    const newQuery = params.toString();
+    router.replace(newQuery ? `/products?${newQuery}` : "/products", { scroll: false });
   };
 
   return (
@@ -179,16 +259,13 @@ function ProductsCatalogContent() {
                 type="text"
                 placeholder="Search products by name, benefit, or culinary use..."
                 value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setCurrentPage(1);
-                }}
+                onChange={(e) => handleSearchInput(e.target.value)}
                 className="w-full bg-[#f9f8f5] border border-[#dcd6c8] text-gray-900 text-xs sm:text-sm rounded-xl pl-10 pr-9 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
               />
               <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery("")}
+                  onClick={() => handleSearchInput("")}
                   className="w-5 h-5 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-600 flex items-center justify-center absolute right-3 top-3 cursor-pointer"
                 >
                   <X className="w-3 h-3" />

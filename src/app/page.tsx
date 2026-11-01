@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -15,10 +16,38 @@ import BulkEnquiryModal from "@/components/BulkEnquiryModal";
 import ToastNotification from "@/components/ToastNotification";
 import { CATEGORIES } from "@/data/mockData";
 
-export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    CATEGORIES[0]?.name || "Pulses"
-  );
+function HomeContent() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(() => {
+    if (categoryParam) {
+      const match = CATEGORIES.find(
+        (c) =>
+          c.name.toLowerCase() === categoryParam.toLowerCase() ||
+          c.slug.toLowerCase() === categoryParam.toLowerCase()
+      );
+      if (match) return match.name;
+    }
+    return CATEGORIES[0]?.name || "Pulses";
+  });
+
+  useEffect(() => {
+    if (categoryParam) {
+      const match = CATEGORIES.find(
+        (c) =>
+          c.name.toLowerCase() === categoryParam.toLowerCase() ||
+          c.slug.toLowerCase() === categoryParam.toLowerCase()
+      );
+      if (match) {
+        setSelectedCategory(match.name);
+        const target = document.getElementById("best-sellers");
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+  }, [categoryParam]);
 
   const handleSelectCategory = (catName: string) => {
     setSelectedCategory(catName);
@@ -69,5 +98,19 @@ export default function Home() {
       <BulkEnquiryModal />
       <ToastNotification />
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full min-h-screen flex items-center justify-center bg-white text-gray-500 text-xs">
+          Loading YOUR BRAND store...
+        </div>
+      }
+    >
+      <HomeContent />
+    </Suspense>
   );
 }
