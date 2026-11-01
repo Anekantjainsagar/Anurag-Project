@@ -177,13 +177,33 @@ export default function BlogSection() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  // Extract unique categories for filter pills
+  // Extract unique categories for filter pills in order of store categories
   const categories = useMemo(() => {
+    const PREFERRED_ORDER = [
+      "All",
+      "Pulses",
+      "Millets",
+      "Rice & Wheat",
+      "Honey",
+      "Sweets",
+      "Masala & Spices",
+      "Dry Fruits",
+      "Seeds",
+    ];
     const cats = new Set<string>();
     BLOG_POSTS.forEach((post) => {
       if (post.category) cats.add(post.category);
     });
-    return ["All", ...Array.from(cats)];
+
+    const sorted = PREFERRED_ORDER.filter(
+      (cat) => cat === "All" || cats.has(cat)
+    );
+    Array.from(cats).forEach((cat) => {
+      if (!sorted.includes(cat)) {
+        sorted.push(cat);
+      }
+    });
+    return sorted;
   }, []);
 
   // Filtered blogs based on search & category
@@ -237,7 +257,7 @@ export default function BlogSection() {
               All Healthy Food & Wellness Articles
             </h2>
             <p className="text-gray-600 text-xs sm:text-sm mt-1 max-w-2xl">
-              Browse our complete collection of 12 science-backed guides. Click images to scroll through photos, explore verified nutritional highlights, and discover farm purity.
+              Browse our complete collection of {BLOG_POSTS.length} science-backed guides across all 8 product categories. Click images to scroll through photos, explore verified nutritional highlights, and discover farm purity.
             </p>
           </div>
 
@@ -398,6 +418,27 @@ export default function BlogSection() {
                             <span className="line-clamp-1">{benefit}</span>
                           </div>
                         ))}
+                      </div>
+                    )}
+
+                    {/* Featured Store Product Callout */}
+                    {blog.featuredProduct && (
+                      <div className="mt-2.5 p-2 bg-[#f4f9f5] border border-[#cce4d4] rounded-xl flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="w-2 h-2 rounded-full bg-[#044a27] shrink-0" />
+                          <div className="min-w-0 text-xs">
+                            <span className="text-gray-500 font-medium text-[11px]">Related Product: </span>
+                            <span className="font-bold text-gray-900 truncate">{blog.featuredProduct.name}</span>
+                          </div>
+                        </div>
+                        <Link
+                          href={`/products?category=${blog.featuredProduct.categorySlug}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-[11px] font-bold text-[#044a27] hover:underline shrink-0 flex items-center gap-0.5 bg-white px-2 py-0.5 rounded-md border border-[#cbe5d5] hover:bg-[#e8f3ec] transition-colors"
+                        >
+                          <span>Shop</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -701,6 +742,32 @@ export default function BlogSection() {
                 </div>
               )}
 
+              {/* Featured Store Commodity Spotlight */}
+              {activeBlog.featuredProduct && (
+                <div className="p-4 bg-[#f0f8f3] rounded-2xl border border-[#b8dfc7] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#044a27] mb-0.5 flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5 text-[#c29336]" />
+                      <span>Featured Store Commodity</span>
+                    </div>
+                    <div className="font-bold text-sm sm:text-base text-gray-900">
+                      {activeBlog.featuredProduct.name}
+                    </div>
+                    <p className="text-xs text-gray-600 mt-0.5">
+                      {activeBlog.featuredProduct.benefitHighlight}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/products?category=${activeBlog.featuredProduct.categorySlug}`}
+                    onClick={() => setActiveBlog(null)}
+                    className="inline-flex items-center justify-center gap-1.5 bg-[#044a27] hover:bg-[#033b20] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shrink-0 shadow-2xs"
+                  >
+                    <span>Shop This Commodity</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              )}
+
               {/* Tags */}
               {activeBlog.tags && activeBlog.tags.length > 0 && (
                 <div className="flex flex-wrap items-center gap-1.5 pt-2">
@@ -720,11 +787,19 @@ export default function BlogSection() {
             {/* Modal Footer Actions */}
             <div className="p-4 sm:p-5 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
               <Link
-                href="/products"
+                href={
+                  activeBlog.featuredProduct
+                    ? `/products?category=${activeBlog.featuredProduct.categorySlug}`
+                    : "/products"
+                }
                 onClick={() => setActiveBlog(null)}
                 className="text-xs font-bold text-[#044a27] hover:underline flex items-center gap-1"
               >
-                <span>Shop Related Farm-Fresh Commodities</span>
+                <span>
+                  {activeBlog.featuredProduct
+                    ? `Shop ${activeBlog.category} (${activeBlog.featuredProduct.name})`
+                    : "Shop Related Farm-Fresh Commodities"}
+                </span>
                 <ArrowRight className="w-3 h-3" />
               </Link>
 

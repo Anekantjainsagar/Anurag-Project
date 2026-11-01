@@ -27,8 +27,7 @@ export default function BlogPage() {
             The Holistic Health Journal
           </h1>
           <p className="text-sm sm:text-base text-[#c3decb] max-w-2xl mx-auto leading-relaxed">
-            Explore in-depth scientific guides on whole grains, bilona ghee,
-            cold-pressed therapeutic spices, and living sprouted legumes.
+            Explore in-depth scientific guides across all 8 product categories: pulses, millets, ancient grains, forest honey, organic spices, and natural wellness foods.
           </p>
 
           <div className="flex items-center justify-center gap-2 flex-wrap pt-2 text-xs text-white/80">
@@ -38,11 +37,11 @@ export default function BlogPage() {
             </span>
             <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">
               <ShieldCheck className="w-3.5 h-3.5 text-[#58cf8b]" />
-              Zero Chemical Agni
+              Zero Chemical Polish
             </span>
             <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">
               <BookOpen className="w-3.5 h-3.5 text-[#58cf8b]" />
-              12 Research Articles
+              24 Research Articles (8 Categories)
             </span>
           </div>
         </div>

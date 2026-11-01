@@ -62,6 +62,11 @@ export interface BlogPost {
     label: string;
     value: string;
   }[];
+  featuredProduct?: {
+    name: string;
+    categorySlug: string;
+    benefitHighlight: string;
+  };
 }
 
 export interface WhyChooseFeature {
