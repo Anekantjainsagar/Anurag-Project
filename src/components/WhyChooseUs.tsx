@@ -59,7 +59,7 @@ export default function WhyChooseUs() {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5" />
-            <span>The YOUR BRAND Organic Guarantee</span>
+            <span>The ONAAR Organic Guarantee</span>
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
             Why Discerning Families & Chefs Choose Our Food

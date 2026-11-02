@@ -8,7 +8,7 @@ const BANNERS = [
   {
     id: "banner-1",
     image: "/images/banners/hero-banner-1.jpg",
-    badge: "YOUR BRAND • 100% CERTIFIED ORGANIC",
+    badge: "ONAAR • 100% CERTIFIED ORGANIC",
     title: "Pure Nourishment Directly From Nature's Soil",
     subtitle: "Hand-harvested heritage pulses, aromatic whole spices, and unpolished grains for a vibrant life.",
     buttonText: "EXPLORE ORGANIC CATALOGUE",
@@ -17,7 +17,7 @@ const BANNERS = [
   {
     id: "banner-2",
     image: "/images/banners/hero-banner-2.jpg",
-    badge: "YOUR BRAND • FARM TO TABLE EXCELLENCE",
+    badge: "ONAAR • FARM TO TABLE EXCELLENCE",
     title: "Golden Harvest Grains & Traditional Essentials",
     subtitle: "Ancient heirloom wheat, stone-ground flours, and wood-pressed staples cultured with purity.",
     buttonText: "DISCOVER WHOLE GRAINS",
@@ -26,7 +26,7 @@ const BANNERS = [
   {
     id: "banner-3",
     image: "/images/banners/hero-banner-3.jpg",
-    badge: "YOUR BRAND • ANCIENT SUPERFOODS",
+    badge: "ONAAR • ANCIENT SUPERFOODS",
     title: "Heritage Millets, Raw Wild Honey & Dry Fruits",
     subtitle: "Nutrient-dense, low-glycemic, non-GMO staples lab-tested for zero pesticide residues.",
     buttonText: "SHOP SUPERFOODS",

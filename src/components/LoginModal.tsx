@@ -68,7 +68,7 @@ export default function LoginModal() {
             <form onSubmit={handleSendOtp} className="space-y-4 text-left">
               <div className="text-center space-y-1">
                 <h3 className="font-serif text-xl font-bold text-gray-900">
-                  Welcome to Your Brand
+                  Welcome to ONAAR
                 </h3>
                 <p className="text-xs text-gray-500">
                   Enter your mobile number to sign in or register

@@ -134,7 +134,7 @@ export default function Home() {
     <Suspense
       fallback={
         <div className="w-full min-h-screen flex items-center justify-center bg-white text-gray-500 text-xs">
-          Loading YOUR BRAND store...
+          Loading ONAAR store...
         </div>
       }
     >

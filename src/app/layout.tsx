@@ -16,7 +16,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "YOUR BRAND - 100% Certified Organic Food Products | Pure Food. Better Life.",
+  title: "ONAAR - 100% Certified Organic Food Products | Pure Food. Better Life.",
   description:
     "Shop certified organic Pulses, Millets, Spices, Honey, Dry Fruits, Seeds & Grains sourced directly from certified organic farms. 100% pure, unpolished, and lab-tested. Fast delivery across India.",
 };

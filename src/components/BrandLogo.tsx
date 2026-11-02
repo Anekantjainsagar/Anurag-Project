@@ -40,14 +40,14 @@ export default function BrandLogo({
         className={`${imgSize} rounded-full bg-[#01722C] border-2 border-[#d4af37] flex items-center justify-center text-white shadow-2xs shrink-0 relative overflow-hidden`}
       >
         <Leaf className="w-5 h-5 text-[#f4d068] transform -rotate-12" />
-        <span className="sr-only">YOUR BRAND</span>
+        <span className="sr-only">ONAAR</span>
       </div>
 
       <div className="flex flex-col leading-none">
         <span
           className={`font-serif font-black tracking-wider ${titleSize} ${titleColor}`}
         >
-          YOUR BRAND
+          ONAAR
         </span>
         <span
           className={`font-sans font-semibold tracking-widest uppercase mt-0.5 text-[8px] sm:text-[9px] ${subtitleColor}`}

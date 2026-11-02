@@ -22,7 +22,7 @@ export default function FarmClubNewsletter() {
       showToast("Thank you for subscribing to our Farm Club!");
     } else {
       try {
-        localStorage.setItem("yourbrand_active_coupon", "HARVEST10");
+        localStorage.setItem("onaar_active_coupon", "HARVEST10");
       } catch {
         // ignore
       }

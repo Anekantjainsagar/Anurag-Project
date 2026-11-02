@@ -77,7 +77,7 @@ export default function CheckoutPage() {
   } | null>(() => {
     if (typeof window === "undefined") return null;
     try {
-      const saved = localStorage.getItem("yourbrand_active_coupon");
+      const saved = localStorage.getItem("onaar_active_coupon") || localStorage.getItem("yourbrand_active_coupon");
       if (
         saved &&
         (saved.toUpperCase() === "HARVEST10" ||
@@ -86,6 +86,7 @@ export default function CheckoutPage() {
       ) {
         // If this coupon was already redeemed on this browser's cookies, prevent auto-applying
         if (isCouponRedeemed(saved)) {
+          localStorage.removeItem("onaar_active_coupon");
           localStorage.removeItem("yourbrand_active_coupon");
           return null;
         }
@@ -129,7 +130,7 @@ export default function CheckoutPage() {
         discountPercent: 10,
       });
       try {
-        localStorage.setItem("yourbrand_active_coupon", code);
+        localStorage.setItem("onaar_active_coupon", code);
       } catch {
         // ignore
       }
@@ -144,6 +145,7 @@ export default function CheckoutPage() {
   const handleRemoveCoupon = () => {
     setAppliedCoupon(null);
     try {
+      localStorage.removeItem("onaar_active_coupon");
       localStorage.removeItem("yourbrand_active_coupon");
     } catch {
       // ignore
@@ -227,6 +229,7 @@ export default function CheckoutPage() {
       if (typeof window !== "undefined") {
         sessionStorage.setItem("rj_last_order", JSON.stringify(orderPayload));
         try {
+          localStorage.removeItem("onaar_active_coupon");
           localStorage.removeItem("yourbrand_active_coupon");
         } catch {
           // ignore

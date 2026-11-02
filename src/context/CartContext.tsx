@@ -34,7 +34,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     if (typeof window === "undefined") return [];
     try {
-      const saved = localStorage.getItem("yourbrand_cart");
+      const saved = localStorage.getItem("onaar_cart") || localStorage.getItem("yourbrand_cart");
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -43,7 +43,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [wishlist, setWishlist] = useState<string[]>(() => {
     if (typeof window === "undefined") return [];
     try {
-      const saved = localStorage.getItem("yourbrand_wishlist");
+      const saved = localStorage.getItem("onaar_wishlist") || localStorage.getItem("yourbrand_wishlist");
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -58,7 +58,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Save changes
   useEffect(() => {
     try {
-      localStorage.setItem("yourbrand_cart", JSON.stringify(cartItems));
+      localStorage.setItem("onaar_cart", JSON.stringify(cartItems));
     } catch {
       // ignore
     }
@@ -66,7 +66,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem("yourbrand_wishlist", JSON.stringify(wishlist));
+      localStorage.setItem("onaar_wishlist", JSON.stringify(wishlist));
     } catch {
       // ignore
     }

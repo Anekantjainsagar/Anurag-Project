@@ -29,7 +29,7 @@ const TESTIMONIALS = [
     name: "Arun Verma",
     location: "Lucknow",
     rating: 5,
-    text: "Running a small restaurant, I switched to YOUR BRAND spices and the feedback from customers has been incredible. Authentic taste in every dish.",
+    text: "Running a small restaurant, I switched to ONAAR spices and the feedback from customers has been incredible. Authentic taste in every dish.",
     product: "Garam Masala Powder",
   },
   {

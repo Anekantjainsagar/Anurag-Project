@@ -65,7 +65,7 @@ function ContactPageContent() {
         <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
-            <span>YOUR BRAND • Dedicated Support & Wholesale Desk</span>
+            <span>ONAAR • Dedicated Support & Wholesale Desk</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-black text-white tracking-tight">
             Contact Us & Wholesale Enquiries
@@ -124,10 +124,10 @@ function ContactPageContent() {
                     Email Correspondence
                   </div>
                   <a
-                    href="mailto:support@yourbrand.com"
+                    href="mailto:support@onaar.com"
                     className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    support@yourbrand.com
+                    support@onaar.com
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
                     For price lists, certification copies & batch analysis

@@ -18,11 +18,11 @@ export default function TopBar() {
           </a>
           <span className="hidden md:inline text-white/30">|</span>
           <a
-            href="mailto:support@yourbrand.com"
+            href="mailto:support@onaar.com"
             className="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors shrink-0"
           >
             <Mail className="w-3 h-3 text-[#58cf8b] shrink-0" />
-            <span>support@yourbrand.com</span>
+            <span>support@onaar.com</span>
           </a>
         </div>
 
@@ -41,7 +41,7 @@ export default function TopBar() {
             Direct Farm Sourcing • Pan-India Delivery
           </span>
           <a
-            href="https://wa.me/919876543210?text=Hello%20YOUR%20BRAND%20Support"
+            href="https://wa.me/919876543210?text=Hello%20ONAAR%20Support"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1 text-[#58cf8b] hover:text-white font-bold transition-colors"

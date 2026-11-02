@@ -19,7 +19,7 @@ export default function Footer() {
       return;
     }
     setIsSubscribed(true);
-    showToast("Thank you for subscribing to YOUR BRAND updates!");
+    showToast("Thank you for subscribing to ONAAR updates!");
     setEmail("");
   };
 
@@ -35,7 +35,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs text-[#a9cfbe] leading-relaxed">
-              YOUR BRAND is dedicated to bringing 100% certified organic, pure,
+              ONAAR is dedicated to bringing 100% certified organic, pure,
               unadulterated farm staples to households across India. Hand-harvested,
               pesticide-free, and ethically cultivated directly with farmer collectives.
             </p>
@@ -83,10 +83,10 @@ export default function Footer() {
                 <div>
                   <div className="text-[10.5px] text-[#7eb59a] font-medium">Customer Support Email</div>
                   <a
-                    href="mailto:support@yourbrand.com"
+                    href="mailto:support@onaar.com"
                     className="hover:text-white transition-colors font-bold text-white block text-xs mt-0.5"
                   >
-                    support@yourbrand.com
+                    support@onaar.com
                   </a>
                 </div>
               </div>
@@ -192,7 +192,7 @@ export default function Footer() {
       <div className="border-t border-[#014d1f] py-4 text-xs text-[#86b59e] px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
           <div>
-            Copyright 2026 © <strong>YOUR BRAND</strong>. All Rights Reserved.
+            Copyright 2026 © <strong>ONAAR</strong>. All Rights Reserved.
           </div>
 
           <div className="flex items-center gap-3 flex-wrap justify-center text-xs">

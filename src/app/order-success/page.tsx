@@ -51,7 +51,7 @@ function OrderSuccessContent() {
   const paymentMethod = order?.paymentMethod || "Cash on Delivery (COD)";
 
   const whatsappMessage = encodeURIComponent(
-    `Hello YOUR BRAND Support, I have placed order #${orderIdParam} for ${totalAmount}. Please confirm dispatch status.`
+    `Hello ONAAR Support, I have placed order #${orderIdParam} for ${totalAmount}. Please confirm dispatch status.`
   );
 
   return (

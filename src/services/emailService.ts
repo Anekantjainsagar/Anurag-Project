@@ -1,5 +1,5 @@
 /**
- * EmailJS Order & Contact Notification Service for YOUR BRAND
+ * EmailJS Order & Contact Notification Service for ONAAR
  * Dispatches emails to:
  * 1) Customer: Order confirmation receipt & delivery tracking info
  * 2) Vendor (Anurag Jain <meriwebdunia@gmail.com>): New order alert & customer contact details
@@ -111,7 +111,7 @@ export async function sendOrderEmails(order: OrderPayload): Promise<EmailSendRes
     payment_status: "Pay on Delivery / COD (Zero advance payment required)",
     support_phone: "+91-98765 43210",
     support_email: VENDOR_EMAIL,
-    brand_name: "YOUR BRAND",
+    brand_name: "ONAAR",
   };
 
   // Parameters for Vendor (Anurag Jain) Alert Email

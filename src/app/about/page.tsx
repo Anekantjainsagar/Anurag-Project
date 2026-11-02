@@ -56,7 +56,7 @@ const VALUES = [
 
 const FAQS = [
   {
-    q: "How does YOUR BRAND prove products are 100% organic?",
+    q: "How does ONAAR prove products are 100% organic?",
     a: "Every batch is traced to registered organic farmer clusters with geo-tagged locations and tested in NABL-accredited laboratories for 218 pesticide residues and heavy metals. Certificates of analysis are available upon request.",
   },
   {
@@ -86,7 +86,7 @@ export default function AboutPage() {
         <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
-            <span>YOUR BRAND • Our Heritage & Standards</span>
+            <span>ONAAR • Our Heritage & Standards</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl font-black text-white tracking-tight">
             About Our Heritage & Standards
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 Modern food processing routinely strips grains of their most nutrient-dense outer layers — buffing dals with emery stones, shining with paraffin wax, and treating with chemicals for cosmetic gloss.
               </p>
               <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                <strong>YOUR BRAND</strong> was founded to provide an honest alternative. We cultivate living soil with indigenous non-GMO heirloom seeds, cow-dung Jivamrit, and traditional organic farming methods.
+                <strong>ONAAR</strong> was founded to provide an honest alternative. We cultivate living soil with indigenous non-GMO heirloom seeds, cow-dung Jivamrit, and traditional organic farming methods.
               </p>
             </div>
 

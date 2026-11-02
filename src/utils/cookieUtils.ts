@@ -29,7 +29,7 @@ export function getRedeemedCoupons(): string[] {
 
   // 1. Check primary cookie
   try {
-    const cookieVal = getCookie("yb_redeemed_coupons");
+    const cookieVal = getCookie("onaar_redeemed_coupons") || getCookie("yb_redeemed_coupons");
     if (cookieVal) {
       const parsed = JSON.parse(cookieVal);
       if (Array.isArray(parsed)) return parsed;
@@ -40,7 +40,7 @@ export function getRedeemedCoupons(): string[] {
 
   // 2. Check localStorage fallback
   try {
-    const localVal = localStorage.getItem("yourbrand_redeemed_coupons");
+    const localVal = localStorage.getItem("onaar_redeemed_coupons") || localStorage.getItem("yourbrand_redeemed_coupons");
     if (localVal) {
       const parsed = JSON.parse(localVal);
       if (Array.isArray(parsed)) return parsed;
@@ -75,13 +75,13 @@ export function markCouponAsRedeemed(code: string) {
     const differentiatorToken = `DIFF-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 
     // Set cookie differentiator with 365 days expiry
-    setCookie("yb_redeemed_coupons", JSON.stringify(updated), 365);
-    setCookie(`yb_diff_${normalized}`, differentiatorToken, 365);
+    setCookie("onaar_redeemed_coupons", JSON.stringify(updated), 365);
+    setCookie(`onaar_diff_${normalized}`, differentiatorToken, 365);
 
     // Also sync localStorage for resilience against partial cookie clearing
     try {
-      localStorage.setItem("yourbrand_redeemed_coupons", JSON.stringify(updated));
-      localStorage.setItem(`yourbrand_diff_${normalized}`, differentiatorToken);
+      localStorage.setItem("onaar_redeemed_coupons", JSON.stringify(updated));
+      localStorage.setItem(`onaar_diff_${normalized}`, differentiatorToken);
     } catch {
       // ignore
     }

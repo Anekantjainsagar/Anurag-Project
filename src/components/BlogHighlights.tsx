@@ -66,7 +66,7 @@ export default function BlogHighlights() {
   };
 
   const getAuthorName = (author?: { name: string; role: string } | string) => {
-    if (!author) return "YOUR BRAND Editorial";
+    if (!author) return "ONAAR Editorial";
     return typeof author === "string" ? author : author.name;
   };
 

@@ -1,6 +1,6 @@
 # Project Context & AI Handover Guide
 
-> **Project Name**: YOUR BRAND — Pure Food. Better Life. (Agro E-Commerce & B2B Export Platform)  
+> **Project Name**: ONAAR — Pure Food. Better Life. (Agro E-Commerce & B2B Export Platform)  
 > **Repository**: [https://github.com/Anekantjainsagar/Anurag-Project.git](https://github.com/Anekantjainsagar/Anurag-Project.git)  
 > **Status**: Production-ready frontend with Next.js 16 (App Router), TypeScript, Tailwind CSS v4, multi-slide Hero Carousel, 29-product catalog across all 7 categories, and dedicated dynamic Product Detail Pages (PDP).  
 > **Primary Goal for Successor AI**: Pick up this codebase seamlessly, maintain visual fidelity with the reference brand mockup, and continue adding full-stack features (auth, database, payment gateway, backend APIs).
@@ -13,7 +13,7 @@ This application is an e-commerce and B2B wholesale platform for a premium agric
 - **Product Lines**: Traditional Basmati & Non-Basmati Rice, Unpolished Pulses (Dals), California & Hand-Selected Dry Fruits, Ancient Millets, Cold-Pressed Seeds, Pure Spices, and Vedic Bilona Ghee / Cold-Pressed Oils.
 - **Brand Identity**:
   - **Emblem**: Elegant dual-leaf green sprout with a modern golden accent.
-  - **Headline**: "YOUR BRAND" / "PURE FOOD. BETTER LIFE."
+  - **Headline**: "ONAAR" / "PURE FOOD. BETTER LIFE."
   - **Tone**: Heritage, purity, natural farming, export-quality standard, trustworthy, hygienic.
   - **Audience**: Dual market — direct-to-consumer (D2C) households seeking unadulterated staples, and global B2B/institutional buyers seeking bulk contract supply.
 

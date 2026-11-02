@@ -8,7 +8,7 @@ const REVIEWS = [
     name: "Dr. Ananya Sharma",
     role: "Clinical Nutritionist, New Delhi",
     review:
-      "YOUR BRAND unpolished toor and chana dals have a distinct earthy aroma and natural texture. They don't have that artificial water-polished shine. My patients notice a genuine difference in digestion and energy.",
+      "ONAAR unpolished toor and chana dals have a distinct earthy aroma and natural texture. They don't have that artificial water-polished shine. My patients notice a genuine difference in digestion and energy.",
     rating: 5,
     tag: "Verified Household",
   },
