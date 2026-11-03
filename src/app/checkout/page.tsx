@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import BrandLogo from "@/components/BrandLogo";
 import TopBar from "@/components/TopBar";
+import Navbar from "@/components/Navbar";
+import CartDrawer from "@/components/CartDrawer";
+import BulkEnquiryModal from "@/components/BulkEnquiryModal";
 import Footer from "@/components/Footer";
 import ToastNotification from "@/components/ToastNotification";
 import { sendOrderEmails, OrderPayload } from "@/services/emailService";
@@ -259,20 +262,22 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
       <TopBar />
+      <Navbar />
 
-      {/* Checkout Navbar */}
-      <header className="w-full bg-white border-b border-[#e5ebe7] shadow-xs py-4 px-4 sm:px-8 lg:px-12 xl:px-16">
-        <div className="w-full flex items-center justify-between">
-          <Link href="/">
-            <BrandLogo variant="dark" />
-          </Link>
-
-          <div className="flex items-center gap-2 text-xs font-bold text-[#01722C] bg-[#edf7f1] px-3.5 py-1.5 rounded-full border border-[#b8ddc6]">
-            <Lock className="w-3.5 h-3.5" />
+      {/* Checkout Security Sub-header */}
+      <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="w-full flex items-center justify-between text-xs text-[#01722C]">
+          <div className="flex items-center gap-2 font-bold">
+            <Lock className="w-3.5 h-3.5 text-[#01722C]" />
             <span>256-Bit SSL Encrypted Checkout</span>
           </div>
+          <div className="hidden sm:flex items-center gap-3 text-[11px] font-medium text-emerald-800">
+            <span>✓ 100% Certified Organic Guarantee</span>
+            <span>•</span>
+            <span>✓ Pay on Delivery (COD) Available</span>
+          </div>
         </div>
-      </header>
+      </div>
 
       {/* Main Checkout Canvas - Full Width Fluid Container */}
       <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 flex-1">
@@ -769,6 +774,8 @@ export default function CheckoutPage() {
       </main>
 
       <Footer />
+      <CartDrawer />
+      <BulkEnquiryModal />
       <ToastNotification />
     </div>
   );
