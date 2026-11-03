@@ -20,13 +20,13 @@ export default function PromoBanners() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#f4eee4] via-[#f4eee4]/85 to-transparent"></div>
             </div>
 
-            <div className="relative z-10 p-6 sm:p-8 max-w-sm space-y-3">
+            <div className="relative z-10 p-5 sm:p-8 max-w-[80%] sm:max-w-sm space-y-2.5 sm:space-y-3">
               <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#01722C]/10 text-[#01722C] text-[10.5px] font-bold uppercase tracking-wider">
                 <Sparkles className="w-3 h-3 text-[#01722C]" />
                 <span>Estate Reserve</span>
               </div>
 
-              <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl font-black text-[#1a2e22] tracking-tight leading-snug">
+              <h3 className="font-serif text-lg sm:text-2xl lg:text-3xl font-black text-[#1a2e22] tracking-tight leading-snug">
                 Royal Aged Basmati & Heritage Grains
               </h3>
 
@@ -34,10 +34,10 @@ export default function PromoBanners() {
                 2-Year Aged Himalayan Basmati, Khapli Ancient Wheat & Gobindobhog Scented Rice.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-1.5 sm:pt-2">
                 <Link
                   href="/products?category=Rice%20%26%20Wheat"
-                  className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xl transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl transition-all shadow-xs"
                 >
                   <span>Explore Rice & Wheat (24)</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -57,13 +57,13 @@ export default function PromoBanners() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#ebe6d8] via-[#ebe6d8]/85 to-transparent"></div>
             </div>
 
-            <div className="relative z-10 p-6 sm:p-8 max-w-sm space-y-3">
+            <div className="relative z-10 p-5 sm:p-8 max-w-[80%] sm:max-w-sm space-y-2.5 sm:space-y-3">
               <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#01722C]/10 text-[#01722C] text-[10.5px] font-bold uppercase tracking-wider">
                 <Sparkles className="w-3 h-3 text-[#01722C]" />
                 <span>100% Unpolished</span>
               </div>
 
-              <h3 className="font-serif text-xl sm:text-2xl lg:text-3xl font-black text-[#1a2e22] tracking-tight leading-snug">
+              <h3 className="font-serif text-lg sm:text-2xl lg:text-3xl font-black text-[#1a2e22] tracking-tight leading-snug">
                 Desi Pulses & Ayurvedic Superfoods
               </h3>
 
@@ -71,10 +71,10 @@ export default function PromoBanners() {
                 Desi Dals, Kashmiri Walnuts, Mamra Almonds & Forest Blossom Raw Honey.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-1.5 sm:pt-2">
                 <Link
                   href="/products?category=Pulses"
-                  className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xl transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold uppercase tracking-wider px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl transition-all shadow-xs"
                 >
                   <span>Explore Pulses (24)</span>
                   <ArrowRight className="w-3.5 h-3.5" />

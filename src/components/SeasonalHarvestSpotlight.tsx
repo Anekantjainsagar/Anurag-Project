@@ -91,7 +91,7 @@ export default function SeasonalHarvestSpotlight() {
         </div>
 
         {/* 6 Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5">
           {spotlightProducts.map((product) => {
             const currentOption =
               selectedOptions[product.id] ||
@@ -153,7 +153,7 @@ export default function SeasonalHarvestSpotlight() {
                 </div>
 
                 {/* Content */}
-                <div className="p-3.5 flex-1 flex flex-col justify-between space-y-2.5">
+                <div className="p-2.5 sm:p-3.5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-2.5">
                   <div className="space-y-1">
                     <div className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md inline-block">
                       {specialTag}
