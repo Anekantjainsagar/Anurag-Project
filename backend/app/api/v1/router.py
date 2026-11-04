@@ -1,6 +1,6 @@
 """
 API v1 Router Aggregator
-Mounts all customer, catalog, checkout, inquiry, and dynamic CMS sub-routers.
+Mounts all customer, catalog, checkout, inquiry, dynamic CMS, and Admin sub-routers.
 """
 
 from fastapi import APIRouter
@@ -15,6 +15,7 @@ from app.api.v1.endpoints import (
     profile,
     settings,
 )
+from app.api.v1.endpoints.admin import admin_router
 
 api_router = APIRouter()
 
@@ -44,3 +45,6 @@ api_router.include_router(inquiries.router, tags=["Inquiries & Newsletter"])
 
 # Dynamic CMS, Settings & Banners
 api_router.include_router(settings.router, tags=["Storefront CMS & Settings"])
+
+# Admin & Vendor Portal Operations
+api_router.include_router(admin_router)
