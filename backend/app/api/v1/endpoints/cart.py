@@ -183,3 +183,4 @@ async def remove_cart_item(
     await db.delete(item)
     await db.commit()
     return {"success": True, "message": "Item removed from cart."}
+

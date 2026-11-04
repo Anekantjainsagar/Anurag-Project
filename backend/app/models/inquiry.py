@@ -55,3 +55,4 @@ class NewsletterSubscriber(Base):
     coupon_code = Column(String(50), default="HARVEST10", nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     subscribed_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+

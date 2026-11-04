@@ -126,3 +126,4 @@ class CouponService:
         db.add(redemption)
         await db.commit()
         return redemption
+

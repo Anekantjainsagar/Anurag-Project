@@ -64,3 +64,4 @@ class LoyaltyLedger(Base):
     created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     user = relationship("User", back_populates="loyalty_entries")
+

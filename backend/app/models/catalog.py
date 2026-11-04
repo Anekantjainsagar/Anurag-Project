@@ -147,3 +147,4 @@ class HarvestBatch(Base):
     fssai_license = Column(String(50), default="10020051003412")
 
     product = relationship("Product", back_populates="harvest_batches")
+

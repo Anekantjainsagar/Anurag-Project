@@ -81,3 +81,4 @@ class EmailLogOut(BaseModel):
     status: str
     error_message: Optional[str] = None
     sent_at: datetime
+

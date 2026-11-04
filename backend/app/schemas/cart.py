@@ -50,3 +50,4 @@ class WishlistItemOut(BaseModel):
 
 class WishlistToggleRequest(BaseModel):
     product_id: str
+

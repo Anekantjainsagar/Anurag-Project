@@ -45,3 +45,4 @@ class WishlistItem(Base):
 
     user = relationship("User", back_populates="wishlist_items")
     product = relationship("Product")
+

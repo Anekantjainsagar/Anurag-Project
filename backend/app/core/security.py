@@ -80,3 +80,4 @@ def hash_otp_code(otp_code: str) -> str:
 def verify_otp_code(otp_code: str, stored_hash: str) -> bool:
     """Verifies user-submitted OTP against stored hash."""
     return hash_otp_code(otp_code) == stored_hash
+

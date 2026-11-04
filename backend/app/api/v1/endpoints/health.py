@@ -46,3 +46,4 @@ async def db_health_check(db: AsyncSession = Depends(get_db)):
             "error": str(e),
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
+

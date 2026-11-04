@@ -58,3 +58,4 @@ async def get_blog(id_or_slug: str, db: AsyncSession = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Blog article not found.")
 
     return post
+

@@ -231,3 +231,4 @@ async def list_email_logs(
 ):
     result = await db.execute(select(EmailLog).order_by(EmailLog.sent_at.desc()).offset(skip).limit(limit))
     return result.scalars().all()
+

@@ -49,3 +49,4 @@ class LoyaltyLedgerOut(BaseModel):
     reference_id: Optional[str] = None
     balance_after: int
     created_at: datetime
+

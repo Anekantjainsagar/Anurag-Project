@@ -204,3 +204,4 @@ class EmailService:
         await db.commit()
 
         return status in ("SENT", "SIMULATED")
+

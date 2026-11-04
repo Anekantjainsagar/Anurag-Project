@@ -66,3 +66,4 @@ async def get_dashboard_metrics(
         "low_stock_alerts": low_stock_count,
         "total_customers": total_customers,
     }
+

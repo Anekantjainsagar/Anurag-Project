@@ -67,3 +67,4 @@ class BlogNutritionalHighlight(Base):
     display_order = Column(Integer, default=0, nullable=False)
 
     post = relationship("BlogPost", back_populates="highlights")
+

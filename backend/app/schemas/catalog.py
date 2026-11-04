@@ -105,3 +105,4 @@ class ProductDetailOut(ProductListOut):
     nutritional_facts: List[ProductNutritionalFactOut] = []
     purity_parameters: List[ProductPurityParameterOut] = []
     harvest_batches: List[HarvestBatchOut] = []
+

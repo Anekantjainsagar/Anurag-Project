@@ -125,3 +125,4 @@ async def delete_address(
     await db.delete(addr)
     await db.commit()
     return {"success": True, "message": "Address deleted successfully."}
+

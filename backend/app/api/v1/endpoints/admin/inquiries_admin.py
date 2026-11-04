@@ -94,3 +94,4 @@ async def update_bulk_enquiry(
     await db.commit()
     await db.refresh(enquiry)
     return enquiry
+

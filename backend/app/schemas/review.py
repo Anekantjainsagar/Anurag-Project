@@ -46,3 +46,4 @@ class FAQOut(BaseModel):
     answer: Optional[str] = None
     answered_by: Optional[str] = None
     created_at: datetime
+

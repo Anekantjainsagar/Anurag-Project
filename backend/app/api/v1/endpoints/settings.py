@@ -70,3 +70,4 @@ async def list_testimonials(db: AsyncSession = Depends(get_db)):
 async def list_why_choose(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(WhyChooseFeature).order_by(WhyChooseFeature.display_order.asc()))
     return result.scalars().all()
+

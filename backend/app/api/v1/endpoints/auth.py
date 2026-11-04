@@ -170,3 +170,4 @@ async def logout(
     await db.commit()
     response.delete_cookie(key="onaar_refresh_token")
     return {"success": True, "message": "Successfully logged out."}
+

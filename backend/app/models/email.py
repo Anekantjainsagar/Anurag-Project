@@ -41,3 +41,4 @@ class EmailLog(Base):
     status = Column(String(20), default="SENT", nullable=False)  # SENT, FAILED, PENDING
     error_message = Column(Text, nullable=True)
     sent_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
+

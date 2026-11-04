@@ -45,3 +45,4 @@ class BlogPostDetailOut(BlogPostListOut):
     key_benefits: List[str] = []
     featured_product_id: Optional[str] = None
     highlights: List[BlogNutritionalHighlightOut] = []
+

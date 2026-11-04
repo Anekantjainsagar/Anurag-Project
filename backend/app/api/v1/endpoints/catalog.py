@@ -151,3 +151,4 @@ async def get_product(product_id: str, db: AsyncSession = Depends(get_db)):
         purity_parameters=p.purity_parameters,
         harvest_batches=p.harvest_batches,
     )
+

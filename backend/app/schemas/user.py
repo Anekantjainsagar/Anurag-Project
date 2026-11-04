@@ -110,3 +110,4 @@ class SessionOut(BaseModel):
     ip_address: Optional[str] = None
     last_active: datetime
     expires_at: datetime
+

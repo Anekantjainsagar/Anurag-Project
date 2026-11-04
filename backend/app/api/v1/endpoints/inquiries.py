@@ -81,3 +81,4 @@ async def subscribe_newsletter(payload: NewsletterSubscribeRequest, db: AsyncSes
         coupon_code="HARVEST10",
         message="Welcome to the Farm Club! Coupon HARVEST10 has been activated for 10% off your order.",
     )
+

@@ -50,3 +50,4 @@ class NewsletterSubscribeResponse(BaseModel):
     email: str
     coupon_code: str
     message: str
+
