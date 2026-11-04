@@ -18,11 +18,17 @@ import {
   ShieldCheck,
   BookOpen,
   Sparkles,
+  User as UserIcon,
+  LogOut,
+  Package,
+  Settings as SettingsIcon,
 } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const router = useRouter();
-  const { cartCount, setIsCartOpen, wishlist } = useCart();
+  const { cartCount, setIsCartOpen, wishlist, setIsLoginModalOpen } = useCart();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,9 +36,11 @@ export default function Navbar() {
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const searchRef = useRef<HTMLDivElement>(null);
   const categoryRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -52,6 +60,12 @@ export default function Navbar() {
         !searchRef.current.contains(event.target as Node)
       ) {
         setIsSearchFocused(false);
+      }
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsUserMenuOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -271,6 +285,100 @@ export default function Navbar() {
             )}
           </Link>
 
+          {/* User Account / Profile Dropdown */}
+          <div className="relative" ref={userMenuRef}>
+            {mounted && isAuthenticated && user ? (
+              <div>
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center gap-2 p-1.5 sm:px-2.5 sm:py-1.5 rounded-full hover:bg-gray-100 border border-gray-200 transition-colors cursor-pointer text-gray-700"
+                  title="My Account"
+                  aria-label="User profile menu"
+                >
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#01722C] text-white flex items-center justify-center font-bold text-xs uppercase shadow-xs">
+                    {user.full_name ? user.full_name.charAt(0) : "U"}
+                  </div>
+                  <span className="text-xs font-semibold hidden md:inline max-w-[85px] truncate">
+                    {user.full_name || "Account"}
+                  </span>
+                </button>
+
+                {/* Dropdown Menu */}
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50 animate-fade-in text-xs">
+                    <div className="px-3 py-2 border-b border-gray-100">
+                      <div className="font-bold text-gray-900 truncate">
+                        {user.full_name || "Pure Harvest Member"}
+                      </div>
+                      <div className="text-[11px] text-gray-500 truncate">
+                        {user.phone || user.email}
+                      </div>
+                      {user.role === "admin" && (
+                        <span className="inline-block mt-1 text-[9px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">
+                          ADMIN PRIVILEGES
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="py-1">
+                      <Link
+                        href="/profile"
+                        onClick={() => setIsUserMenuOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-[#edf7f1] text-gray-700 hover:text-[#01722C] transition-colors font-medium"
+                      >
+                        <UserIcon className="w-4 h-4 text-[#01722C]" />
+                        <span>Profile & Addresses</span>
+                      </Link>
+
+                      <Link
+                        href="/profile?tab=orders"
+                        onClick={() => setIsUserMenuOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-[#edf7f1] text-gray-700 hover:text-[#01722C] transition-colors font-medium"
+                      >
+                        <Package className="w-4 h-4 text-[#01722C]" />
+                        <span>My Orders</span>
+                      </Link>
+
+                      {user.role === "admin" && (
+                        <Link
+                          href="/admin"
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-amber-50 text-amber-900 font-semibold transition-colors"
+                        >
+                          <SettingsIcon className="w-4 h-4 text-amber-700" />
+                          <span>Admin Portal</span>
+                        </Link>
+                      )}
+                    </div>
+
+                    <div className="pt-1 border-t border-gray-100">
+                      <button
+                        onClick={() => {
+                          setIsUserMenuOpen(false);
+                          logout();
+                        }}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-red-50 text-red-600 transition-colors font-medium cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
+                className="flex items-center gap-1.5 p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer text-xs font-semibold"
+                title="Sign In"
+                aria-label="Sign In"
+              >
+                <UserIcon className="w-5 h-5" />
+                <span className="hidden md:inline">Sign In</span>
+              </button>
+            )}
+          </div>
+
           {/* Shopping Cart Icon with Cart Total Amount */}
           <button
             onClick={() => setIsCartOpen(true)}
@@ -348,6 +456,80 @@ export default function Navbar() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {/* User Account State in Mobile Drawer */}
+              {mounted && isAuthenticated && user ? (
+                <div className="p-3 bg-[#edf7f1] rounded-2xl border border-[#cbe4d4] space-y-2.5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#01722C] text-white flex items-center justify-center font-bold text-sm uppercase shadow-xs shrink-0">
+                      {user.full_name ? user.full_name.charAt(0) : "U"}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-bold text-gray-900 text-xs truncate">
+                        {user.full_name || "Pure Harvest Member"}
+                      </div>
+                      <div className="text-[11px] text-gray-500 truncate">
+                        {user.phone || user.email}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-1.5 pt-1">
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-center text-[11px] font-semibold bg-white text-[#01722C] py-1.5 px-2 rounded-lg border border-[#b2d9be] hover:bg-emerald-50"
+                    >
+                      My Profile
+                    </Link>
+                    <Link
+                      href="/profile?tab=orders"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-center text-[11px] font-semibold bg-white text-[#01722C] py-1.5 px-2 rounded-lg border border-[#b2d9be] hover:bg-emerald-50"
+                    >
+                      My Orders
+                    </Link>
+                  </div>
+
+                  {user.role === "admin" && (
+                    <Link
+                      href="/admin"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block text-center text-[11px] font-bold bg-amber-100 text-amber-900 py-1.5 px-2 rounded-lg border border-amber-300 hover:bg-amber-200"
+                    >
+                      Admin Portal
+                    </Link>
+                  )}
+
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      logout();
+                    }}
+                    className="w-full text-center text-[11px] font-semibold text-red-600 hover:underline pt-1 cursor-pointer"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <div className="p-3 bg-[#f8faf9] rounded-2xl border border-gray-200 text-center space-y-2">
+                  <div className="text-xs font-semibold text-gray-800">
+                    Welcome to Onaar
+                  </div>
+                  <p className="text-[11px] text-gray-500">
+                    Sign in to track orders and manage addresses
+                  </p>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsLoginModalOpen(true);
+                    }}
+                    className="w-full bg-[#01722C] hover:bg-[#0b542c] text-white py-2 rounded-xl text-xs font-bold cursor-pointer transition-all"
+                  >
+                    Sign In / Register
+                  </button>
+                </div>
+              )}
+
               <div className="space-y-1">
                 <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-2 mb-1">
                   E-Commerce Navigation
