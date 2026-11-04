@@ -41,3 +41,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 dev.log
+
+# python / uv
+.venv
+backend/.venv
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+.pytest_cache/
