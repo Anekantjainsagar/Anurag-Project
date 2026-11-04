@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { useAuth, UserAddress } from "@/context/AuthContext";
+import { api } from "@/services/apiClient";
 import BrandLogo from "@/components/BrandLogo";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
@@ -55,6 +57,9 @@ const INDIAN_STATES = [
 export default function CheckoutPage() {
   const router = useRouter();
   const { cartItems, cartTotal, totalSavings, clearCart, showToast } = useCart();
+  const { user, isAuthenticated, addresses } = useAuth();
+
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -71,6 +76,41 @@ export default function CheckoutPage() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Auto-fill from user profile when available
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({
+        ...prev,
+        fullName: prev.fullName || user.full_name || "",
+        phone: prev.phone || (user.phone ? user.phone.replace("+91", "") : ""),
+        email: prev.email || user.email || "",
+      }));
+    }
+  }, [user]);
+
+  const handleSelectSavedAddress = (addr: UserAddress) => {
+    setSelectedAddressId(addr.id);
+    setFormData((prev) => ({
+      ...prev,
+      fullName: addr.recipient_name || prev.fullName,
+      phone: addr.recipient_phone ? addr.recipient_phone.replace("+91", "") : prev.phone,
+      flatNo: addr.flat_no,
+      street: addr.street,
+      landmark: addr.landmark || "",
+      city: addr.city,
+      state: addr.state,
+      pincode: addr.pincode,
+    }));
+  };
+
+  // Select default shipping address
+  useEffect(() => {
+    if (addresses && addresses.length > 0 && !selectedAddressId) {
+      const defaultAddr = addresses.find((a) => a.is_default_shipping) || addresses[0];
+      handleSelectSavedAddress(defaultAddr);
+    }
+  }, [addresses]);
 
   // Coupon Discount State
   const [couponInput, setCouponInput] = useState("");
@@ -114,7 +154,7 @@ export default function CheckoutPage() {
     : 0;
   const grandTotal = Math.max(0, cartTotal - discountAmount) + shippingFee;
 
-  const handleApplyCoupon = (codeToApply?: string) => {
+  const handleApplyCoupon = async (codeToApply?: string) => {
     const code = (codeToApply || couponInput).trim().toUpperCase();
     if (!code) {
       showToast("Please enter a coupon code");
@@ -125,6 +165,26 @@ export default function CheckoutPage() {
     if (isCouponRedeemed(code)) {
       showToast(`Coupon "${code}" has already been redeemed on this browser. It is valid for first-time orders only.`);
       return;
+    }
+
+    try {
+      const backendCheck = await api.orders.validateCoupon(code, cartTotal, formData.phone);
+      if (backendCheck && backendCheck.valid) {
+        setAppliedCoupon({
+          code: backendCheck.code,
+          discountPercent: Math.round((backendCheck.discount_amount / cartTotal) * 100) || 10,
+        });
+        try {
+          localStorage.setItem("onaar_active_coupon", backendCheck.code);
+        } catch {
+          // ignore
+        }
+        showToast(backendCheck.message || `Coupon ${backendCheck.code} applied! (-₹${backendCheck.discount_amount.toFixed(2)})`);
+        setCouponInput("");
+        return;
+      }
+    } catch {
+      // Backend offline fallback to local check
     }
 
     if (code === "HARVEST10" || code === "WELCOME10" || code === "ORGANIC10") {
@@ -193,9 +253,43 @@ export default function CheckoutPage() {
 
     setIsSubmitting(true);
 
-    // Generate authentic sequential order number
+    // Generate authentic sequential order number fallback
     const randomDigits = Math.floor(10000 + Math.random() * 90000);
-    const orderId = `YB-2026-${randomDigits}`;
+    let orderId = `ONR-2026-${randomDigits}`;
+
+    // Call FastAPI backend to record order in PostgreSQL
+    try {
+      const backendRes = await api.orders.checkoutOrder({
+        customer_name: formData.fullName,
+        customer_phone: formData.phone.startsWith("+91") ? formData.phone : `+91${formData.phone}`,
+        customer_email: formData.email,
+        shipping_flat_no: formData.flatNo,
+        shipping_street: formData.street,
+        shipping_landmark: formData.landmark || undefined,
+        shipping_city: formData.city,
+        shipping_state: formData.state,
+        shipping_pincode: formData.pincode,
+        payment_method: formData.paymentMethod.includes("COD") ? "COD" : "ONLINE",
+        coupon_code: appliedCoupon?.code,
+        order_notes: formData.orderNotes,
+        items: cartItems.map((item) => ({
+          product_id: item.id,
+          product_name: item.name,
+          product_image: item.image,
+          packaging_size: item.weight,
+          quantity: item.quantity,
+          unit_price: item.price,
+          subtotal: item.price * item.quantity,
+        })),
+      });
+
+      if (backendRes && backendRes.order_number) {
+        orderId = backendRes.order_number;
+      }
+    } catch (backendErr) {
+      console.warn("FastAPI backend checkout fallback:", backendErr);
+    }
+
     const orderDate = new Date().toLocaleDateString("en-IN", {
       day: "2-digit",
       month: "short",
@@ -391,6 +485,50 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="space-y-4">
+                    {/* Saved Address Book Selector (if logged in and has addresses) */}
+                    {isAuthenticated && addresses && addresses.length > 0 && (
+                      <div className="bg-[#edf7f1] p-3.5 rounded-2xl border border-[#cbe5d4] space-y-2">
+                        <div className="flex items-center justify-between text-xs font-bold text-[#01722C]">
+                          <span className="flex items-center gap-1.5">
+                            <MapPin className="w-3.5 h-3.5" />
+                            <span>Select Saved Delivery Address</span>
+                          </span>
+                          <Link href="/profile?tab=addresses" className="hover:underline text-[11px]">
+                            Manage Addresses →
+                          </Link>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {addresses.map((addr) => (
+                            <button
+                              key={addr.id}
+                              type="button"
+                              onClick={() => handleSelectSavedAddress(addr)}
+                              className={`p-2.5 rounded-xl border text-left text-xs transition-all cursor-pointer ${
+                                selectedAddressId === addr.id
+                                  ? "bg-white border-[#01722C] ring-2 ring-[#01722C]/20 shadow-xs"
+                                  : "bg-white/70 border-gray-200 hover:bg-white"
+                              }`}
+                            >
+                              <div className="flex items-center justify-between font-bold text-gray-900 mb-0.5">
+                                <span className="uppercase text-[10px] tracking-wider text-[#01722C]">
+                                  {addr.label}
+                                </span>
+                                {selectedAddressId === addr.id && (
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-[#01722C]" />
+                                )}
+                              </div>
+                              <div className="font-semibold text-gray-800 truncate">
+                                {addr.recipient_name}
+                              </div>
+                              <div className="text-[11px] text-gray-500 truncate">
+                                {addr.flat_no}, {addr.street}, {addr.city} ({addr.pincode})
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1">
                         <label className="text-xs font-bold text-gray-700">
