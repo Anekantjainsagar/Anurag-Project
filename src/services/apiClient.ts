@@ -39,7 +39,9 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
   const url = `${API_BASE_URL}${endpoint}`;
   const headers = new Headers(options.headers || {});
 
-  headers.set("Content-Type", "application/json");
+  if (!(options.body instanceof FormData)) {
+    headers.set("Content-Type", "application/json");
+  }
   headers.set("X-Session-Token", getSessionToken());
 
   const token = getAuthToken();
@@ -279,6 +281,132 @@ export const api = {
 
     verifySmtp: () =>
       request<{ success: boolean; message: string }>("/admin/email/smtp-config/verify", {
+        method: "POST",
+        requiresAuth: true,
+      }),
+
+    // Products Management
+    getProducts: (params?: { category_id?: string; search?: string; stock_status?: string; skip?: number; limit?: number }) => {
+      const q = new URLSearchParams();
+      if (params?.category_id) q.set("category_id", params.category_id);
+      if (params?.search) q.set("search", params.search);
+      if (params?.stock_status) q.set("stock_status", params.stock_status);
+      if (params?.skip !== undefined) q.set("skip", params.skip.toString());
+      if (params?.limit !== undefined) q.set("limit", params.limit.toString());
+      return request<{ total: number; items: any[]; skip: number; limit: number }>(`/admin/products?${q.toString()}`, { requiresAuth: true });
+    },
+
+    getProduct: (id: string) => request<any>(`/admin/products/${id}`, { requiresAuth: true }),
+
+    createProduct: (data: any) =>
+      request<{ success: boolean; message: string; product_id: string }>("/admin/products", {
+        method: "POST",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateProduct: (id: string, data: any) =>
+      request<{ success: boolean; message: string; product_id: string }>(`/admin/products/${id}`, {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateProductStock: (id: string, stock_quantity: number) =>
+      request<{ success: boolean; message: string }>(`/admin/products/${id}/stock`, {
+        method: "PATCH",
+        requiresAuth: true,
+        body: JSON.stringify({ stock_quantity }),
+      }),
+
+    deleteProduct: (id: string) =>
+      request<{ success: boolean; message: string }>(`/admin/products/${id}`, {
+        method: "DELETE",
+        requiresAuth: true,
+      }),
+
+    // Categories Management
+    getCategories: () => request<any[]>("/admin/categories", { requiresAuth: true }),
+
+    createCategory: (data: any) =>
+      request<{ success: boolean; message: string; category_id: string }>("/admin/categories", {
+        method: "POST",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateCategory: (id: string, data: any) =>
+      request<{ success: boolean; message: string }>(`/admin/categories/${id}`, {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    deleteCategory: (id: string) =>
+      request<{ success: boolean; message: string }>(`/admin/categories/${id}`, {
+        method: "DELETE",
+        requiresAuth: true,
+      }),
+
+    // Blogs Management
+    getBlogs: (params?: { search?: string; category_id?: string }) => {
+      const q = new URLSearchParams();
+      if (params?.search) q.set("search", params.search);
+      if (params?.category_id) q.set("category_id", params.category_id);
+      return request<any[]>(`/admin/blogs?${q.toString()}`, { requiresAuth: true });
+    },
+
+    getBlog: (id: string) => request<any>(`/admin/blogs/${id}`, { requiresAuth: true }),
+
+    createBlog: (data: any) =>
+      request<{ success: boolean; message: string; blog_id: string }>("/admin/blogs", {
+        method: "POST",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateBlog: (id: string, data: any) =>
+      request<{ success: boolean; message: string }>(`/admin/blogs/${id}`, {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    deleteBlog: (id: string) =>
+      request<{ success: boolean; message: string }>(`/admin/blogs/${id}`, {
+        method: "DELETE",
+        requiresAuth: true,
+      }),
+
+    togglePublishBlog: (id: string) =>
+      request<{ success: boolean; is_published: boolean; message: string }>(`/admin/blogs/${id}/publish`, {
+        method: "PATCH",
+        requiresAuth: true,
+      }),
+
+    // Cloud S3 & Media Asset Management
+    uploadMedia: (file: File, folder: string = "products") => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("folder", folder);
+      return request<{ success: boolean; provider: string; url: string; key: string }>("/admin/media/upload", {
+        method: "POST",
+        requiresAuth: true,
+        body: formData,
+      });
+    },
+
+    getS3Config: () => request<any>("/admin/media/config", { requiresAuth: true }),
+
+    updateS3Config: (data: any) =>
+      request<{ success: boolean; message: string; is_configured: boolean }>("/admin/media/config", {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    verifyS3Config: () =>
+      request<{ success: boolean; configured: boolean; message: string }>("/admin/media/verify", {
         method: "POST",
         requiresAuth: true,
       }),
