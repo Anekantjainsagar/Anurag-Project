@@ -701,11 +701,26 @@ export default function BlogSection() {
               )}
 
               {/* Main Article Paragraphs */}
-              <div className="space-y-3 pt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+              <div className="space-y-4 pt-1 text-xs sm:text-sm text-gray-700 leading-relaxed font-sans">
                 {activeBlog.content && activeBlog.content.length > 0 ? (
-                  activeBlog.content.map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
-                  ))
+                  Array.isArray(activeBlog.content) ? (
+                    activeBlog.content.map((paragraph: string, idx: number) =>
+                      paragraph.includes("<") ? (
+                        <div
+                          key={idx}
+                          dangerouslySetInnerHTML={{ __html: paragraph }}
+                          className="prose prose-sm prose-emerald max-w-none space-y-2 [&_p]:mb-3 [&_h2]:text-base [&_h2]:font-bold [&_h2]:text-gray-900 [&_h3]:text-sm [&_h3]:font-bold [&_h3]:text-gray-900 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_blockquote]:border-l-4 [&_blockquote]:border-emerald-600 [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:bg-emerald-50/50 [&_blockquote]:py-1 [&_img]:rounded-xl [&_img]:my-3"
+                        />
+                      ) : (
+                        <p key={idx}>{paragraph}</p>
+                      )
+                    )
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: String(activeBlog.content) }}
+                      className="prose prose-sm prose-emerald max-w-none space-y-2 [&_p]:mb-3 [&_h2]:text-base [&_h2]:font-bold [&_h2]:text-gray-900 [&_h3]:text-sm [&_h3]:font-bold [&_h3]:text-gray-900 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-1 [&_blockquote]:border-l-4 [&_blockquote]:border-emerald-600 [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:bg-emerald-50/50 [&_blockquote]:py-1 [&_img]:rounded-xl [&_img]:my-3"
+                    />
+                  )
                 ) : (
                   <p>{activeBlog.summary}</p>
                 )}

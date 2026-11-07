@@ -5,7 +5,7 @@ Full CRUD operations for health articles, nutritional research, and farm guides.
 
 from datetime import datetime, timezone
 import re
-from typing import Any, List, Optional
+from typing import Any, List, Optional, Union
 import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
@@ -34,7 +34,7 @@ class BlogPostCreateInput(BaseModel):
     author_role: str = "Head of Agronomy & Research"
     health_tip: Optional[str] = None
     tags: List[str] = []
-    content: List[str] = []
+    content: Union[List[str], str] = []
     key_benefits: List[str] = []
     is_published: bool = True
 
@@ -50,7 +50,7 @@ class BlogPostUpdateInput(BaseModel):
     author_role: Optional[str] = None
     health_tip: Optional[str] = None
     tags: Optional[List[str]] = None
-    content: Optional[List[str]] = None
+    content: Optional[Union[List[str], str]] = None
     key_benefits: Optional[List[str]] = None
     is_published: Optional[bool] = None
 
@@ -153,7 +153,7 @@ async def admin_create_blog(
         author_role=payload.author_role.strip(),
         health_tip=payload.health_tip.strip() if payload.health_tip else None,
         tags=payload.tags,
-        content=payload.content,
+        content=[payload.content] if isinstance(payload.content, str) else (payload.content or []),
         key_benefits=payload.key_benefits,
         is_published=payload.is_published,
         published_at=datetime.now(timezone.utc) if payload.is_published else None,
@@ -197,7 +197,7 @@ async def admin_update_blog(
     if payload.tags is not None:
         p.tags = payload.tags
     if payload.content is not None:
-        p.content = payload.content
+        p.content = [payload.content] if isinstance(payload.content, str) else payload.content
     if payload.key_benefits is not None:
         p.key_benefits = payload.key_benefits
     if payload.is_published is not None:
