@@ -111,3 +111,69 @@ class SessionOut(BaseModel):
     last_active: datetime
     expires_at: datetime
 
+
+# Admin User Management Schemas
+class AdminUserSummary(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    full_name: str
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    avatar_url: Optional[str] = None
+    role: str
+    is_active: bool
+    is_verified: bool
+    dietary_preference: Optional[str] = None
+    newsletter_subscribed: bool = True
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    total_orders: int = 0
+    total_spent: float = 0.0
+    last_order_date: Optional[datetime] = None
+    addresses_count: int = 0
+
+
+class AdminUserOrderBrief(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    order_number: str
+    total_amount: float
+    order_status: str
+    payment_method: str
+    items_count: int
+    items_preview: List[str] = []
+    courier_name: Optional[str] = None
+    tracking_awb: Optional[str] = None
+    created_at: datetime
+
+
+class AdminUserDetail(AdminUserSummary):
+    addresses: List[UserAddressOut] = []
+    orders: List[AdminUserOrderBrief] = []
+    loyalty_balance: int = 0
+
+
+class AdminUserCreate(BaseModel):
+    full_name: str
+    phone: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = None
+    role: str = "customer"
+    is_active: bool = True
+    is_verified: bool = True
+    dietary_preference: Optional[str] = "All Organic"
+    newsletter_subscribed: bool = True
+
+
+class AdminUserUpdate(BaseModel):
+    full_name: Optional[str] = None
+    phone: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = None
+    role: Optional[str] = None
+    is_active: Optional[bool] = None
+    is_verified: Optional[bool] = None
+    dietary_preference: Optional[str] = None
+    newsletter_subscribed: Optional[bool] = None
+
+

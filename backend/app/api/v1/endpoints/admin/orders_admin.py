@@ -6,7 +6,7 @@ from typing import List, Optional
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel
-from sqlalchemy import select
+from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from app.core.database import get_db
@@ -32,9 +32,11 @@ class OrderDispatchUpdate(BaseModel):
 @router.get("/admin/orders", response_model=List[OrderOut], summary="List Orders with Filters")
 async def list_orders(
     status_filter: Optional[str] = Query(None, alias="status"),
+    search: Optional[str] = Query(None),
+    user_id: Optional[uuid.UUID] = Query(None),
     phone: Optional[str] = Query(None),
     skip: int = Query(0, ge=0),
-    limit: int = Query(50, ge=1, le=100),
+    limit: int = Query(100, ge=1, le=200),
     admin_user: User = Depends(require_role("admin", "vendor")),
     db: AsyncSession = Depends(get_db),
 ):
@@ -47,8 +49,23 @@ async def list_orders(
         .order_by(Order.created_at.desc())
     )
 
-    if status_filter:
+    if status_filter and status_filter.strip().upper() != "ALL":
         stmt = stmt.where(Order.order_status == status_filter.strip().upper())
+
+    if user_id:
+        stmt = stmt.where(Order.user_id == user_id)
+
+    if search:
+        search_term = f"%{search.strip()}%"
+        stmt = stmt.where(
+            or_(
+                Order.order_number.ilike(search_term),
+                Order.customer_name.ilike(search_term),
+                Order.customer_email.ilike(search_term),
+                Order.customer_phone.ilike(search_term),
+                Order.tracking_awb.ilike(search_term),
+            )
+        )
 
     if phone:
         stmt = stmt.where(Order.customer_phone.ilike(f"%{phone.strip()}%"))
@@ -56,6 +73,43 @@ async def list_orders(
     stmt = stmt.offset(skip).limit(limit)
     result = await db.execute(stmt)
     return result.scalars().all()
+
+
+@router.get("/admin/orders/{order_id}", response_model=OrderOut, summary="Get Order Details")
+async def get_order_detail(
+    order_id: uuid.UUID,
+    admin_user: User = Depends(require_role("admin", "vendor")),
+    db: AsyncSession = Depends(get_db),
+):
+    stmt = (
+        select(Order)
+        .where(Order.id == order_id)
+        .options(
+            selectinload(Order.items),
+            selectinload(Order.tracking_events),
+        )
+    )
+    result = await db.execute(stmt)
+    order = result.scalar_one_or_none()
+    if not order:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found.")
+    return order
+
+
+@router.delete("/admin/orders/{order_id}", summary="Delete Order")
+async def delete_order(
+    order_id: uuid.UUID,
+    admin_user: User = Depends(require_role("admin")),
+    db: AsyncSession = Depends(get_db),
+):
+    stmt = select(Order).where(Order.id == order_id)
+    result = await db.execute(stmt)
+    order = result.scalar_one_or_none()
+    if not order:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found.")
+    await db.delete(order)
+    await db.commit()
+    return {"success": True, "message": f"Order {order.order_number} deleted successfully."}
 
 
 @router.patch("/admin/orders/{order_id}/status", response_model=OrderOut, summary="Update Order Status")

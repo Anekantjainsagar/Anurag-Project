@@ -57,6 +57,7 @@ class OrderOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: uuid.UUID
     order_number: str
+    user_id: Optional[uuid.UUID] = None
     customer_name: str
     customer_phone: str
     customer_email: str
@@ -67,6 +68,7 @@ class OrderOut(BaseModel):
     shipping_state: str
     shipping_pincode: str
     order_notes: Optional[str] = None
+    vendor_notes: Optional[str] = None
     subtotal: Decimal
     shipping_fee: Decimal
     discount_amount: Decimal

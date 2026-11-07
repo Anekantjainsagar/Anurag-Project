@@ -11,11 +11,13 @@ from app.api.v1.endpoints.admin import (
     inquiries_admin,
     media_admin,
     orders_admin,
+    users_admin,
 )
 
 admin_router = APIRouter()
 
 admin_router.include_router(dashboard.router, tags=["Admin - Overview & KPI"])
+admin_router.include_router(users_admin.router, tags=["Admin - Customers & Users"])
 admin_router.include_router(catalog_admin.router, tags=["Admin - Products & Categories"])
 admin_router.include_router(orders_admin.router, tags=["Admin - Order Fulfillment"])
 admin_router.include_router(blogs_admin.router, tags=["Admin - Agronomy Journal"])

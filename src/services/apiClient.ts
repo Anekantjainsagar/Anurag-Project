@@ -224,12 +224,55 @@ export const api = {
   admin: {
     getDashboard: () => request<any>("/admin/dashboard", { requiresAuth: true }),
 
-    getOrders: (params?: { status?: string; phone?: string }) => {
+    getOrders: (params?: { status?: string; phone?: string; search?: string; user_id?: string }) => {
       const q = new URLSearchParams();
       if (params?.status) q.set("status", params.status);
       if (params?.phone) q.set("phone", params.phone);
+      if (params?.search) q.set("search", params.search);
+      if (params?.user_id) q.set("user_id", params.user_id);
       return request<any[]>(`/admin/orders?${q.toString()}`, { requiresAuth: true });
     },
+
+    getOrder: (orderId: string) => request<any>(`/admin/orders/${orderId}`, { requiresAuth: true }),
+
+    // Customer & User Management
+    getUsers: (params?: { search?: string; role?: string; is_active?: boolean; skip?: number; limit?: number }) => {
+      const q = new URLSearchParams();
+      if (params?.search) q.set("search", params.search);
+      if (params?.role) q.set("role", params.role);
+      if (params?.is_active !== undefined) q.set("is_active", params.is_active.toString());
+      if (params?.skip !== undefined) q.set("skip", params.skip.toString());
+      if (params?.limit !== undefined) q.set("limit", params.limit.toString());
+      return request<{ total: number; items: any[]; stats: any }>(`/admin/users?${q.toString()}`, { requiresAuth: true });
+    },
+
+    getUser: (userId: string) => request<any>(`/admin/users/${userId}`, { requiresAuth: true }),
+
+    createUser: (data: any) =>
+      request<{ success: boolean; message: string; user: any }>("/admin/users", {
+        method: "POST",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateUser: (userId: string, data: any) =>
+      request<{ success: boolean; message: string }>(`/admin/users/${userId}`, {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    toggleUserStatus: (userId: string) =>
+      request<{ success: boolean; is_active: boolean; message: string }>(`/admin/users/${userId}/status`, {
+        method: "PATCH",
+        requiresAuth: true,
+      }),
+
+    deleteUser: (userId: string) =>
+      request<{ success: boolean; message: string }>(`/admin/users/${userId}`, {
+        method: "DELETE",
+        requiresAuth: true,
+      }),
 
     updateOrderStatus: (orderId: string, status: string, notes?: string) =>
       request<any>(`/admin/orders/${orderId}/status`, {

@@ -29,6 +29,23 @@ import {
   LogOut,
   X,
   RefreshCw,
+  Eye,
+  Phone,
+  MapPin,
+  CreditCard,
+  Calendar,
+  DollarSign,
+  ShoppingBag,
+  UserPlus,
+  UserCheck,
+  UserX,
+  MessageSquare,
+  Check,
+  ChevronRight,
+  Clock,
+  Shield,
+  Sparkles,
+  Filter,
 } from "lucide-react";
 
 type AdminTab =
@@ -36,6 +53,7 @@ type AdminTab =
   | "products"
   | "categories"
   | "orders"
+  | "users"
   | "blogs"
   | "inquiries"
   | "email"
@@ -116,6 +134,9 @@ function AdminContent() {
   // Orders
   const [orders, setOrders] = useState<any[]>([]);
   const [orderFilter, setOrderFilter] = useState<string>("ALL");
+  const [orderSearch, setOrderSearch] = useState("");
+  const [orderUserFilter, setOrderUserFilter] = useState<string | null>(null);
+  const [orderUserFilterName, setOrderUserFilterName] = useState<string | null>(null);
   const [isLoadingOrders, setIsLoadingOrders] = useState(false);
   const [selectedOrderForDispatch, setSelectedOrderForDispatch] = useState<any | null>(null);
   const [dispatchForm, setDispatchForm] = useState({
@@ -123,6 +144,39 @@ function AdminContent() {
     tracking_awb: "",
   });
   const [isUpdatingOrder, setIsUpdatingOrder] = useState(false);
+
+  // Inspected Order Modal (Full Order Details)
+  const [inspectedOrder, setInspectedOrder] = useState<any | null>(null);
+  const [isLoadingInspectedOrder, setIsLoadingInspectedOrder] = useState(false);
+
+  // Customers & Users Management
+  const [users, setUsers] = useState<any[]>([]);
+  const [userStats, setUserStats] = useState<any | null>(null);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
+  const [userSearch, setUserSearch] = useState("");
+  const [userRoleFilter, setUserRoleFilter] = useState("all");
+
+  // User Profile & Order History Modal / Drawer
+  const [selectedUserDetail, setSelectedUserDetail] = useState<any | null>(null);
+  const [isLoadingUserDetail, setIsLoadingUserDetail] = useState(false);
+  const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
+  const [userDetailTab, setUserDetailTab] = useState<"orders" | "addresses">("orders");
+
+  // Create / Edit User Modal
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [editingUser, setEditingUser] = useState<any | null>(null);
+  const [userForm, setUserForm] = useState({
+    full_name: "",
+    phone: "",
+    email: "",
+    role: "customer",
+    password: "",
+    dietary_preference: "All Organic",
+    newsletter_subscribed: true,
+    is_active: true,
+  });
+  const [isSavingUser, setIsSavingUser] = useState(false);
 
   // Blogs
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -201,6 +255,7 @@ function AdminContent() {
       loadDashboard();
       loadCategories();
       loadS3Config();
+      loadUsers();
     }
   }, [isAdmin]);
 
@@ -210,6 +265,7 @@ function AdminContent() {
     if (activeTab === "products") loadProducts();
     if (activeTab === "categories") loadCategories();
     if (activeTab === "orders") loadOrders();
+    if (activeTab === "users") loadUsers();
     if (activeTab === "blogs") loadBlogs();
     if (activeTab === "inquiries") loadInquiries();
     if (activeTab === "email") {
@@ -217,7 +273,7 @@ function AdminContent() {
       loadTemplates();
     }
     if (activeTab === "s3") loadS3Config();
-  }, [activeTab, isAdmin, productCategoryFilter, productStockFilter, orderFilter]);
+  }, [activeTab, isAdmin, productCategoryFilter, productStockFilter, orderFilter, userRoleFilter]);
 
   // -------------------------------------------------------------
   // Data Loaders
@@ -272,11 +328,15 @@ function AdminContent() {
     }
   };
 
-  const loadOrders = async () => {
+  const loadOrders = async (overrideUserId?: string | null, overrideSearch?: string) => {
     setIsLoadingOrders(true);
     try {
+      const uid = overrideUserId !== undefined ? overrideUserId : orderUserFilter;
+      const srch = overrideSearch !== undefined ? overrideSearch : orderSearch;
       const data = await api.admin.getOrders({
         status: orderFilter === "ALL" ? undefined : orderFilter,
+        search: srch || undefined,
+        user_id: uid || undefined,
       });
       setOrders(data || []);
     } catch {
@@ -284,6 +344,148 @@ function AdminContent() {
     } finally {
       setIsLoadingOrders(false);
     }
+  };
+
+  const loadUsers = async () => {
+    setIsLoadingUsers(true);
+    try {
+      const res = await api.admin.getUsers({
+        search: userSearch || undefined,
+        role: userRoleFilter === "all" ? undefined : userRoleFilter,
+        limit: 100,
+      });
+      setUsers(res.items || []);
+      setTotalUsers(res.total || 0);
+      setUserStats(res.stats || null);
+    } catch {
+      setUsers([]);
+    } finally {
+      setIsLoadingUsers(false);
+    }
+  };
+
+  const handleOpenUserDetail = async (userId: string) => {
+    setIsLoadingUserDetail(true);
+    setIsUserDetailOpen(true);
+    setUserDetailTab("orders");
+    try {
+      const detail = await api.admin.getUser(userId);
+      setSelectedUserDetail(detail);
+    } catch (err: any) {
+      showToast(err.message || "Failed to load user details");
+      setIsUserDetailOpen(false);
+    } finally {
+      setIsLoadingUserDetail(false);
+    }
+  };
+
+  const handleToggleUserStatus = async (userId: string) => {
+    try {
+      const res = await api.admin.toggleUserStatus(userId);
+      showToast(res.message);
+      loadUsers();
+      if (selectedUserDetail && selectedUserDetail.id === userId) {
+        setSelectedUserDetail({ ...selectedUserDetail, is_active: res.is_active });
+      }
+    } catch (err: any) {
+      showToast(err.message || "Failed to update user status");
+    }
+  };
+
+  const handleDeleteUser = async (userId: string, name: string) => {
+    if (!confirm(`Are you sure you want to permanently delete user "${name}"? This cannot be undone.`)) return;
+    try {
+      const res = await api.admin.deleteUser(userId);
+      showToast(res.message);
+      if (selectedUserDetail?.id === userId) setIsUserDetailOpen(false);
+      loadUsers();
+    } catch (err: any) {
+      showToast(err.message || "Failed to delete user");
+    }
+  };
+
+  const handleOpenAddUser = () => {
+    setEditingUser(null);
+    setUserForm({
+      full_name: "",
+      phone: "",
+      email: "",
+      role: "customer",
+      password: "",
+      dietary_preference: "All Organic",
+      newsletter_subscribed: true,
+      is_active: true,
+    });
+    setIsUserModalOpen(true);
+  };
+
+  const handleOpenEditUser = (u: any) => {
+    setEditingUser(u);
+    setUserForm({
+      full_name: u.full_name || "",
+      phone: u.phone || "",
+      email: u.email || "",
+      role: u.role || "customer",
+      password: "",
+      dietary_preference: u.dietary_preference || "All Organic",
+      newsletter_subscribed: u.newsletter_subscribed ?? true,
+      is_active: u.is_active ?? true,
+    });
+    setIsUserModalOpen(true);
+  };
+
+  const handleSaveUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!userForm.full_name.trim()) {
+      showToast("Full name is required");
+      return;
+    }
+    setIsSavingUser(true);
+    try {
+      if (editingUser) {
+        await api.admin.updateUser(editingUser.id, userForm);
+        showToast("User updated successfully");
+      } else {
+        await api.admin.createUser(userForm);
+        showToast("New user account created");
+      }
+      setIsUserModalOpen(false);
+      loadUsers();
+    } catch (err: any) {
+      showToast(err.message || "Failed to save user");
+    } finally {
+      setIsSavingUser(false);
+    }
+  };
+
+  const handleInspectOrder = async (orderId: string) => {
+    setIsLoadingInspectedOrder(true);
+    setInspectedOrder(null);
+    try {
+      const fullOrder = await api.admin.getOrder(orderId);
+      setInspectedOrder(fullOrder);
+    } catch (err: any) {
+      showToast(err.message || "Failed to load order details");
+    } finally {
+      setIsLoadingInspectedOrder(false);
+    }
+  };
+
+  const handleFilterOrdersByUser = (userId: string, userName: string) => {
+    setOrderUserFilter(userId);
+    setOrderUserFilterName(userName);
+    setOrderSearch("");
+    setOrderFilter("ALL");
+    setActiveTab("orders");
+    setIsUserDetailOpen(false);
+    loadOrders(userId, "");
+    showToast(`Filtering orders for ${userName}`);
+  };
+
+  const handleClearOrderUserFilter = () => {
+    setOrderUserFilter(null);
+    setOrderUserFilterName(null);
+    loadOrders(null, orderSearch);
   };
 
   const loadBlogs = async () => {
@@ -850,8 +1052,9 @@ function AdminContent() {
               { id: "products", label: "Products & Crops", icon: Package, badge: totalProducts || "192" },
               { id: "categories", label: "Categories", icon: Tag, badge: categories.length || "8" },
               { id: "orders", label: "Orders & Fulfillment", icon: Truck, badge: orders.length || undefined },
+              { id: "users", label: "Customers & Users", icon: Users, badge: totalUsers || users.length || undefined },
               { id: "blogs", label: "Agronomy Blogs", icon: FileText, badge: blogs.length || "24" },
-              { id: "inquiries", label: "CRM & Inquiries", icon: Users },
+              { id: "inquiries", label: "CRM & Inquiries", icon: MessageSquare, badge: (contactInquiries.length + bulkInquiries.length) || undefined },
               { id: "s3", label: "Cloud S3 Storage", icon: Cloud },
               { id: "email", label: "Email & SMTP", icon: Mail },
               { id: "settings", label: "Store Settings", icon: Settings },
@@ -939,6 +1142,7 @@ function AdminContent() {
               {activeTab === "products" && `Organic Crops & Inventory (${totalProducts})`}
               {activeTab === "categories" && `Crop Categories (${categories.length})`}
               {activeTab === "orders" && `Dispatch & Fulfillment Queue (${orders.length})`}
+              {activeTab === "users" && `Customer Accounts & Order History (${totalUsers || users.length})`}
               {activeTab === "blogs" && `Agronomy Research & Health Journal (${blogs.length})`}
               {activeTab === "inquiries" && "Customer CRM & Wholesale Leads"}
               {activeTab === "s3" && "Amazon S3 Cloud Assets & Storage"}
@@ -980,6 +1184,7 @@ function AdminContent() {
                 if (activeTab === "products") loadProducts();
                 if (activeTab === "categories") loadCategories();
                 if (activeTab === "orders") loadOrders();
+                if (activeTab === "users") loadUsers();
                 if (activeTab === "blogs") loadBlogs();
                 showToast("Data refreshed.");
               }}
@@ -1373,24 +1578,72 @@ function AdminContent() {
           {/* ======================================================= */}
           {activeTab === "orders" && (
             <div className="space-y-4">
-              {/* Order status filters */}
-              <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center justify-between">
-                <div className="flex items-center gap-2 overflow-x-auto">
-                  {["ALL", "PENDING_VERIFICATION", "CONFIRMED", "DISPATCHED", "DELIVERED"].map((st) => (
-                    <button
-                      key={st}
-                      onClick={() => setOrderFilter(st)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer transition-all ${
-                        orderFilter === st
-                          ? "bg-emerald-700 text-white"
-                          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                      }`}
-                    >
-                      {st.replace("_", " ")}
-                    </button>
-                  ))}
+              {/* Order Controls Bar */}
+              <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs space-y-3">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                  {/* Status Filters */}
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+                    {["ALL", "PENDING_VERIFICATION", "CONFIRMED", "DISPATCHED", "DELIVERED", "CANCELLED"].map((st) => (
+                      <button
+                        key={st}
+                        onClick={() => {
+                          setOrderFilter(st);
+                        }}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer transition-all whitespace-nowrap ${
+                          orderFilter === st
+                            ? "bg-emerald-700 text-white shadow-xs"
+                            : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        }`}
+                      >
+                        {st.replace(/_/g, " ")}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Search Orders */}
+                  <div className="relative min-w-[240px]">
+                    <Search className="w-4 h-4 absolute left-3 top-2.5 text-slate-400" />
+                    <input
+                      type="text"
+                      placeholder="Search Order #, Customer, Phone..."
+                      value={orderSearch}
+                      onChange={(e) => {
+                        setOrderSearch(e.target.value);
+                        loadOrders(orderUserFilter, e.target.value);
+                      }}
+                      className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:outline-emerald-600 bg-slate-50 focus:bg-white transition-all"
+                    />
+                    {orderSearch && (
+                      <button
+                        onClick={() => {
+                          setOrderSearch("");
+                          loadOrders(orderUserFilter, "");
+                        }}
+                        className="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-xs"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
                 </div>
-                <span className="text-xs text-slate-500">{orders.length} orders</span>
+
+                {/* Filtered by Customer Indicator Banner */}
+                {orderUserFilter && (
+                  <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 px-3.5 py-2 rounded-xl text-xs text-emerald-800">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-emerald-600" />
+                      <span>
+                        Showing orders placed by <strong>{orderUserFilterName || "Customer"}</strong>
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleClearOrderUserFilter}
+                      className="text-xs font-bold text-emerald-700 hover:text-emerald-900 underline cursor-pointer"
+                    >
+                      Clear Customer Filter (Show All Orders)
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Orders Table */}
@@ -1399,64 +1652,408 @@ function AdminContent() {
                   <table className="w-full text-left text-xs">
                     <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold uppercase tracking-wider text-[10px]">
                       <tr>
-                        <th className="px-5 py-3.5">Order ID</th>
-                        <th className="px-4 py-3.5">Customer & Phone</th>
-                        <th className="px-4 py-3.5">Amount</th>
+                        <th className="px-5 py-3.5">Order ID & Date</th>
+                        <th className="px-4 py-3.5">Customer</th>
+                        <th className="px-4 py-3.5">Items Ordered</th>
+                        <th className="px-4 py-3.5">Total & Payment</th>
                         <th className="px-4 py-3.5">Status</th>
-                        <th className="px-4 py-3.5">Courier & AWB</th>
+                        <th className="px-4 py-3.5">Logistics & AWB</th>
                         <th className="px-5 py-3.5 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {isLoadingOrders ? (
                         <tr>
-                          <td colSpan={6} className="px-5 py-12 text-center text-slate-400">
+                          <td colSpan={7} className="px-5 py-12 text-center text-slate-400">
                             Loading orders...
                           </td>
                         </tr>
                       ) : orders.length === 0 ? (
                         <tr>
-                          <td colSpan={6} className="px-5 py-12 text-center text-slate-400">
-                            No orders found in queue.
+                          <td colSpan={7} className="px-5 py-12 text-center text-slate-400">
+                            No orders found matching current criteria.
                           </td>
                         </tr>
                       ) : (
-                        orders.map((o) => (
-                          <tr key={o.id} className="hover:bg-slate-50/80">
-                            <td className="px-5 py-3.5 font-mono font-bold text-slate-900">
-                              #{o.order_number || o.id.slice(0, 8)}
-                            </td>
-                            <td className="px-4 py-3.5">
-                              <div className="font-bold text-slate-900">{o.customer_name || "Customer"}</div>
-                              <div className="text-[11px] text-slate-500 font-mono">{o.customer_phone}</div>
-                            </td>
-                            <td className="px-4 py-3.5 font-bold text-slate-900">
-                              ₹{Number(o.total_amount).toFixed(2)}
-                            </td>
-                            <td className="px-4 py-3.5">
-                              <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                                {o.order_status}
-                              </span>
-                            </td>
-                            <td className="px-4 py-3.5 text-slate-600 font-mono text-[11px]">
-                              {o.courier_name ? (
-                                <span>
-                                  {o.courier_name}: {o.tracking_awb}
+                        orders.map((o) => {
+                          const statusColor =
+                            o.order_status === "DELIVERED"
+                              ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+                              : o.order_status === "DISPATCHED"
+                              ? "bg-purple-100 text-purple-800 border-purple-200"
+                              : o.order_status === "CONFIRMED"
+                              ? "bg-blue-100 text-blue-800 border-blue-200"
+                              : o.order_status === "CANCELLED"
+                              ? "bg-rose-100 text-rose-800 border-rose-200"
+                              : "bg-amber-100 text-amber-800 border-amber-200";
+
+                          return (
+                            <tr key={o.id} className="hover:bg-slate-50/80 transition-colors">
+                              <td className="px-5 py-3.5">
+                                <div className="font-mono font-bold text-slate-900">
+                                  #{o.order_number || o.id.slice(0, 8)}
+                                </div>
+                                <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                                  {o.created_at ? new Date(o.created_at).toLocaleDateString("en-IN", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "Recent"}
+                                </div>
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <button
+                                  onClick={() => o.user_id && handleOpenUserDetail(o.user_id)}
+                                  className={`text-left font-bold ${o.user_id ? "text-emerald-700 hover:underline cursor-pointer" : "text-slate-900"}`}
+                                  title={o.user_id ? "Click to view full customer profile" : undefined}
+                                >
+                                  {o.customer_name || "Customer"}
+                                </button>
+                                <div className="text-[11px] text-slate-500 font-mono">{o.customer_phone}</div>
+                                {o.customer_email && (
+                                  <div className="text-[10px] text-slate-400 truncate max-w-[150px]">{o.customer_email}</div>
+                                )}
+                              </td>
+                              <td className="px-4 py-3.5 max-w-[220px]">
+                                <div className="font-medium text-slate-800 truncate">
+                                  {o.items && o.items.length > 0
+                                    ? o.items.map((i: any) => `${i.product_name} (${i.weight_label}) ×${i.quantity}`).join(", ")
+                                    : "Items in package"}
+                                </div>
+                                <div className="text-[10px] text-slate-400">
+                                  {o.items?.length || 0} distinct pack sizes
+                                </div>
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <div className="font-bold text-slate-900 font-mono">
+                                  ₹{Number(o.total_amount).toFixed(2)}
+                                </div>
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
+                                  {o.payment_method === "COD_VENDOR_CONTACT" ? "Pay on Delivery (COD)" : o.payment_method}
                                 </span>
-                              ) : (
-                                <span className="text-slate-400 italic">Not dispatched</span>
-                              )}
-                            </td>
-                            <td className="px-5 py-3.5 text-right">
-                              <button
-                                onClick={() => setSelectedOrderForDispatch(o)}
-                                className="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1 rounded-lg text-xs font-bold cursor-pointer"
-                              >
-                                Dispatch
-                              </button>
-                            </td>
-                          </tr>
-                        ))
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${statusColor}`}>
+                                  {o.order_status.replace(/_/g, " ")}
+                                </span>
+                              </td>
+                              <td className="px-4 py-3.5 text-slate-600 font-mono text-[11px]">
+                                {o.courier_name ? (
+                                  <div>
+                                    <div className="font-bold text-slate-800">{o.courier_name}</div>
+                                    <div className="text-[10px] text-slate-500">{o.tracking_awb}</div>
+                                  </div>
+                                ) : (
+                                  <span className="text-slate-400 italic">Pending dispatch</span>
+                                )}
+                              </td>
+                              <td className="px-5 py-3.5 text-right">
+                                <div className="flex items-center justify-end gap-1.5">
+                                  <button
+                                    onClick={() => handleInspectOrder(o.id)}
+                                    className="p-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded-lg cursor-pointer transition-all"
+                                    title="Inspect Order Details"
+                                  >
+                                    <Eye className="w-3.5 h-3.5" />
+                                  </button>
+                                  {o.order_status !== "DELIVERED" && (
+                                    <button
+                                      onClick={() => setSelectedOrderForDispatch(o)}
+                                      className="bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-all flex items-center gap-1 shadow-xs"
+                                    >
+                                      <Truck className="w-3 h-3" />
+                                      <span>Dispatch</span>
+                                    </button>
+                                  )}
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ======================================================= */}
+          {/* TAB: CUSTOMERS & REGISTERED USERS */}
+          {/* ======================================================= */}
+          {activeTab === "users" && (
+            <div className="space-y-6">
+              {/* Header bar */}
+              <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-sm font-bold text-slate-900 font-serif">Customer Directory & User Accounts</h2>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Real-time ledger of shoppers, lifetime spending, order records, and saved address books.
+                  </p>
+                </div>
+                <button
+                  onClick={handleOpenAddUser}
+                  className="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-xs cursor-pointer transition-all shrink-0"
+                >
+                  <UserPlus className="w-4 h-4" />
+                  <span>Add New User</span>
+                </button>
+              </div>
+
+              {/* KPI Metrics */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  {
+                    title: "Total Registered Users",
+                    value: userStats?.total_users || users.length,
+                    sub: "All platform accounts",
+                    badge: "Directory",
+                  },
+                  {
+                    title: "Active Customers",
+                    value: userStats?.active_customers || users.filter((u) => u.role === "customer" && u.is_active).length,
+                    sub: "Shoppers with active accounts",
+                    badge: "Shoppers",
+                  },
+                  {
+                    title: "Total Customer Orders",
+                    value: userStats?.total_orders_placed || 0,
+                    sub: "Across all customers",
+                    badge: "Fulfillment",
+                  },
+                  {
+                    title: "Lifetime Customer Spend",
+                    value: `₹${Number(userStats?.total_revenue || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 })}`,
+                    sub: "Direct farm revenue",
+                    badge: "GMV",
+                  },
+                ].map((s, idx) => (
+                  <div key={idx} className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+                    <div className="flex items-center justify-between text-xs text-slate-500 font-medium mb-1">
+                      <span>{s.title}</span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700">
+                        {s.badge}
+                      </span>
+                    </div>
+                    <div className="text-xl font-bold font-serif text-slate-900 mt-1">{s.value}</div>
+                    <div className="text-[11px] text-slate-400 mt-1">{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Search & Role Filters */}
+              <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col md:flex-row items-center justify-between gap-3">
+                <div className="relative flex-1 w-full md:max-w-md">
+                  <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="Search by customer name, phone number, or email..."
+                    value={userSearch}
+                    onChange={(e) => {
+                      setUserSearch(e.target.value);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") loadUsers();
+                    }}
+                    className="w-full pl-9 pr-8 py-2 rounded-xl border border-slate-200 text-xs focus:outline-emerald-600 bg-slate-50 focus:bg-white transition-all"
+                  />
+                  {userSearch && (
+                    <button
+                      onClick={() => {
+                        setUserSearch("");
+                        loadUsers();
+                      }}
+                      className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+
+                <div className="flex items-center gap-2 w-full md:w-auto">
+                  <select
+                    value={userRoleFilter}
+                    onChange={(e) => setUserRoleFilter(e.target.value)}
+                    className="px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:outline-emerald-600 bg-white"
+                  >
+                    <option value="all">All Roles</option>
+                    <option value="customer">Customers Only</option>
+                    <option value="admin">Administrators</option>
+                    <option value="vendor">Vendors</option>
+                  </select>
+
+                  <button
+                    onClick={loadUsers}
+                    className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold cursor-pointer transition-all flex items-center gap-1.5"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>Search</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Users Table */}
+              <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold uppercase tracking-wider text-[10px]">
+                      <tr>
+                        <th className="px-5 py-3.5">User / Customer</th>
+                        <th className="px-4 py-3.5">Contact Details</th>
+                        <th className="px-4 py-3.5">Role</th>
+                        <th className="px-4 py-3.5">Orders & Spend</th>
+                        <th className="px-4 py-3.5">Addresses</th>
+                        <th className="px-4 py-3.5">Joined Date</th>
+                        <th className="px-4 py-3.5">Status</th>
+                        <th className="px-5 py-3.5 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100">
+                      {isLoadingUsers ? (
+                        <tr>
+                          <td colSpan={8} className="px-5 py-12 text-center text-slate-400">
+                            Loading customer directory...
+                          </td>
+                        </tr>
+                      ) : users.length === 0 ? (
+                        <tr>
+                          <td colSpan={8} className="px-5 py-12 text-center text-slate-400">
+                            No user accounts found matching current query.
+                          </td>
+                        </tr>
+                      ) : (
+                        users.map((u) => {
+                          const initials = u.full_name
+                            ? u.full_name
+                                .split(" ")
+                                .map((w: string) => w[0])
+                                .slice(0, 2)
+                                .join("")
+                                .toUpperCase()
+                            : "US";
+
+                          return (
+                            <tr key={u.id} className="hover:bg-slate-50/80 transition-colors">
+                              <td className="px-5 py-3.5">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center shrink-0 text-xs">
+                                    {initials}
+                                  </div>
+                                  <div>
+                                    <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                                      <span>{u.full_name}</span>
+                                      {u.is_verified && (
+                                        <span title="Verified Account">
+                                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                        </span>
+                                      )}
+                                    </div>
+                                    <div className="text-[10px] text-slate-400 font-mono">
+                                      ID: {u.id.slice(0, 8)}...
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <div className="space-y-0.5">
+                                  {u.phone ? (
+                                    <a
+                                      href={`tel:${u.phone}`}
+                                      className="flex items-center gap-1 text-slate-800 hover:text-emerald-700 font-mono"
+                                      title="Click to call"
+                                    >
+                                      <Phone className="w-3 h-3 text-slate-400" />
+                                      <span>{u.phone}</span>
+                                    </a>
+                                  ) : (
+                                    <span className="text-slate-400 italic">No phone</span>
+                                  )}
+                                  {u.email ? (
+                                    <a
+                                      href={`mailto:${u.email}`}
+                                      className="flex items-center gap-1 text-slate-500 hover:text-emerald-700 text-[11px]"
+                                      title="Click to email"
+                                    >
+                                      <Mail className="w-3 h-3 text-slate-400" />
+                                      <span className="truncate max-w-[150px]">{u.email}</span>
+                                    </a>
+                                  ) : (
+                                    <span className="text-slate-400 italic text-[10px]">No email</span>
+                                  )}
+                                </div>
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <span
+                                  className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                                    u.role === "admin"
+                                      ? "bg-purple-100 text-purple-800 border border-purple-200"
+                                      : u.role === "vendor"
+                                      ? "bg-amber-100 text-amber-800 border border-amber-200"
+                                      : "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                                  }`}
+                                >
+                                  {u.role}
+                                </span>
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <div className="font-bold text-slate-900 font-mono">
+                                  ₹{Number(u.total_spent || 0).toFixed(2)}
+                                </div>
+                                <button
+                                  onClick={() => handleFilterOrdersByUser(u.id, u.full_name)}
+                                  className="text-[11px] text-emerald-700 hover:underline flex items-center gap-1 cursor-pointer"
+                                  title="Click to view all orders placed by this customer"
+                                >
+                                  <ShoppingBag className="w-3 h-3" />
+                                  <span>{u.total_orders} orders</span>
+                                </button>
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <div className="flex items-center gap-1 text-slate-600 font-medium">
+                                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                                  <span>{u.addresses_count} saved</span>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3.5 text-slate-500 font-mono text-[11px]">
+                                {u.created_at ? new Date(u.created_at).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" }) : "—"}
+                              </td>
+                              <td className="px-4 py-3.5">
+                                <button
+                                  onClick={() => handleToggleUserStatus(u.id)}
+                                  className={`px-2.5 py-1 rounded-full text-[10px] font-bold cursor-pointer transition-all border ${
+                                    u.is_active
+                                      ? "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-rose-50 hover:text-rose-700"
+                                      : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-emerald-50 hover:text-emerald-700"
+                                  }`}
+                                  title={u.is_active ? "Click to suspend user account" : "Click to activate account"}
+                                >
+                                  {u.is_active ? "Active" : "Suspended"}
+                                </button>
+                              </td>
+                              <td className="px-5 py-3.5 text-right">
+                                <div className="flex items-center justify-end gap-1.5">
+                                  <button
+                                    onClick={() => handleOpenUserDetail(u.id)}
+                                    className="p-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded-lg cursor-pointer transition-all"
+                                    title="View Profile, Orders & Addresses"
+                                  >
+                                    <Eye className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button
+                                    onClick={() => handleOpenEditUser(u)}
+                                    className="p-1.5 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 rounded-lg cursor-pointer transition-all"
+                                    title="Edit User"
+                                  >
+                                    <Edit3 className="w-3.5 h-3.5" />
+                                  </button>
+                                  <button
+                                    onClick={() => handleDeleteUser(u.id, u.full_name)}
+                                    className="p-1.5 bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-700 rounded-lg cursor-pointer transition-all"
+                                    title="Delete User"
+                                  >
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })
                       )}
                     </tbody>
                   </table>
@@ -2509,6 +3106,632 @@ function AdminContent() {
                   className="px-5 py-2 bg-emerald-700 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50"
                 >
                   {isSavingBlog ? "Saving..." : "Save & Publish"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================= */}
+      {/* MODAL 6: CUSTOMER PROFILE & ORDER HISTORY */}
+      {/* ========================================================= */}
+      {isUserDetailOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-6 text-xs">
+            {isLoadingUserDetail || !selectedUserDetail ? (
+              <div className="py-20 text-center text-slate-400">Loading customer profile...</div>
+            ) : (
+              <>
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-emerald-700 text-white font-bold flex items-center justify-center text-base shadow-sm">
+                      {selectedUserDetail.full_name
+                        .split(" ")
+                        .map((w: string) => w[0])
+                        .slice(0, 2)
+                        .join("")
+                        .toUpperCase()}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-bold text-slate-900 font-serif">
+                          {selectedUserDetail.full_name}
+                        </h3>
+                        {selectedUserDetail.is_verified && (
+                          <span title="Verified Customer">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          </span>
+                        )}
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                            selectedUserDetail.role === "admin"
+                              ? "bg-purple-100 text-purple-800"
+                              : selectedUserDetail.role === "vendor"
+                              ? "bg-amber-100 text-amber-800"
+                              : "bg-emerald-100 text-emerald-800"
+                          }`}
+                        >
+                          {selectedUserDetail.role}
+                        </span>
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                            selectedUserDetail.is_active
+                              ? "bg-emerald-50 text-emerald-700"
+                              : "bg-rose-50 text-rose-700"
+                          }`}
+                        >
+                          {selectedUserDetail.is_active ? "Active" : "Suspended"}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-3 text-slate-500 font-mono text-[11px] mt-1">
+                        {selectedUserDetail.phone && (
+                          <a href={`tel:${selectedUserDetail.phone}`} className="hover:text-emerald-700 flex items-center gap-1">
+                            <Phone className="w-3 h-3 text-slate-400" />
+                            <span>{selectedUserDetail.phone}</span>
+                          </a>
+                        )}
+                        {selectedUserDetail.email && (
+                          <a href={`mailto:${selectedUserDetail.email}`} className="hover:text-emerald-700 flex items-center gap-1">
+                            <Mail className="w-3 h-3 text-slate-400" />
+                            <span>{selectedUserDetail.email}</span>
+                          </a>
+                        )}
+                        <span className="text-slate-400">ID: {selectedUserDetail.id}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setIsUserDetailOpen(false)}
+                    className="p-1 rounded-full text-slate-400 hover:text-slate-700 cursor-pointer self-start sm:self-auto"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* KPI Chips */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Lifetime Spend</div>
+                    <div className="text-lg font-bold font-serif text-slate-900 mt-0.5">
+                      ₹{Number(selectedUserDetail.total_spent || 0).toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Orders Placed</div>
+                    <div className="text-lg font-bold font-serif text-slate-900 mt-0.5">
+                      {selectedUserDetail.total_orders || 0}
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Loyalty Coins</div>
+                    <div className="text-lg font-bold font-serif text-emerald-700 mt-0.5">
+                      {selectedUserDetail.loyalty_balance || 0} pts
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Dietary Pref</div>
+                    <div className="text-xs font-bold text-slate-800 mt-1 truncate">
+                      {selectedUserDetail.dietary_preference || "All Organic"}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Sub Tab Navigation */}
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-2">
+                  <button
+                    onClick={() => setUserDetailTab("orders")}
+                    className={`px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1.5 ${
+                      userDetailTab === "orders"
+                        ? "bg-emerald-700 text-white shadow-xs"
+                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    }`}
+                  >
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    <span>Customer Orders ({selectedUserDetail.orders?.length || 0})</span>
+                  </button>
+                  <button
+                    onClick={() => setUserDetailTab("addresses")}
+                    className={`px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1.5 ${
+                      userDetailTab === "addresses"
+                        ? "bg-emerald-700 text-white shadow-xs"
+                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    }`}
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    <span>Saved Addresses ({selectedUserDetail.addresses?.length || 0})</span>
+                  </button>
+                </div>
+
+                {/* Tab: Orders */}
+                {userDetailTab === "orders" && (
+                  <div className="space-y-3">
+                    {selectedUserDetail.orders && selectedUserDetail.orders.length > 0 ? (
+                      <div className="border border-slate-100 rounded-2xl overflow-hidden divide-y divide-slate-100">
+                        {selectedUserDetail.orders.map((o: any) => {
+                          const statusColor =
+                            o.order_status === "DELIVERED"
+                              ? "bg-emerald-100 text-emerald-800"
+                              : o.order_status === "DISPATCHED"
+                              ? "bg-purple-100 text-purple-800"
+                              : o.order_status === "CONFIRMED"
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-amber-100 text-amber-800";
+
+                          return (
+                            <div key={o.id} className="p-3.5 hover:bg-slate-50 flex items-center justify-between gap-4">
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <span className="font-mono font-bold text-slate-900">
+                                    #{o.order_number}
+                                  </span>
+                                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${statusColor}`}>
+                                    {o.order_status.replace(/_/g, " ")}
+                                  </span>
+                                </div>
+                                <div className="text-[11px] text-slate-600">
+                                  {o.items_preview?.join(", ")}
+                                </div>
+                                <div className="text-[10px] text-slate-400 font-mono">
+                                  Placed: {o.created_at ? new Date(o.created_at).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" }) : "—"}
+                                  {o.courier_name && ` · ${o.courier_name} (${o.tracking_awb})`}
+                                </div>
+                              </div>
+
+                              <div className="flex items-center gap-3 shrink-0">
+                                <div className="text-right font-mono">
+                                  <div className="font-bold text-slate-900">₹{Number(o.total_amount).toFixed(2)}</div>
+                                  <div className="text-[9px] text-slate-400">{o.payment_method}</div>
+                                </div>
+                                <button
+                                  onClick={() => handleInspectOrder(o.id)}
+                                  className="bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1.5 rounded-xl font-bold text-xs flex items-center gap-1 cursor-pointer transition-all shadow-xs"
+                                >
+                                  <Eye className="w-3.5 h-3.5" />
+                                  <span>Inspect</span>
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <div className="py-12 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                        No orders recorded for this customer yet.
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Tab: Addresses */}
+                {userDetailTab === "addresses" && (
+                  <div className="space-y-3">
+                    {selectedUserDetail.addresses && selectedUserDetail.addresses.length > 0 ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {selectedUserDetail.addresses.map((a: any) => (
+                          <div key={a.id} className="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 space-y-1">
+                            <div className="flex items-center justify-between">
+                              <span className="font-bold text-slate-800 flex items-center gap-1">
+                                <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                                <span>{a.label || "Delivery Location"}</span>
+                              </span>
+                              {a.is_default_shipping && (
+                                <span className="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2 py-0.5 rounded-full">
+                                  Default
+                                </span>
+                              )}
+                            </div>
+                            <div className="font-semibold text-slate-900">{a.recipient_name} ({a.recipient_phone})</div>
+                            <div className="text-slate-600 leading-relaxed text-[11px]">
+                              {a.flat_no}, {a.street}
+                              {a.landmark && `, near ${a.landmark}`}
+                              <br />
+                              {a.city}, {a.state} - {a.pincode}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="py-12 text-center text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                        No delivery addresses saved by this customer.
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Action Bar Footer */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4">
+                  <div className="flex items-center gap-2">
+                    {selectedUserDetail.phone && (
+                      <a
+                        href={`tel:${selectedUserDetail.phone}`}
+                        className="px-3 py-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-bold rounded-xl flex items-center gap-1 cursor-pointer"
+                      >
+                        <Phone className="w-3.5 h-3.5" />
+                        <span>Call</span>
+                      </a>
+                    )}
+                    {selectedUserDetail.email && (
+                      <a
+                        href={`mailto:${selectedUserDetail.email}`}
+                        className="px-3 py-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-bold rounded-xl flex items-center gap-1 cursor-pointer"
+                      >
+                        <Mail className="w-3.5 h-3.5" />
+                        <span>Email</span>
+                      </a>
+                    )}
+                    <button
+                      onClick={() => handleFilterOrdersByUser(selectedUserDetail.id, selectedUserDetail.full_name)}
+                      className="px-3 py-1.5 bg-emerald-50 text-emerald-700 font-bold rounded-xl flex items-center gap-1 hover:bg-emerald-100 cursor-pointer"
+                    >
+                      <ShoppingBag className="w-3.5 h-3.5" />
+                      <span>View Orders in Fulfillment Queue</span>
+                    </button>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleToggleUserStatus(selectedUserDetail.id)}
+                      className={`px-3 py-1.5 rounded-xl font-bold cursor-pointer ${
+                        selectedUserDetail.is_active
+                          ? "bg-rose-50 text-rose-700 hover:bg-rose-100"
+                          : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
+                      }`}
+                    >
+                      {selectedUserDetail.is_active ? "Suspend Account" : "Activate Account"}
+                    </button>
+                    <button
+                      onClick={() => handleOpenEditUser(selectedUserDetail)}
+                      className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl cursor-pointer"
+                    >
+                      Edit Account
+                    </button>
+                    <button
+                      onClick={() => setIsUserDetailOpen(false)}
+                      className="px-4 py-1.5 bg-slate-900 text-white font-bold rounded-xl cursor-pointer hover:bg-slate-800"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================= */}
+      {/* MODAL 7: FULL ORDER INSPECTION MODAL */}
+      {/* ========================================================= */}
+      {inspectedOrder && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-6 text-xs">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center">
+                  <Truck className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-base font-bold text-slate-900 font-mono">
+                      Order #{inspectedOrder.order_number || inspectedOrder.id.slice(0, 8)}
+                    </h3>
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                      {inspectedOrder.order_status}
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-slate-400 font-mono mt-0.5">
+                    Placed on: {inspectedOrder.created_at ? new Date(inspectedOrder.created_at).toLocaleString("en-IN") : "Recent"}
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setInspectedOrder(null)}
+                className="p-1 rounded-full text-slate-400 hover:text-slate-700 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Customer & Shipping Summary Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                <div className="font-bold text-slate-900 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    <Users className="w-3.5 h-3.5 text-emerald-700" />
+                    <span>Customer Details</span>
+                  </span>
+                  {inspectedOrder.user_id && (
+                    <button
+                      onClick={() => handleOpenUserDetail(inspectedOrder.user_id)}
+                      className="text-[10px] text-emerald-700 hover:underline cursor-pointer font-bold"
+                    >
+                      View Profile →
+                    </button>
+                  )}
+                </div>
+                <div className="font-semibold text-slate-800">{inspectedOrder.customer_name}</div>
+                <div className="text-slate-600 font-mono">{inspectedOrder.customer_phone}</div>
+                <div className="text-slate-500">{inspectedOrder.customer_email}</div>
+                {inspectedOrder.order_notes && (
+                  <div className="text-[11px] text-slate-600 bg-white p-2 rounded-xl border border-slate-200 mt-2">
+                    <strong>Customer Note:</strong> {inspectedOrder.order_notes}
+                  </div>
+                )}
+              </div>
+
+              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-700" />
+                  <span>Delivery Destination</span>
+                </div>
+                <div className="text-slate-700 leading-relaxed">
+                  {inspectedOrder.shipping_flat_no}, {inspectedOrder.shipping_street}
+                  {inspectedOrder.shipping_landmark && `, ${inspectedOrder.shipping_landmark}`}
+                  <br />
+                  {inspectedOrder.shipping_city}, {inspectedOrder.shipping_state} - {inspectedOrder.shipping_pincode}
+                </div>
+                <div className="pt-1 flex items-center gap-2">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                    Payment: {inspectedOrder.payment_method === "COD_VENDOR_CONTACT" ? "Pay on Delivery (COD)" : inspectedOrder.payment_method}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Line Items Table */}
+            <div className="border border-slate-200 rounded-2xl overflow-hidden">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-slate-50 text-slate-500 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200">
+                  <tr>
+                    <th className="px-4 py-2.5">Organic Crop Item</th>
+                    <th className="px-3 py-2.5">Pack Size</th>
+                    <th className="px-3 py-2.5 text-right">Unit Price</th>
+                    <th className="px-3 py-2.5 text-center">Qty</th>
+                    <th className="px-4 py-2.5 text-right">Line Total</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {inspectedOrder.items && inspectedOrder.items.length > 0 ? (
+                    inspectedOrder.items.map((item: any) => (
+                      <tr key={item.id} className="hover:bg-slate-50/50">
+                        <td className="px-4 py-3 font-bold text-slate-800">{item.product_name}</td>
+                        <td className="px-3 py-3 text-slate-600 font-mono">{item.weight_label}</td>
+                        <td className="px-3 py-3 text-right font-mono text-slate-600">₹{Number(item.unit_price).toFixed(2)}</td>
+                        <td className="px-3 py-3 text-center font-bold text-slate-900">{item.quantity}</td>
+                        <td className="px-4 py-3 text-right font-bold text-slate-900 font-mono">
+                          ₹{Number(item.line_total).toFixed(2)}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={5} className="px-4 py-6 text-center text-slate-400">
+                        No item breakdown available.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+
+              {/* Price Calculation Summary */}
+              <div className="bg-slate-50 p-4 border-t border-slate-200 flex flex-col items-end space-y-1 font-mono text-xs">
+                <div className="flex justify-between w-64 text-slate-600">
+                  <span>Subtotal:</span>
+                  <span>₹{Number(inspectedOrder.subtotal || inspectedOrder.total_amount).toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between w-64 text-slate-600">
+                  <span>Shipping Fee:</span>
+                  <span>₹{Number(inspectedOrder.shipping_fee || 0).toFixed(2)}</span>
+                </div>
+                {Number(inspectedOrder.discount_amount || 0) > 0 && (
+                  <div className="flex justify-between w-64 text-emerald-700">
+                    <span>Discount:</span>
+                    <span>-₹{Number(inspectedOrder.discount_amount).toFixed(2)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between w-64 text-slate-900 font-bold border-t border-slate-200 pt-1 text-sm">
+                  <span>Grand Total:</span>
+                  <span>₹{Number(inspectedOrder.total_amount).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Fulfillment & Tracking Timeline */}
+            <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-slate-900 flex items-center gap-1.5">
+                  <Truck className="w-3.5 h-3.5 text-emerald-700" />
+                  <span>Logistics & Courier Tracking</span>
+                </span>
+                {inspectedOrder.courier_name && (
+                  <span className="font-mono text-xs font-bold text-slate-800">
+                    {inspectedOrder.courier_name} · AWB: {inspectedOrder.tracking_awb}
+                  </span>
+                )}
+              </div>
+
+              {inspectedOrder.tracking_events && inspectedOrder.tracking_events.length > 0 ? (
+                <div className="space-y-2 relative pl-4 border-l-2 border-emerald-300 ml-2">
+                  {inspectedOrder.tracking_events.map((evt: any) => (
+                    <div key={evt.id} className="relative">
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-600 absolute -left-[21px] top-1"></div>
+                      <div className="font-bold text-slate-800">{evt.title}</div>
+                      <div className="text-slate-600 text-[11px]">{evt.description}</div>
+                      <div className="text-[10px] text-slate-400 font-mono">
+                        {evt.location && `${evt.location} · `}
+                        {evt.timestamp ? new Date(evt.timestamp).toLocaleString("en-IN") : ""}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-slate-400 italic text-[11px]">No shipment milestones recorded yet.</div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex items-center justify-between border-t border-slate-100 pt-3">
+              <div>
+                {inspectedOrder.order_status !== "DELIVERED" && (
+                  <button
+                    onClick={() => {
+                      setSelectedOrderForDispatch(inspectedOrder);
+                      setInspectedOrder(null);
+                    }}
+                    className="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl font-bold flex items-center gap-1.5 shadow-xs cursor-pointer"
+                  >
+                    <Truck className="w-4 h-4" />
+                    <span>Dispatch Package</span>
+                  </button>
+                )}
+              </div>
+              <button
+                onClick={() => setInspectedOrder(null)}
+                className="px-5 py-2 bg-slate-900 text-white rounded-xl font-bold cursor-pointer hover:bg-slate-800"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================= */}
+      {/* MODAL 8: CREATE / EDIT USER MODAL */}
+      {/* ========================================================= */}
+      {isUserModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-4 text-xs">
+            <div className="flex items-center justify-between border-b pb-3">
+              <div>
+                <h3 className="text-base font-bold text-slate-900 font-serif">
+                  {editingUser ? `Edit Account: ${editingUser.full_name}` : "Create New User Account"}
+                </h3>
+                <p className="text-xs text-slate-500">Configure customer or staff profile and permissions.</p>
+              </div>
+              <button
+                onClick={() => setIsUserModalOpen(false)}
+                className="p-1 rounded-full text-slate-400 hover:text-slate-700 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveUser} className="space-y-4">
+              <div>
+                <label className="font-bold text-slate-700 block mb-1">Full Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Dr. Rajesh Mehta"
+                  value={userForm.full_name}
+                  onChange={(e) => setUserForm({ ...userForm, full_name: e.target.value })}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-emerald-600"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Mobile Phone</label>
+                  <input
+                    type="text"
+                    placeholder="+919876543210"
+                    value={userForm.phone}
+                    onChange={(e) => setUserForm({ ...userForm, phone: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-mono focus:outline-emerald-600"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="customer@domain.com"
+                    value={userForm.email}
+                    onChange={(e) => setUserForm({ ...userForm, email: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-emerald-600"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">System Role</label>
+                  <select
+                    value={userForm.role}
+                    onChange={(e) => setUserForm({ ...userForm, role: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs bg-white font-medium"
+                  >
+                    <option value="customer">Customer (Shopper)</option>
+                    <option value="admin">Administrator</option>
+                    <option value="vendor">Vendor / Farmer Partner</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Dietary Preference</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Strictly Organic"
+                    value={userForm.dietary_preference}
+                    onChange={(e) => setUserForm({ ...userForm, dietary_preference: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="font-bold text-slate-700 block mb-1">
+                  {editingUser ? "Change Password (Leave blank to keep unchanged)" : "Account Password (Optional)"}
+                </label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  value={userForm.password}
+                  onChange={(e) => setUserForm({ ...userForm, password: e.target.value })}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"
+                />
+              </div>
+
+              <div className="flex items-center gap-6 pt-1">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={userForm.is_active}
+                    onChange={(e) => setUserForm({ ...userForm, is_active: e.target.checked })}
+                    className="w-4 h-4 text-emerald-600 rounded"
+                  />
+                  <span className="font-bold text-slate-700">Account Active</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={userForm.newsletter_subscribed}
+                    onChange={(e) => setUserForm({ ...userForm, newsletter_subscribed: e.target.checked })}
+                    className="w-4 h-4 text-emerald-600 rounded"
+                  />
+                  <span className="font-bold text-slate-700">Newsletter Subscribed</span>
+                </label>
+              </div>
+
+              <div className="flex justify-end gap-2 border-t pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsUserModalOpen(false)}
+                  className="px-4 py-2 bg-slate-100 rounded-xl font-bold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSavingUser}
+                  className="px-5 py-2 bg-emerald-700 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50"
+                >
+                  {isSavingUser ? "Saving..." : editingUser ? "Update Account" : "Create User"}
                 </button>
               </div>
             </form>
