@@ -20,6 +20,7 @@ import TrustBadges from "@/components/TrustBadges";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
+import LoginModal from "@/components/LoginModal";
 import ToastNotification from "@/components/ToastNotification";
 import { CATEGORIES } from "@/data/mockData";
 
@@ -124,6 +125,7 @@ function HomeContent() {
       {/* Global Interactive Drawers & Modals */}
       <CartDrawer />
       <BulkEnquiryModal />
+      <LoginModal />
       <ToastNotification />
     </div>
   );

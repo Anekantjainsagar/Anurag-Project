@@ -24,6 +24,7 @@ import {
   Settings as SettingsIcon,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import LoginModal from "./LoginModal";
 
 export default function Navbar() {
   const router = useRouter();
@@ -90,7 +91,8 @@ export default function Navbar() {
     : [];
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.04)] font-sans w-full">
+    <>
+      <header className="sticky top-0 z-40 bg-white border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.04)] font-sans w-full">
       {/* Full Width Edge-to-Edge Container */}
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 h-18 sm:h-20 flex items-center justify-between gap-4">
         {/* Left: Official Brand Logo */}
@@ -641,6 +643,10 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+
+      {/* Global Sign In / Auth Modal */}
+      <LoginModal />
+    </>
   );
 }

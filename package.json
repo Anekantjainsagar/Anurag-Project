@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "backend": "backend/.venv/bin/python backend/run.py"
   },
   "dependencies": {
     "lucide-react": "^1.56.0",

@@ -6,6 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth, UserAddress } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
 import { api } from "@/services/apiClient";
+import TopBar from "@/components/TopBar";
+import Navbar from "@/components/Navbar";
+import LoginModal from "@/components/LoginModal";
 import {
   User,
   MapPin,
@@ -221,35 +224,40 @@ function ProfileContent() {
   // Not authenticated view
   if (!isAuthLoading && !isAuthenticated) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center px-4 py-16 bg-[#fbfdfc]">
-        <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-gray-100 shadow-xl text-center space-y-6">
-          <div className="w-16 h-16 rounded-full bg-[#edf7f1] text-[#01722C] mx-auto flex items-center justify-center">
-            <User className="w-8 h-8" />
-          </div>
-          <div className="space-y-2">
-            <h2 className="font-serif text-2xl font-bold text-gray-900">
-              Customer Account Access
-            </h2>
-            <p className="text-sm text-gray-600">
-              Sign in with your phone or email OTP to view your past orders, manage your saved shipping addresses, and customize your diet profile.
-            </p>
-          </div>
-          <div className="pt-2 flex flex-col gap-3">
-            <button
-              onClick={() => setIsLoginModalOpen(true)}
-              className="w-full bg-[#01722C] hover:bg-[#0b542c] text-white py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
-            >
-              <span>SIGN IN VIA SECURE OTP</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <Link
-              href="/"
-              className="text-xs text-gray-500 hover:text-gray-800 transition-colors"
-            >
-              Continue shopping as guest →
-            </Link>
+      <div className="min-h-screen flex flex-col bg-[#fbfdfc] font-sans">
+        <TopBar />
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center px-4 py-16">
+          <div className="max-w-md w-full bg-white rounded-3xl p-8 border border-gray-100 shadow-xl text-center space-y-6">
+            <div className="w-16 h-16 rounded-full bg-[#edf7f1] text-[#01722C] mx-auto flex items-center justify-center">
+              <User className="w-8 h-8" />
+            </div>
+            <div className="space-y-2">
+              <h2 className="font-serif text-2xl font-bold text-gray-900">
+                Customer Account Access
+              </h2>
+              <p className="text-sm text-gray-600">
+                Sign in with your phone or email OTP to view your past orders, manage your saved shipping addresses, and customize your diet profile.
+              </p>
+            </div>
+            <div className="pt-2 flex flex-col gap-3">
+              <button
+                onClick={() => setIsLoginModalOpen(true)}
+                className="w-full bg-[#01722C] hover:bg-[#0b542c] text-white py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+              >
+                <span>SIGN IN VIA SECURE OTP</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <Link
+                href="/"
+                className="text-xs text-gray-500 hover:text-gray-800 transition-colors"
+              >
+                Continue shopping as guest →
+              </Link>
+            </div>
           </div>
         </div>
+        <LoginModal />
       </div>
     );
   }
@@ -961,3 +969,4 @@ export default function ProfilePage() {
     </Suspense>
   );
 }
+

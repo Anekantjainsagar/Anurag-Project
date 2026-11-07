@@ -13,11 +13,13 @@ Production-grade asynchronous REST API backend powering the **Onaar / YOUR BRAND
 ## Getting Started
 
 ```bash
-# 1. Sync dependencies with uv
+# 1. Navigate to backend
 cd backend
-uv sync
 
-# 2. Run the development server
-uv run uvicorn app.main:app --reload --port 8000
+# 2. Run directly with Python (auto-reload on port 8000)
+python run.py
+
+# Or run using uv
+uv run python run.py
 ```
 
