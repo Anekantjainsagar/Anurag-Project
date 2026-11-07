@@ -1,5 +1,5 @@
 """
-Onaar / YOUR BRAND FastAPI Server Runner
+Onaar FastAPI Server Runner
 Direct entrypoint to start the development server with auto-reload.
 Usage:
     python run.py

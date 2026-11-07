@@ -1,5 +1,5 @@
 """
-Onaar / YOUR BRAND E-Commerce FastAPI Application
+Onaar E-Commerce FastAPI Application
 Main application factory with lifespan handlers, CORS, and API routing.
 """
 
@@ -8,12 +8,32 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.api.v1.router import api_router
+from app.core.database import AsyncSessionLocal, Base, engine
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: Initialize connection pools / telemetry
+    # Startup: Initialize and verify database connection
     print(f"🚀 [STARTUP] Starting {settings.PROJECT_NAME} ({settings.ENVIRONMENT})")
+    try:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+        print("✅ [DATABASE] Connection established and schema verified.")
+
+        # Auto-seed initial catalog & admin if database is newly initialized
+        try:
+            from sqlalchemy import select, func
+            from app.models.catalog import Product
+            async with AsyncSessionLocal() as session:
+                prod_count = await session.scalar(select(func.count(Product.id)))
+                if not prod_count:
+                    print("🌱 [DATABASE] Empty database detected. Seeding 192 organic crops & admin...")
+                    from scripts.seed_database import seed_data
+                    await seed_data()
+        except Exception as seed_err:
+            print(f"⚠️ [DATABASE] Auto-seed notice: {seed_err}")
+    except Exception as e:
+        print(f"⚠️ [DATABASE] Startup connection notice: {e}")
     yield
     # Shutdown: Close database pools & resources
     print("🛑 [SHUTDOWN] Terminating application resources")
@@ -23,7 +43,7 @@ def create_application() -> FastAPI:
     app = FastAPI(
         title=settings.PROJECT_NAME,
         version="0.1.0",
-        description="Enterprise REST API for YOUR BRAND / Onaar Organic E-Commerce Storefront",
+        description="Enterprise REST API for Onaar Organic E-Commerce Storefront",
         docs_url="/docs",
         redoc_url="/redoc",
         lifespan=lifespan,

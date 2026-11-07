@@ -226,11 +226,11 @@ async def seed_data():
             {
                 "template_key": "ORDER_CONFIRMATION_CUSTOMER",
                 "name": "Customer Order Confirmation Receipt",
-                "subject": "🌿 Order Confirmed #{{order_number}} - YOUR BRAND",
+                "subject": "🌿 Order Confirmed #{{order_number}} - ONAAR",
                 "body_html": """
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 25px; border: 1px solid #e0e0e0; border-radius: 12px; background: #ffffff;">
                     <div style="text-align: center; border-bottom: 2px solid #044a27; padding-bottom: 15px;">
-                        <h1 style="color: #044a27; margin: 0; font-size: 24px;">YOUR BRAND • Pure Harvest</h1>
+                        <h1 style="color: #044a27; margin: 0; font-size: 24px;">ONAAR • Pure Harvest</h1>
                         <p style="color: #666; margin: 5px 0 0 0; font-size: 13px;">100% Certified Organic • Direct from Indian Farmers</p>
                     </div>
                     <h2 style="color: #044a27; margin-top: 20px;">Thank You, {{customer_name}}!</h2>
@@ -343,7 +343,7 @@ async def seed_data():
             ("warehouse_address", {"address": "Plot 104, Organic Agro Park, Central Logistics Zone, Madhya Pradesh - 452001, INDIA"}, "Central warehouse"),
             ("topbar_tickers", ["🌾 Fresh Heirloom Harvest Just Arrived - Flat 10% Off with HARVEST10", "🚚 Free Zero-Adulteration Delivery Across India on Orders Above ₹499", "🌿 100% Certified Organic & Lab-Tested Direct from Farmers"], "Ticker banners"),
             ("shipping_policy", {"free_shipping_threshold": 499, "standard_shipping_fee": 60}, "Delivery fees"),
-            ("smtp_settings", {"host": "smtp.gmail.com", "port": 587, "user": "meriwebdunia@gmail.com", "password": "", "use_tls": True, "from_name": "YOUR BRAND / Pure Harvest", "from_email": "meriwebdunia@gmail.com"}, "SMTP Server config"),
+            ("smtp_settings", {"host": "smtp.gmail.com", "port": 587, "user": "meriwebdunia@gmail.com", "password": "", "use_tls": True, "from_name": "ONAAR / Pure Harvest", "from_email": "meriwebdunia@gmail.com"}, "SMTP Server config"),
         ]
         for key, val, desc in settings_rows:
             res = await session.execute(select(SiteSetting).where(SiteSetting.key == key))

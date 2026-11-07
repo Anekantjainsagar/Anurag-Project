@@ -1,6 +1,6 @@
-# Onaar / YOUR BRAND FastAPI Backend
+# Onaar FastAPI Backend
 
-Production-grade asynchronous REST API backend powering the **Onaar / YOUR BRAND** organic e-commerce ecosystem.
+Production-grade asynchronous REST API backend powering the **Onaar** organic e-commerce ecosystem.
 
 ## Tech Stack
 - **FastAPI**: Modern, high-performance async REST framework

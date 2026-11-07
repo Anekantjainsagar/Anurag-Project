@@ -1,7 +1,7 @@
 [project]
 name = "onaar-backend"
 version = "0.1.0"
-description = "FastAPI backend for YOUR BRAND / Onaar e-commerce platform with Supabase PostgreSQL"
+description = "FastAPI backend for Onaar organic e-commerce platform with PostgreSQL & SQLite"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

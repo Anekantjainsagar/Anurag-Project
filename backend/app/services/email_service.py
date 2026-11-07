@@ -18,7 +18,7 @@ from app.models.settings import SiteSetting
 FALLBACK_TEMPLATES = {
     "ORDER_CONFIRMATION_CUSTOMER": {
         "name": "Customer Order Confirmation",
-        "subject": "🌿 Order Confirmed #{{order_number}} - YOUR BRAND",
+        "subject": "🌿 Order Confirmed #{{order_number}} - ONAAR",
         "html": """
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
             <h2 style="color: #044a27;">Thank You for Your Order, {{customer_name}}!</h2>

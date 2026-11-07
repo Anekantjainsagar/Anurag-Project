@@ -65,5 +65,12 @@ async def get_dashboard_metrics(
         "total_active_products": total_products,
         "low_stock_alerts": low_stock_count,
         "total_customers": total_customers,
+        "metrics": {
+            "total_revenue": float(total_revenue or 0),
+            "total_orders": total_orders or 0,
+            "pending_fulfillment": pending_cod or 0,
+            "registered_customers": total_customers or 0,
+            "total_products": total_products or 0,
+        },
     }
 

@@ -3,14 +3,18 @@ Core Application Configuration
 Uses Pydantic v2 Settings to validate and expose environment variables.
 """
 
+from pathlib import Path
 from typing import List, Union
 from pydantic import AnyHttpUrl, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
+DEFAULT_SQLITE_URL = f"sqlite+aiosqlite:///{BACKEND_DIR / 'onaar.db'}"
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(BACKEND_DIR / ".env"),
         env_file_encoding="utf-8",
         case_sensitive=False,
         extra="ignore",
@@ -28,8 +32,8 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
 
-    # Supabase PostgreSQL
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/onaar"
+    # Supabase PostgreSQL / Local SQLite Database
+    DATABASE_URL: str = DEFAULT_SQLITE_URL
     SUPABASE_URL: str = "https://btiuwbqbkltwlefcqhjd.supabase.co"
     SUPABASE_SERVICE_ROLE_KEY: str = ""
 
@@ -39,7 +43,7 @@ class Settings(BaseSettings):
     SMTP_USER: str = "meriwebdunia@gmail.com"
     SMTP_PASSWORD: str = ""
     SMTP_USE_TLS: bool = True
-    SMTP_FROM_NAME: str = "YOUR BRAND / Pure Harvest"
+    SMTP_FROM_NAME: str = "ONAAR / Pure Harvest"
     SMTP_FROM_EMAIL: str = "meriwebdunia@gmail.com"
 
     # Vendor Details
@@ -53,6 +57,23 @@ class Settings(BaseSettings):
         "http://127.0.0.1:3000",
         "https://anurag-project.vercel.app",
     ]
+
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def validate_database_url(cls, v: Union[str, None]) -> str:
+        if not v or not isinstance(v, str) or not v.strip():
+            return DEFAULT_SQLITE_URL
+        val = v.strip()
+        # Fallback to local SQLite if password placeholder or unreachable template
+        if "[PASSWORD]" in val or "db.btiuwbqbkltwlefcqhjd.supabase.co" in val:
+            return DEFAULT_SQLITE_URL
+        if val.startswith("sqlite+aiosqlite:///"):
+            path_part = val.replace("sqlite+aiosqlite:///", "")
+            if not path_part.startswith("/") and not Path(path_part).is_absolute():
+                filename = Path(path_part).name or "onaar.db"
+                resolved = (BACKEND_DIR / filename).resolve()
+                return f"sqlite+aiosqlite:///{resolved}"
+        return val
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
