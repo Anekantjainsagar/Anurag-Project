@@ -2,10 +2,11 @@
 Blog & Agronomy Journal Schemas
 """
 
+import json
 import uuid
 from datetime import datetime
 from typing import Any, List, Optional
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
 
 
 class BlogCategoryOut(BaseModel):
@@ -38,6 +39,20 @@ class BlogPostListOut(BaseModel):
     tags: List[str] = []
     published_at: datetime
 
+    @field_validator("tags", mode="before")
+    @classmethod
+    def parse_tags(cls, v):
+        if isinstance(v, list) and v and all(isinstance(x, str) and len(x) == 1 for x in v):
+            v = "".join(v)
+        if isinstance(v, str):
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except Exception:
+                return [t.strip() for t in v.split(",") if t.strip()]
+        return v or []
+
 
 class BlogPostDetailOut(BlogPostListOut):
     health_tip: Optional[str] = None
@@ -45,4 +60,20 @@ class BlogPostDetailOut(BlogPostListOut):
     key_benefits: List[str] = []
     featured_product_id: Optional[str] = None
     highlights: List[BlogNutritionalHighlightOut] = []
+
+    @field_validator("content", "key_benefits", mode="before")
+    @classmethod
+    def parse_list_fields(cls, v):
+        if isinstance(v, list) and v and all(isinstance(x, str) and len(x) == 1 for x in v):
+            v = "".join(v)
+        if isinstance(v, str):
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except Exception:
+                return [v]
+        return v or []
+
+
 

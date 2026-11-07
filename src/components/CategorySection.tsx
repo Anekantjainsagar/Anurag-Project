@@ -35,7 +35,7 @@ export default function CategorySection({
             href="/products"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#01722C] hover:text-[#0b542c] bg-[#edf7f1] hover:bg-[#e1f1e7] px-5 py-2.5 rounded-xl transition-all shadow-2xs"
           >
-            <span>View All 192 Harvests</span>
+            <span>View All Harvests</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

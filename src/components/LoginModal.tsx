@@ -36,11 +36,8 @@ export default function LoginModal() {
         setDevCode(res.dev_code);
       }
       showToast(res.message || `OTP sent to +91 ${phoneNumber}`);
-    } catch {
-      // Fallback in demo/offline mode
-      setOtpSent(true);
-      setDevCode("1234");
-      showToast(`OTP sent to +91 ${phoneNumber}`);
+    } catch (err: any) {
+      showToast(err?.message || "Failed to send OTP. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

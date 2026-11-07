@@ -68,9 +68,9 @@ function AdminContent() {
   const [activeTab, setActiveTab] = useState<AdminTab>("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  // Admin Quick Login state (for fast access if not logged in)
-  const [adminPhone, setAdminPhone] = useState("+919876543210");
-  const [adminOtp, setAdminOtp] = useState("1234");
+  // Admin Quick Login state
+  const [adminPhone, setAdminPhone] = useState("");
+  const [adminOtp, setAdminOtp] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   // -------------------------------------------------------------
@@ -93,11 +93,11 @@ function AdminContent() {
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
   const [productForm, setProductForm] = useState({
     name: "",
-    category_id: "pulses",
+    category_id: "",
     subtitle: "",
     description: "",
-    origin: "Madhya Pradesh, India",
-    tag: "Pure Harvest",
+    origin: "",
+    tag: "",
     in_stock: true,
     is_featured: false,
     primary_image: "",
@@ -105,15 +105,14 @@ function AdminContent() {
     ingredients: "",
     storage_instructions: "",
     variants: [
-      { weight_label: "500g", price: 120, original_price: 150, stock_quantity: 50, is_default: false },
-      { weight_label: "1 kg", price: 220, original_price: 275, stock_quantity: 100, is_default: true },
+      { weight_label: "500g", price: 0, original_price: 0, stock_quantity: 0, is_default: true },
     ],
   });
   const [isSavingProduct, setIsSavingProduct] = useState(false);
 
   // Quick Stock Modal
   const [stockModalProduct, setStockModalProduct] = useState<any | null>(null);
-  const [newStockValue, setNewStockValue] = useState(100);
+  const [newStockValue, setNewStockValue] = useState(0);
   const [isUpdatingStock, setIsUpdatingStock] = useState(false);
 
   // Categories
@@ -141,7 +140,7 @@ function AdminContent() {
   const [isLoadingOrders, setIsLoadingOrders] = useState(false);
   const [selectedOrderForDispatch, setSelectedOrderForDispatch] = useState<any | null>(null);
   const [dispatchForm, setDispatchForm] = useState({
-    courier_name: "Delhivery Express",
+    courier_name: "",
     tracking_awb: "",
   });
   const [isUpdatingOrder, setIsUpdatingOrder] = useState(false);
@@ -188,14 +187,14 @@ function AdminContent() {
   const [blogForm, setBlogForm] = useState({
     title: "",
     slug: "",
-    category_id: "Health & Nutrition",
+    category_id: "",
     summary: "",
-    read_time: "5 min read",
+    read_time: "",
     image_url: "",
-    author_name: "Anurag Jain",
-    author_role: "Head of Agronomy & Research",
+    author_name: "",
+    author_role: "",
     health_tip: "",
-    tags_string: "Organic, Health, Nutrition",
+    tags_string: "",
     content_text: "",
     is_published: true,
   });
@@ -212,7 +211,7 @@ function AdminContent() {
     aws_access_key_id: "",
     aws_secret_access_key: "",
     aws_region: "ap-south-1",
-    aws_s3_bucket: "onaar-media-assets",
+    aws_s3_bucket: "",
     aws_cloudfront_domain: "",
     s3_endpoint_url: "",
   });
@@ -224,12 +223,12 @@ function AdminContent() {
 
   // Email & SMTP
   const [smtpConfig, setSmtpConfig] = useState({
-    smtp_host: "smtp.gmail.com",
+    smtp_host: "",
     smtp_port: 587,
-    smtp_user: "meriwebdunia@gmail.com",
+    smtp_user: "",
     smtp_password: "",
-    smtp_from_email: "meriwebdunia@gmail.com",
-    smtp_from_name: "ONAAR Pure Harvest",
+    smtp_from_email: "",
+    smtp_from_name: "ONAAR",
     smtp_use_tls: true,
   });
   const [templates, setTemplates] = useState<any[]>([]);
@@ -242,10 +241,10 @@ function AdminContent() {
     standard_shipping_fee: 60,
   });
   const [vendorDetails, setVendorDetails] = useState({
-    name: "Anurag Jain",
-    email: "meriwebdunia@gmail.com",
-    phone: "+91-98765 43210",
-    warehouse: "Plot 104, Organic Agro Park, Central Logistics Zone, MP - 452001",
+    name: "",
+    email: "",
+    phone: "",
+    warehouse: "",
   });
 
   const isAdmin = user && (user.role === "admin" || user.role === "vendor");
@@ -284,16 +283,9 @@ function AdminContent() {
     try {
       const data = await api.admin.getDashboard();
       setDashboardData(data);
-    } catch {
-      setDashboardData({
-        metrics: {
-          total_revenue: 12450.0,
-          total_orders: 18,
-          pending_fulfillment: 4,
-          registered_customers: 62,
-          total_products: 192,
-        },
-      });
+    } catch (err) {
+      console.error("Failed to load dashboard metrics:", err);
+      setDashboardData(null);
     } finally {
       setIsLoadingDashboard(false);
     }
@@ -575,7 +567,7 @@ function AdminContent() {
     setIsLoggingIn(true);
     try {
       await sendOtp(adminPhone, "sms");
-      const ok = await verifyOtp(adminPhone, adminOtp, "Anurag Jain (Admin)");
+      const ok = await verifyOtp(adminPhone, adminOtp, "Admin User");
       if (ok) {
         showToast("Authenticated as Super Admin!");
       }
@@ -591,11 +583,11 @@ function AdminContent() {
     setEditingProduct(null);
     setProductForm({
       name: "",
-      category_id: categories.length > 0 ? categories[0].id : "pulses",
+      category_id: categories.length > 0 ? categories[0].id : "",
       subtitle: "",
       description: "",
-      origin: "Madhya Pradesh, India",
-      tag: "Pure Harvest",
+      origin: "",
+      tag: "",
       in_stock: true,
       is_featured: false,
       primary_image: "",
@@ -603,8 +595,7 @@ function AdminContent() {
       ingredients: "",
       storage_instructions: "",
       variants: [
-        { weight_label: "500g", price: 120, original_price: 150, stock_quantity: 50, is_default: false },
-        { weight_label: "1 kg", price: 220, original_price: 275, stock_quantity: 100, is_default: true },
+        { weight_label: "500g", price: 0, original_price: 0, stock_quantity: 0, is_default: true },
       ],
     });
     setIsProductModalOpen(true);
@@ -614,11 +605,11 @@ function AdminContent() {
     setEditingProduct(p);
     setProductForm({
       name: p.name || "",
-      category_id: p.category_id || "pulses",
+      category_id: p.category_id || (categories.length > 0 ? categories[0].id : ""),
       subtitle: p.subtitle || "",
       description: p.description || p.subtitle || "",
-      origin: p.origin || "Madhya Pradesh, India",
-      tag: p.tag || "Pure Harvest",
+      origin: p.origin || "",
+      tag: p.tag || "",
       in_stock: p.in_stock,
       is_featured: p.is_featured,
       primary_image: p.primary_image || "",
@@ -761,15 +752,15 @@ function AdminContent() {
     setBlogForm({
       title: "",
       slug: "",
-      category_id: "Health & Nutrition",
+      category_id: categories.length > 0 ? categories[0].name : "",
       summary: "",
-      read_time: "5 min read",
-      image_url: "/images/products/pulse-toor-1.jpg",
-      author_name: "Anurag Jain",
-      author_role: "Head of Agronomy & Research",
+      read_time: "",
+      image_url: "",
+      author_name: user?.full_name || "",
+      author_role: user?.role === "admin" ? "Administrator" : "Author",
       health_tip: "",
-      tags_string: "Organic, Health, Nutrition",
-      content_text: "<p>Write your detailed agronomy article here. Use the formatting toolbar above for headings, bold text, and bullet lists.</p>",
+      tags_string: "",
+      content_text: "<p></p>",
       is_published: true,
     });
     setIsBlogModalOpen(true);
@@ -951,9 +942,9 @@ function AdminContent() {
         dispatchForm.courier_name,
         dispatchForm.tracking_awb.trim()
       );
-      showToast(`Order dispatched via ${dispatchForm.courier_name}!`);
+      showToast(`Order dispatched via ${dispatchForm.courier_name || "courier"}!`);
       setSelectedOrderForDispatch(null);
-      setDispatchForm({ courier_name: "Delhivery Express", tracking_awb: "" });
+      setDispatchForm({ courier_name: "", tracking_awb: "" });
       loadOrders();
       loadDashboard();
     } catch (err: any) {
@@ -985,17 +976,19 @@ function AdminContent() {
                 type="text"
                 value={adminPhone}
                 onChange={(e) => setAdminPhone(e.target.value)}
+                placeholder="+91 XXXXX XXXXX"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono"
               />
             </div>
             <div>
               <label className="text-xs font-bold text-slate-700 block mb-1">
-                Passcode / Bypass Code (Default: 1234)
+                One-Time Password / Admin Passcode
               </label>
               <input
                 type="text"
                 value={adminOtp}
                 onChange={(e) => setAdminOtp(e.target.value)}
+                placeholder="Enter 4-digit code"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono tracking-widest text-center"
               />
             </div>
@@ -1060,12 +1053,12 @@ function AdminContent() {
           <nav className="p-3 space-y-1.5">
             {[
               { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-              { id: "products", label: "Products & Crops", icon: Package, badge: totalProducts || "192" },
-              { id: "categories", label: "Categories", icon: Tag, badge: categories.length || "8" },
-              { id: "orders", label: "Orders & Fulfillment", icon: Truck, badge: orders.length || undefined },
-              { id: "users", label: "Customers & Users", icon: Users, badge: totalUsers || users.length || undefined },
-              { id: "blogs", label: "Agronomy Blogs", icon: FileText, badge: blogs.length || "24" },
-              { id: "inquiries", label: "CRM & Inquiries", icon: MessageSquare, badge: (contactInquiries.length + bulkInquiries.length) || undefined },
+              { id: "products", label: "Products & Crops", icon: Package, badge: totalProducts > 0 ? totalProducts : undefined },
+              { id: "categories", label: "Categories", icon: Tag, badge: categories.length > 0 ? categories.length : undefined },
+              { id: "orders", label: "Orders & Fulfillment", icon: Truck, badge: orders.length > 0 ? orders.length : undefined },
+              { id: "users", label: "Customers & Users", icon: Users, badge: (totalUsers || users.length) > 0 ? (totalUsers || users.length) : undefined },
+              { id: "blogs", label: "Agronomy Blogs", icon: FileText, badge: blogs.length > 0 ? blogs.length : undefined },
+              { id: "inquiries", label: "CRM & Inquiries", icon: MessageSquare, badge: (contactInquiries.length + bulkInquiries.length) > 0 ? (contactInquiries.length + bulkInquiries.length) : undefined },
               { id: "s3", label: "Cloud S3 Storage", icon: Cloud },
               { id: "email", label: "Email & SMTP", icon: Mail },
               { id: "settings", label: "Store Settings", icon: Settings },
@@ -1105,8 +1098,8 @@ function AdminContent() {
           {sidebarOpen ? (
             <div className="bg-[#14281e] p-3 rounded-xl border border-[#1e3c2c] flex items-center justify-between">
               <div className="overflow-hidden">
-                <div className="text-xs font-bold text-white truncate">Anurag Jain</div>
-                <div className="text-[10px] text-emerald-400 truncate">Super Admin</div>
+                <div className="text-xs font-bold text-white truncate">{user?.full_name || "Admin"}</div>
+                <div className="text-[10px] text-emerald-400 truncate">{user?.role ? `${user.role.toUpperCase()} ACCOUNT` : "ADMINISTRATOR"}</div>
               </div>
               <button
                 onClick={() => logout()}
@@ -1231,13 +1224,13 @@ function AdminContent() {
                   },
                   {
                     title: "Total Organic Crops",
-                    value: dashboardData?.metrics?.total_products || totalProducts || 192,
-                    sub: `${categories.length || 8} Active Categories`,
+                    value: dashboardData?.metrics?.total_products ?? totalProducts ?? 0,
+                    sub: `${categories.length} Active Categories`,
                     badge: "100% Certified",
                   },
                   {
                     title: "Registered Customers",
-                    value: dashboardData?.metrics?.registered_customers || dashboardData?.total_customers || 1,
+                    value: dashboardData?.metrics?.registered_customers ?? dashboardData?.total_customers ?? totalUsers ?? 0,
                     sub: "Direct farm supporters",
                     badge: "Customers",
                   },
@@ -1270,7 +1263,7 @@ function AdminContent() {
                       <span>Product Catalog Management</span>
                     </div>
                     <p className="text-xs text-slate-600 leading-relaxed">
-                      Manage all 192 organic crops, stock quantities across 500g, 1kg, 5kg pack sizes, pricing, and certified harvest batches.
+                      Manage crops, stock quantities across weight variants, pricing, and certified harvest batches.
                     </p>
                   </div>
                   <button
@@ -3681,7 +3674,7 @@ function AdminContent() {
                   <label className="font-bold text-slate-700 block mb-1">Mobile Phone</label>
                   <input
                     type="text"
-                    placeholder="+919876543210"
+                    placeholder="+91 9XXXXXXXXX"
                     value={userForm.phone}
                     onChange={(e) => setUserForm({ ...userForm, phone: e.target.value })}
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-mono focus:outline-emerald-600"
