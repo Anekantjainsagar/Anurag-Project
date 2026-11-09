@@ -29,12 +29,32 @@ router = APIRouter()
 IN_MEMORY_OTPS: dict[str, dict] = {}
 
 
+def normalize_identifier(raw: str) -> str:
+    """Normalizes phone numbers and emails: strips spaces (start, middle, end) and defaults 10-digit numbers to +91."""
+    cleaned = raw.strip()
+    if "@" in cleaned:
+        return "".join(cleaned.lower().split())
+    # Strip whitespace, hyphens, and formatting
+    digits = "".join(filter(str.isdigit, cleaned))
+    if len(digits) == 10:
+        return f"+91{digits}"
+    if len(digits) == 11 and digits.startswith("0"):
+        return f"+91{digits[1:]}"
+    if len(digits) == 12 and digits.startswith("91"):
+        return f"+{digits}"
+    if cleaned.startswith("+") and digits:
+        return f"+{digits}"
+    if len(digits) >= 10:
+        return f"+91{digits[-10:]}"
+    return cleaned
+
+
 @router.post("/auth/otp/send", summary="Send Phone or Email OTP")
 async def send_otp(payload: OTPRequest, db: AsyncSession = Depends(get_db)):
     """
     Generates a secure 4-digit OTP code, stores the SHA-256 hash, and simulates/dispatches SMS or WhatsApp.
     """
-    clean_identifier = payload.identifier.strip()
+    clean_identifier = normalize_identifier(payload.identifier)
     otp_code = generate_otp_code(digits=4)
     otp_hashed = hash_otp_code(otp_code)
     expires_at = datetime.now(timezone.utc) + timedelta(minutes=5)
@@ -76,7 +96,7 @@ async def verify_otp(payload: OTPVerify, response: Response, db: AsyncSession = 
     If the account does not exist, registers the user automatically.
     Returns short-lived Access Token and creates an active UserSession.
     """
-    clean_identifier = payload.identifier.strip()
+    clean_identifier = normalize_identifier(payload.identifier)
     now = datetime.now(timezone.utc)
 
     # Check admin identifier match

@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import BrandLogo from "./BrandLogo";
 import { X, ArrowRight, CheckCircle2, ShieldCheck, KeyRound, Phone, Mail } from "lucide-react";
 
 export default function LoginModal() {
+  const router = useRouter();
   const { isLoginModalOpen, setIsLoginModalOpen, showToast } = useCart();
   const { sendOtp, verifyOtp } = useAuth();
 
@@ -22,37 +24,54 @@ export default function LoginModal() {
 
   const isEmail = identifier.includes("@");
 
-  const getCleanIdentifier = () => {
-    const raw = identifier.trim();
+  const getCleanIdentifier = (input: string = identifier) => {
+    const raw = input.trim();
     if (raw.includes("@")) {
-      return raw.toLowerCase();
+      return raw.toLowerCase().replace(/\s+/g, "");
     }
-    const digitsOnly = raw.replace(/\D/g, "");
+    // Remove all whitespace (leading, in-between, trailing), hyphens, parentheses, dots
+    const cleaned = raw.replace(/[\s\-\(\)\.]/g, "");
+    const digitsOnly = cleaned.replace(/\D/g, "");
+
+    // Exactly 10 digits without +91 (e.g. 9876543210 or 98765 43210)
     if (digitsOnly.length === 10) {
       return `+91${digitsOnly}`;
     }
-    if (raw.startsWith("+")) {
-      return raw;
+    // 11 digits starting with 0 (e.g. 09876543210)
+    if (digitsOnly.length === 11 && digitsOnly.startsWith("0")) {
+      return `+91${digitsOnly.slice(1)}`;
     }
-    return `+91${digitsOnly.slice(-10)}`;
+    // 12 digits starting with 91 (e.g. 919876543210)
+    if (digitsOnly.length === 12 && digitsOnly.startsWith("91")) {
+      return `+${digitsOnly}`;
+    }
+    // User explicitly included + followed by digits
+    if (cleaned.startsWith("+") && digitsOnly.length > 0) {
+      return `+${digitsOnly}`;
+    }
+    // Fallback if >= 10 digits
+    if (digitsOnly.length >= 10) {
+      return `+91${digitsOnly.slice(-10)}`;
+    }
+    return cleaned;
   };
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const raw = identifier.trim();
+    const cleanId = getCleanIdentifier();
 
-    if (!raw) {
+    if (!cleanId) {
       showToast("Please enter your mobile number or email");
       return;
     }
 
-    if (raw.includes("@")) {
-      if (!raw.includes(".") || raw.length < 5) {
+    if (cleanId.includes("@")) {
+      if (!cleanId.includes(".") || cleanId.length < 5) {
         showToast("Please enter a valid email address");
         return;
       }
     } else {
-      const digitsOnly = raw.replace(/\D/g, "");
+      const digitsOnly = cleanId.replace(/\D/g, "");
       if (digitsOnly.length < 10) {
         showToast("Please enter a valid 10-digit mobile number");
         return;
@@ -61,7 +80,6 @@ export default function LoginModal() {
 
     setIsSubmitting(true);
     try {
-      const cleanId = getCleanIdentifier();
       const channel = cleanId.includes("@") ? "email" : "sms";
       const res = await sendOtp(cleanId, channel);
       setOtpSent(true);
@@ -87,18 +105,40 @@ export default function LoginModal() {
     setIsSubmitting(true);
     try {
       const cleanId = getCleanIdentifier();
-      await verifyOtp(cleanId, enteredOtp, fullName || undefined);
-      setIsLoggedIn(true);
-      showToast("Welcome back! Authentication successful.");
-      setTimeout(() => {
-        setIsLoginModalOpen(false);
-        setIsLoggedIn(false);
-        setOtpSent(false);
-        setIdentifier("");
-        setFullName("");
-        setDevCode(null);
-        setOtp(["", "", "", ""]);
-      }, 1000);
+      const success = await verifyOtp(cleanId, enteredOtp, fullName || undefined);
+      if (success) {
+        setIsLoggedIn(true);
+        showToast("Welcome back! Authentication successful.");
+        setTimeout(() => {
+          setIsLoginModalOpen(false);
+          setIsLoggedIn(false);
+          setOtpSent(false);
+          setIdentifier("");
+          setFullName("");
+          setDevCode(null);
+          setOtp(["", "", "", ""]);
+
+          // Check if there was a post-login redirect (e.g. from /admin)
+          if (typeof window !== "undefined") {
+            const redirectUrl = sessionStorage.getItem("post_login_redirect");
+            if (redirectUrl) {
+              sessionStorage.removeItem("post_login_redirect");
+              try {
+                const cachedUser = JSON.parse(localStorage.getItem("onaar_user") || "{}");
+                if (redirectUrl.startsWith("/admin")) {
+                  if (cachedUser.role === "admin" || cachedUser.role === "vendor") {
+                    router.push(redirectUrl);
+                  }
+                } else {
+                  router.push(redirectUrl);
+                }
+              } catch {
+                router.push(redirectUrl);
+              }
+            }
+          }
+        }, 800);
+      }
     } catch (err: any) {
       showToast(err.message || "Invalid OTP code. Please retry.");
     } finally {
@@ -194,13 +234,13 @@ export default function LoginModal() {
                   Mobile Number or Email
                 </label>
                 <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-[#f9faf9] focus-within:border-[#01722C] focus-within:bg-white transition-all">
-                  <span className="px-3 py-2 text-xs font-semibold text-gray-500 border-r border-gray-200 bg-gray-50 flex items-center gap-1 shrink-0">
+                  <span className="px-3 py-2 text-xs font-semibold text-gray-500 border-r border-gray-200 bg-gray-50 flex items-center gap-1.5 shrink-0">
                     {isEmail ? (
                       <Mail className="w-3.5 h-3.5 text-gray-400" />
                     ) : (
                       <>
                         <Phone className="w-3.5 h-3.5 text-gray-400" />
-                        <span>+91</span>
+                        {!identifier.trim().startsWith("+") && <span>+91</span>}
                       </>
                     )}
                   </span>
@@ -214,7 +254,7 @@ export default function LoginModal() {
                   />
                 </div>
                 <p className="text-[10px] text-gray-400 mt-1">
-                  Admins: Use <strong>+91 98765 43210</strong> or <strong>meriwebdunia@gmail.com</strong>
+                  Admins: Use <strong>98765 43210</strong> or <strong>meriwebdunia@gmail.com</strong>
                 </p>
               </div>
 

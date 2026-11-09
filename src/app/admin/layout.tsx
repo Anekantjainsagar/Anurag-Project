@@ -17,9 +17,6 @@ import {
   Mail,
   Settings,
   ShieldCheck,
-  ShieldAlert,
-  Lock,
-  LogIn,
   Menu,
   ExternalLink,
   LogOut,
@@ -105,8 +102,25 @@ export default function AdminLayout({
     }
   }, [pathname]);
 
-  // Loading state
-  if (isAuthLoading) {
+  // Auth gate enforcement: if not admin, immediately redirect to storefront and open login modal
+  useEffect(() => {
+    if (!isAuthLoading) {
+      if (!user || !isAuthenticated) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("post_login_redirect", pathname || "/admin");
+        }
+        router.replace("/");
+        setIsLoginModalOpen(true);
+        showToast("Please sign in to access the administrator portal");
+      } else if (!isAdmin) {
+        router.replace("/");
+        showToast("Access Denied: Administrator account required");
+      }
+    }
+  }, [isAuthLoading, user, isAuthenticated, isAdmin, pathname, router, setIsLoginModalOpen, showToast]);
+
+  // Loading or redirecting state (renders hidden children for Next.js 16 instant navigation)
+  if (isAuthLoading || !isAdmin) {
     return (
       <>
         <div className="hidden" aria-hidden="true">
@@ -116,102 +130,6 @@ export default function AdminLayout({
           <div className="flex items-center gap-3">
             <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
             <span className="text-sm font-medium">Verifying Administrator Access...</span>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  // 1. Unauthenticated Gate: User is not logged in at all
-  if (!user || !isAuthenticated) {
-    return (
-      <>
-        <div className="hidden" aria-hidden="true">
-          {children}
-        </div>
-        <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-6">
-            <div className="w-16 h-16 bg-slate-100 text-slate-800 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
-              <Lock className="w-8 h-8 text-slate-700" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold font-serif text-slate-900">Administrator Access</h1>
-              <p className="text-xs text-slate-500 mt-1">Super Admin & Operations Portal</p>
-            </div>
-
-            <div className="bg-slate-50 rounded-2xl p-4 text-xs text-slate-600 leading-relaxed border border-slate-100">
-              This area is restricted to authorized ONAAR store operators. Please sign in with your administrator phone or email credentials.
-            </div>
-
-            <div className="space-y-3 pt-2">
-              <button
-                type="button"
-                onClick={() => setIsLoginModalOpen(true)}
-                className="w-full bg-[#01722C] hover:bg-[#015822] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
-              >
-                <LogIn className="w-4 h-4" />
-                Sign In As Administrator
-              </button>
-
-              <Link
-                href="/"
-                className="block text-xs text-slate-500 hover:text-slate-800 py-2 transition-colors"
-              >
-                ← Return to Storefront
-              </Link>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
-  // 2. Unauthorized Gate: User is logged in as a normal customer
-  if (!isAdmin) {
-    return (
-      <>
-        <div className="hidden" aria-hidden="true">
-          {children}
-        </div>
-        <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-6">
-            <div className="w-16 h-16 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mx-auto shadow-inner border border-rose-100">
-              <ShieldAlert className="w-9 h-9 text-rose-600" />
-            </div>
-            <div>
-              <div className="inline-block px-3 py-1 bg-rose-100 text-rose-800 rounded-full text-[11px] font-bold tracking-wide uppercase mb-2">
-                403 Access Forbidden
-              </div>
-              <h1 className="text-2xl font-bold font-serif text-slate-900">Restricted Portal</h1>
-              <p className="text-xs text-slate-500 mt-1">
-                Signed in as <span className="font-semibold text-slate-700">{user.full_name || user.phone || user.email || "Customer"}</span>
-              </p>
-            </div>
-
-            <div className="bg-rose-50/70 rounded-2xl p-4 text-xs text-rose-700 leading-relaxed border border-rose-100 text-left">
-              Customer accounts do not have administrator permissions to access operations, inventory, or order management.
-            </div>
-
-            <div className="space-y-3 pt-2">
-              <button
-                type="button"
-                onClick={async () => {
-                  await logout();
-                  setIsLoginModalOpen(true);
-                }}
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
-              >
-                <LogIn className="w-4 h-4" />
-                Switch to Admin Account
-              </button>
-
-              <Link
-                href="/"
-                className="block text-xs text-slate-500 hover:text-slate-800 py-2 transition-colors"
-              >
-                ← Return to Storefront
-              </Link>
-            </div>
           </div>
         </div>
       </>
