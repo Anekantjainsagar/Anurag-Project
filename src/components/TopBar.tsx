@@ -26,8 +26,8 @@ export default function TopBar() {
           </a>
         </div>
 
-        {/* Center: Free Delivery Announcement */}
-        <div className="hidden lg:flex items-center gap-2 font-semibold text-white/90 tracking-wide text-xs truncate">
+        {/* Center: Free Delivery Announcement (Visible on large desktop >= 1280px) */}
+        <div className="hidden xl:flex items-center gap-2 font-semibold text-white/90 tracking-wide text-xs truncate">
           <Truck className="w-3.5 h-3.5 text-[#58cf8b] shrink-0" />
           <span className="truncate">FREE PAN-INDIA DELIVERY ON ORDERS OVER ₹499</span>
         </div>

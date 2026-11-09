@@ -101,7 +101,7 @@ export default function Navbar() {
         </Link>
 
         {/* Center: Desktop Navigation Links (>= 1024px) */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] xl:text-[14px] font-semibold text-gray-700">
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-5 text-[12.5px] xl:text-[14px] font-semibold text-gray-700">
           <Link
             href="/"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
@@ -119,11 +119,11 @@ export default function Navbar() {
           <div className="relative" ref={categoryRef}>
             <button
               onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
-              className="flex items-center gap-1.5 hover:text-[#01722C] transition-colors py-1 cursor-pointer focus:outline-none whitespace-nowrap"
+              className="flex items-center gap-1 hover:text-[#01722C] transition-colors py-1 cursor-pointer focus:outline-none whitespace-nowrap"
             >
               <span>Categories</span>
               <ChevronDown
-                className={`w-4 h-4 transition-transform duration-200 ${
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
                   isCategoryDropdownOpen ? "rotate-180 text-[#01722C]" : ""
                 }`}
               />
@@ -187,10 +187,10 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Right Section: Wide Search, Wishlist & Shopping Cart */}
-        <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
+        {/* Right Section: Search, Wishlist & Shopping Cart */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Desktop Search Input (>= 1024px) */}
-          <div className="relative hidden lg:block w-44 xl:w-60" ref={searchRef}>
+          <div className="relative hidden lg:block w-32 xl:w-52" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
               <input
                 type="text"
@@ -198,14 +198,14 @@ export default function Navbar() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
-                className="w-full bg-[#f9f8f5] border border-[#d8dfda] text-gray-800 placeholder-gray-400 text-xs rounded-full pl-4 pr-9 py-2 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] transition-all"
+                className="w-full bg-[#f9f8f5] border border-[#d8dfda] text-gray-800 placeholder-gray-400 text-xs rounded-full pl-3.5 pr-8 py-1.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] transition-all"
               />
               <button
                 type="submit"
-                className="w-7 h-7 flex items-center justify-center text-gray-400 hover:text-[#01722C] absolute right-1.5 cursor-pointer"
+                className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-[#01722C] absolute right-1 cursor-pointer"
                 aria-label="Submit search"
               >
-                <Search className="w-4 h-4" />
+                <Search className="w-3.5 h-3.5" />
               </button>
             </form>
 
@@ -297,10 +297,10 @@ export default function Navbar() {
                   title="My Account"
                   aria-label="User profile menu"
                 >
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#01722C] text-white flex items-center justify-center font-bold text-xs uppercase shadow-xs">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#01722C] text-white flex items-center justify-center font-bold text-xs uppercase shadow-xs shrink-0">
                     {user.full_name ? user.full_name.charAt(0) : "U"}
                   </div>
-                  <span className="text-xs font-semibold hidden md:inline max-w-[85px] truncate">
+                  <span className="text-xs font-semibold hidden xl:inline max-w-[80px] truncate">
                     {user.full_name || "Account"}
                   </span>
                 </button>
@@ -396,7 +396,7 @@ export default function Navbar() {
                 </span>
               )}
             </div>
-            <span className="text-xs sm:text-sm font-bold hidden sm:inline">
+            <span className="text-xs sm:text-sm font-bold hidden xl:inline">
               Cart {mounted && cartCount > 0 && `(${cartCount})`}
             </span>
           </button>
