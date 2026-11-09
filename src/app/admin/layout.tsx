@@ -129,66 +129,76 @@ export default function AdminLayout({
   // Loading state
   if (isAuthLoading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 text-white">
-        <div className="flex items-center gap-3">
-          <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm font-medium">Verifying Administrator Access...</span>
+      <>
+        <div className="hidden" aria-hidden="true">
+          {children}
         </div>
-      </div>
+        <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 text-white">
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+            <span className="text-sm font-medium">Verifying Administrator Access...</span>
+          </div>
+        </div>
+      </>
     );
   }
 
   // Unauthenticated / Non-Admin Gate
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-6">
-          <div className="w-16 h-16 bg-emerald-700 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-            <ShieldCheck className="w-9 h-9" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold font-serif text-slate-900">ONAAR Admin Portal</h1>
-            <p className="text-xs text-slate-500 mt-1">Super Admin & Operations Management</p>
-          </div>
-
-          <form onSubmit={handleAdminQuickLogin} className="space-y-4 text-left">
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">Admin Phone Number</label>
-              <input
-                type="text"
-                value={adminPhone}
-                onChange={(e) => setAdminPhone(e.target.value)}
-                placeholder="+91 XXXXX XXXXX"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
-                One-Time Password / Admin Passcode
-              </label>
-              <input
-                type="text"
-                value={adminOtp}
-                onChange={(e) => setAdminOtp(e.target.value)}
-                placeholder="Enter 4-digit code"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono tracking-widest text-center"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={isLoggingIn}
-              className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer disabled:opacity-50"
-            >
-              {isLoggingIn ? "AUTHENTICATING..." : "ENTER SUPER ADMIN PORTAL"}
-            </button>
-          </form>
-
-          <Link href="/" className="inline-block text-xs text-slate-500 hover:text-emerald-700">
-            ← Return to Storefront
-          </Link>
+      <>
+        <div className="hidden" aria-hidden="true">
+          {children}
         </div>
-      </div>
+        <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-6">
+            <div className="w-16 h-16 bg-emerald-700 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+              <ShieldCheck className="w-9 h-9" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold font-serif text-slate-900">ONAAR Admin Portal</h1>
+              <p className="text-xs text-slate-500 mt-1">Super Admin & Operations Management</p>
+            </div>
+
+            <form onSubmit={handleAdminQuickLogin} className="space-y-4 text-left">
+              <div>
+                <label className="text-xs font-bold text-slate-700 block mb-1">Admin Phone Number</label>
+                <input
+                  type="text"
+                  value={adminPhone}
+                  onChange={(e) => setAdminPhone(e.target.value)}
+                  placeholder="+91 XXXXX XXXXX"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-slate-700 block mb-1">
+                  One-Time Password / Admin Passcode
+                </label>
+                <input
+                  type="text"
+                  value={adminOtp}
+                  onChange={(e) => setAdminOtp(e.target.value)}
+                  placeholder="Enter 4-digit code"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono tracking-widest text-center"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoggingIn}
+                className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer disabled:opacity-50"
+              >
+                {isLoggingIn ? "AUTHENTICATING..." : "ENTER SUPER ADMIN PORTAL"}
+              </button>
+            </form>
+
+            <Link href="/" className="inline-block text-xs text-slate-500 hover:text-emerald-700">
+              ← Return to Storefront
+            </Link>
+          </div>
+        </div>
+      </>
     );
   }
 
