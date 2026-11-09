@@ -6,7 +6,7 @@ import { Phone, Mail, ShieldCheck, Truck, Sparkles } from "lucide-react";
 export default function TopBar() {
   return (
     <div className="w-full bg-[#014d1e] text-[#e3ece7] text-[11px] sm:text-xs py-2 border-b border-[#015c24] font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 flex items-center justify-between gap-4">
         {/* Left: Contact Phone & Email */}
         <div className="flex items-center gap-3 sm:gap-4 shrink-0">
           <a

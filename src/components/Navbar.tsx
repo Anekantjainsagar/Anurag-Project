@@ -94,7 +94,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-40 bg-white border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.04)] font-sans w-full">
       {/* Responsive Centered Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-3 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 h-18 sm:h-20 flex items-center justify-between gap-3 sm:gap-4">
         {/* Left: Official Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <BrandLogo variant="dark" />
