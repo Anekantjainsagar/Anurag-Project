@@ -34,23 +34,23 @@ export default function BrandLogo({
   const subtitleColor = isDark ? "text-gray-500" : "text-[#d1ecd9]";
 
   return (
-    <div className={`flex items-center gap-2.5 sm:gap-3 select-none ${className}`}>
+    <div className={`flex items-center gap-2 sm:gap-3 select-none shrink-0 ${className}`}>
       {/* Brand Emblem */}
       <div
         className={`${imgSize} rounded-full bg-[#01722C] border-2 border-[#d4af37] flex items-center justify-center text-white shadow-2xs shrink-0 relative overflow-hidden`}
       >
-        <Leaf className="w-5 h-5 text-[#f4d068] transform -rotate-12" />
+        <Leaf className="w-4 h-4 sm:w-5 sm:h-5 text-[#f4d068] transform -rotate-12" />
         <span className="sr-only">ONAAR</span>
       </div>
 
-      <div className="flex flex-col leading-none">
+      <div className="flex flex-col leading-none min-w-0">
         <span
           className={`font-serif font-black tracking-wider ${titleSize} ${titleColor}`}
         >
           ONAAR
         </span>
         <span
-          className={`font-sans font-semibold tracking-widest uppercase mt-0.5 text-[8px] sm:text-[9px] ${subtitleColor}`}
+          className={`font-sans font-semibold tracking-widest uppercase mt-0.5 text-[8px] sm:text-[9px] ${subtitleColor} hidden sm:block`}
           style={{ letterSpacing: "0.14em" }}
         >
           ORGANIC FOODS • PURE & NATURAL

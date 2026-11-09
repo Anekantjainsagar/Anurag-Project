@@ -25,68 +25,28 @@ export default function LoginModal() {
   const isEmail = identifier.includes("@");
 
   const getCleanIdentifier = (input: string = identifier) => {
-    const raw = input.trim();
-    if (raw.includes("@")) {
-      return raw.toLowerCase().replace(/\s+/g, "");
-    }
-    // Remove all whitespace (leading, in-between, trailing), hyphens, parentheses, dots
-    const cleaned = raw.replace(/[\s\-\(\)\.]/g, "");
-    const digitsOnly = cleaned.replace(/\D/g, "");
-
-    // Exactly 10 digits without +91 (e.g. 9876543210 or 98765 43210)
-    if (digitsOnly.length === 10) {
-      return `+91${digitsOnly}`;
-    }
-    // 11 digits starting with 0 (e.g. 09876543210)
-    if (digitsOnly.length === 11 && digitsOnly.startsWith("0")) {
-      return `+91${digitsOnly.slice(1)}`;
-    }
-    // 12 digits starting with 91 (e.g. 919876543210)
-    if (digitsOnly.length === 12 && digitsOnly.startsWith("91")) {
-      return `+${digitsOnly}`;
-    }
-    // User explicitly included + followed by digits
-    if (cleaned.startsWith("+") && digitsOnly.length > 0) {
-      return `+${digitsOnly}`;
-    }
-    // Fallback if >= 10 digits
-    if (digitsOnly.length >= 10) {
-      return `+91${digitsOnly.slice(-10)}`;
-    }
-    return cleaned;
+    const digitsOnly = input.replace(/\D/g, "");
+    return `+91${digitsOnly.slice(-10)}`;
   };
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    const cleanId = getCleanIdentifier();
+    const digitsOnly = identifier.replace(/\D/g, "");
 
-    if (!cleanId) {
-      showToast("Please enter your mobile number or email");
+    if (digitsOnly.length !== 10) {
+      showToast("Please enter a valid 10-digit mobile number");
       return;
-    }
-
-    if (cleanId.includes("@")) {
-      if (!cleanId.includes(".") || cleanId.length < 5) {
-        showToast("Please enter a valid email address");
-        return;
-      }
-    } else {
-      const digitsOnly = cleanId.replace(/\D/g, "");
-      if (digitsOnly.length < 10) {
-        showToast("Please enter a valid 10-digit mobile number");
-        return;
-      }
     }
 
     setIsSubmitting(true);
     try {
-      const channel = cleanId.includes("@") ? "email" : "sms";
-      const res = await sendOtp(cleanId, channel);
+      const cleanId = `+91${digitsOnly}`;
+      const res = await sendOtp(cleanId, "sms");
       setOtpSent(true);
       if (res.dev_code) {
         setDevCode(res.dev_code);
       }
-      showToast(res.message || `Verification code sent to ${cleanId}`);
+      showToast(res.message || `Verification code sent to +91 ${digitsOnly}`);
     } catch (err: any) {
       showToast(err?.message || "Failed to send verification code. Please try again.");
     } finally {
@@ -212,7 +172,7 @@ export default function LoginModal() {
                   Sign In to Onaar
                 </h3>
                 <p className="text-xs text-gray-500">
-                  Enter your mobile number or email to access your account
+                  Enter your 10-digit mobile number to receive an OTP code
                 </p>
               </div>
 
@@ -231,30 +191,42 @@ export default function LoginModal() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
-                  Mobile Number or Email
+                  Mobile Number
                 </label>
                 <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-[#f9faf9] focus-within:border-[#01722C] focus-within:bg-white transition-all">
-                  <span className="px-3 py-2 text-xs font-semibold text-gray-500 border-r border-gray-200 bg-gray-50 flex items-center gap-1.5 shrink-0">
-                    {isEmail ? (
-                      <Mail className="w-3.5 h-3.5 text-gray-400" />
-                    ) : (
-                      <>
-                        <Phone className="w-3.5 h-3.5 text-gray-400" />
-                        {!identifier.trim().startsWith("+") && <span>+91</span>}
-                      </>
-                    )}
+                  <span className="px-3 py-2 text-xs font-semibold text-gray-600 border-r border-gray-200 bg-gray-50 flex items-center gap-1.5 shrink-0 select-none">
+                    <Phone className="w-3.5 h-3.5 text-[#01722C]" />
+                    <span>+91</span>
                   </span>
                   <input
-                    type="text"
-                    placeholder={isEmail ? "meriwebdunia@gmail.com" : "98765 43210"}
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={10}
+                    placeholder="98765 43210"
                     value={identifier}
-                    onChange={(e) => setIdentifier(e.target.value)}
-                    className="w-full text-xs px-3 py-2.5 text-gray-900 focus:outline-none font-mono"
+                    onKeyDown={(e) => {
+                      if (
+                        ["Backspace", "Delete", "Tab", "ArrowLeft", "ArrowRight", "Enter"].includes(e.key) ||
+                        e.ctrlKey ||
+                        e.metaKey
+                      ) {
+                        return;
+                      }
+                      if (!/^[0-9]$/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
+                    onChange={(e) => {
+                      const onlyDigits = e.target.value.replace(/\D/g, "");
+                      setIdentifier(onlyDigits.slice(0, 10));
+                    }}
+                    className="w-full text-xs px-3 py-2.5 text-gray-900 focus:outline-none font-mono tracking-wider"
                     autoFocus
                   />
                 </div>
                 <p className="text-[10px] text-gray-400 mt-1">
-                  Admins: Use <strong>98765 43210</strong> or <strong>meriwebdunia@gmail.com</strong>
+                  Admins: Enter <strong>9876543210</strong> (Universal Dev OTP: 1234)
                 </p>
               </div>
 
@@ -327,7 +299,7 @@ export default function LoginModal() {
                   }}
                   className="text-gray-500 hover:text-gray-800 text-[11px] cursor-pointer"
                 >
-                  ← Change number/email
+                  ← Change mobile number
                 </button>
                 <button
                   type="button"

@@ -93,7 +93,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.06)] font-sans w-full transition-all">
       {/* Responsive Centered Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 h-18 sm:h-20 flex items-center justify-between gap-3 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-0 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         {/* Left: Official Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <BrandLogo variant="dark" />
@@ -187,7 +187,7 @@ export default function Navbar() {
         </nav>
 
         {/* Right Section: Search, Wishlist & Shopping Cart */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
           {/* Desktop Search Input (>= 1024px) */}
           <div className="relative hidden lg:block w-32 xl:w-52" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
@@ -265,22 +265,22 @@ export default function Navbar() {
           {/* Search Toggle Icon on Tablet & Mobile (< 1024px) */}
           <button
             onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-[#01722C] rounded-full hover:bg-gray-100 cursor-pointer"
+            className="lg:hidden p-1.5 sm:p-2 text-gray-600 hover:text-[#01722C] rounded-full hover:bg-gray-100 cursor-pointer shrink-0"
             aria-label="Search"
           >
-            <Search className="w-5 h-5" />
+            <Search className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
 
           {/* Wishlist Button */}
           <Link
             href="/wishlist"
-            className="relative p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer"
+            className="relative p-1.5 sm:p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer shrink-0"
             title="Wishlist"
             aria-label="Wishlist"
           >
-            <Heart className="w-5 h-5" />
+            <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
             {mounted && wishlist.length > 0 && (
-              <span className="absolute top-0.5 right-0.5 bg-[#e11d48] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute top-0.5 right-0.5 bg-[#e11d48] text-white text-[10px] font-bold w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">
                 {wishlist.length}
               </span>
             )}
@@ -292,7 +292,7 @@ export default function Navbar() {
               <div>
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center gap-2 p-1.5 sm:px-2.5 sm:py-1.5 rounded-full hover:bg-gray-100 border border-gray-200 transition-colors cursor-pointer text-gray-700"
+                  className="flex items-center gap-1.5 p-1 sm:px-2.5 sm:py-1.5 rounded-full hover:bg-gray-100 border border-gray-200 transition-colors cursor-pointer text-gray-700 shrink-0"
                   title="My Account"
                   aria-label="User profile menu"
                 >
@@ -370,12 +370,12 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className="flex items-center gap-1.5 px-3 py-1.5 text-gray-700 hover:text-[#01722C] border border-gray-200 hover:border-[#01722C] bg-white hover:bg-[#edf7f1] transition-all rounded-full cursor-pointer text-xs font-semibold shadow-2xs"
+                className="flex items-center gap-1.5 p-1.5 sm:px-3 sm:py-1.5 text-gray-700 hover:text-[#01722C] border border-gray-200 hover:border-[#01722C] bg-white hover:bg-[#edf7f1] transition-all rounded-full cursor-pointer text-xs font-semibold shadow-2xs shrink-0"
                 title="Sign In / Register"
                 aria-label="Sign In"
               >
                 <UserIcon className="w-4 h-4 text-[#01722C]" />
-                <span className="inline">Sign In</span>
+                <span className="hidden sm:inline">Sign In</span>
               </button>
             )}
           </div>
@@ -383,7 +383,7 @@ export default function Navbar() {
           {/* Shopping Cart Icon with Cart Total Amount */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white px-3.5 sm:px-4 py-2 rounded-xl transition-all shadow-xs cursor-pointer shrink-0"
+            className="relative flex items-center gap-1.5 bg-[#01722C] hover:bg-[#0b542c] text-white p-2 sm:px-3.5 sm:py-2 rounded-xl transition-all shadow-xs cursor-pointer shrink-0"
             title="Shopping Cart"
             aria-label="Cart"
           >
@@ -403,13 +403,13 @@ export default function Navbar() {
           {/* Mobile / Tablet Menu Button (< 1024px) */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 lg:hidden text-gray-700 hover:text-[#01722C] rounded-xl hover:bg-gray-100 cursor-pointer shrink-0"
+            className="p-1.5 sm:p-2 lg:hidden text-gray-700 hover:text-[#01722C] rounded-xl hover:bg-gray-100 cursor-pointer shrink-0"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             )}
           </button>
         </div>
