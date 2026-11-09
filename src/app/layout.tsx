@@ -39,9 +39,9 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${jakarta.variable} ${playfair.variable} h-full antialiased overflow-x-hidden`}
+      className={`${jakarta.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white overflow-x-hidden">
+      <body className="min-h-screen flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white overflow-x-clip">
         <AuthProvider>
           <CartProvider>
             <StoreLayout>{children}</StoreLayout>
