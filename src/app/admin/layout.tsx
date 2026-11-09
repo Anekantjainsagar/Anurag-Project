@@ -17,6 +17,9 @@ import {
   Mail,
   Settings,
   ShieldCheck,
+  ShieldAlert,
+  Lock,
+  LogIn,
   Menu,
   ExternalLink,
   LogOut,
@@ -78,13 +81,10 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, isAuthenticated, isLoading: isAuthLoading, sendOtp, verifyOtp, logout } = useAuth();
-  const { showToast } = useCart();
+  const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
+  const { showToast, setIsLoginModalOpen } = useCart();
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [adminPhone, setAdminPhone] = useState("");
-  const [adminOtp, setAdminOtp] = useState("");
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [stats, setStats] = useState<any>(null);
 
   const isAdmin = user && (user.role === "admin" || user.role === "vendor");
@@ -97,27 +97,6 @@ export default function AdminLayout({
         .catch(() => {});
     }
   }, [isAdmin, pathname]);
-
-  // Handle Admin Quick Login
-  const handleAdminQuickLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!adminPhone.trim() || !adminOtp.trim()) {
-      showToast("Please enter both phone number and OTP code");
-      return;
-    }
-    setIsLoggingIn(true);
-    try {
-      await sendOtp(adminPhone, "sms");
-      const ok = await verifyOtp(adminPhone, adminOtp, "Admin User");
-      if (ok) {
-        showToast("Authenticated as Super Admin!");
-      }
-    } catch (err: any) {
-      showToast(err.message || "Failed to authenticate admin");
-    } finally {
-      setIsLoggingIn(false);
-    }
-  };
 
   // Close mobile sidebar on route change
   useEffect(() => {
@@ -143,7 +122,51 @@ export default function AdminLayout({
     );
   }
 
-  // Unauthenticated / Non-Admin Gate
+  // 1. Unauthenticated Gate: User is not logged in at all
+  if (!user || !isAuthenticated) {
+    return (
+      <>
+        <div className="hidden" aria-hidden="true">
+          {children}
+        </div>
+        <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-6">
+            <div className="w-16 h-16 bg-slate-100 text-slate-800 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+              <Lock className="w-8 h-8 text-slate-700" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold font-serif text-slate-900">Administrator Access</h1>
+              <p className="text-xs text-slate-500 mt-1">Super Admin & Operations Portal</p>
+            </div>
+
+            <div className="bg-slate-50 rounded-2xl p-4 text-xs text-slate-600 leading-relaxed border border-slate-100">
+              This area is restricted to authorized ONAAR store operators. Please sign in with your administrator phone or email credentials.
+            </div>
+
+            <div className="space-y-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setIsLoginModalOpen(true)}
+                className="w-full bg-[#01722C] hover:bg-[#015822] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
+              >
+                <LogIn className="w-4 h-4" />
+                Sign In As Administrator
+              </button>
+
+              <Link
+                href="/"
+                className="block text-xs text-slate-500 hover:text-slate-800 py-2 transition-colors"
+              >
+                ← Return to Storefront
+              </Link>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // 2. Unauthorized Gate: User is logged in as a normal customer
   if (!isAdmin) {
     return (
       <>
@@ -152,50 +175,43 @@ export default function AdminLayout({
         </div>
         <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl p-8 sm:p-10 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-6">
-            <div className="w-16 h-16 bg-emerald-700 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-              <ShieldCheck className="w-9 h-9" />
+            <div className="w-16 h-16 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center mx-auto shadow-inner border border-rose-100">
+              <ShieldAlert className="w-9 h-9 text-rose-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold font-serif text-slate-900">ONAAR Admin Portal</h1>
-              <p className="text-xs text-slate-500 mt-1">Super Admin & Operations Management</p>
+              <div className="inline-block px-3 py-1 bg-rose-100 text-rose-800 rounded-full text-[11px] font-bold tracking-wide uppercase mb-2">
+                403 Access Forbidden
+              </div>
+              <h1 className="text-2xl font-bold font-serif text-slate-900">Restricted Portal</h1>
+              <p className="text-xs text-slate-500 mt-1">
+                Signed in as <span className="font-semibold text-slate-700">{user.full_name || user.phone || user.email || "Customer"}</span>
+              </p>
             </div>
 
-            <form onSubmit={handleAdminQuickLogin} className="space-y-4 text-left">
-              <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1">Admin Phone Number</label>
-                <input
-                  type="text"
-                  value={adminPhone}
-                  onChange={(e) => setAdminPhone(e.target.value)}
-                  placeholder="+91 XXXXX XXXXX"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono"
-                />
-              </div>
-              <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1">
-                  One-Time Password / Admin Passcode
-                </label>
-                <input
-                  type="text"
-                  value={adminOtp}
-                  onChange={(e) => setAdminOtp(e.target.value)}
-                  placeholder="Enter 4-digit code"
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-emerald-600 font-mono tracking-widest text-center"
-                />
-              </div>
+            <div className="bg-rose-50/70 rounded-2xl p-4 text-xs text-rose-700 leading-relaxed border border-rose-100 text-left">
+              Customer accounts do not have administrator permissions to access operations, inventory, or order management.
+            </div>
 
+            <div className="space-y-3 pt-2">
               <button
-                type="submit"
-                disabled={isLoggingIn}
-                className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer disabled:opacity-50"
+                type="button"
+                onClick={async () => {
+                  await logout();
+                  setIsLoginModalOpen(true);
+                }}
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer flex items-center justify-center gap-2"
               >
-                {isLoggingIn ? "AUTHENTICATING..." : "ENTER SUPER ADMIN PORTAL"}
+                <LogIn className="w-4 h-4" />
+                Switch to Admin Account
               </button>
-            </form>
 
-            <Link href="/" className="inline-block text-xs text-slate-500 hover:text-emerald-700">
-              ← Return to Storefront
-            </Link>
+              <Link
+                href="/"
+                className="block text-xs text-slate-500 hover:text-slate-800 py-2 transition-colors"
+              >
+                ← Return to Storefront
+              </Link>
+            </div>
           </div>
         </div>
       </>

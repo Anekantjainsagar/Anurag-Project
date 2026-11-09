@@ -26,8 +26,29 @@ export function setAuthToken(token: string | null) {
   if (typeof window === "undefined") return;
   if (token) {
     localStorage.setItem("onaar_auth_token", token);
+    document.cookie = `onaar_auth_token=${token}; path=/; max-age=2592000; SameSite=Lax`;
   } else {
     localStorage.removeItem("onaar_auth_token");
+    document.cookie = "onaar_auth_token=; path=/; max-age=0; SameSite=Lax";
+  }
+}
+
+export function getCachedUser(): any | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem("onaar_user");
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function setCachedUser(user: any | null) {
+  if (typeof window === "undefined") return;
+  if (user) {
+    localStorage.setItem("onaar_user", JSON.stringify(user));
+  } else {
+    localStorage.removeItem("onaar_user");
   }
 }
 

@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import BrandLogo from "./BrandLogo";
-import { X, ArrowRight, CheckCircle2, ShieldCheck, KeyRound } from "lucide-react";
+import { X, ArrowRight, CheckCircle2, ShieldCheck, KeyRound, Phone, Mail } from "lucide-react";
 
 export default function LoginModal() {
   const { isLoginModalOpen, setIsLoginModalOpen, showToast } = useCart();
   const { sendOtp, verifyOtp } = useAuth();
 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [fullName, setFullName] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -20,24 +20,57 @@ export default function LoginModal() {
 
   if (!isLoginModalOpen) return null;
 
+  const isEmail = identifier.includes("@");
+
+  const getCleanIdentifier = () => {
+    const raw = identifier.trim();
+    if (raw.includes("@")) {
+      return raw.toLowerCase();
+    }
+    const digitsOnly = raw.replace(/\D/g, "");
+    if (digitsOnly.length === 10) {
+      return `+91${digitsOnly}`;
+    }
+    if (raw.startsWith("+")) {
+      return raw;
+    }
+    return `+91${digitsOnly.slice(-10)}`;
+  };
+
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (phoneNumber.length < 10) {
-      showToast("Please enter a valid 10-digit mobile number");
+    const raw = identifier.trim();
+
+    if (!raw) {
+      showToast("Please enter your mobile number or email");
       return;
+    }
+
+    if (raw.includes("@")) {
+      if (!raw.includes(".") || raw.length < 5) {
+        showToast("Please enter a valid email address");
+        return;
+      }
+    } else {
+      const digitsOnly = raw.replace(/\D/g, "");
+      if (digitsOnly.length < 10) {
+        showToast("Please enter a valid 10-digit mobile number");
+        return;
+      }
     }
 
     setIsSubmitting(true);
     try {
-      const fullPhone = `+91${phoneNumber}`;
-      const res = await sendOtp(fullPhone, "sms");
+      const cleanId = getCleanIdentifier();
+      const channel = cleanId.includes("@") ? "email" : "sms";
+      const res = await sendOtp(cleanId, channel);
       setOtpSent(true);
       if (res.dev_code) {
         setDevCode(res.dev_code);
       }
-      showToast(res.message || `OTP sent to +91 ${phoneNumber}`);
+      showToast(res.message || `Verification code sent to ${cleanId}`);
     } catch (err: any) {
-      showToast(err?.message || "Failed to send OTP. Please try again.");
+      showToast(err?.message || "Failed to send verification code. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -47,29 +80,55 @@ export default function LoginModal() {
     e.preventDefault();
     const enteredOtp = otp.join("");
     if (enteredOtp.length < 4) {
-      showToast("Please enter the complete 4-digit OTP code");
+      showToast("Please enter the complete 4-digit code");
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const fullPhone = `+91${phoneNumber}`;
-      await verifyOtp(fullPhone, enteredOtp, fullName || undefined);
+      const cleanId = getCleanIdentifier();
+      await verifyOtp(cleanId, enteredOtp, fullName || undefined);
       setIsLoggedIn(true);
-      showToast("Welcome back! You have successfully signed in.");
+      showToast("Welcome back! Authentication successful.");
       setTimeout(() => {
         setIsLoginModalOpen(false);
         setIsLoggedIn(false);
         setOtpSent(false);
-        setPhoneNumber("");
+        setIdentifier("");
         setFullName("");
         setDevCode(null);
         setOtp(["", "", "", ""]);
-      }, 1200);
+      }, 1000);
     } catch (err: any) {
       showToast(err.message || "Invalid OTP code. Please retry.");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleOtpChange = (index: number, value: string) => {
+    const digit = value.slice(-1).replace(/\D/g, "");
+    const newOtp = [...otp];
+    newOtp[index] = digit;
+    setOtp(newOtp);
+
+    // Auto-advance focus
+    if (digit && index < 3) {
+      const nextInput = document.getElementById(`modal-otp-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleOtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === "Backspace" && !otp[index] && index > 0) {
+      const prevInput = document.getElementById(`modal-otp-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
+  const handleAutofillDevCode = () => {
+    if (devCode && devCode.length === 4) {
+      setOtp(devCode.split(""));
     }
   };
 
@@ -84,6 +143,7 @@ export default function LoginModal() {
             setDevCode(null);
           }}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 p-1 rounded-full cursor-pointer z-10"
+          title="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
@@ -112,7 +172,7 @@ export default function LoginModal() {
                   Sign In to Onaar
                 </h3>
                 <p className="text-xs text-gray-500">
-                  Enter your mobile number to sign in or create an account
+                  Enter your mobile number or email to access your account
                 </p>
               </div>
 
@@ -122,7 +182,7 @@ export default function LoginModal() {
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. Anekant Jain"
+                  placeholder="e.g. Anurag Jain"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full text-xs px-3 py-2.5 border border-gray-200 rounded-lg bg-[#f9faf9] text-gray-900 focus:outline-none focus:border-[#01722C] focus:bg-white"
@@ -131,24 +191,31 @@ export default function LoginModal() {
 
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
-                  Mobile Number
+                  Mobile Number or Email
                 </label>
                 <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-[#f9faf9] focus-within:border-[#01722C] focus-within:bg-white transition-all">
-                  <span className="px-3 py-2 text-xs font-semibold text-gray-500 border-r border-gray-200 bg-gray-50">
-                    +91
+                  <span className="px-3 py-2 text-xs font-semibold text-gray-500 border-r border-gray-200 bg-gray-50 flex items-center gap-1 shrink-0">
+                    {isEmail ? (
+                      <Mail className="w-3.5 h-3.5 text-gray-400" />
+                    ) : (
+                      <>
+                        <Phone className="w-3.5 h-3.5 text-gray-400" />
+                        <span>+91</span>
+                      </>
+                    )}
                   </span>
                   <input
-                    type="tel"
-                    maxLength={10}
-                    placeholder="98765 43210"
-                    value={phoneNumber}
-                    onChange={(e) =>
-                      setPhoneNumber(e.target.value.replace(/\D/g, ""))
-                    }
-                    className="w-full text-xs px-3 py-2.5 text-gray-900 focus:outline-none"
+                    type="text"
+                    placeholder={isEmail ? "meriwebdunia@gmail.com" : "98765 43210"}
+                    value={identifier}
+                    onChange={(e) => setIdentifier(e.target.value)}
+                    className="w-full text-xs px-3 py-2.5 text-gray-900 focus:outline-none font-mono"
                     autoFocus
                   />
                 </div>
+                <p className="text-[10px] text-gray-400 mt-1">
+                  Admins: Use <strong>+91 98765 43210</strong> or <strong>meriwebdunia@gmail.com</strong>
+                </p>
               </div>
 
               <button
@@ -162,7 +229,7 @@ export default function LoginModal() {
 
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-gray-500 pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#01722C]" />
-                <span>Zero spam • 100% Secure Sign In</span>
+                <span>Zero spam • 100% Cryptographically Verified</span>
               </div>
             </form>
           ) : (
@@ -172,14 +239,18 @@ export default function LoginModal() {
                   Enter Verification Code
                 </h3>
                 <p className="text-xs text-gray-500">
-                  4-digit code sent to <strong>+91 {phoneNumber}</strong>
+                  4-digit code sent to <strong>{getCleanIdentifier()}</strong>
                 </p>
               </div>
 
               {devCode && (
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-center text-xs text-amber-800 flex items-center justify-center gap-2">
+                <div
+                  onClick={handleAutofillDevCode}
+                  className="bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-xl p-2.5 text-center text-xs text-amber-800 flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                  title="Click to auto-fill dev code"
+                >
                   <KeyRound className="w-4 h-4 text-amber-600" />
-                  <span>Dev Mode OTP: <strong>{devCode}</strong></span>
+                  <span>Dev Test OTP: <strong>{devCode}</strong> <span className="underline text-[10px] ml-1">(Click to auto-fill)</span></span>
                 </div>
               )}
 
@@ -187,20 +258,13 @@ export default function LoginModal() {
                 {[0, 1, 2, 3].map((index) => (
                   <input
                     key={index}
+                    id={`modal-otp-${index}`}
                     type="text"
                     maxLength={1}
                     value={otp[index]}
-                    onChange={(e) => {
-                      const newOtp = [...otp];
-                      newOtp[index] = e.target.value;
-                      setOtp(newOtp);
-                      if (e.target.value && e.target.nextElementSibling) {
-                        (
-                          e.target.nextElementSibling as HTMLInputElement
-                        ).focus();
-                      }
-                    }}
-                    className="w-11 h-12 text-center text-lg font-bold border border-gray-300 rounded-lg focus:border-[#01722C] focus:outline-none bg-[#f8faf9]"
+                    onChange={(e) => handleOtpChange(index, e.target.value)}
+                    onKeyDown={(e) => handleOtpKeyDown(index, e)}
+                    className="w-12 h-12 text-center text-lg font-bold border border-gray-300 rounded-xl bg-[#f9faf9] text-gray-900 focus:outline-none focus:border-[#01722C] focus:bg-white font-mono"
                     autoFocus={index === 0}
                   />
                 ))}
@@ -211,20 +275,29 @@ export default function LoginModal() {
                 disabled={isSubmitting}
                 className="w-full bg-[#01722C] hover:bg-[#0b542c] text-white py-2.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer disabled:opacity-50"
               >
-                {isSubmitting ? "VERIFYING..." : "VERIFY & LOGIN"}
+                {isSubmitting ? "VERIFYING..." : "VERIFY & SIGN IN"}
               </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setOtpSent(false);
-                  setDevCode(null);
-                  setOtp(["", "", "", ""]);
-                }}
-                className="w-full text-center text-xs text-[#01722C] font-semibold hover:underline"
-              >
-                Change mobile number
-              </button>
+              <div className="flex items-center justify-between text-xs pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOtpSent(false);
+                    setOtp(["", "", "", ""]);
+                  }}
+                  className="text-gray-500 hover:text-gray-800 text-[11px] cursor-pointer"
+                >
+                  ← Change number/email
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSendOtp}
+                  disabled={isSubmitting}
+                  className="text-[#01722C] font-semibold hover:underline text-[11px] cursor-pointer disabled:opacity-50"
+                >
+                  Resend Code
+                </button>
+              </div>
             </form>
           )}
         </div>

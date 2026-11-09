@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { api, getAuthToken, setAuthToken } from "@/services/apiClient";
+import { api, getAuthToken, setAuthToken, getCachedUser, setCachedUser } from "@/services/apiClient";
 
 export interface UserAddress {
   id: string;
@@ -53,7 +53,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<UserProfile | null>(null);
+  const [user, setUser] = useState<UserProfile | null>(() => getCachedUser());
   const [addresses, setAddresses] = useState<UserAddress[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -61,6 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const token = getAuthToken();
     if (!token) {
       setUser(null);
+      setCachedUser(null);
       setAddresses([]);
       setIsLoading(false);
       return;
@@ -69,14 +70,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const userData = await api.auth.getMe();
       setUser(userData);
+      setCachedUser(userData);
       if (userData.addresses) {
         setAddresses(userData.addresses);
       }
-    } catch {
-      // Token is invalid/expired
-      setAuthToken(null);
-      setUser(null);
-      setAddresses([]);
+    } catch (err: any) {
+      const msg = err?.message || "";
+      // Only clear session if genuinely unauthorized (token expired / user not found)
+      if (msg.includes("401") || msg.includes("Unauthorized") || msg.includes("credentials") || msg.includes("not found")) {
+        setAuthToken(null);
+        setCachedUser(null);
+        setUser(null);
+        setAddresses([]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -95,6 +101,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const res = await api.auth.verifyOtp(identifier, otpCode, fullName);
       if (res.access_token) {
         setAuthToken(res.access_token);
+        setCachedUser(res.user);
         setUser(res.user);
         await fetchAddresses();
         return true;
@@ -112,6 +119,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Ignore network errors on logout
     } finally {
       setAuthToken(null);
+      setCachedUser(null);
       setUser(null);
       setAddresses([]);
     }

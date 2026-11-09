@@ -15,7 +15,13 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
   const isAdmin = pathname?.startsWith("/admin");
 
   if (isAdmin) {
-    return <>{children}</>;
+    return (
+      <>
+        {children}
+        <LoginModal />
+        <ToastNotification />
+      </>
+    );
   }
 
   return (
