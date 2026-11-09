@@ -371,12 +371,12 @@ export default function Navbar() {
             ) : (
               <button
                 onClick={() => setIsLoginModalOpen(true)}
-                className="flex items-center gap-1.5 p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer text-xs font-semibold"
-                title="Sign In"
+                className="flex items-center gap-1.5 px-3 py-1.5 text-gray-700 hover:text-[#01722C] border border-gray-200 hover:border-[#01722C] bg-white hover:bg-[#edf7f1] transition-all rounded-full cursor-pointer text-xs font-semibold shadow-2xs"
+                title="Sign In / Register"
                 aria-label="Sign In"
               >
-                <UserIcon className="w-5 h-5" />
-                <span className="hidden md:inline">Sign In</span>
+                <UserIcon className="w-4 h-4 text-[#01722C]" />
+                <span className="inline">Sign In</span>
               </button>
             )}
           </div>
