@@ -72,6 +72,18 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const handleSearchSubmit = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (searchQuery.trim()) {
@@ -436,21 +448,23 @@ export default function Navbar() {
           </form>
         </div>
       )}
+      </header>
 
       {/* Mobile & Tablet Drawer Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex justify-end animate-fade-in font-sans">
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-2xs"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          <div className="relative w-4/5 max-w-sm bg-white h-full shadow-2xl flex flex-col z-10 animate-slide-left">
-            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc]">
+          <div className="relative w-4/5 max-w-xs sm:max-w-sm bg-white h-screen max-h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
+            <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc] shrink-0">
               <BrandLogo variant="dark" size="sm" />
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-1 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer"
+                className="p-1.5 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer"
+                aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -632,7 +646,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="p-4 border-t border-gray-100 bg-gray-50 text-[11px] text-gray-500 space-y-1">
+            <div className="p-4 border-t border-gray-100 bg-gray-50 text-[11px] text-gray-500 space-y-1 shrink-0">
               <div className="flex items-center gap-2 text-gray-800 font-bold">
                 <Phone className="w-3.5 h-3.5 text-[#01722C]" />
                 <span>+91-98765 43210</span>
@@ -642,7 +656,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      </header>
     </>
   );
 }

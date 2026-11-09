@@ -157,16 +157,28 @@ function UsersContent() {
     }
   };
 
-  const handleToggleUserStatus = async (userId: string) => {
+  const handleToggleUserStatus = async (userId: string, userName: string, isActive: boolean) => {
+    const action = isActive ? "suspend" : "activate";
+    const isConfirmed = await confirm({
+      title: isActive ? "Suspend User Account" : "Activate User Account",
+      message: isActive
+        ? `Are you sure you want to suspend user account '${userName}'? This will immediately prevent the user from logging in or placing orders.`
+        : `Are you sure you want to activate user account '${userName}'? The user will regain full access to their account.`,
+      confirmText: isActive ? "Yes, Suspend Account" : "Yes, Activate Account",
+      cancelText: "Cancel",
+      variant: isActive ? "danger" : "info",
+    });
+    if (!isConfirmed) return;
+
     try {
       const res = await api.admin.toggleUserStatus(userId);
-      showToast(res.message || "User status updated");
+      showToast(res.message || `User '${userName}' account ${isActive ? "suspended" : "activated"}`);
       loadUsers();
       if (selectedUserDetail && selectedUserDetail.id === userId) {
         setSelectedUserDetail({ ...selectedUserDetail, is_active: !selectedUserDetail.is_active });
       }
     } catch (err: any) {
-      showToast(err.message || "Failed to toggle status");
+      showToast(err.message || `Failed to ${action} user`);
     }
   };
 
@@ -212,42 +224,42 @@ function UsersContent() {
       </div>
 
       {/* KPI Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {[
           {
-            title: "Total Registered Users",
+            title: "Total Users",
             value: userStats?.total_users || totalUsers || users.length,
             sub: "All platform accounts",
             badge: "Directory",
           },
           {
-            title: "Active Customers",
+            title: "Active Shoppers",
             value: userStats?.active_customers || users.filter((u) => u.role === "customer" && u.is_active).length,
-            sub: "Shoppers with active accounts",
+            sub: "Active accounts",
             badge: "Shoppers",
           },
           {
-            title: "Total Customer Orders",
+            title: "Customer Orders",
             value: userStats?.total_orders_placed || 0,
-            sub: "Across all customers",
+            sub: "Across all accounts",
             badge: "Fulfillment",
           },
           {
-            title: "Lifetime Customer Spend",
+            title: "Lifetime Spend",
             value: `₹${Number(userStats?.total_revenue || 0).toLocaleString("en-IN", { minimumFractionDigits: 2 })}`,
             sub: "Direct farm revenue",
             badge: "GMV",
           },
         ].map((s, idx) => (
-          <div key={idx} className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
-            <div className="flex items-center justify-between text-xs text-slate-500 font-medium mb-1">
-              <span>{s.title}</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700">
+          <div key={idx} className="bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+            <div className="flex items-center justify-between text-[11px] sm:text-xs text-slate-500 font-medium mb-1 gap-1">
+              <span className="truncate">{s.title}</span>
+              <span className="text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 shrink-0">
                 {s.badge}
               </span>
             </div>
-            <div className="text-xl font-bold font-serif text-slate-900 mt-1">{s.value}</div>
-            <div className="text-[11px] text-slate-400 mt-1">{s.sub}</div>
+            <div className="text-lg sm:text-xl font-bold font-serif text-slate-900 mt-1 truncate">{s.value}</div>
+            <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate">{s.sub}</div>
           </div>
         ))}
       </div>
@@ -303,7 +315,132 @@ function UsersContent() {
 
       {/* Users Table */}
       <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile View: Clean Card Layout (< md) */}
+        <div className="md:hidden divide-y divide-slate-100">
+          {isLoadingUsers ? (
+            <div className="p-8 text-center text-slate-400">
+              <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-emerald-600" />
+              Loading customer directory...
+            </div>
+          ) : users.length === 0 ? (
+            <div className="p-8 text-center text-slate-400">
+              No user accounts found matching current query.
+            </div>
+          ) : (
+            users.map((u) => {
+              const initials = u.full_name
+                ? u.full_name
+                    .split(" ")
+                    .map((w: string) => w[0])
+                    .slice(0, 2)
+                    .join("")
+                    .toUpperCase()
+                : "US";
+
+              return (
+                <div key={u.id} className="p-4 space-y-3 bg-white">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center shrink-0 text-xs">
+                        {initials}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5 truncate">
+                          <span className="truncate">{u.full_name}</span>
+                          {u.is_verified && (
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          )}
+                        </div>
+                        <div className="text-[10px] text-slate-400 font-mono">
+                          ID: {u.id.slice(0, 8)}...
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span
+                        className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                          u.role === "admin"
+                            ? "bg-purple-100 text-purple-800 border border-purple-200"
+                            : u.role === "vendor"
+                            ? "bg-amber-100 text-amber-800 border border-amber-200"
+                            : "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                        }`}
+                      >
+                        {u.role}
+                      </span>
+                      <button
+                        onClick={() => handleToggleUserStatus(u.id, u.full_name, u.is_active)}
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold cursor-pointer transition-all border ${
+                          u.is_active
+                            ? "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-rose-50 hover:text-rose-700"
+                            : "bg-rose-50 text-rose-700 border-rose-200 hover:bg-emerald-50 hover:text-emerald-700"
+                        }`}
+                      >
+                        {u.is_active ? "Active" : "Suspended"}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-100 font-mono">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block font-sans">Contact</span>
+                      {u.phone ? (
+                        <a href={`tel:${u.phone}`} className="text-slate-800 font-medium truncate block">
+                          {u.phone}
+                        </a>
+                      ) : (
+                        <span className="text-slate-400 italic text-[11px]">No phone</span>
+                      )}
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block font-sans">Lifetime Spend</span>
+                      <span className="font-bold text-slate-900">₹{Number(u.total_spent || 0).toFixed(2)}</span>
+                      <Link
+                        href={`/admin/orders?userId=${u.id}`}
+                        className="text-[10px] text-emerald-700 hover:underline block font-sans"
+                      >
+                        {u.total_orders || 0} orders
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-0.5 text-xs">
+                    <span className="text-[10px] text-slate-400 font-mono">
+                      Joined: {u.created_at ? new Date(u.created_at).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" }) : "—"}
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => handleOpenUserDetail(u.id)}
+                        className="p-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded-lg cursor-pointer"
+                        title="View Profile"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleOpenEditUser(u)}
+                        className="p-1.5 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 rounded-lg cursor-pointer"
+                        title="Edit User"
+                      >
+                        <Edit3 className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteUser(u.id, u.full_name)}
+                        className="p-1.5 bg-slate-100 hover:bg-rose-50 text-slate-700 hover:text-rose-700 rounded-lg cursor-pointer"
+                        title="Delete User"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* Desktop Table View (>= md) */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold uppercase tracking-wider text-[10px]">
               <tr>
@@ -429,7 +566,7 @@ function UsersContent() {
                       </td>
                       <td className="px-4 py-3.5">
                         <button
-                          onClick={() => handleToggleUserStatus(u.id)}
+                          onClick={() => handleToggleUserStatus(u.id, u.full_name, u.is_active)}
                           className={`px-2.5 py-1 rounded-full text-[10px] font-bold cursor-pointer transition-all border ${
                             u.is_active
                               ? "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-rose-50 hover:text-rose-700"
@@ -732,7 +869,7 @@ function UsersContent() {
 
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => handleToggleUserStatus(selectedUserDetail.id)}
+                      onClick={() => handleToggleUserStatus(selectedUserDetail.id, selectedUserDetail.full_name, selectedUserDetail.is_active)}
                       className={`px-3 py-1.5 rounded-xl font-bold cursor-pointer ${
                         selectedUserDetail.is_active
                           ? "bg-rose-50 text-rose-700 hover:bg-rose-100"
