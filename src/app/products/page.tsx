@@ -4,12 +4,6 @@ import React, { useState, useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import ToastNotification from "@/components/ToastNotification";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import {
@@ -201,10 +195,7 @@ function ProductsCatalogContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans w-full">
-      <TopBar />
-      <Navbar />
-
+    <div className="flex flex-col bg-[#faf8f4] text-gray-900 font-sans w-full">
       {/* Header Banner */}
       <section className="w-full bg-[#014d1e] text-white py-10 sm:py-14 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -585,11 +576,6 @@ function ProductsCatalogContent() {
           </div>
         )}
       </main>
-
-      <Footer />
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <ToastNotification />
     </div>
   );
 }

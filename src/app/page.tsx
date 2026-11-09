@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ValueTrustStrip from "@/components/ValueTrustStrip";
 import CategorySection from "@/components/CategorySection";
@@ -17,11 +15,6 @@ import Testimonials from "@/components/Testimonials";
 import BlogHighlights from "@/components/BlogHighlights";
 import FarmClubNewsletter from "@/components/FarmClubNewsletter";
 import TrustBadges from "@/components/TrustBadges";
-import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import LoginModal from "@/components/LoginModal";
-import ToastNotification from "@/components/ToastNotification";
 import { CATEGORIES } from "@/data/mockData";
 
 function HomeContent() {
@@ -66,14 +59,8 @@ function HomeContent() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-white text-gray-900 font-sans">
-      {/* 1. Top Announcement Bar */}
-      <TopBar />
-
-      {/* 2. Main Sticky Multi-Page Navbar */}
-      <Navbar />
-
-      {/* 3. Hero Carousel Section */}
+    <div className="w-full flex flex-col bg-white text-gray-900 font-sans">
+      {/* 1. Hero Carousel Section */}
       <HeroSection />
 
       {/* 4. Value & Trust Assurance Strip */}
@@ -118,15 +105,6 @@ function HomeContent() {
 
       {/* 15. Trust Badges Ribbon */}
       <TrustBadges />
-
-      {/* 16. Comprehensive Multi-Page Footer */}
-      <Footer />
-
-      {/* Global Interactive Drawers & Modals */}
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <LoginModal />
-      <ToastNotification />
     </div>
   );
 }

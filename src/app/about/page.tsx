@@ -2,12 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import ToastNotification from "@/components/ToastNotification";
 import {
   Sparkles,
   ShieldCheck,
@@ -77,10 +71,7 @@ export default function AboutPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
-      <TopBar />
-      <Navbar />
-
+    <div className="w-full flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
       {/* Header Banner */}
       <section className="w-full bg-[#014d1e] text-white py-12 sm:py-16 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
@@ -233,11 +224,6 @@ export default function AboutPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <ToastNotification />
     </div>
   );
 }

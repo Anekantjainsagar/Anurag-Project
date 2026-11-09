@@ -1,21 +1,12 @@
 "use client";
 
 import React from "react";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
 import BlogSection from "@/components/BlogSection";
-import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import ToastNotification from "@/components/ToastNotification";
 import { BookOpen, Sparkles, HeartPulse, ShieldCheck } from "lucide-react";
 
 export default function BlogPage() {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-white text-gray-900 font-sans">
-      <TopBar />
-      <Navbar />
-
+    <div className="w-full flex flex-col bg-white text-gray-900 font-sans">
       {/* Blog Header Banner */}
       <section className="w-full bg-[#014d1e] text-white py-12 sm:py-16 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
@@ -51,11 +42,6 @@ export default function BlogPage() {
       <main className="flex-1 w-full">
         <BlogSection />
       </main>
-
-      <Footer />
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <ToastNotification />
     </div>
   );
 }

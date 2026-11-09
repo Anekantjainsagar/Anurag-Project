@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
+import StoreLayout from "@/components/StoreLayout";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -42,7 +43,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white overflow-x-hidden">
         <AuthProvider>
-          <CartProvider>{children}</CartProvider>
+          <CartProvider>
+            <StoreLayout>{children}</StoreLayout>
+          </CartProvider>
         </AuthProvider>
       </body>
     </html>

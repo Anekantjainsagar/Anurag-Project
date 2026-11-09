@@ -7,12 +7,6 @@ import { useCart } from "@/context/CartContext";
 import { useAuth, UserAddress } from "@/context/AuthContext";
 import { api } from "@/services/apiClient";
 import BrandLogo from "@/components/BrandLogo";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import Footer from "@/components/Footer";
-import ToastNotification from "@/components/ToastNotification";
 import { sendOrderEmails, OrderPayload } from "@/services/emailService";
 import { isCouponRedeemed, markCouponAsRedeemed } from "@/utils/cookieUtils";
 import {
@@ -354,10 +348,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
-      <TopBar />
-      <Navbar />
-
+    <div className="flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
       {/* Checkout Security Sub-header */}
       <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-[#01722C]">
@@ -910,11 +901,6 @@ export default function CheckoutPage() {
           </form>
         )}
       </main>
-
-      <Footer />
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <ToastNotification />
     </div>
   );
 }

@@ -24,7 +24,6 @@ import {
   Settings as SettingsIcon,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
-import LoginModal from "./LoginModal";
 
 export default function Navbar() {
   const router = useRouter();
@@ -644,9 +643,6 @@ export default function Navbar() {
         </div>
       )}
       </header>
-
-      {/* Global Sign In / Auth Modal */}
-      <LoginModal />
     </>
   );
 }

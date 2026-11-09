@@ -4,12 +4,6 @@ import React, { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import ToastNotification from "@/components/ToastNotification";
-import Footer from "@/components/Footer";
 import { OrderPayload } from "@/services/emailService";
 import {
   CheckCircle2,
@@ -59,10 +53,7 @@ function OrderSuccessContent() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
-      <TopBar />
-      <Navbar />
-
+    <div className="flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
       {/* Order Status Sub-header */}
       <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-[#01722C]">
@@ -240,11 +231,6 @@ function OrderSuccessContent() {
           </div>
         </div>
       </main>
-
-      <Footer />
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <ToastNotification />
     </div>
   );
 }

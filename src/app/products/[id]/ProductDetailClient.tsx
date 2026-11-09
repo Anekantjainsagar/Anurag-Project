@@ -6,12 +6,6 @@ import { useRouter } from "next/navigation";
 import { Product, ProductWeightOption } from "@/types";
 import { ALL_PRODUCTS } from "@/data/mockData";
 import { useCart } from "@/context/CartContext";
-import TopBar from "@/components/TopBar";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
-import BulkEnquiryModal from "@/components/BulkEnquiryModal";
-import ToastNotification from "@/components/ToastNotification";
 import {
   Star,
   Heart,
@@ -78,10 +72,7 @@ function ProductDetailInner({ product }: { product: Product }) {
   ).slice(0, 4);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans w-full">
-      <TopBar />
-      <Navbar />
-
+    <div className="flex flex-col bg-white text-gray-900 font-sans w-full">
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-1.5 text-xs text-gray-500 mb-6 flex-wrap">
@@ -620,13 +611,6 @@ function ProductDetailInner({ product }: { product: Product }) {
           </div>
         )}
       </main>
-
-      <Footer />
-
-      {/* Global Modals */}
-      <CartDrawer />
-      <BulkEnquiryModal />
-      <ToastNotification />
     </div>
   );
 }
