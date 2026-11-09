@@ -101,7 +101,7 @@ export default function Navbar() {
         </Link>
 
         {/* Center: Desktop Navigation Links (>= 1024px) */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13.5px] xl:text-[14.5px] font-semibold text-gray-700">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] xl:text-[14px] font-semibold text-gray-700">
           <Link
             href="/"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
@@ -169,7 +169,7 @@ export default function Navbar() {
             href="/about"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
           >
-            Our Heritage & Standards
+            About Us
           </Link>
 
           <Link
@@ -183,18 +183,18 @@ export default function Navbar() {
             href="/contact"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
           >
-            Contact & Bulk Supply
+            Contact
           </Link>
         </nav>
 
         {/* Right Section: Wide Search, Wishlist & Shopping Cart */}
-        <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+        <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
           {/* Desktop Search Input (>= 1024px) */}
-          <div className="relative hidden lg:block w-52 xl:w-72" ref={searchRef}>
+          <div className="relative hidden lg:block w-44 xl:w-60" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
               <input
                 type="text"
-                placeholder="Search 192+ organic staples..."
+                placeholder="Search staples..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
