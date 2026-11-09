@@ -29,13 +29,16 @@ async def submit_contact(payload: ContactMessageCreate, db: AsyncSession = Depen
     await db.commit()
     await db.refresh(msg)
 
-    # Forward to vendor via SMTP
-    await EmailService.send_email(
-        db=db,
-        recipient_email=settings.VENDOR_EMAIL,
-        template_key="CONTACT_US_ALERT",
-        context=payload.model_dump(),
-    )
+    # Forward to vendor via SMTP (graceful fallback)
+    try:
+        await EmailService.send_email(
+            db=db,
+            recipient_email=settings.VENDOR_EMAIL,
+            template_key="CONTACT_US_ALERT",
+            context=payload.model_dump(),
+        )
+    except Exception as e:
+        print(f"[CONTACT INQUIRY EMAIL FAILED]: {e}")
 
     return msg
 
@@ -47,19 +50,22 @@ async def submit_bulk_enquiry(payload: BulkEnquiryCreate, db: AsyncSession = Dep
     await db.commit()
     await db.refresh(enquiry)
 
-    # Forward B2B lead to vendor
-    await EmailService.send_email(
-        db=db,
-        recipient_email=settings.VENDOR_EMAIL,
-        template_key="CONTACT_US_ALERT",
-        context={
-            "name": f"{payload.name} ({payload.company_name or 'Individual'})",
-            "email": payload.email,
-            "phone": payload.phone,
-            "subject": f"B2B Wholesale Request: {payload.category} ({payload.quantity})",
-            "message": f"Category: {payload.category}\nQuantity: {payload.quantity}\nDestination: {payload.destination or 'N/A'}\nNotes: {payload.notes or 'None'}",
-        },
-    )
+    # Forward B2B lead to vendor (graceful fallback)
+    try:
+        await EmailService.send_email(
+            db=db,
+            recipient_email=settings.VENDOR_EMAIL,
+            template_key="CONTACT_US_ALERT",
+            context={
+                "name": f"{payload.name} ({payload.company_name or 'Individual'})",
+                "email": payload.email,
+                "phone": payload.phone,
+                "subject": f"B2B Wholesale Request: {payload.category} ({payload.quantity})",
+                "message": f"Category: {payload.category}\nQuantity: {payload.quantity}\nDestination: {payload.destination or 'N/A'}\nNotes: {payload.notes or 'None'}",
+            },
+        )
+    except Exception as e:
+        print(f"[BULK ENQUIRY EMAIL FAILED]: {e}")
 
     return enquiry
 

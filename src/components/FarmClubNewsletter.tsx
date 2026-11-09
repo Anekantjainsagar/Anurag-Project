@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Mail, Sparkles, Check, ArrowRight, ShieldCheck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { api } from "@/services/apiClient";
 import { isCouponRedeemed } from "@/utils/cookieUtils";
 
 export default function FarmClubNewsletter() {
@@ -10,13 +11,20 @@ export default function FarmClubNewsletter() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) {
+    const cleanEmail = email.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes("@")) {
       showToast("Please enter a valid email address");
       return;
     }
     setIsSubmitted(true);
+
+    try {
+      await api.inquiries.subscribeNewsletter(cleanEmail);
+    } catch {
+      // Graceful fallback
+    }
 
     if (isCouponRedeemed("HARVEST10")) {
       showToast("Thank you for subscribing to our Farm Club!");

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { api } from "@/services/apiClient";
 import { sendContactEmail } from "@/services/emailService";
 import { X, Send, Building2, CheckCircle2 } from "lucide-react";
 
@@ -25,16 +26,28 @@ export default function BulkEnquiryModal() {
     e.preventDefault();
     setSubmitted(true);
     try {
-      await sendContactEmail({
+      await api.inquiries.submitBulkEnquiry({
+        name: formData.name,
+        company_name: formData.company || null,
+        email: formData.email,
+        phone: formData.phone,
+        category: formData.category,
+        quantity: formData.quantity,
+        destination: formData.destination || null,
+        notes: formData.notes || null,
+      });
+
+      sendContactEmail({
         name: `${formData.name} (${formData.company || "Individual"})`,
         email: formData.email,
         phone: formData.phone,
         subject: `B2B Bulk Supply Request: ${formData.category} (${formData.quantity})`,
         message: `Category: ${formData.category}\nQuantity: ${formData.quantity}\nDelivery Destination: ${formData.destination || "Not specified"}\nNotes: ${formData.notes || "None"}`,
-      });
-      showToast("Bulk enquiry dispatched to Anurag Jain! We will reach out within 24 hours.");
-    } catch {
-      showToast("Bulk enquiry received! Our team will reach out within 24 hours.");
+      }).catch(() => {});
+
+      showToast("Bulk enquiry captured in admin CRM! Anurag Jain will reach out within 24 hours.");
+    } catch (err: any) {
+      showToast(err.message || "Bulk enquiry received! Our team will reach out within 24 hours.");
     }
   };
 

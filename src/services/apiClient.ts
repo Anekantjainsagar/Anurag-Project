@@ -456,13 +456,72 @@ export const api = {
 
     getEmailLogs: () => request<any[]>("/admin/email/logs", { requiresAuth: true }),
 
-    getContactInquiries: (status?: string) =>
-      request<any[]>(status ? `/admin/inquiries/contact?status=${status}` : "/admin/inquiries/contact", {
+    getContactInquiries: (params?: { status?: string; search?: string }) => {
+      const q = new URLSearchParams();
+      if (params?.status) q.set("status", params.status);
+      if (params?.search) q.set("search", params.search);
+      const qs = q.toString();
+      return request<any[]>(qs ? `/admin/inquiries/contact?${qs}` : "/admin/inquiries/contact", {
+        requiresAuth: true,
+      });
+    },
+
+    updateContactInquiryStatus: (id: string, status: string, vendor_notes?: string) =>
+      request<any>(`/admin/inquiries/contact/${id}`, {
+        method: "PATCH",
+        requiresAuth: true,
+        body: JSON.stringify({ status, vendor_notes }),
+      }),
+
+    deleteContactInquiry: (id: string) =>
+      request<any>(`/admin/inquiries/contact/${id}`, {
+        method: "DELETE",
         requiresAuth: true,
       }),
 
-    getBulkEnquiries: (status?: string) =>
-      request<any[]>(status ? `/admin/inquiries/bulk?status=${status}` : "/admin/inquiries/bulk", {
+    getBulkEnquiries: (params?: { status?: string; search?: string }) => {
+      const q = new URLSearchParams();
+      if (params?.status) q.set("status", params.status);
+      if (params?.search) q.set("search", params.search);
+      const qs = q.toString();
+      return request<any[]>(qs ? `/admin/inquiries/bulk?${qs}` : "/admin/inquiries/bulk", {
+        requiresAuth: true,
+      });
+    },
+
+    updateBulkEnquiryStatus: (id: string, status: string, vendor_notes?: string) =>
+      request<any>(`/admin/inquiries/bulk/${id}`, {
+        method: "PATCH",
+        requiresAuth: true,
+        body: JSON.stringify({ status, vendor_notes }),
+      }),
+
+    deleteBulkEnquiry: (id: string) =>
+      request<any>(`/admin/inquiries/bulk/${id}`, {
+        method: "DELETE",
+        requiresAuth: true,
+      }),
+
+    getNewsletterSubscribers: (params?: { search?: string; is_active?: boolean }) => {
+      const q = new URLSearchParams();
+      if (params?.search) q.set("search", params.search);
+      if (params?.is_active !== undefined) q.set("is_active", String(params.is_active));
+      const qs = q.toString();
+      return request<any[]>(qs ? `/admin/inquiries/newsletter?${qs}` : "/admin/inquiries/newsletter", {
+        requiresAuth: true,
+      });
+    },
+
+    updateNewsletterSubscriber: (id: string, is_active: boolean) =>
+      request<any>(`/admin/inquiries/newsletter/${id}`, {
+        method: "PATCH",
+        requiresAuth: true,
+        body: JSON.stringify({ is_active }),
+      }),
+
+    deleteNewsletterSubscriber: (id: string) =>
+      request<any>(`/admin/inquiries/newsletter/${id}`, {
+        method: "DELETE",
         requiresAuth: true,
       }),
   },

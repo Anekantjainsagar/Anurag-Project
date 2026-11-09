@@ -5,6 +5,7 @@ import Link from "next/link";
 import BrandLogo from "./BrandLogo";
 import { Phone, Mail, MapPin, ChevronRight, ShieldCheck, Heart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { api } from "@/services/apiClient";
 import { CATEGORIES } from "@/data/mockData";
 
 export default function Footer() {
@@ -12,14 +13,20 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) {
+    const cleanEmail = email.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes("@")) {
       showToast("Please enter a valid email address");
       return;
     }
     setIsSubscribed(true);
-    showToast("Thank you for subscribing to ONAAR updates!");
+    try {
+      await api.inquiries.subscribeNewsletter(cleanEmail);
+      showToast("Thank you for subscribing! Coupon HARVEST10 activated for 10% off.");
+    } catch {
+      showToast("Thank you for subscribing to ONAAR updates!");
+    }
     setEmail("");
   };
 

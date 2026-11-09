@@ -20,6 +20,7 @@ class ContactMessageOut(ContactMessageCreate):
     model_config = ConfigDict(from_attributes=True)
     id: uuid.UUID
     status: str
+    vendor_notes: Optional[str] = None
     created_at: datetime
 
 
@@ -38,6 +39,7 @@ class BulkEnquiryOut(BulkEnquiryCreate):
     model_config = ConfigDict(from_attributes=True)
     id: uuid.UUID
     status: str
+    vendor_notes: Optional[str] = None
     created_at: datetime
 
 
@@ -50,4 +52,18 @@ class NewsletterSubscribeResponse(BaseModel):
     email: str
     coupon_code: str
     message: str
+
+
+class NewsletterSubscriberOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: uuid.UUID
+    email: str
+    coupon_code: str
+    is_active: bool
+    subscribed_at: datetime
+
+
+class NewsletterStatusUpdate(BaseModel):
+    is_active: bool
+
 

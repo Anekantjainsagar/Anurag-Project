@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { api } from "@/services/apiClient";
 import { sendContactEmail } from "@/services/emailService";
 import {
   Phone,
@@ -33,8 +34,18 @@ function ContactPageContent() {
 
     setIsSubmitting(true);
     try {
-      const res = await sendContactEmail(formData);
-      showToast(res.message || "Message sent successfully! Anurag Jain will contact you shortly.");
+      await api.inquiries.submitContact({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
+      // Also trigger EmailJS alert in parallel
+      sendContactEmail(formData).catch(() => {});
+
+      showToast("Thank you! Your inquiry has been submitted and captured. Anurag Jain will contact you shortly.");
       setFormData({
         name: "",
         email: "",
@@ -42,8 +53,8 @@ function ContactPageContent() {
         subject: "Retail Order Support",
         message: "",
       });
-    } catch {
-      showToast("Message sent! Our executive will contact you shortly.");
+    } catch (err: any) {
+      showToast(err.message || "Message sent! Our executive will contact you shortly.");
     } finally {
       setIsSubmitting(false);
     }
