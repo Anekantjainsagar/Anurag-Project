@@ -42,7 +42,9 @@ yarn-error.log*
 next-env.d.ts
 dev.log
 
-# python / uv
+# database backups
+*.db.backup
+backend/*.backup
 .venv
 backend/.venv
 __pycache__/
