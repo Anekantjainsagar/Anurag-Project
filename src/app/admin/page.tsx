@@ -1015,13 +1015,21 @@ function AdminContent() {
   // -------------------------------------------------------------
   return (
     <div className="w-full h-screen max-h-screen bg-slate-50 flex overflow-hidden font-sans text-slate-800 fixed inset-0">
+      {/* Mobile Backdrop when sidebar is open on screens < 768px */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-25 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       {/* --------------------------------------------------------- */}
-      {/* 1. Left Sidebar (Fixed, 100% Height) */}
+      {/* 1. Left Sidebar (Fixed, 100% Height, Responsive) */}
       {/* --------------------------------------------------------- */}
       <aside
-        className={`${
-          sidebarOpen ? "w-64" : "w-20"
-        } h-screen shrink-0 bg-[#0c1a13] text-slate-200 border-r border-[#1a3326] flex flex-col justify-between transition-all duration-300 z-30 overflow-hidden`}
+        className={`fixed md:relative top-0 bottom-0 left-0 z-30 h-screen shrink-0 bg-[#0c1a13] text-slate-200 border-r border-[#1a3326] flex flex-col justify-between transition-all duration-300 overflow-hidden ${
+          sidebarOpen ? "w-64 translate-x-0" : "-translate-x-full md:translate-x-0 md:w-20"
+        }`}
       >
         {/* Brand Header (Fixed at top of sidebar) */}
         <div className="h-16 px-4 flex items-center justify-between border-b border-[#1a3326] shrink-0">
@@ -1136,8 +1144,15 @@ function AdminContent() {
       {/* --------------------------------------------------------- */}
       <div className="flex-1 flex flex-col h-screen min-w-0 overflow-hidden">
         {/* Top Header (Permanently Fixed at Top) */}
-        <header className="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between shrink-0 shadow-xs z-20 sticky top-0">
-          <div className="flex items-center gap-3">
+        <header className="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-xs z-20 sticky top-0">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-slate-900 md:hidden cursor-pointer"
+              aria-label="Toggle navigation"
+            >
+              <Menu className="w-4 h-4" />
+            </button>
             <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">
               {activeTab}
             </span>

@@ -56,8 +56,8 @@ export default function BestSellersSection({
 
   return (
     <section id="best-sellers" className="py-12 sm:py-16 bg-[#faf8f4] w-full font-sans">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        {/* Full Width Header & Category Filter Tabs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header & Category Filter Tabs */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6 mb-8 pb-4 border-b border-[#e7decb]">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider mb-2">
@@ -106,7 +106,7 @@ export default function BestSellersSection({
                 className="group relative bg-white border border-[#e4ebe6] hover:border-[#01722C] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
               >
                 {/* Product Image Area */}
-                <div className="relative aspect-4/3 overflow-hidden bg-[#faf8f4] border-b border-[#edf1ee]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#faf8f4] border-b border-[#edf1ee]">
                   <Link href={`/products/${product.id}`} className="block w-full h-full">
                     <img
                       src={product.image}

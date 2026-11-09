@@ -35,7 +35,7 @@ export default function FarmClubNewsletter() {
     <section className="py-14 sm:py-18 bg-[#013e18] text-white w-full font-sans relative overflow-hidden">
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#58cf8b_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center space-y-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-bold uppercase tracking-wider border border-white/15">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />

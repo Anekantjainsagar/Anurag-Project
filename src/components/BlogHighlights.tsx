@@ -77,8 +77,8 @@ export default function BlogHighlights() {
 
   return (
     <section className="py-12 sm:py-16 bg-[#faf8f4] border-t border-[#f0eee6] w-full font-sans">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        {/* Full Width Section Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8 sm:mb-10 pb-4 border-b border-[#e7decb]">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider mb-2">
@@ -116,7 +116,7 @@ export default function BlogHighlights() {
               >
                 <div>
                   {/* Article Thumbnail */}
-                  <div className="block aspect-16/10 overflow-hidden relative bg-[#f2efe8]">
+                  <div className="block aspect-[16/10] overflow-hidden relative bg-[#f2efe8]">
                     <img
                       src={article.image}
                       alt={article.title}
@@ -199,7 +199,7 @@ export default function BlogHighlights() {
                   : [activeArticle.image];
 
               return (
-                <div className="relative aspect-16/9 w-full shrink-0 overflow-hidden bg-gray-900 group/modalImg">
+                <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-gray-900 group/modalImg">
                   <img
                     src={modalGallery[modalImageIndex % modalGallery.length]}
                     alt={activeArticle.title}

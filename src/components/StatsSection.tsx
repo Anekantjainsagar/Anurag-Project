@@ -185,7 +185,7 @@ export default function StatsSection() {
       {/* Subtle organic background decoration */}
       <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#58cf8b_1px,transparent_1px)] [background-size:24px_24px]" />
 
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-xl mx-auto mb-8 sm:mb-10 space-y-1.5">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />

@@ -25,8 +25,8 @@ export default function Footer() {
 
   return (
     <footer id="contact-info" className="w-full bg-[#013816] text-[#d1e5db] font-sans border-t border-[#014d1f]">
-      {/* Full Width Edge-to-Edge Container */}
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 pt-12 sm:pt-16 pb-10 sm:pb-12">
+      {/* Centered Responsive Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-10 sm:pb-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
           {/* Col 1: Brand Info (3.5 cols) */}
           <div className="sm:col-span-2 lg:col-span-3 space-y-4">
@@ -188,9 +188,9 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Full Width Sub-Footer */}
-      <div className="border-t border-[#014d1f] py-4 text-xs text-[#86b59e] px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
+      {/* Sub-Footer */}
+      <div className="border-t border-[#014d1f] py-4 text-xs text-[#86b59e]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
           <div>
             Copyright 2026 © <strong>ONAAR</strong>. All Rights Reserved.
           </div>

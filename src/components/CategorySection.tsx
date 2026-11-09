@@ -16,8 +16,8 @@ export default function CategorySection({
 }: CategorySectionProps) {
   return (
     <section id="categories" className="py-10 sm:py-14 bg-white border-b border-[#f0eee6] w-full font-sans">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        {/* Full Width Section Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 mb-8 pb-4 border-b border-gray-100">
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider mb-2">

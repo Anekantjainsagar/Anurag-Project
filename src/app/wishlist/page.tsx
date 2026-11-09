@@ -81,9 +81,9 @@ export default function WishlistPage() {
       <TopBar />
       <Navbar />
 
-      {/* Full Width Banner — Exactly matching Contact, Products, and About pages */}
+      {/* Header Banner */}
       <section className="w-full bg-[#014d1e] text-white py-12 sm:py-16 relative overflow-hidden">
-        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
             <span>ONAAR • Saved Harvests</span>
@@ -103,7 +103,7 @@ export default function WishlistPage() {
 
       <main className="flex-1 w-full pb-16">
         {/* Wishlist Items Content */}
-        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 mt-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
           {wishlistedProducts.length > 0 ? (
             <div>
               {/* Toolbar */}
@@ -159,7 +159,7 @@ export default function WishlistPage() {
                       className="group relative bg-white border border-[#e4dfd3] hover:border-[#01722C] rounded-2xl overflow-hidden shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
                     >
                       {/* Product Image & Badges */}
-                      <div className="relative aspect-4/3 overflow-hidden bg-[#faf8f4] border-b border-[#ede7d8]">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-[#faf8f4] border-b border-[#ede7d8]">
                         <Link
                           href={`/products/${product.id}`}
                           className="block w-full h-full cursor-pointer"

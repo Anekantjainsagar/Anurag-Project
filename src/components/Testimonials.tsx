@@ -51,7 +51,7 @@ const TESTIMONIALS = [
 export default function Testimonials() {
   return (
     <section className="py-12 sm:py-16 bg-[#faf9f5] w-full font-sans border-b border-[#f0ece1]">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider">

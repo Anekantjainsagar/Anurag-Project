@@ -29,7 +29,7 @@ const VALUE_PROPS = [
 export default function ValueTrustStrip() {
   return (
     <section className="w-full bg-[#faf8f4] border-b border-[#e8e2d4] py-5 sm:py-6 font-sans">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {VALUE_PROPS.map((item, index) => {
             const Icon = item.icon;

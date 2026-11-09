@@ -81,9 +81,9 @@ export default function AboutPage() {
       <TopBar />
       <Navbar />
 
-      {/* Full Width Banner — Exactly matching Contact and Products pages */}
+      {/* Header Banner */}
       <section className="w-full bg-[#014d1e] text-white py-12 sm:py-16 relative overflow-hidden">
-        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 text-center space-y-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-[#58cf8b]" />
             <span>ONAAR • Our Heritage & Standards</span>
@@ -98,8 +98,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Main Full Width Content — Matching Contact Page Layout */}
-      <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-12 sm:py-16 flex-1 space-y-12 sm:space-y-16">
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1 space-y-12 sm:space-y-16">
         {/* Row 1: Direct Mission Overview & Story */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column (5 cols) */}

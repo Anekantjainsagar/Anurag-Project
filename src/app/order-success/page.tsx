@@ -64,8 +64,8 @@ function OrderSuccessContent() {
       <Navbar />
 
       {/* Order Status Sub-header */}
-      <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="w-full flex items-center justify-between text-xs text-[#01722C]">
+      <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-[#01722C]">
           <div className="flex items-center gap-2 font-bold">
             <CheckCircle2 className="w-3.5 h-3.5 text-[#01722C]" />
             <span>Order Confirmed & Payment on Delivery Scheduled</span>
@@ -79,7 +79,7 @@ function OrderSuccessContent() {
       </div>
 
       {/* Main Confirmation Canvas */}
-      <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-10 sm:py-16 flex-1">
+      <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex-1">
         <div className="max-w-3xl mx-auto space-y-6">
           {/* Top Success Celebration Card */}
           <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#e4ebe6] shadow-sm text-center space-y-4">

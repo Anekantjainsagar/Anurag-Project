@@ -7,7 +7,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export default function PromoBanners() {
   return (
     <section className="py-8 sm:py-12 bg-white w-full font-sans">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Left Banner: Premium Rice Collection */}
           <div className="relative overflow-hidden rounded-3xl border border-[#e3dcd1] shadow-xs bg-[#f4eee4] flex flex-col justify-between group min-h-[220px] sm:min-h-[260px]">

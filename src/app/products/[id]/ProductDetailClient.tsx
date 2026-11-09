@@ -82,7 +82,7 @@ function ProductDetailInner({ product }: { product: Product }) {
       <TopBar />
       <Navbar />
 
-      <main className="flex-1 w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-6 sm:py-10">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-1.5 text-xs text-gray-500 mb-6 flex-wrap">
           <Link href="/" className="hover:text-[#044a27] transition-colors">
@@ -113,7 +113,7 @@ function ProductDetailInner({ product }: { product: Product }) {
           {/* ================= LEFT: MULTI-IMAGE GALLERY (Showing at least 3-4 images!) ================= */}
           <div className="lg:col-span-6 space-y-4">
             {/* Main Active Image Display with smooth cross-fade */}
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-[#faf8f4] border border-[#e2e8e4] shadow-sm group">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#faf8f4] border border-[#e2e8e4] shadow-sm group">
               {images.map((imgUrl, idx) => {
                 const isCurrent = activeImageIndex === idx;
                 return (
@@ -166,7 +166,7 @@ function ProductDetailInner({ product }: { product: Product }) {
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative aspect-4/3 rounded-xl overflow-hidden bg-white border-2 transition-all cursor-pointer ${
+                  className={`relative aspect-[4/3] rounded-xl overflow-hidden bg-white border-2 transition-all cursor-pointer ${
                     activeImageIndex === idx
                       ? "border-[#044a27] shadow-md scale-103"
                       : "border-gray-200 hover:border-gray-400 opacity-80 hover:opacity-100"
@@ -582,7 +582,7 @@ function ProductDetailInner({ product }: { product: Product }) {
                 >
                   <Link
                     href={`/products/${rel.id}`}
-                    className="block aspect-4/3 overflow-hidden rounded-xl bg-gray-50 mb-2"
+                    className="block aspect-[4/3] overflow-hidden rounded-xl bg-gray-50 mb-2"
                   >
                     <img
                       src={rel.image}

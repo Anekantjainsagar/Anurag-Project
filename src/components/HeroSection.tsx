@@ -59,8 +59,8 @@ export default function HeroSection() {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Full-Bleed Edge-to-Edge Slider Container */}
-      <div className="relative w-full aspect-16/10 sm:aspect-21/9 md:aspect-24/9 lg:aspect-28/10 min-h-[360px] sm:min-h-[460px] max-h-[560px] overflow-hidden">
+      {/* Full-Bleed Slider Container with Responsive Height */}
+      <div className="relative w-full h-[380px] sm:h-[440px] md:h-[500px] lg:h-[540px] overflow-hidden">
         {BANNERS.map((banner, index) => {
           const isActive = index === currentSlide;
           return (
@@ -80,30 +80,32 @@ export default function HeroSection() {
               {/* Gradient Scrim for maximum legibility */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/30 sm:to-transparent" />
 
-              {/* Content Overlay */}
-              <div className="absolute inset-0 z-10 flex items-center px-10 sm:px-16 md:px-20">
-                <div className="max-w-2xl text-white space-y-2.5 sm:space-y-4">
-                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[#88e8b2] text-[9.5px] sm:text-xs font-bold uppercase tracking-wider border border-white/20">
-                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#58cf8b]" />
-                    <span>{banner.badge}</span>
-                  </div>
+              {/* Content Overlay - Centered with max-w-7xl Container */}
+              <div className="absolute inset-0 z-10 flex items-center">
+                <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+                  <div className="max-w-2xl text-white space-y-2.5 sm:space-y-4 pl-6 sm:pl-10 md:pl-12">
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[#88e8b2] text-[9.5px] sm:text-xs font-bold uppercase tracking-wider border border-white/20">
+                      <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#58cf8b]" />
+                      <span>{banner.badge}</span>
+                    </div>
 
-                  <h1 className="font-serif text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight drop-shadow-sm">
-                    {banner.title}
-                  </h1>
+                    <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight drop-shadow-sm">
+                      {banner.title}
+                    </h1>
 
-                  <p className="text-xs sm:text-sm md:text-base text-gray-200 line-clamp-2 sm:line-clamp-none max-w-xl leading-relaxed">
-                    {banner.subtitle}
-                  </p>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-200 line-clamp-2 sm:line-clamp-none max-w-xl leading-relaxed">
+                      {banner.subtitle}
+                    </p>
 
-                  <div className="pt-1 sm:pt-2">
-                    <Link
-                      href={banner.targetHref}
-                      className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] active:scale-95 text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl shadow-lg transition-all"
-                    >
-                      <span>{banner.buttonText}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    <div className="pt-1 sm:pt-2">
+                      <Link
+                        href={banner.targetHref}
+                        className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] active:scale-95 text-white text-xs sm:text-sm font-bold uppercase tracking-wider px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-xl shadow-lg transition-all"
+                      >
+                        <span>{banner.buttonText}</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

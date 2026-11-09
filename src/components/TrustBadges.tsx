@@ -15,7 +15,7 @@ const TRUST_BADGES = [
 export default function TrustBadges() {
   return (
     <section className="py-6 sm:py-8 bg-[#013816] w-full font-sans">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {TRUST_BADGES.map((badge, idx) => {
             const Icon = badge.icon;

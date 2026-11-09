@@ -359,8 +359,8 @@ export default function CheckoutPage() {
       <Navbar />
 
       {/* Checkout Security Sub-header */}
-      <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5 px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="w-full flex items-center justify-between text-xs text-[#01722C]">
+      <div className="w-full bg-[#edf7f1] border-b border-[#b8ddc6]/70 py-2.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-[#01722C]">
           <div className="flex items-center gap-2 font-bold">
             <Lock className="w-3.5 h-3.5 text-[#01722C]" />
             <span>256-Bit SSL Encrypted Checkout</span>
@@ -373,8 +373,8 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      {/* Main Checkout Canvas - Full Width Fluid Container */}
-      <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 flex-1">
+      {/* Main Checkout Canvas */}
+      <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1">
         {cartItems.length === 0 ? (
           <div className="max-w-md mx-auto text-center py-16 bg-white rounded-3xl p-8 border border-[#e4ebe6] shadow-sm space-y-4">
             <div className="w-16 h-16 rounded-full bg-[#edf7f1] text-[#01722C] flex items-center justify-center mx-auto">

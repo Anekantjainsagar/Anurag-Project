@@ -205,9 +205,9 @@ function ProductsCatalogContent() {
       <TopBar />
       <Navbar />
 
-      {/* Full-Width Header Banner */}
+      {/* Header Banner */}
       <section className="w-full bg-[#014d1e] text-white py-10 sm:py-14 relative overflow-hidden">
-        <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#7de0a8] text-xs font-semibold">
@@ -248,8 +248,8 @@ function ProductsCatalogContent() {
         </div>
       </section>
 
-      {/* Main Catalog Workspace - Full Width Fluid Container */}
-      <main className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 flex-1">
+      {/* Main Catalog Workspace */}
+      <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1">
         {/* Controls Toolbar: Search, Category Pills, Sort */}
         <div className="space-y-4 mb-8">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-[#e8e4db] shadow-2xs">
@@ -343,9 +343,9 @@ function ProductsCatalogContent() {
           </div>
         </div>
 
-        {/* Product Cards Full-Width Responsive Grid */}
+        {/* Product Cards Responsive Grid */}
         {paginatedProducts.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 sm:gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
             {paginatedProducts.map((product) => {
               const currentOption =
                 selectedOptions[product.id] || product.options[0];
