@@ -4,9 +4,11 @@ import React, { useState, useEffect } from "react";
 import { Plus, X, Upload, Layers, RefreshCw, Edit, Trash2 } from "lucide-react";
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
+import { useConfirm } from "@/context/ConfirmContext";
 
 export default function AdminCategoriesPage() {
   const { showToast } = useCart();
+  const { confirm } = useConfirm();
   const [categories, setCategories] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
@@ -110,7 +112,15 @@ export default function AdminCategoriesPage() {
   };
 
   const handleDeleteCategory = async (id: string, name: string) => {
-    if (!confirm(`Are you sure you want to delete category '${name}'?`)) return;
+    const isConfirmed = await confirm({
+      title: "Delete Category",
+      message: `Are you sure you want to delete category '${name}'?`,
+      confirmText: "Delete Category",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteCategory(id);
       showToast(`Category deleted.`);

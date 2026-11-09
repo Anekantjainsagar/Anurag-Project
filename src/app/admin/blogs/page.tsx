@@ -5,11 +5,13 @@ import { Plus, X, Upload, BookOpen, RefreshCw, Eye, Edit, Trash2 } from "lucide-
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
+import { useConfirm } from "@/context/ConfirmContext";
 import RichHtmlEditor from "@/components/RichHtmlEditor";
 
 export default function AdminBlogsPage() {
   const { showToast } = useCart();
   const { user } = useAuth();
+  const { confirm } = useConfirm();
 
   const [blogs, setBlogs] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
@@ -188,7 +190,15 @@ export default function AdminBlogsPage() {
   };
 
   const handleDeleteBlog = async (id: string, title: string) => {
-    if (!confirm(`Are you sure you want to delete article '${title}'?`)) return;
+    const isConfirmed = await confirm({
+      title: "Delete Article",
+      message: `Are you sure you want to delete article '${title}'?`,
+      confirmText: "Delete Article",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteBlog(id);
       showToast(`Article deleted.`);

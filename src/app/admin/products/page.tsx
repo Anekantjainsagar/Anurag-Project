@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
+import { useConfirm } from "@/context/ConfirmContext";
 import {
   Plus,
   Search,
@@ -21,6 +22,7 @@ import {
 
 export default function AdminProductsPage() {
   const { showToast } = useCart();
+  const { confirm } = useConfirm();
 
   const [products, setProducts] = useState<any[]>([]);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -166,7 +168,15 @@ export default function AdminProductsPage() {
   };
 
   const handleDeleteProduct = async (id: string, name: string) => {
-    if (!confirm(`Are you sure you want to permanently delete '${name}' from catalog?`)) return;
+    const isConfirmed = await confirm({
+      title: "Delete Organic Crop",
+      message: `Are you sure you want to permanently delete '${name}' from catalog?`,
+      confirmText: "Delete Product",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteProduct(id);
       showToast(`Deleted ${name}`);

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { ConfirmProvider } from "@/context/ConfirmContext";
 import StoreLayout from "@/components/StoreLayout";
 import "./globals.css";
 
@@ -44,7 +45,9 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white overflow-x-clip">
         <AuthProvider>
           <CartProvider>
-            <StoreLayout>{children}</StoreLayout>
+            <ConfirmProvider>
+              <StoreLayout>{children}</StoreLayout>
+            </ConfirmProvider>
           </CartProvider>
         </AuthProvider>
       </body>

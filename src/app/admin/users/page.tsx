@@ -20,9 +20,11 @@ import {
 } from "lucide-react";
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
+import { useConfirm } from "@/context/ConfirmContext";
 
 function UsersContent() {
   const { showToast } = useCart();
+  const { confirm } = useConfirm();
   const searchParams = useSearchParams();
   const highlightUserId = searchParams.get("highlight");
 
@@ -169,9 +171,15 @@ function UsersContent() {
   };
 
   const handleDeleteUser = async (userId: string, userName: string) => {
-    if (!confirm(`Are you sure you want to permanently delete user account '${userName}'? This cannot be undone.`)) {
-      return;
-    }
+    const isConfirmed = await confirm({
+      title: "Delete User Account",
+      message: `Are you sure you want to permanently delete user account '${userName}'? This cannot be undone.`,
+      confirmText: "Delete Account",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteUser(userId);
       showToast(`User account deleted.`);

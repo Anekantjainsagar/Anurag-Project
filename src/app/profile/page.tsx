@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth, UserAddress } from "@/context/AuthContext";
 import { useCart } from "@/context/CartContext";
+import { useConfirm } from "@/context/ConfirmContext";
 import { api } from "@/services/apiClient";
 import {
   User,
@@ -58,6 +59,7 @@ function ProfileContent() {
   } = useAuth();
 
   const { setIsLoginModalOpen, showToast } = useCart();
+  const { confirm } = useConfirm();
 
   const [activeTab, setActiveTab] = useState<"profile" | "addresses" | "orders">(
     initialTab === "orders" ? "orders" : initialTab === "addresses" ? "addresses" : "profile"
@@ -205,11 +207,18 @@ function ProfileContent() {
   };
 
   const handleDeleteAddress = async (id: string) => {
-    if (confirm("Are you sure you want to remove this delivery address?")) {
-      const success = await deleteAddress(id);
-      if (success) {
-        showToast("Address deleted");
-      }
+    const isConfirmed = await confirm({
+      title: "Remove Delivery Address",
+      message: "Are you sure you want to remove this delivery address from your account?",
+      confirmText: "Remove Address",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
+    const success = await deleteAddress(id);
+    if (success) {
+      showToast("Address deleted");
     }
   };
 

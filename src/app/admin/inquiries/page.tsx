@@ -22,11 +22,13 @@ import {
 } from "lucide-react";
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
+import { useConfirm } from "@/context/ConfirmContext";
 
 type TabType = "retail" | "wholesale" | "newsletter";
 
 export default function AdminInquiriesPage() {
   const { showToast } = useCart();
+  const { confirm } = useConfirm();
   const [activeTab, setActiveTab] = useState<TabType>("retail");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -81,7 +83,15 @@ export default function AdminInquiriesPage() {
 
   // Delete Contact Inquiry
   const handleDeleteContact = async (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this contact message?")) return;
+    const isConfirmed = await confirm({
+      title: "Delete Contact Message",
+      message: "Are you sure you want to delete this contact message?",
+      confirmText: "Delete Message",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteContactInquiry(id);
       setContactInquiries((prev) => prev.filter((c) => c.id !== id));
@@ -106,7 +116,15 @@ export default function AdminInquiriesPage() {
 
   // Delete Bulk Enquiry
   const handleDeleteBulk = async (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this wholesale lead?")) return;
+    const isConfirmed = await confirm({
+      title: "Delete Wholesale Lead",
+      message: "Are you sure you want to delete this wholesale lead?",
+      confirmText: "Delete Lead",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteBulkEnquiry(id);
       setBulkInquiries((prev) => prev.filter((b) => b.id !== id));
@@ -157,7 +175,15 @@ export default function AdminInquiriesPage() {
 
   // Delete Newsletter Subscriber
   const handleDeleteSubscriber = async (id: string) => {
-    if (!window.confirm("Are you sure you want to remove this newsletter subscriber?")) return;
+    const isConfirmed = await confirm({
+      title: "Remove Newsletter Subscriber",
+      message: "Are you sure you want to remove this newsletter subscriber?",
+      confirmText: "Remove Subscriber",
+      cancelText: "Cancel",
+      variant: "danger",
+    });
+    if (!isConfirmed) return;
+
     try {
       await api.admin.deleteNewsletterSubscriber(id);
       setNewsletterSubscribers((prev) => prev.filter((s) => s.id !== id));

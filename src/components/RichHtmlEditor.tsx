@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import { useConfirm } from "@/context/ConfirmContext";
 import {
   Bold,
   Italic,
@@ -38,6 +39,7 @@ export default function RichHtmlEditor({
   minHeight = "280px",
   onUploadImage,
 }: RichHtmlEditorProps) {
+  const { prompt, alert } = useConfirm();
   const [mode, setMode] = useState<"visual" | "html" | "preview">("visual");
   const editorRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -81,16 +83,28 @@ export default function RichHtmlEditor({
     exec("formatBlock", `<${tag}>`);
   };
 
-  const handleInsertLink = () => {
-    const url = prompt("Enter hyperlink URL (e.g. https://onaar.farm):");
+  const handleInsertLink = async () => {
+    const url = await prompt({
+      title: "Insert Hyperlink",
+      message: "Enter destination URL for selected text (e.g. https://onaar.farm):",
+      placeholder: "https://onaar.farm/...",
+      confirmText: "Insert Link",
+    });
     if (url) {
+      editorRef.current?.focus();
       exec("createLink", url);
     }
   };
 
-  const handleInsertImage = () => {
-    const url = prompt("Enter Image URL (or use the Upload button):");
+  const handleInsertImage = async () => {
+    const url = await prompt({
+      title: "Insert Image from URL",
+      message: "Enter direct image URL to embed in the article:",
+      placeholder: "https://images.unsplash.com/...",
+      confirmText: "Insert Image",
+    });
     if (url) {
+      editorRef.current?.focus();
       exec("insertHTML", `<img src="${url}" alt="Article illustration" class="rounded-xl my-4 max-w-full h-auto shadow-sm" />`);
     }
   };
@@ -105,7 +119,11 @@ export default function RichHtmlEditor({
         exec("insertHTML", `<img src="${url}" alt="${file.name}" class="rounded-xl my-4 max-w-full h-auto shadow-sm" />`);
       }
     } catch {
-      alert("Failed to upload image.");
+      await alert({
+        title: "Image Upload Failed",
+        message: "Failed to upload image. Please verify your connection or file size and try again.",
+        variant: "danger",
+      });
     } finally {
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
