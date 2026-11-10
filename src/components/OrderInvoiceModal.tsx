@@ -300,16 +300,6 @@ export default function OrderInvoiceModal({
               </button>
             </div>
 
-            {/* Print Button */}
-            <button
-              onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer"
-              title="Print official tax invoice"
-            >
-              <Printer className="w-3.5 h-3.5" />
-              <span className="hidden md:inline">Print</span>
-            </button>
-
             {/* Close Button */}
             <button
               onClick={onClose}
@@ -572,15 +562,6 @@ export default function OrderInvoiceModal({
                       </strong>
                     </div>
                   </div>
-
-                  {/* Quick Switch to Full Invoice View */}
-                  <button
-                    onClick={() => setActiveTab("invoice")}
-                    className="w-full mt-3 py-2.5 px-3 rounded-xl bg-[#01722C] hover:bg-[#0b542c] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs cursor-pointer"
-                  >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>View & Download Official Tax Invoice</span>
-                  </button>
                 </div>
               </div>
             </div>
@@ -841,16 +822,18 @@ export default function OrderInvoiceModal({
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-            <button
-              onClick={handlePrint}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
-            >
-              <Printer className="w-4 h-4" />
-              <span>Print Official Invoice</span>
-            </button>
+            {activeTab === "invoice" && (
+              <button
+                onClick={handlePrint}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Print / Download Invoice</span>
+              </button>
+            )}
             <button
               onClick={onClose}
-              className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-100 text-gray-700 text-xs font-bold transition-colors cursor-pointer"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-gray-300 hover:bg-gray-100 text-gray-700 text-xs font-bold transition-colors cursor-pointer"
             >
               Close
             </button>
