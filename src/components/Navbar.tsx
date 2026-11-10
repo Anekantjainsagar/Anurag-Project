@@ -105,7 +105,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.06)] font-sans w-full transition-all">
       {/* Responsive Centered Container */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4">
+      <div className="max-w-7xl mx-auto lg:mx-0 xl:mx-auto px-3 sm:px-6 lg:px-0 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4">
         {/* Left: Official Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <BrandLogo variant="dark" />

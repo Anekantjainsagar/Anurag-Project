@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { usePathname } from "next/navigation";
 import TopBar from "@/components/TopBar";
 import Navbar from "@/components/Navbar";
@@ -10,7 +10,7 @@ import LoginModal from "@/components/LoginModal";
 import BulkEnquiryModal from "@/components/BulkEnquiryModal";
 import ToastNotification from "@/components/ToastNotification";
 
-export default function StoreLayout({ children }: { children: React.ReactNode }) {
+function StoreLayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
 
@@ -35,5 +35,13 @@ export default function StoreLayout({ children }: { children: React.ReactNode })
       <BulkEnquiryModal />
       <ToastNotification />
     </>
+  );
+}
+
+export default function StoreLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white">{children}</div>}>
+      <StoreLayoutContent>{children}</StoreLayoutContent>
+    </Suspense>
   );
 }
