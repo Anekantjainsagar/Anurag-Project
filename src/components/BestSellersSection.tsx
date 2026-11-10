@@ -258,17 +258,17 @@ export default function BestSellersSection({
             <span className="font-bold text-[#01722C]">{currentCategory}</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Link
               href={`/products?category=${encodeURIComponent(currentCategory)}`}
-              className="inline-flex items-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-xs"
+              className="inline-flex items-center justify-center gap-2 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl transition-all shadow-xs text-center whitespace-nowrap"
             >
               <span>Explore All 24 {currentCategory} Products</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
             <Link
               href="/products"
-              className="inline-flex items-center gap-1.5 bg-white hover:bg-[#edf7f1] text-[#01722C] text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-colors border border-[#01722C]"
+              className="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-[#edf7f1] text-[#01722C] text-xs sm:text-sm font-bold px-5 py-3 rounded-xl transition-colors border border-[#01722C] text-center whitespace-nowrap"
             >
               <span>Full 192 Harvests</span>
             </Link>

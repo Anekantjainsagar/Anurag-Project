@@ -165,10 +165,10 @@ export default function BlogHighlights() {
                       e.stopPropagation();
                       handleOpenArticle(article);
                     }}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#01722C] group-hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#01722C] group-hover:underline cursor-pointer shrink-0 whitespace-nowrap"
                   >
                     <span>Read Article</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 shrink-0" />
                   </button>
                 </div>
               </article>
@@ -185,11 +185,11 @@ export default function BlogHighlights() {
           role="dialog"
           aria-modal="true"
           onClick={() => setActiveArticle(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/70 backdrop-blur-xs animate-fade-in overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-5 bg-black/70 backdrop-blur-xs animate-fade-in overflow-y-auto"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-2xl w-full my-auto overflow-hidden shadow-2xl border border-gray-200 max-h-[90vh] flex flex-col animate-scale-up"
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full my-auto overflow-hidden shadow-2xl border border-gray-200 max-h-[92dvh] sm:max-h-[90vh] flex flex-col animate-scale-up"
           >
             {/* Modal Hero Image */}
             {(() => {
@@ -404,10 +404,10 @@ export default function BlogHighlights() {
                   <Link
                     href={`/products?category=${activeArticle.featuredProduct.categorySlug}`}
                     onClick={() => setActiveArticle(null)}
-                    className="inline-flex items-center justify-center gap-1.5 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shrink-0 shadow-2xs"
+                    className="inline-flex items-center justify-center gap-1.5 bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shrink-0 shadow-2xs whitespace-nowrap w-full sm:w-auto"
                   >
                     <span>Shop This Commodity</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               )}
@@ -429,7 +429,7 @@ export default function BlogHighlights() {
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="p-4 sm:p-5 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+            <div className="p-3.5 sm:p-5 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 shrink-0">
               <Link
                 href={
                   activeArticle.featuredProduct
@@ -437,28 +437,28 @@ export default function BlogHighlights() {
                     : "/products"
                 }
                 onClick={() => setActiveArticle(null)}
-                className="text-xs font-bold text-[#01722C] hover:underline flex items-center gap-1"
+                className="text-xs font-bold text-[#01722C] hover:underline flex items-center justify-center sm:justify-start gap-1 py-1 text-center sm:text-left"
               >
                 <span>
                   {activeArticle.featuredProduct
                     ? `Shop ${activeArticle.category} (${activeArticle.featuredProduct.name})`
                     : "Shop Related Farm-Fresh Commodities"}
                 </span>
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3 h-3 shrink-0" />
               </Link>
 
-              <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto justify-end">
                 <Link
                   href="/blog"
                   onClick={() => setActiveArticle(null)}
-                  className="w-full sm:w-auto text-center border border-gray-300 hover:border-[#01722C] text-gray-700 hover:text-[#01722C] text-xs font-bold px-4 py-2.5 rounded-full transition-colors"
+                  className="w-full sm:w-auto text-center border border-gray-300 hover:border-[#01722C] text-gray-700 hover:text-[#01722C] text-xs font-bold px-4 py-2.5 rounded-full transition-colors whitespace-nowrap"
                 >
                   View All {BLOG_POSTS.length} Articles
                 </Link>
                 <button
                   type="button"
                   onClick={() => setActiveArticle(null)}
-                  className="w-full sm:w-auto bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold px-5 py-2.5 rounded-full transition-transform active:scale-95 cursor-pointer shadow-xs"
+                  className="w-full sm:w-auto bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold px-5 py-2.5 rounded-full transition-transform active:scale-95 cursor-pointer shadow-xs whitespace-nowrap text-center"
                 >
                   Close Article
                 </button>

@@ -481,13 +481,14 @@ function ProductsCatalogContent() {
                       <div className="grid grid-cols-2 gap-1.5">
                         <button
                           onClick={(e) => handleAddToCart(product, e)}
-                          className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center"
+                          className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-1"
                         >
-                          Add to Cart
+                          <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
+                          <span>Add</span>
                         </button>
                         <button
                           onClick={(e) => handleBuyNow(product, e)}
-                          className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center"
+                          className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap"
                         >
                           Buy Now
                         </button>

@@ -238,15 +238,23 @@ export default function AdminCategoriesPage() {
 
       {/* Modal: Add / Edit Category */}
       {isCategoryModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 space-y-4 text-xs">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsCategoryModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-md w-full my-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-4 text-xs"
+          >
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-base font-bold text-slate-900 font-serif">
                 {editingCategory ? "Edit Category" : "New Category"}
               </h3>
               <button
                 onClick={() => setIsCategoryModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-600 rounded-lg"
+                className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -331,18 +339,18 @@ export default function AdminCategoriesPage() {
                 )}
               </div>
 
-              <div className="flex justify-end gap-2 border-t border-slate-100 pt-4">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 border-t border-slate-100 pt-4">
                 <button
                   type="button"
                   onClick={() => setIsCategoryModalOpen(false)}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold cursor-pointer transition-colors"
+                  className="w-full sm:w-auto px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold cursor-pointer transition-colors text-center whitespace-nowrap"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSavingCategory}
-                  className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 transition-colors"
+                  className="w-full sm:w-auto px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 transition-colors text-center whitespace-nowrap shadow-xs"
                 >
                   {isSavingCategory ? "Saving..." : "Save Category"}
                 </button>

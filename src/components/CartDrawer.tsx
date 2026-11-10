@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import {
@@ -27,6 +27,22 @@ export default function CartDrawer() {
     removeFromCart,
   } = useCart();
 
+  // Lock body scroll and listen for Escape key when cart drawer is open
+  useEffect(() => {
+    if (isCartOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsCartOpen(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isCartOpen, setIsCartOpen]);
+
   if (!isCartOpen) return null;
 
   const freeShippingThreshold = 499;
@@ -50,7 +66,7 @@ export default function CartDrawer() {
       />
 
       {/* Drawer */}
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-slide-left">
+      <div className="relative w-full max-w-md bg-white h-screen max-h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc]">
           <div className="flex items-center gap-2">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { BLOG_POSTS } from "@/data/mockData";
 import { BlogPost } from "@/types";
@@ -176,6 +176,22 @@ export default function BlogSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Lock background scroll and listen for Escape key when reading modal is open
+  useEffect(() => {
+    if (activeBlog) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setActiveBlog(null);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [activeBlog]);
 
   // Extract unique categories for filter pills in order of store categories
   const categories = useMemo(() => {
@@ -426,15 +442,15 @@ export default function BlogSection() {
                       <div className="mt-2.5 p-2 bg-[#f4f9f5] border border-[#cce4d4] rounded-xl flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 min-w-0">
                           <span className="w-2 h-2 rounded-full bg-[#044a27] shrink-0" />
-                          <div className="min-w-0 text-xs">
+                          <div className="min-w-0 text-xs truncate">
                             <span className="text-gray-500 font-medium text-[11px]">Related Product: </span>
-                            <span className="font-bold text-gray-900 truncate">{blog.featuredProduct.name}</span>
+                            <span className="font-bold text-gray-900">{blog.featuredProduct.name}</span>
                           </div>
                         </div>
                         <Link
                           href={`/products?category=${blog.featuredProduct.categorySlug}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="text-[11px] font-bold text-[#044a27] hover:underline shrink-0 flex items-center gap-0.5 bg-white px-2 py-0.5 rounded-md border border-[#cbe5d5] hover:bg-[#e8f3ec] transition-colors"
+                          className="text-[11px] font-bold text-[#044a27] hover:underline shrink-0 flex items-center gap-0.5 bg-white px-2.5 py-1 rounded-md border border-[#cbe5d5] hover:bg-[#e8f3ec] transition-colors whitespace-nowrap"
                         >
                           <span>Shop</span>
                           <ArrowRight className="w-3 h-3" />
@@ -471,17 +487,17 @@ export default function BlogSection() {
                       </div>
                     )}
 
-                  {/* Footer Row: Tags & Read Button */}
-                  <div className="pt-2 border-t border-gray-100 flex items-center justify-between gap-3">
-                    <div className="text-xs text-gray-400 font-medium">
+                  {/* Footer Row: Tags & Read Button (Guaranteed Responsive, No Awkward Word Break) */}
+                  <div className="pt-2 border-t border-gray-100 flex items-center justify-between gap-2">
+                    <div className="text-[11px] sm:text-xs text-gray-400 font-medium truncate min-w-0 hidden xs:block">
                       Click image or arrows to preview photos
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 shrink-0 ml-auto">
                       <button
                         onClick={(e) => handleShare(blog, e)}
                         title="Share article link"
-                        className="p-1.5 text-gray-400 hover:text-[#044a27] hover:bg-[#e8f3ec] rounded-full transition-colors cursor-pointer"
+                        className="p-1.5 text-gray-400 hover:text-[#044a27] hover:bg-[#e8f3ec] rounded-full transition-colors cursor-pointer shrink-0"
                       >
                         {copiedId === blog.id ? (
                           <Check className="w-4 h-4 text-green-600" />
@@ -489,9 +505,9 @@ export default function BlogSection() {
                           <Share2 className="w-4 h-4" />
                         )}
                       </button>
-                      <span className="inline-flex items-center gap-1.5 bg-[#044a27] group-hover:bg-[#033b20] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-2xs transition-all">
+                      <span className="inline-flex items-center gap-1.5 bg-[#044a27] group-hover:bg-[#033b20] text-white text-xs font-bold px-3.5 sm:px-4 py-2 rounded-full shadow-2xs transition-all shrink-0 whitespace-nowrap">
                         <span>Read Full Story</span>
-                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 shrink-0" />
                       </span>
                     </div>
                   </div>
@@ -540,11 +556,12 @@ export default function BlogSection() {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/65 backdrop-blur-xs animate-fade-in overflow-y-auto"
+          onClick={() => setActiveBlog(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-5 bg-black/70 backdrop-blur-xs animate-fade-in overflow-y-auto"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-2xl w-full my-auto overflow-hidden shadow-2xl border border-gray-200 max-h-[90vh] flex flex-col"
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full my-auto overflow-hidden shadow-2xl border border-gray-200 max-h-[92dvh] sm:max-h-[90vh] flex flex-col"
           >
             {/* Modal Hero Image with Carousel Controls */}
             {(() => {
@@ -554,7 +571,7 @@ export default function BlogSection() {
                   : [activeBlog.image];
 
               return (
-                <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-gray-900 group/modalImg">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] max-h-[220px] sm:max-h-[300px] w-full shrink-0 overflow-hidden bg-gray-900 group/modalImg">
                   <img
                     src={modalGallery[modalImageIndex % modalGallery.length]}
                     alt={activeBlog.title}
@@ -566,7 +583,7 @@ export default function BlogSection() {
                   <button
                     onClick={() => setActiveBlog(null)}
                     aria-label="Close article modal"
-                    className="absolute top-3.5 right-3.5 bg-black/60 hover:bg-black text-white p-2 rounded-full transition-colors cursor-pointer z-20"
+                    className="absolute top-3 right-3 bg-black/60 hover:bg-black text-white p-2 rounded-full transition-colors cursor-pointer z-30"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -583,7 +600,7 @@ export default function BlogSection() {
                           )
                         }
                         aria-label="Previous photo"
-                        className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center z-20 cursor-pointer"
+                        className="absolute left-2.5 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center z-30 cursor-pointer"
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
@@ -594,12 +611,12 @@ export default function BlogSection() {
                           )
                         }
                         aria-label="Next photo"
-                        className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center z-20 cursor-pointer"
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center z-30 cursor-pointer"
                       >
                         <ChevronRight className="w-4 h-4" />
                       </button>
 
-                      <div className="absolute top-3.5 left-3.5 z-20 bg-black/60 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 backdrop-blur-xs">
+                      <div className="absolute top-3 left-3 z-30 bg-black/60 text-white text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-full flex items-center gap-1 backdrop-blur-xs">
                         <Camera className="w-3 h-3 text-[#facc15]" />
                         <span>
                           {(modalImageIndex % modalGallery.length) + 1} /{" "}
@@ -610,13 +627,13 @@ export default function BlogSection() {
                   )}
 
                   {/* Badges on hero image */}
-                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white text-xs z-10 pointer-events-none">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-3 right-3 flex items-center justify-between gap-1.5 flex-wrap text-white text-xs z-10 pointer-events-none">
                     {activeBlog.category && (
-                      <span className="bg-[#044a27]/90 backdrop-blur-xs font-bold px-3 py-1 rounded-full text-[11px] shadow-sm">
+                      <span className="bg-[#044a27]/90 backdrop-blur-xs font-bold px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] shadow-sm">
                         {activeBlog.category}
                       </span>
                     )}
-                    <div className="flex items-center gap-2 font-medium text-[11.5px] bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-xs">
+                    <div className="flex items-center gap-1.5 sm:gap-2 font-medium text-[10.5px] sm:text-[11.5px] bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-xs">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-3 h-3 text-[#facc15]" />
                         {activeBlog.date}
@@ -633,26 +650,26 @@ export default function BlogSection() {
             })()}
 
             {/* Modal Scrollable Article Body */}
-            <div className="p-5 sm:p-7 overflow-y-auto space-y-4">
+            <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
               {/* Author Banner */}
               {activeBlog.author && (
-                <div className="flex items-center justify-between p-3 bg-[#f8f6f0] rounded-xl border border-[#ede5d3]">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-[#044a27] text-white flex items-center justify-center font-bold text-xs">
+                <div className="flex flex-wrap items-center justify-between gap-2 p-3 bg-[#f8f6f0] rounded-xl border border-[#ede5d3]">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-8 h-8 rounded-full bg-[#044a27] text-white flex items-center justify-center font-bold text-xs shrink-0">
                       {getAuthorName(activeBlog.author).charAt(0)}
                     </div>
-                    <div>
-                      <h5 className="font-bold text-xs text-gray-900">
+                    <div className="min-w-0">
+                      <h5 className="font-bold text-xs text-gray-900 truncate">
                         {getAuthorName(activeBlog.author)}
                       </h5>
-                      <p className="text-[11px] text-gray-500">
+                      <p className="text-[11px] text-gray-500 truncate">
                         {getAuthorRole(activeBlog.author)}
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={(e) => handleShare(activeBlog, e)}
-                    className="inline-flex items-center gap-1 text-xs text-[#044a27] font-semibold hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs text-[#044a27] font-semibold hover:underline cursor-pointer shrink-0 ml-auto"
                   >
                     {copiedId === activeBlog.id ? (
                       <>
@@ -670,18 +687,18 @@ export default function BlogSection() {
               )}
 
               {/* Title */}
-              <h2 className="font-serif text-xl sm:text-2xl font-black text-gray-900 leading-snug">
+              <h2 className="font-serif text-lg sm:text-2xl font-black text-gray-900 leading-snug">
                 {activeBlog.title}
               </h2>
 
               {/* Summary Lead */}
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium bg-[#f2f8f4] p-3.5 rounded-xl border-l-4 border-[#044a27]">
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium bg-[#f2f8f4] p-3 sm:p-3.5 rounded-xl border-l-4 border-[#044a27]">
                 {activeBlog.summary}
               </p>
 
               {/* Key Health Benefits */}
               {activeBlog.keyBenefits && activeBlog.keyBenefits.length > 0 && (
-                <div className="p-4 bg-white rounded-xl border border-[#dce8e1] shadow-2xs space-y-2">
+                <div className="p-3.5 sm:p-4 bg-white rounded-xl border border-[#dce8e1] shadow-2xs space-y-2">
                   <h4 className="font-serif font-bold text-xs sm:text-sm text-[#044a27] flex items-center gap-1.5">
                     <Sparkles className="w-4 h-4 text-[#c29336]" />
                     <span>Key Health & Nutritional Takeaways</span>
@@ -738,10 +755,10 @@ export default function BlogSection() {
                         key={i}
                         className="bg-[#fbf7ee] p-2.5 rounded-xl border border-[#ede3cf] text-center"
                       >
-                        <div className="text-[10px] text-gray-500 font-medium">
+                        <div className="text-[10px] text-gray-500 font-medium truncate">
                           {stat.label}
                         </div>
-                        <div className="font-bold text-xs sm:text-sm text-[#044a27] mt-0.5">
+                        <div className="font-bold text-xs sm:text-sm text-[#044a27] mt-0.5 truncate">
                           {stat.value}
                         </div>
                       </div>
@@ -752,14 +769,14 @@ export default function BlogSection() {
 
               {/* Expert Purity / Cooking Tip Box */}
               {activeBlog.healthTip && (
-                <div className="p-3.5 bg-[#fef9ee] rounded-xl text-xs text-gray-800 leading-relaxed border border-[#f3e1b7]">
+                <div className="p-3 sm:p-3.5 bg-[#fef9ee] rounded-xl text-xs text-gray-800 leading-relaxed border border-[#f3e1b7]">
                   💡 <strong>Farm Nutrition Tip:</strong> {activeBlog.healthTip}
                 </div>
               )}
 
               {/* Featured Store Commodity Spotlight */}
               {activeBlog.featuredProduct && (
-                <div className="p-4 bg-[#f0f8f3] rounded-2xl border border-[#b8dfc7] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+                <div className="p-3.5 sm:p-4 bg-[#f0f8f3] rounded-2xl border border-[#b8dfc7] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-wider text-[#044a27] mb-0.5 flex items-center gap-1">
                       <Sparkles className="w-3.5 h-3.5 text-[#c29336]" />
@@ -775,7 +792,7 @@ export default function BlogSection() {
                   <Link
                     href={`/products?category=${activeBlog.featuredProduct.categorySlug}`}
                     onClick={() => setActiveBlog(null)}
-                    className="inline-flex items-center justify-center gap-1.5 bg-[#044a27] hover:bg-[#033b20] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shrink-0 shadow-2xs"
+                    className="inline-flex items-center justify-center gap-1.5 bg-[#044a27] hover:bg-[#033b20] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all shrink-0 shadow-2xs whitespace-nowrap w-full sm:w-auto"
                   >
                     <span>Shop This Commodity</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -800,7 +817,7 @@ export default function BlogSection() {
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="p-4 sm:p-5 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+            <div className="p-3.5 sm:p-4 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 shrink-0">
               <Link
                 href={
                   activeBlog.featuredProduct
@@ -808,20 +825,20 @@ export default function BlogSection() {
                     : "/products"
                 }
                 onClick={() => setActiveBlog(null)}
-                className="text-xs font-bold text-[#044a27] hover:underline flex items-center gap-1"
+                className="text-xs font-bold text-[#044a27] hover:underline flex items-center justify-center sm:justify-start gap-1 py-1 text-center sm:text-left"
               >
                 <span>
                   {activeBlog.featuredProduct
                     ? `Shop ${activeBlog.category} (${activeBlog.featuredProduct.name})`
                     : "Shop Related Farm-Fresh Commodities"}
                 </span>
-                <ArrowRight className="w-3 h-3" />
+                <ArrowRight className="w-3 h-3 shrink-0" />
               </Link>
 
               <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                 <button
                   onClick={() => setActiveBlog(null)}
-                  className="w-full sm:w-auto bg-[#044a27] hover:bg-[#033b20] text-white text-xs font-bold px-5 py-2.5 rounded-full transition-transform active:scale-95 cursor-pointer shadow-xs"
+                  className="w-full sm:w-auto bg-[#044a27] hover:bg-[#033b20] text-white text-xs font-bold px-5 py-2.5 rounded-full transition-transform active:scale-95 cursor-pointer shadow-xs whitespace-nowrap text-center"
                 >
                   Close Article
                 </button>

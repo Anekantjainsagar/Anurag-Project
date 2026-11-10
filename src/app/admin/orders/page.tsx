@@ -324,15 +324,23 @@ function OrdersContent() {
 
       {/* DISPATCH ORDER MODAL */}
       {selectedOrderForDispatch && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 p-6 space-y-4 text-xs">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setSelectedOrderForDispatch(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-md w-full my-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-4 text-xs"
+          >
             <div className="flex items-center justify-between border-b pb-3">
               <h3 className="text-base font-bold text-slate-900 font-serif">
                 Dispatch Order #{selectedOrderForDispatch.order_number || selectedOrderForDispatch.id.slice(0, 8)}
               </h3>
               <button
                 onClick={() => setSelectedOrderForDispatch(null)}
-                className="p-1 text-slate-400 hover:text-slate-600 rounded-lg"
+                className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -365,18 +373,18 @@ function OrdersContent() {
                 />
               </div>
 
-              <div className="flex justify-end gap-2 border-t border-slate-100 pt-4">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 border-t border-slate-100 pt-4">
                 <button
                   type="button"
                   onClick={() => setSelectedOrderForDispatch(null)}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer"
+                  className="w-full sm:w-auto px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer text-center whitespace-nowrap"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isUpdatingOrder}
-                  className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 text-center whitespace-nowrap shadow-xs"
                 >
                   {isUpdatingOrder ? "Dispatching..." : "Confirm & Send Tracking"}
                 </button>
@@ -388,8 +396,16 @@ function OrdersContent() {
 
       {/* FULL ORDER INSPECTION MODAL */}
       {inspectedOrder && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-6 text-xs">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setInspectedOrder(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[92dvh] sm:max-h-[90vh] my-auto overflow-y-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-6 text-xs"
+          >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center gap-3">

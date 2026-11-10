@@ -78,6 +78,16 @@ export default function ConfirmationModal({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onCancel, onConfirm, type]);
 
+  // Lock body scroll when confirmation modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const defaultTitle =
@@ -198,12 +208,12 @@ export default function ConfirmationModal({
           )}
 
           {/* Actions */}
-          <div className="mt-6 flex items-center justify-end gap-2.5">
+          <div className="mt-6 flex flex-col-reverse sm:flex-row items-stretch sm:items-center sm:justify-end gap-2.5">
             {type !== "alert" && (
               <button
                 type="button"
                 onClick={onCancel}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors cursor-pointer border border-slate-200"
+                className="w-full sm:w-auto text-center px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition-colors cursor-pointer border border-slate-200 whitespace-nowrap"
               >
                 {cancelText}
               </button>
@@ -213,7 +223,7 @@ export default function ConfirmationModal({
               ref={confirmButtonRef}
               type="button"
               onClick={() => onConfirm(type === "prompt" ? promptValue : undefined)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 ${confirmBtn}`}
+              className={`w-full sm:w-auto text-center px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 whitespace-nowrap ${confirmBtn}`}
             >
               {defaultConfirmText}
             </button>

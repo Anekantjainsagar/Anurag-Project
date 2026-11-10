@@ -613,8 +613,16 @@ function UsersContent() {
 
       {/* USER DETAIL MODAL / DRAWER */}
       {isUserDetailOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-6 text-xs">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsUserDetailOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[92dvh] sm:max-h-[90vh] my-auto overflow-y-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-6 text-xs"
+          >
             {isLoadingUserDetail || !selectedUserDetail ? (
               <div className="py-16 text-center text-slate-400">
                 <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-emerald-600" />
@@ -903,8 +911,16 @@ function UsersContent() {
 
       {/* USER MODAL (ADD / EDIT) */}
       {isUserModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 p-6 space-y-4 text-xs">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsUserModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full my-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-4 text-xs"
+          >
             <div className="flex items-center justify-between border-b pb-3">
               <h3 className="text-base font-bold text-slate-900 font-serif">
                 {editingUser ? "Edit User Account" : "Create New User Account"}
@@ -1013,18 +1029,18 @@ function UsersContent() {
                 </label>
               </div>
 
-              <div className="flex justify-end gap-2 border-t pt-4">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 border-t pt-4">
                 <button
                   type="button"
                   onClick={() => setIsUserModalOpen(false)}
-                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer transition-colors"
+                  className="w-full sm:w-auto px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer transition-colors text-center whitespace-nowrap"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSavingUser}
-                  className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 transition-colors"
+                  className="w-full sm:w-auto px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 transition-colors text-center whitespace-nowrap shadow-xs"
                 >
                   {isSavingUser ? "Saving..." : "Save User Account"}
                 </button>

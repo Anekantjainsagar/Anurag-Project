@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
@@ -19,6 +19,26 @@ export default function LoginModal() {
   const [devCode, setDevCode] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Lock body scroll and listen for Escape key when login modal is open
+  useEffect(() => {
+    if (isLoginModalOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsLoginModalOpen(false);
+          setOtpSent(false);
+          setDevCode(null);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isLoginModalOpen, setIsLoginModalOpen]);
 
   if (!isLoginModalOpen) return null;
 
@@ -133,8 +153,20 @@ export default function LoginModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans">
-      <div className="bg-white rounded-2xl max-w-sm w-full overflow-hidden shadow-2xl border border-gray-100 relative">
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={() => {
+        setIsLoginModalOpen(false);
+        setOtpSent(false);
+        setDevCode(null);
+      }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-2xl max-w-sm w-full my-auto overflow-hidden shadow-2xl border border-gray-100 relative max-h-[92dvh] overflow-y-auto"
+      >
         {/* Close Button */}
         <button
           onClick={() => {

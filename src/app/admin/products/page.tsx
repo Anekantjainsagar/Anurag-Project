@@ -406,8 +406,16 @@ export default function AdminProductsPage() {
       {/* MODAL 1: ADD / EDIT PRODUCT */}
       {/* ========================================================= */}
       {isProductModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsProductModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[92dvh] sm:max-h-[90vh] my-auto overflow-y-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-4"
+          >
             <div className="flex items-center justify-between border-b pb-3">
               <div>
                 <h3 className="text-base font-bold text-slate-900 font-serif">
@@ -417,7 +425,7 @@ export default function AdminProductsPage() {
               </div>
               <button
                 onClick={() => setIsProductModalOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg"
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -635,18 +643,18 @@ export default function AdminProductsPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-3 border-t">
+              <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 pt-3 border-t">
                 <button
                   type="button"
                   onClick={() => setIsProductModalOpen(false)}
-                  className="px-4 py-2 border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 cursor-pointer"
+                  className="w-full sm:w-auto px-4 py-2 border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-50 cursor-pointer text-center whitespace-nowrap"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isSavingProduct}
-                  className="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2 rounded-xl font-bold cursor-pointer disabled:opacity-50"
+                  className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2 rounded-xl font-bold cursor-pointer disabled:opacity-50 text-center whitespace-nowrap shadow-xs"
                 >
                   {isSavingProduct ? "Saving..." : editingProduct ? "Save Changes" : "Create Crop"}
                 </button>
@@ -660,8 +668,16 @@ export default function AdminProductsPage() {
       {/* MODAL 2: QUICK STOCK UPDATE */}
       {/* ========================================================= */}
       {stockModalProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 border border-slate-100 shadow-2xl">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setStockModalProduct(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-sm w-full my-auto p-5 sm:p-6 space-y-4 border border-slate-100 shadow-2xl"
+          >
             <div>
               <h3 className="text-base font-bold text-slate-900 font-serif">
                 Quick Stock: {stockModalProduct.name}
@@ -679,11 +695,11 @@ export default function AdminProductsPage() {
               />
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2">
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-2">
               <button
                 type="button"
                 onClick={() => setStockModalProduct(null)}
-                className="px-4 py-2 border text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-50 cursor-pointer"
+                className="w-full sm:w-auto px-4 py-2 border text-slate-600 rounded-xl text-xs font-bold hover:bg-slate-50 cursor-pointer text-center whitespace-nowrap"
               >
                 Cancel
               </button>
@@ -691,7 +707,7 @@ export default function AdminProductsPage() {
                 type="button"
                 disabled={isUpdatingStock}
                 onClick={handleSaveQuickStock}
-                className="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-bold cursor-pointer disabled:opacity-50"
+                className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-bold cursor-pointer disabled:opacity-50 text-center whitespace-nowrap shadow-xs"
               >
                 {isUpdatingStock ? "Updating..." : "Update Stock"}
               </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import {
   X,
@@ -17,6 +17,25 @@ export default function TrackOrderModal() {
   const [orderId, setOrderId] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
 
+  // Lock body scroll and listen for Escape key when track modal is open
+  useEffect(() => {
+    if (isTrackModalOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsTrackModalOpen(false);
+          setHasSearched(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isTrackModalOpen, setIsTrackModalOpen]);
+
   if (!isTrackModalOpen) return null;
 
   const handleTrack = (e: React.FormEvent) => {
@@ -27,8 +46,19 @@ export default function TrackOrderModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans">
-      <div className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-gray-100 relative">
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={() => {
+        setIsTrackModalOpen(false);
+        setHasSearched(false);
+      }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-2xl max-w-lg w-full my-auto overflow-hidden shadow-2xl border border-gray-100 relative max-h-[92dvh] overflow-y-auto"
+      >
         {/* Header */}
         <div className="p-5 bg-[#033b20] text-white flex items-center justify-between">
           <div className="flex items-center gap-2">

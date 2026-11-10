@@ -334,8 +334,16 @@ export default function AdminBlogsPage() {
 
       {/* MODAL: ADD / EDIT BLOG WITH RICH HTML WYSIWYG EDITOR */}
       {isBlogModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100 p-6 space-y-4 text-xs">
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsBlogModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[92dvh] sm:max-h-[90vh] my-auto overflow-y-auto shadow-2xl border border-slate-100 p-4 sm:p-6 space-y-4 text-xs"
+          >
             <div className="flex items-center justify-between border-b pb-3">
               <div>
                 <h3 className="text-base font-bold text-slate-900 font-serif">
@@ -347,7 +355,7 @@ export default function AdminBlogsPage() {
               </div>
               <button
                 onClick={() => setIsBlogModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-700 cursor-pointer"
+                className="p-1.5 text-slate-400 hover:text-slate-700 rounded-lg cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -488,18 +496,18 @@ export default function AdminBlogsPage() {
                   <span className="font-bold text-slate-700">Publish Immediately</span>
                 </label>
 
-                <div className="flex justify-end gap-2">
+                <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 w-full sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setIsBlogModalOpen(false)}
-                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer transition-all"
+                    className="w-full sm:w-auto px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer transition-all text-center whitespace-nowrap"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSavingBlog}
-                    className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 transition-all shadow-xs"
+                    className="w-full sm:w-auto px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 transition-all shadow-xs text-center whitespace-nowrap"
                   >
                     {isSavingBlog ? "Saving..." : "Save & Publish Article"}
                   </button>

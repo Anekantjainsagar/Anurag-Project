@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import { api } from "@/services/apiClient";
 import { sendContactEmail } from "@/services/emailService";
@@ -19,6 +19,25 @@ export default function BulkEnquiryModal() {
     destination: "",
     notes: "",
   });
+
+  // Lock background scroll and listen for Escape key when modal is open
+  useEffect(() => {
+    if (isBulkModalOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsBulkModalOpen(false);
+          setSubmitted(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isBulkModalOpen, setIsBulkModalOpen]);
 
   if (!isBulkModalOpen) return null;
 
@@ -52,8 +71,19 @@ export default function BulkEnquiryModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans">
-      <div className="bg-white rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl border border-gray-100 max-h-[90vh] flex flex-col">
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={() => {
+        setIsBulkModalOpen(false);
+        setSubmitted(false);
+      }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full my-auto overflow-hidden shadow-2xl border border-gray-100 max-h-[92dvh] sm:max-h-[90vh] flex flex-col"
+      >
         {/* Header */}
         <div className="p-5 bg-[#033b20] text-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
