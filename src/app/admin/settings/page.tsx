@@ -38,7 +38,7 @@ import { api } from "@/services/apiClient";
 
 export default function AdminSettingsPage() {
   const { showToast } = useCart();
-  const [activeTab, setActiveTab] = useState<"testimonials" | "shipping" | "store" | "announcement" | "offers">("testimonials");
+  const [activeTab, setActiveTab] = useState<"testimonials" | "faqs" | "shipping" | "store" | "announcement" | "offers">("testimonials");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -114,6 +114,60 @@ export default function AdminSettingsPage() {
   });
   const [isSubmittingCoupon, setIsSubmittingCoupon] = useState(false);
 
+  // 7. Transparency FAQs State
+  const [faqSection, setFaqSection] = useState({
+    badge: "Transparency",
+    title: "Frequently Asked Questions",
+    subtitle: "Everything you need to know about our organic certification and harvesting",
+    faqs: [
+      {
+        id: "faq-1",
+        question: "How does ONAAR prove products are 100% organic?",
+        answer: "Every batch is traced to registered organic farmer clusters with geo-tagged locations and tested in NABL-accredited laboratories for 218 pesticide residues and heavy metals. Certificates of analysis are available upon request.",
+        category: "Certification",
+        is_active: true,
+        display_order: 1,
+      },
+      {
+        id: "faq-2",
+        question: "Why do your dals look less shiny than supermarket brands?",
+        answer: "Commercial brands buff pulses with talcum powder, food colors, and liquid paraffin wax for shine. Our dals are 100% unpolished and retain their nutrient-dense aleurone layer containing 80% of natural fiber and minerals.",
+        category: "Purity & Nutrition",
+        is_active: true,
+        display_order: 2,
+      },
+      {
+        id: "faq-3",
+        question: "What does cold-pressed and traditional Bilona mean?",
+        answer: "Our cold-pressed oils are expelled in traditional wooden kohlus below 42°C to safeguard nutrients. Our A2 ghee is prepared by culturing whole A2 Gir cow milk into curd and hand-churning bilona makhan before slow simmering.",
+        category: "Traditional Methods",
+        is_active: true,
+        display_order: 3,
+      },
+      {
+        id: "faq-4",
+        question: "Do you supply institutional and wholesale bulk orders?",
+        answer: "Yes. We partner with restaurants, organic retailers, and institutional kitchens across India with customized wholesale pricing and certified supply chains.",
+        category: "Wholesale",
+        is_active: true,
+        display_order: 4,
+      },
+    ],
+  });
+  const [faqSearch, setFaqSearch] = useState("");
+  const [faqCategoryFilter, setFaqCategoryFilter] = useState("ALL");
+  const [faqModalOpen, setFaqModalOpen] = useState(false);
+  const [editingFaq, setEditingFaq] = useState<any | null>(null);
+  const [faqForm, setFaqForm] = useState({
+    question: "",
+    answer: "",
+    category: "Certification",
+    is_active: true,
+    display_order: 1,
+  });
+  const [isEditingFaqHeader, setIsEditingFaqHeader] = useState(false);
+  const [isSubmittingFaq, setIsSubmittingFaq] = useState(false);
+
   useEffect(() => {
     loadAllSettings();
     loadTestimonials();
@@ -139,6 +193,9 @@ export default function AdminSettingsPage() {
       }
       if (res.announcement_bar) {
         setAnnouncementBar((prev) => ({ ...prev, ...res.announcement_bar }));
+      }
+      if (res.faq_section) {
+        setFaqSection((prev) => ({ ...prev, ...res.faq_section }));
       }
     } catch (err: any) {
       console.warn("Could not load backend settings:", err);
@@ -168,13 +225,101 @@ export default function AdminSettingsPage() {
         store_details: storeDetails,
         customer_love_header: customerLoveHeader,
         announcement_bar: announcementBar,
+        faq_section: faqSection,
       });
       showToast("Settings updated successfully!");
       setIsEditingSectionHeader(false);
+      setIsEditingFaqHeader(false);
     } catch (err: any) {
       showToast(err.message || "Failed to save settings", "error");
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  // Transparency FAQ Actions
+  const handleOpenAddFaq = () => {
+    setEditingFaq(null);
+    setFaqForm({
+      question: "",
+      answer: "",
+      category: "Certification",
+      is_active: true,
+      display_order: (faqSection.faqs?.length || 0) + 1,
+    });
+    setFaqModalOpen(true);
+  };
+
+  const handleOpenEditFaq = (faq: any) => {
+    setEditingFaq(faq);
+    setFaqForm({
+      question: faq.question || "",
+      answer: faq.answer || "",
+      category: faq.category || "General",
+      is_active: faq.is_active ?? true,
+      display_order: faq.display_order || 1,
+    });
+    setFaqModalOpen(true);
+  };
+
+  const handleSaveFaq = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!faqForm.question.trim() || !faqForm.answer.trim()) {
+      showToast("Question and answer are required", "error");
+      return;
+    }
+    setIsSubmittingFaq(true);
+    try {
+      let updatedFaqs = [...(faqSection.faqs || [])];
+      if (editingFaq) {
+        updatedFaqs = updatedFaqs.map((f) =>
+          f.id === editingFaq.id ? { ...f, ...faqForm } : f
+        );
+      } else {
+        const newFaq = {
+          id: `faq-${Date.now()}`,
+          ...faqForm,
+        };
+        updatedFaqs.push(newFaq);
+      }
+      updatedFaqs.sort((a, b) => a.display_order - b.display_order);
+      const newSection = { ...faqSection, faqs: updatedFaqs };
+      setFaqSection(newSection);
+
+      await api.admin.updateSettings({ faq_section: newSection });
+      showToast(editingFaq ? "FAQ updated successfully!" : "New FAQ created successfully!");
+      setFaqModalOpen(false);
+    } catch (err: any) {
+      showToast(err.message || "Failed to save FAQ", "error");
+    } finally {
+      setIsSubmittingFaq(false);
+    }
+  };
+
+  const handleDeleteFaq = async (faqId: string) => {
+    if (!confirm("Are you sure you want to delete this FAQ item?")) return;
+    try {
+      const updatedFaqs = (faqSection.faqs || []).filter((f) => f.id !== faqId);
+      const newSection = { ...faqSection, faqs: updatedFaqs };
+      setFaqSection(newSection);
+      await api.admin.updateSettings({ faq_section: newSection });
+      showToast("FAQ deleted successfully!");
+    } catch (err: any) {
+      showToast(err.message || "Failed to delete FAQ", "error");
+    }
+  };
+
+  const handleToggleFaqActive = async (faqId: string) => {
+    try {
+      const updatedFaqs = (faqSection.faqs || []).map((f) =>
+        f.id === faqId ? { ...f, is_active: !f.is_active } : f
+      );
+      const newSection = { ...faqSection, faqs: updatedFaqs };
+      setFaqSection(newSection);
+      await api.admin.updateSettings({ faq_section: newSection });
+      showToast("FAQ status updated!");
+    } catch (err: any) {
+      showToast(err.message || "Failed to update FAQ status", "error");
     }
   };
 
@@ -392,6 +537,24 @@ export default function AdminSettingsPage() {
   const featuredCount = testimonials.filter((t) => t.is_featured).length;
   const hiddenCount = testimonials.filter((t) => !t.is_featured).length;
 
+  // Filtered Transparency FAQs
+  const filteredFaqs = (faqSection.faqs || []).filter((f) => {
+    if (
+      faqCategoryFilter !== "ALL" &&
+      (f.category || "General").toLowerCase() !== faqCategoryFilter.toLowerCase()
+    ) {
+      return false;
+    }
+    if (faqSearch.trim()) {
+      const q = faqSearch.toLowerCase();
+      const matchQ = (f.question || "").toLowerCase().includes(q);
+      const matchA = (f.answer || "").toLowerCase().includes(q);
+      const matchCat = (f.category || "").toLowerCase().includes(q);
+      return matchQ || matchA || matchCat;
+    }
+    return true;
+  });
+
   return (
     <div className="space-y-6 max-w-6xl font-sans">
       {/* 1. Sleek Navigation Segmented Control */}
@@ -408,6 +571,21 @@ export default function AdminSettingsPage() {
           <span>Customer Love &amp; Reviews</span>
           <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700">
             {testimonials.length}
+          </span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab("faqs")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "faqs"
+              ? "bg-white text-emerald-800 shadow-xs"
+              : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+          }`}
+        >
+          <HelpCircle className="w-4 h-4 text-emerald-600" />
+          <span>Transparency FAQs</span>
+          <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+            {faqSection.faqs?.length || 0}
           </span>
         </button>
 
@@ -709,6 +887,218 @@ export default function AdminSettingsPage() {
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ================================================================= */}
+      {/* TAB: TRANSPARENCY FAQs CMS                                        */}
+      {/* ================================================================= */}
+      {activeTab === "faqs" && (
+        <div className="space-y-5 animate-fade-in">
+          {/* Section Header Configuration Card */}
+          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                <HelpCircle className="w-4 h-4 text-emerald-600" />
+                <span>Storefront FAQ &amp; Transparency Section Header</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsEditingFaqHeader(!isEditingFaqHeader)}
+                className="text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-xl border border-emerald-200/80 transition-all cursor-pointer flex items-center gap-1.5"
+              >
+                <Edit2 className="w-3.5 h-3.5" />
+                <span>{isEditingFaqHeader ? "Close Editor" : "Edit Section Header"}</span>
+              </button>
+            </div>
+
+            {isEditingFaqHeader ? (
+              <form onSubmit={handleSaveSettings} className="space-y-3 pt-1">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  <div>
+                    <label className="font-bold text-slate-700 block mb-1">Badge Tag</label>
+                    <input
+                      type="text"
+                      value={faqSection.badge}
+                      onChange={(e) => setFaqSection({ ...faqSection, badge: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                      placeholder="e.g. Transparency"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="font-bold text-slate-700 block mb-1">Section Title</label>
+                    <input
+                      type="text"
+                      value={faqSection.title}
+                      onChange={(e) => setFaqSection({ ...faqSection, title: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 font-bold"
+                      placeholder="e.g. Frequently Asked Questions"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1 text-xs">Subtitle Description</label>
+                  <input
+                    type="text"
+                    value={faqSection.subtitle}
+                    onChange={(e) => setFaqSection({ ...faqSection, subtitle: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 text-xs"
+                    placeholder="e.g. Everything you need to know about our organic certification and harvesting"
+                  />
+                </div>
+                <div className="flex justify-end gap-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsEditingFaqHeader(false)}
+                    className="px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100 cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSaving}
+                    className="px-4 py-1.5 rounded-xl text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs cursor-pointer"
+                  >
+                    {isSaving ? "Saving..." : "Save Header"}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="bg-[#faf8f4] p-4 rounded-xl border border-[#e8e2d4] space-y-1">
+                <span className="inline-block bg-[#edf7f1] text-[#01722C] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                  {faqSection.badge}
+                </span>
+                <h3 className="font-serif text-lg font-bold text-gray-900">{faqSection.title}</h3>
+                <p className="text-xs text-gray-600">{faqSection.subtitle}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Action & Filter Toolbar */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+              <input
+                type="text"
+                placeholder="Search FAQs by question, answer, or category..."
+                value={faqSearch}
+                onChange={(e) => setFaqSearch(e.target.value)}
+                className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl border border-slate-200 focus:outline-emerald-600 bg-slate-50/50"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <select
+              value={faqCategoryFilter}
+              onChange={(e) => setFaqCategoryFilter(e.target.value)}
+              className="text-xs font-semibold px-3 py-2 rounded-xl border border-slate-200 bg-white cursor-pointer focus:outline-emerald-600"
+            >
+              <option value="ALL">All Categories</option>
+              <option value="Certification">Certification</option>
+              <option value="Purity & Nutrition">Purity &amp; Nutrition</option>
+              <option value="Traditional Methods">Traditional Methods</option>
+              <option value="Wholesale">Wholesale</option>
+              <option value="General">General</option>
+            </select>
+
+            {/* Add FAQ Button */}
+            <button
+              onClick={handleOpenAddFaq}
+              className="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer flex items-center justify-center gap-1.5 shrink-0"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add New FAQ</span>
+            </button>
+          </div>
+
+          {/* FAQ Card List */}
+          <div className="space-y-3">
+            {filteredFaqs.length === 0 ? (
+              <div className="bg-white rounded-2xl p-10 text-center border border-slate-200/80 space-y-3">
+                <HelpCircle className="w-10 h-10 text-slate-300 mx-auto" />
+                <h4 className="font-serif text-base font-bold text-slate-700">No FAQs found</h4>
+                <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                  {faqSearch
+                    ? "Try clearing your search query"
+                    : "Get started by adding frequently asked questions for your storefront."}
+                </p>
+                <button
+                  onClick={handleOpenAddFaq}
+                  className="px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-bold hover:bg-emerald-800 cursor-pointer"
+                >
+                  Create First FAQ
+                </button>
+              </div>
+            ) : (
+              filteredFaqs.map((faq, index) => (
+                <div
+                  key={faq.id || index}
+                  className={`bg-white rounded-2xl p-5 border transition-all space-y-3 shadow-2xs ${
+                    faq.is_active
+                      ? "border-slate-200/80"
+                      : "border-slate-200 bg-slate-50/60 opacity-75"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-mono text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md">
+                        #{faq.display_order || index + 1}
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        {faq.category || "General"}
+                      </span>
+                      {!faq.is_active && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600">
+                          Hidden
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <button
+                        onClick={() => handleToggleFaqActive(faq.id)}
+                        className={`text-[10px] font-bold px-2.5 py-1 rounded-lg border transition-all cursor-pointer flex items-center gap-1 ${
+                          faq.is_active
+                            ? "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100"
+                            : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
+                        }`}
+                        title={faq.is_active ? "Hide on storefront" : "Show on storefront"}
+                      >
+                        {faq.is_active ? (
+                          <Eye className="w-3 h-3" />
+                        ) : (
+                          <EyeOff className="w-3 h-3" />
+                        )}
+                        <span>{faq.is_active ? "Active" : "Hidden"}</span>
+                      </button>
+                      <button
+                        onClick={() => handleOpenEditFaq(faq)}
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
+                        title="Edit FAQ"
+                      >
+                        <Edit2 className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteFaq(faq.id)}
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                        title="Delete FAQ"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <h4 className="font-serif font-bold text-sm text-slate-900 leading-snug">
+                      {faq.question}
+                    </h4>
+                    <p className="text-xs text-slate-600 leading-relaxed">{faq.answer}</p>
                   </div>
                 </div>
               ))
@@ -1572,6 +1962,120 @@ export default function AdminSettingsPage() {
                   className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 shadow-xs"
                 >
                   {isSubmittingCoupon ? "Saving..." : editingCoupon ? "Save Changes" : "Create Offer"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {/* FAQ ADD / EDIT MODAL */}
+      {faqModalOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 space-y-5 shadow-2xl border border-slate-100 animate-scale-up">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                  <HelpCircle className="w-4 h-4" />
+                </div>
+                <h3 className="font-serif text-lg font-bold text-slate-900">
+                  {editingFaq ? "Edit Transparency FAQ" : "Add Transparency FAQ"}
+                </h3>
+              </div>
+              <button
+                onClick={() => setFaqModalOpen(false)}
+                className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveFaq} className="space-y-4 text-xs">
+              <div>
+                <label className="font-bold text-slate-700 block mb-1">
+                  Question <span className="text-rose-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={faqForm.question}
+                  onChange={(e) => setFaqForm({ ...faqForm, question: e.target.value })}
+                  placeholder="e.g. How does ONAAR prove products are 100% organic?"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 text-xs font-semibold"
+                />
+              </div>
+
+              <div>
+                <label className="font-bold text-slate-700 block mb-1">
+                  Answer <span className="text-rose-500">*</span>
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  value={faqForm.answer}
+                  onChange={(e) => setFaqForm({ ...faqForm, answer: e.target.value })}
+                  placeholder="Provide comprehensive, transparent answer for customers..."
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 text-xs leading-relaxed"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Category / Tag</label>
+                  <input
+                    type="text"
+                    value={faqForm.category}
+                    onChange={(e) => setFaqForm({ ...faqForm, category: e.target.value })}
+                    placeholder="e.g. Certification, Wholesale"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 text-xs"
+                  />
+                </div>
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Display Order</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={faqForm.display_order}
+                    onChange={(e) =>
+                      setFaqForm({ ...faqForm, display_order: Number(e.target.value) })
+                    }
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 text-xs font-mono"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <div className="space-y-0.5">
+                  <span className="font-bold text-slate-800 block">Active Status</span>
+                  <p className="text-[11px] text-slate-500">
+                    Visible immediately in the Transparency / About section.
+                  </p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={faqForm.is_active}
+                  onChange={(e) => setFaqForm({ ...faqForm, is_active: e.target.checked })}
+                  className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer shrink-0"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setFaqModalOpen(false)}
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmittingFaq}
+                  className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 shadow-xs"
+                >
+                  {isSubmittingFaq
+                    ? "Saving..."
+                    : editingFaq
+                    ? "Save Changes"
+                    : "Create FAQ"}
                 </button>
               </div>
             </form>

@@ -46,11 +46,28 @@ class AnnouncementBarPayload(BaseModel):
     is_active: bool = True
 
 
+class FAQItemPayload(BaseModel):
+    id: str
+    question: str
+    answer: str
+    category: Optional[str] = "General"
+    is_active: bool = True
+    display_order: int = 0
+
+
+class FAQSectionPayload(BaseModel):
+    badge: str = "Transparency"
+    title: str = "Frequently Asked Questions"
+    subtitle: str = "Everything you need to know about our organic certification and harvesting"
+    faqs: List[FAQItemPayload] = []
+
+
 class UpdateSettingsPayload(BaseModel):
     shipping_policy: Optional[ShippingPolicyPayload] = None
     store_details: Optional[StoreDetailsPayload] = None
     customer_love_header: Optional[CustomerLoveHeaderPayload] = None
     announcement_bar: Optional[AnnouncementBarPayload] = None
+    faq_section: Optional[FAQSectionPayload] = None
 
 
 class TestimonialPayload(BaseModel):
@@ -104,11 +121,52 @@ async def get_admin_settings(
         "is_active": True,
     }
 
+    faq_section = rows.get("faq_section") or {
+        "badge": "Transparency",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about our organic certification and harvesting",
+        "faqs": [
+            {
+                "id": "faq-1",
+                "question": "How does ONAAR prove products are 100% organic?",
+                "answer": "Every batch is traced to registered organic farmer clusters with geo-tagged locations and tested in NABL-accredited laboratories for 218 pesticide residues and heavy metals. Certificates of analysis are available upon request.",
+                "category": "Certification",
+                "is_active": True,
+                "display_order": 1,
+            },
+            {
+                "id": "faq-2",
+                "question": "Why do your dals look less shiny than supermarket brands?",
+                "answer": "Commercial brands buff pulses with talcum powder, food colors, and liquid paraffin wax for shine. Our dals are 100% unpolished and retain their nutrient-dense aleurone layer containing 80% of natural fiber and minerals.",
+                "category": "Purity & Nutrition",
+                "is_active": True,
+                "display_order": 2,
+            },
+            {
+                "id": "faq-3",
+                "question": "What does cold-pressed and traditional Bilona mean?",
+                "answer": "Our cold-pressed oils are expelled in traditional wooden kohlus below 42°C to safeguard nutrients. Our A2 ghee is prepared by culturing whole A2 Gir cow milk into curd and hand-churning bilona makhan before slow simmering.",
+                "category": "Traditional Methods",
+                "is_active": True,
+                "display_order": 3,
+            },
+            {
+                "id": "faq-4",
+                "question": "Do you supply institutional and wholesale bulk orders?",
+                "answer": "Yes. We partner with restaurants, organic retailers, and institutional kitchens across India with customized wholesale pricing and certified supply chains.",
+                "category": "Wholesale",
+                "is_active": True,
+                "display_order": 4,
+            },
+        ],
+    }
+
     return {
         "shipping_policy": shipping_policy,
         "store_details": store_details,
         "customer_love_header": customer_love_header,
         "announcement_bar": announcement_bar,
+        "faq_section": faq_section,
     }
 
 
@@ -124,6 +182,7 @@ async def update_admin_settings(
         ("store_details", payload.store_details, "Store identity & regulatory details"),
         ("customer_love_header", payload.customer_love_header, "Customer Love section headers"),
         ("announcement_bar", payload.announcement_bar, "TopBar announcement banner"),
+        ("faq_section", payload.faq_section, "Storefront FAQs & Transparency section"),
     ]
 
     for key, data_payload, description in updates:

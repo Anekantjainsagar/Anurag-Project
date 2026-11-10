@@ -291,6 +291,20 @@ export const api = {
     getCustomerLove: () =>
       request<{ badge: string; title: string; subtitle: string; testimonials: any[] }>("/settings/customer-love"),
     getWhyChoose: () => request<any[]>("/settings/why-choose"),
+    getFaqs: () =>
+      request<{
+        badge: string;
+        title: string;
+        subtitle: string;
+        faqs: {
+          id: string;
+          question: string;
+          answer: string;
+          category?: string;
+          is_active: boolean;
+          display_order: number;
+        }[];
+      }>("/settings/faqs"),
   },
 
   // Admin Portal
@@ -604,6 +618,7 @@ export const api = {
         store_details: any;
         customer_love_header: any;
         announcement_bar: any;
+        faq_section: any;
       }>("/admin/settings", {
         requiresAuth: true,
       }),
@@ -613,6 +628,7 @@ export const api = {
       store_details?: any;
       customer_love_header?: any;
       announcement_bar?: any;
+      faq_section?: any;
     }) =>
       request<{ success: boolean; message: string }>("/admin/settings", {
         method: "PUT",

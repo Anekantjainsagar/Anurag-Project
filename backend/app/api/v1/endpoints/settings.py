@@ -51,6 +51,46 @@ async def get_site_settings(db: AsyncSession = Depends(get_db)):
         "subtitle": "Real reviews from real customers across India who made the switch to pure, unpolished organic food.",
     }
 
+    faq_section = rows.get("faq_section") or {
+        "badge": "Transparency",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about our organic certification and harvesting",
+        "faqs": [
+            {
+                "id": "faq-1",
+                "question": "How does ONAAR prove products are 100% organic?",
+                "answer": "Every batch is traced to registered organic farmer clusters with geo-tagged locations and tested in NABL-accredited laboratories for 218 pesticide residues and heavy metals. Certificates of analysis are available upon request.",
+                "category": "Certification",
+                "is_active": True,
+                "display_order": 1,
+            },
+            {
+                "id": "faq-2",
+                "question": "Why do your dals look less shiny than supermarket brands?",
+                "answer": "Commercial brands buff pulses with talcum powder, food colors, and liquid paraffin wax for shine. Our dals are 100% unpolished and retain their nutrient-dense aleurone layer containing 80% of natural fiber and minerals.",
+                "category": "Purity & Nutrition",
+                "is_active": True,
+                "display_order": 2,
+            },
+            {
+                "id": "faq-3",
+                "question": "What does cold-pressed and traditional Bilona mean?",
+                "answer": "Our cold-pressed oils are expelled in traditional wooden kohlus below 42°C to safeguard nutrients. Our A2 ghee is prepared by culturing whole A2 Gir cow milk into curd and hand-churning bilona makhan before slow simmering.",
+                "category": "Traditional Methods",
+                "is_active": True,
+                "display_order": 3,
+            },
+            {
+                "id": "faq-4",
+                "question": "Do you supply institutional and wholesale bulk orders?",
+                "answer": "Yes. We partner with restaurants, organic retailers, and institutional kitchens across India with customized wholesale pricing and certified supply chains.",
+                "category": "Wholesale",
+                "is_active": True,
+                "display_order": 4,
+            },
+        ],
+    }
+
     vendor_info = {
         "name": store_details.get("name") or (rows.get("vendor_info", {}).get("name", app_settings.VENDOR_NAME)),
         "email": store_details.get("support_email") or (rows.get("vendor_info", {}).get("email", app_settings.VENDOR_EMAIL)),
@@ -77,6 +117,7 @@ async def get_site_settings(db: AsyncSession = Depends(get_db)):
         store_details=store_details,
         announcement_bar=announcement_bar,
         customer_love_header=customer_love_header,
+        faq_section=faq_section,
     )
 
 
@@ -132,4 +173,64 @@ async def get_customer_love_section(db: AsyncSession = Depends(get_db)):
 async def list_why_choose(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(WhyChooseFeature).order_by(WhyChooseFeature.display_order.asc()))
     return result.scalars().all()
+
+
+@router.get("/settings/faqs", summary="Get Public Storefront FAQs")
+async def get_public_faqs(db: AsyncSession = Depends(get_db)):
+    """
+    Returns public FAQ items and section header for the About / Transparency page.
+    """
+    res = await db.execute(select(SiteSetting).where(SiteSetting.key == "faq_section"))
+    row = res.scalar_one_or_none()
+    if row and row.value and isinstance(row.value, dict):
+        data = row.value
+        all_faqs = data.get("faqs", [])
+        active_faqs = [f for f in all_faqs if f.get("is_active", True)]
+        active_faqs.sort(key=lambda x: x.get("display_order", 0))
+        return {
+            "badge": data.get("badge", "Transparency"),
+            "title": data.get("title", "Frequently Asked Questions"),
+            "subtitle": data.get("subtitle", "Everything you need to know about our organic certification and harvesting"),
+            "faqs": active_faqs,
+        }
+
+    return {
+        "badge": "Transparency",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about our organic certification and harvesting",
+        "faqs": [
+            {
+                "id": "faq-1",
+                "question": "How does ONAAR prove products are 100% organic?",
+                "answer": "Every batch is traced to registered organic farmer clusters with geo-tagged locations and tested in NABL-accredited laboratories for 218 pesticide residues and heavy metals. Certificates of analysis are available upon request.",
+                "category": "Certification",
+                "is_active": True,
+                "display_order": 1,
+            },
+            {
+                "id": "faq-2",
+                "question": "Why do your dals look less shiny than supermarket brands?",
+                "answer": "Commercial brands buff pulses with talcum powder, food colors, and liquid paraffin wax for shine. Our dals are 100% unpolished and retain their nutrient-dense aleurone layer containing 80% of natural fiber and minerals.",
+                "category": "Purity & Nutrition",
+                "is_active": True,
+                "display_order": 2,
+            },
+            {
+                "id": "faq-3",
+                "question": "What does cold-pressed and traditional Bilona mean?",
+                "answer": "Our cold-pressed oils are expelled in traditional wooden kohlus below 42°C to safeguard nutrients. Our A2 ghee is prepared by culturing whole A2 Gir cow milk into curd and hand-churning bilona makhan before slow simmering.",
+                "category": "Traditional Methods",
+                "is_active": True,
+                "display_order": 3,
+            },
+            {
+                "id": "faq-4",
+                "question": "Do you supply institutional and wholesale bulk orders?",
+                "answer": "Yes. We partner with restaurants, organic retailers, and institutional kitchens across India with customized wholesale pricing and certified supply chains.",
+                "category": "Wholesale",
+                "is_active": True,
+                "display_order": 4,
+            },
+        ],
+    }
 

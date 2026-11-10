@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { api } from "@/services/apiClient";
 import {
   Sparkles,
   ShieldCheck,
@@ -69,6 +70,40 @@ const FAQS = [
 
 export default function AboutPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [faqHeader, setFaqHeader] = useState({
+    badge: "Transparency",
+    title: "Frequently Asked Questions",
+    subtitle: "Everything you need to know about our organic certification and harvesting",
+  });
+  const [faqList, setFaqList] = useState<any[]>(FAQS);
+
+  useEffect(() => {
+    api.settings
+      .getFaqs()
+      .then((res) => {
+        if (res) {
+          if (res.badge || res.title || res.subtitle) {
+            setFaqHeader({
+              badge: res.badge || "Transparency",
+              title: res.title || "Frequently Asked Questions",
+              subtitle:
+                res.subtitle ||
+                "Everything you need to know about our organic certification and harvesting",
+            });
+          }
+          if (res.faqs && Array.isArray(res.faqs) && res.faqs.length > 0) {
+            setFaqList(
+              res.faqs.map((f) => ({
+                q: f.question,
+                a: f.answer,
+                category: f.category,
+              }))
+            );
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div className="w-full flex flex-col bg-[#faf8f4] text-gray-900 font-sans">
@@ -157,18 +192,18 @@ export default function AboutPage() {
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider">
               <HelpCircle className="w-3.5 h-3.5 text-[#01722C]" />
-              <span>Transparency</span>
+              <span>{faqHeader.badge}</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-gray-900">
-              Frequently Asked Questions
+              {faqHeader.title}
             </h2>
             <p className="text-xs sm:text-sm text-gray-500">
-              Everything you need to know about our organic certification and harvesting
+              {faqHeader.subtitle}
             </p>
           </div>
 
           <div className="space-y-3">
-            {FAQS.map((faq, idx) => {
+            {faqList.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
                 <div

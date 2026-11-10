@@ -15,6 +15,23 @@ class SiteSettingsOut(BaseModel):
     store_details: Optional[Dict[str, Any]] = None
     announcement_bar: Optional[Dict[str, Any]] = None
     customer_love_header: Optional[Dict[str, Any]] = None
+    faq_section: Optional[Dict[str, Any]] = None
+
+
+class FAQItemSchema(BaseModel):
+    id: str
+    question: str
+    answer: str
+    category: Optional[str] = "General"
+    is_active: bool = True
+    display_order: int = 0
+
+
+class FAQSectionSchema(BaseModel):
+    badge: str = "Transparency"
+    title: str = "Frequently Asked Questions"
+    subtitle: str = "Everything you need to know about our organic certification and harvesting"
+    faqs: list[FAQItemSchema] = []
 
 
 class PromoBannerOut(BaseModel):
