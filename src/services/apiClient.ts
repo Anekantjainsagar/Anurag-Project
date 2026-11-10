@@ -261,6 +261,8 @@ export const api = {
     getSiteSettings: () => request<any>("/settings/site"),
     getBanners: () => request<any[]>("/settings/banners"),
     getTestimonials: () => request<any[]>("/settings/testimonials"),
+    getCustomerLove: () =>
+      request<{ badge: string; title: string; subtitle: string; testimonials: any[] }>("/settings/customer-love"),
     getWhyChoose: () => request<any[]>("/settings/why-choose"),
   },
 
@@ -570,16 +572,52 @@ export const api = {
       }),
 
     getSettings: () =>
-      request<{ shipping_policy: any; store_details: any }>("/admin/settings", {
+      request<{
+        shipping_policy: any;
+        store_details: any;
+        customer_love_header: any;
+        announcement_bar: any;
+      }>("/admin/settings", {
         requiresAuth: true,
       }),
 
-    updateSettings: (data: { shipping_policy?: any; store_details?: any }) =>
+    updateSettings: (data: {
+      shipping_policy?: any;
+      store_details?: any;
+      customer_love_header?: any;
+      announcement_bar?: any;
+    }) =>
       request<{ success: boolean; message: string }>("/admin/settings", {
         method: "PUT",
         requiresAuth: true,
         body: JSON.stringify(data),
       }),
+
+    getTestimonials: () =>
+      request<any[]>("/admin/testimonials", { requiresAuth: true }),
+
+    createTestimonial: (data: any) =>
+      request<any>("/admin/testimonials", {
+        method: "POST",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateTestimonial: (id: string, data: any) =>
+      request<any>(`/admin/testimonials/${encodeURIComponent(id)}`, {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    deleteTestimonial: (id: string) =>
+      request<{ success: boolean; message: string }>(
+        `/admin/testimonials/${encodeURIComponent(id)}`,
+        {
+          method: "DELETE",
+          requiresAuth: true,
+        }
+      ),
   },
 };
 

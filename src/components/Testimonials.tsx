@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Star, Quote } from "lucide-react";
+import { api } from "@/services/apiClient";
 
-const TESTIMONIALS = [
+const DEFAULT_TESTIMONIALS = [
   {
     name: "Priya Sharma",
     location: "New Delhi",
@@ -49,6 +50,31 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
+  const [badge, setBadge] = useState("Customer Love");
+  const [title, setTitle] = useState("Trusted by 10,000+ Indian Families");
+  const [subtitle, setSubtitle] = useState(
+    "Real reviews from real customers across India who made the switch to pure, unpolished organic food."
+  );
+  const [testimonials, setTestimonials] = useState<any[]>(DEFAULT_TESTIMONIALS);
+
+  useEffect(() => {
+    api.settings
+      .getCustomerLove()
+      .then((res) => {
+        if (res) {
+          if (res.badge) setBadge(res.badge);
+          if (res.title) setTitle(res.title);
+          if (res.subtitle) setSubtitle(res.subtitle);
+          if (Array.isArray(res.testimonials) && res.testimonials.length > 0) {
+            setTestimonials(res.testimonials);
+          }
+        }
+      })
+      .catch(() => {
+        // Fallback gracefully to default testimonials
+      });
+  }, []);
+
   return (
     <section className="py-12 sm:py-16 bg-[#faf9f5] w-full font-sans border-b border-[#f0ece1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,41 +82,41 @@ export default function Testimonials() {
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#edf7f1] text-[#01722C] text-xs font-bold uppercase tracking-wider">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-            <span>Customer Love</span>
+            <span>{badge}</span>
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight">
-            Trusted by 10,000+ Indian Families
+            {title}
           </h2>
           <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">
-            Real reviews from real customers across India who made the switch to pure, unpolished organic food.
+            {subtitle}
           </p>
         </div>
 
         {/* Testimonial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {TESTIMONIALS.map((t, idx) => (
+          {testimonials.map((t, idx) => (
             <div
-              key={idx}
+              key={t.id || idx}
               className="bg-white border border-[#e4ded0] rounded-2xl p-6 shadow-2xs hover:shadow-lg hover:border-[#01722C]/30 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-3">
                 <Quote className="w-6 h-6 text-[#01722C]/20" />
                 <p className="text-xs sm:text-sm text-gray-700 leading-relaxed italic">
-                  &ldquo;{t.text}&rdquo;
+                  &ldquo;{t.text || t.review_text}&rdquo;
                 </p>
               </div>
 
               <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
                 <div>
                   <div className="font-bold text-xs text-gray-900">
-                    {t.name}
+                    {t.name || t.customer_name}
                   </div>
                   <div className="text-[11px] text-gray-500">
-                    {t.location} • {t.product}
+                    {t.location} {t.product || t.product_name ? `• ${t.product || t.product_name}` : ""}
                   </div>
                 </div>
                 <div className="flex items-center gap-0.5">
-                  {Array.from({ length: t.rating }).map((_, i) => (
+                  {Array.from({ length: t.rating || 5 }).map((_, i) => (
                     <Star
                       key={i}
                       className="w-3.5 h-3.5 fill-amber-400 text-amber-400"

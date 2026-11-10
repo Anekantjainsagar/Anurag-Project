@@ -1,17 +1,19 @@
 """
-Admin Store Policies, Shipping Rates & Regulatory CMS
-Allows ONAAR store operators to customize shipping thresholds, standard/express fees, and legal identifiers.
+Admin Store Policies, Shipping Rates, Customer Love & Regulatory CMS
+Allows ONAAR store operators to customize shipping thresholds, testimonials, announcement banners, and legal identifiers.
 """
 
-from typing import Any, Dict, Optional
+import uuid
+from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.dependencies import get_current_admin_user
-from app.models.settings import SiteSetting
+from app.models.settings import SiteSetting, Testimonial
 from app.models.user import User
+from app.schemas.settings import TestimonialOut
 
 router = APIRouter()
 
@@ -32,17 +34,45 @@ class StoreDetailsPayload(BaseModel):
     warehouse_address: str = "Khasra No. 142/2, Nemawar Agro Hub, Bypass Road, Indore, Madhya Pradesh - 452016"
 
 
+class CustomerLoveHeaderPayload(BaseModel):
+    badge: str = "Customer Love"
+    title: str = "Trusted by 10,000+ Indian Families"
+    subtitle: str = "Real reviews from real customers across India who made the switch to pure, unpolished organic food."
+
+
+class AnnouncementBarPayload(BaseModel):
+    ticker_text: str = "FREE PAN-INDIA DELIVERY ON ORDERS OVER ₹499"
+    whatsapp_number: str = "+919876543210"
+    is_active: bool = True
+
+
 class UpdateSettingsPayload(BaseModel):
     shipping_policy: Optional[ShippingPolicyPayload] = None
     store_details: Optional[StoreDetailsPayload] = None
+    customer_love_header: Optional[CustomerLoveHeaderPayload] = None
+    announcement_bar: Optional[AnnouncementBarPayload] = None
 
+
+class TestimonialPayload(BaseModel):
+    customer_name: str
+    location: str
+    rating: int = 5
+    review_text: str
+    product_name: Optional[str] = None
+    is_featured: bool = True
+    display_order: int = 0
+
+
+# ============================================================================
+# 1. SITE SETTINGS & CMS
+# ============================================================================
 
 @router.get("/admin/settings", summary="Get Store Policies & Settings")
 async def get_admin_settings(
     current_admin: User = Depends(get_current_admin_user),
     db: AsyncSession = Depends(get_db),
 ):
-    """Returns stored shipping policy and regulatory store details."""
+    """Returns stored shipping policy, regulatory store details, and homepage CMS parameters."""
     res = await db.execute(select(SiteSetting))
     rows = {r.key: r.value for r in res.scalars().all()}
 
@@ -62,9 +92,23 @@ async def get_admin_settings(
         "warehouse_address": "Khasra No. 142/2, Nemawar Agro Hub, Bypass Road, Indore, Madhya Pradesh - 452016",
     }
 
+    customer_love_header = rows.get("customer_love_header") or {
+        "badge": "Customer Love",
+        "title": "Trusted by 10,000+ Indian Families",
+        "subtitle": "Real reviews from real customers across India who made the switch to pure, unpolished organic food.",
+    }
+
+    announcement_bar = rows.get("announcement_bar") or {
+        "ticker_text": "FREE PAN-INDIA DELIVERY ON ORDERS OVER ₹499",
+        "whatsapp_number": "+919876543210",
+        "is_active": True,
+    }
+
     return {
         "shipping_policy": shipping_policy,
         "store_details": store_details,
+        "customer_love_header": customer_love_header,
+        "announcement_bar": announcement_bar,
     }
 
 
@@ -74,24 +118,103 @@ async def update_admin_settings(
     current_admin: User = Depends(get_current_admin_user),
     db: AsyncSession = Depends(get_db),
 ):
-    """Saves updated shipping policy and store details to site_settings table."""
-    if payload.shipping_policy:
-        sp_dict = payload.shipping_policy.model_dump()
-        res_sp = await db.execute(select(SiteSetting).where(SiteSetting.key == "shipping_policy"))
-        existing_sp = res_sp.scalar_one_or_none()
-        if existing_sp:
-            existing_sp.value = sp_dict
-        else:
-            db.add(SiteSetting(key="shipping_policy", value=sp_dict, description="Shipping policy & thresholds"))
+    """Saves updated shipping policy, store details, and CMS content to site_settings table."""
+    updates = [
+        ("shipping_policy", payload.shipping_policy, "Shipping policy & thresholds"),
+        ("store_details", payload.store_details, "Store identity & regulatory details"),
+        ("customer_love_header", payload.customer_love_header, "Customer Love section headers"),
+        ("announcement_bar", payload.announcement_bar, "TopBar announcement banner"),
+    ]
 
-    if payload.store_details:
-        sd_dict = payload.store_details.model_dump()
-        res_sd = await db.execute(select(SiteSetting).where(SiteSetting.key == "store_details"))
-        existing_sd = res_sd.scalar_one_or_none()
-        if existing_sd:
-            existing_sd.value = sd_dict
-        else:
-            db.add(SiteSetting(key="store_details", value=sd_dict, description="Store identity & regulatory details"))
+    for key, data_payload, description in updates:
+        if data_payload is not None:
+            data_dict = data_payload.model_dump()
+            res = await db.execute(select(SiteSetting).where(SiteSetting.key == key))
+            existing = res.scalar_one_or_none()
+            if existing:
+                existing.value = data_dict
+            else:
+                db.add(SiteSetting(key=key, value=data_dict, description=description))
 
     await db.commit()
-    return {"success": True, "message": "Store policies and parameters saved successfully."}
+    return {"success": True, "message": "Store settings and parameters saved successfully."}
+
+
+# ============================================================================
+# 2. CUSTOMER LOVE & TESTIMONIALS ADMIN CRUD
+# ============================================================================
+
+@router.get("/admin/testimonials", response_model=List[TestimonialOut], summary="List All Customer Testimonials (Admin)")
+async def admin_list_testimonials(
+    current_admin: User = Depends(get_current_admin_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Returns all customer feedback testimonials for administration and ordering."""
+    res = await db.execute(select(Testimonial).order_by(Testimonial.display_order.asc(), Testimonial.customer_name.asc()))
+    return res.scalars().all()
+
+
+@router.post("/admin/testimonials", response_model=TestimonialOut, summary="Create New Customer Testimonial")
+async def admin_create_testimonial(
+    payload: TestimonialPayload,
+    current_admin: User = Depends(get_current_admin_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Adds a new verified customer review to the Customer Love showcase."""
+    new_t = Testimonial(
+        id=uuid.uuid4(),
+        customer_name=payload.customer_name.strip(),
+        location=payload.location.strip(),
+        rating=max(1, min(5, payload.rating)),
+        review_text=payload.review_text.strip(),
+        product_name=payload.product_name.strip() if payload.product_name else None,
+        is_featured=payload.is_featured,
+        display_order=payload.display_order,
+    )
+    db.add(new_t)
+    await db.commit()
+    await db.refresh(new_t)
+    return new_t
+
+
+@router.put("/admin/testimonials/{testimonial_id}", response_model=TestimonialOut, summary="Update Customer Testimonial")
+async def admin_update_testimonial(
+    testimonial_id: uuid.UUID,
+    payload: TestimonialPayload,
+    current_admin: User = Depends(get_current_admin_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Updates an existing customer review."""
+    res = await db.execute(select(Testimonial).where(Testimonial.id == testimonial_id))
+    t = res.scalar_one_or_none()
+    if not t:
+        raise HTTPException(status_code=404, detail="Testimonial not found")
+
+    t.customer_name = payload.customer_name.strip()
+    t.location = payload.location.strip()
+    t.rating = max(1, min(5, payload.rating))
+    t.review_text = payload.review_text.strip()
+    t.product_name = payload.product_name.strip() if payload.product_name else None
+    t.is_featured = payload.is_featured
+    t.display_order = payload.display_order
+
+    await db.commit()
+    await db.refresh(t)
+    return t
+
+
+@router.delete("/admin/testimonials/{testimonial_id}", summary="Delete Customer Testimonial")
+async def admin_delete_testimonial(
+    testimonial_id: uuid.UUID,
+    current_admin: User = Depends(get_current_admin_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """Deletes a customer testimonial."""
+    res = await db.execute(select(Testimonial).where(Testimonial.id == testimonial_id))
+    t = res.scalar_one_or_none()
+    if not t:
+        raise HTTPException(status_code=404, detail="Testimonial not found")
+
+    await db.delete(t)
+    await db.commit()
+    return {"success": True, "message": f"Testimonial from '{t.customer_name}' removed."}

@@ -66,6 +66,38 @@ async def list_testimonials(db: AsyncSession = Depends(get_db)):
     return result.scalars().all()
 
 
+@router.get("/settings/customer-love", summary="Get Customer Love Section Content & Featured Testimonials")
+async def get_customer_love_section(db: AsyncSession = Depends(get_db)):
+    res = await db.execute(select(SiteSetting).where(SiteSetting.key == "customer_love_header"))
+    header_obj = res.scalar_one_or_none()
+    header = header_obj.value if header_obj and isinstance(header_obj.value, dict) else {
+        "badge": "Customer Love",
+        "title": "Trusted by 10,000+ Indian Families",
+        "subtitle": "Real reviews from real customers across India who made the switch to pure, unpolished organic food.",
+    }
+
+    test_res = await db.execute(
+        select(Testimonial).where(Testimonial.is_featured.is_(True)).order_by(Testimonial.display_order.asc())
+    )
+    testimonials = test_res.scalars().all()
+    return {
+        "badge": header.get("badge", "Customer Love"),
+        "title": header.get("title", "Trusted by 10,000+ Indian Families"),
+        "subtitle": header.get("subtitle", "Real reviews from real customers across India who made the switch to pure, unpolished organic food."),
+        "testimonials": [
+            {
+                "id": str(t.id),
+                "name": t.customer_name,
+                "location": t.location,
+                "rating": t.rating,
+                "text": t.review_text,
+                "product": t.product_name or "Organic Staple",
+            }
+            for t in testimonials
+        ],
+    }
+
+
 @router.get("/settings/why-choose", response_model=List[WhyChooseFeatureOut], summary="List Why Choose Us Trust Features")
 async def list_why_choose(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(WhyChooseFeature).order_by(WhyChooseFeature.display_order.asc()))
