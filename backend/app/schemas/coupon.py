@@ -34,7 +34,33 @@ class CouponOut(BaseModel):
     discount_value: Decimal
     min_order_amount: Decimal
     max_discount: Optional[Decimal] = None
+    is_first_order_only: bool = False
+    usage_limit_per_user: int = 1
     is_active: bool
+
+
+class CouponCreate(BaseModel):
+    code: str
+    description: str
+    discount_type: str = "percentage"  # "percentage" or "fixed"
+    discount_value: Decimal
+    min_order_amount: Decimal = Decimal("0.00")
+    max_discount: Optional[Decimal] = None
+    is_first_order_only: bool = False
+    usage_limit_per_user: int = 1
+    is_active: bool = True
+
+
+class CouponUpdate(BaseModel):
+    code: Optional[str] = None
+    description: Optional[str] = None
+    discount_type: Optional[str] = None
+    discount_value: Optional[Decimal] = None
+    min_order_amount: Optional[Decimal] = None
+    max_discount: Optional[Decimal] = None
+    is_first_order_only: Optional[bool] = None
+    usage_limit_per_user: Optional[int] = None
+    is_active: Optional[bool] = None
 
 
 class LoyaltyBalanceOut(BaseModel):

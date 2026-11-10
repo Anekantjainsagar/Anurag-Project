@@ -32,6 +32,7 @@ class Coupon(Base):
     valid_from = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
     valid_until = Column(DateTime(timezone=True), nullable=True)
     usage_limit_per_user = Column(Integer, default=1, nullable=False)
+    is_first_order_only = Column(Boolean, default=False, nullable=False)
     is_active = Column(Boolean, default=True, nullable=False)
     created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 

@@ -26,13 +26,18 @@ import {
   HelpCircle,
   ExternalLink,
   SlidersHorizontal,
+  Tag,
+  Percent,
+  Coins,
+  Gift,
+  AlertCircle,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { api } from "@/services/apiClient";
 
 export default function AdminSettingsPage() {
   const { showToast } = useCart();
-  const [activeTab, setActiveTab] = useState<"testimonials" | "shipping" | "store" | "announcement">("testimonials");
+  const [activeTab, setActiveTab] = useState<"testimonials" | "shipping" | "store" | "announcement" | "offers">("testimonials");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -89,9 +94,28 @@ export default function AdminSettingsPage() {
   });
   const [isSubmittingTestimonial, setIsSubmittingTestimonial] = useState(false);
 
+  // 6. Promotional Offers & Coupons State
+  const [coupons, setCoupons] = useState<any[]>([]);
+  const [isLoadingCoupons, setIsLoadingCoupons] = useState(false);
+  const [couponModalOpen, setCouponModalOpen] = useState(false);
+  const [editingCoupon, setEditingCoupon] = useState<any | null>(null);
+  const [couponForm, setCouponForm] = useState({
+    code: "",
+    description: "",
+    discount_type: "fixed" as "fixed" | "percentage",
+    discount_value: 100,
+    min_order_amount: 2000,
+    max_discount: "" as string | number,
+    is_first_order_only: false,
+    usage_limit_per_user: 1,
+    is_active: true,
+  });
+  const [isSubmittingCoupon, setIsSubmittingCoupon] = useState(false);
+
   useEffect(() => {
     loadAllSettings();
     loadTestimonials();
+    loadCoupons();
   }, []);
 
   const loadAllSettings = async () => {
@@ -237,6 +261,114 @@ export default function AdminSettingsPage() {
     }
   };
 
+  // ---------------------------------------------------------------------------
+  // Promotional Offers & Coupons Actions
+  // ---------------------------------------------------------------------------
+  const loadCoupons = async () => {
+    setIsLoadingCoupons(true);
+    try {
+      const list = await api.admin.getCoupons();
+      setCoupons(list || []);
+    } catch (err: any) {
+      console.warn("Could not load coupons:", err);
+    } finally {
+      setIsLoadingCoupons(false);
+    }
+  };
+
+  const handleOpenAddCoupon = () => {
+    setEditingCoupon(null);
+    setCouponForm({
+      code: "",
+      description: "",
+      discount_type: "fixed",
+      discount_value: 100,
+      min_order_amount: 2000,
+      max_discount: "",
+      is_first_order_only: false,
+      usage_limit_per_user: 1,
+      is_active: true,
+    });
+    setCouponModalOpen(true);
+  };
+
+  const handleOpenEditCoupon = (c: any) => {
+    setEditingCoupon(c);
+    setCouponForm({
+      code: c.code,
+      description: c.description || "",
+      discount_type: c.discount_type || "fixed",
+      discount_value: Number(c.discount_value) || 0,
+      min_order_amount: Number(c.min_order_amount) || 0,
+      max_discount: c.max_discount !== null && c.max_discount !== undefined ? Number(c.max_discount) : "",
+      is_first_order_only: Boolean(c.is_first_order_only),
+      usage_limit_per_user: c.usage_limit_per_user ?? 1,
+      is_active: Boolean(c.is_active),
+    });
+    setCouponModalOpen(true);
+  };
+
+  const handleSaveCouponSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const cleanCode = couponForm.code.trim().toUpperCase();
+    if (!cleanCode) {
+      showToast("Coupon code is required (e.g. ONAAR100).", "warning");
+      return;
+    }
+
+    const payload = {
+      code: cleanCode,
+      description: couponForm.description.trim(),
+      discount_type: couponForm.discount_type,
+      discount_value: Number(couponForm.discount_value),
+      min_order_amount: Number(couponForm.min_order_amount) || 0,
+      max_discount: couponForm.max_discount !== "" ? Number(couponForm.max_discount) : null,
+      is_first_order_only: Boolean(couponForm.is_first_order_only),
+      usage_limit_per_user: Number(couponForm.usage_limit_per_user) || 1,
+      is_active: Boolean(couponForm.is_active),
+    };
+
+    setIsSubmittingCoupon(true);
+    try {
+      if (editingCoupon) {
+        await api.admin.updateCoupon(editingCoupon.id, payload);
+        showToast(`Offer "${cleanCode}" updated successfully!`);
+      } else {
+        await api.admin.createCoupon(payload);
+        showToast(`Promotional offer "${cleanCode}" created!`);
+      }
+      setCouponModalOpen(false);
+      loadCoupons();
+    } catch (err: any) {
+      showToast(err.message || "Failed to save offer", "error");
+    } finally {
+      setIsSubmittingCoupon(false);
+    }
+  };
+
+  const handleToggleCoupon = async (c: any) => {
+    try {
+      await api.admin.toggleCoupon(c.id);
+      showToast(c.is_active ? `Offer ${c.code} deactivated` : `Offer ${c.code} activated`);
+      loadCoupons();
+    } catch (err: any) {
+      showToast(err.message || "Failed to toggle offer", "error");
+    }
+  };
+
+  const handleDeleteCoupon = async (c: any) => {
+    if (!confirm(`Are you sure you want to permanently delete promotional offer "${c.code}"?`)) {
+      return;
+    }
+    try {
+      await api.admin.deleteCoupon(c.id);
+      showToast(`Offer ${c.code} removed.`);
+      loadCoupons();
+    } catch (err: any) {
+      showToast(err.message || "Failed to delete offer", "error");
+    }
+  };
+
   // Filtered Testimonials
   const filteredTestimonials = testimonials.filter((t) => {
     if (testimonialFilter === "FEATURED" && !t.is_featured) return false;
@@ -308,6 +440,21 @@ export default function AdminSettingsPage() {
         >
           <Sparkles className="w-4 h-4 text-amber-500" />
           <span>Announcement Ticker</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab("offers")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "offers"
+              ? "bg-white text-emerald-800 shadow-xs"
+              : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+          }`}
+        >
+          <Tag className="w-4 h-4 text-emerald-700" />
+          <span>Promotions &amp; Offers</span>
+          <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
+            {coupons.length}
+          </span>
         </button>
       </div>
 
@@ -895,6 +1042,152 @@ export default function AdminSettingsPage() {
       )}
 
       {/* ================================================================= */}
+      {/* TAB 5: PROMOTIONS & OFFERS (CONFIGURABLE CART & CHECKOUT OFFERS)  */}
+      {/* ================================================================= */}
+      {activeTab === "offers" && (
+        <div className="space-y-5 animate-fade-in">
+          {/* Action Header Card */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <Tag className="w-5 h-5 text-emerald-700" />
+                <h3 className="font-bold text-slate-900 text-sm">
+                  Promotional Discounts &amp; Checkout Offers
+                </h3>
+              </div>
+              <p className="text-xs text-slate-500">
+                Configure rules such as flat discounts over threshold order values (e.g. ₹100 Off over ₹2,000) or welcome offers. Active offers display live on the checkout page.
+              </p>
+            </div>
+            <button
+              onClick={handleOpenAddCoupon}
+              className="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs shrink-0 cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Create New Offer</span>
+            </button>
+          </div>
+
+          {/* Offers List */}
+          {isLoadingCoupons ? (
+            <div className="p-8 text-center text-xs text-slate-400 bg-white rounded-2xl border border-slate-200">
+              Loading promotional offers...
+            </div>
+          ) : coupons.length === 0 ? (
+            <div className="p-12 text-center bg-white rounded-2xl border border-slate-200/80 space-y-3">
+              <Tag className="w-8 h-8 text-slate-300 mx-auto" />
+              <div className="font-bold text-slate-700 text-sm">No Offers Configured</div>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                Create your first promotional discount like "Flat ₹100 Off on orders above ₹2,000" or a 10% welcome coupon.
+              </p>
+              <button
+                onClick={handleOpenAddCoupon}
+                className="mt-2 inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold cursor-pointer transition-all"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Add Offer Now</span>
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {coupons.map((c) => {
+                const minOrder = Number(c.min_order_amount) || 0;
+                const discVal = Number(c.discount_value) || 0;
+                const isFixed = c.discount_type === "fixed";
+
+                return (
+                  <div
+                    key={c.id}
+                    className={`bg-white rounded-2xl border p-5 transition-all flex flex-col justify-between gap-4 ${
+                      c.is_active
+                        ? "border-emerald-200/80 shadow-xs hover:border-emerald-300"
+                        : "border-slate-200/80 opacity-70 bg-slate-50/50"
+                    }`}
+                  >
+                    <div className="space-y-3">
+                      {/* Top Row: Code Badge + Active Status */}
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-mono font-bold text-sm bg-emerald-50 text-emerald-900 border border-emerald-200 px-2.5 py-1 rounded-lg">
+                            {c.code}
+                          </span>
+                          {c.is_first_order_only && (
+                            <span className="text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full flex items-center gap-1">
+                              <Star className="w-3 h-3 text-amber-600 fill-amber-500" />
+                              <span>1st Order Only</span>
+                            </span>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => handleToggleCoupon(c)}
+                          className={`text-[11px] font-bold px-2.5 py-1 rounded-full border transition-all cursor-pointer flex items-center gap-1.5 ${
+                            c.is_active
+                              ? "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100"
+                              : "bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200"
+                          }`}
+                          title="Click to toggle active status"
+                        >
+                          <span className={`w-2 h-2 rounded-full ${c.is_active ? "bg-emerald-600" : "bg-slate-400"}`} />
+                          <span>{c.is_active ? "Active" : "Inactive"}</span>
+                        </button>
+                      </div>
+
+                      {/* Discount Headline */}
+                      <div>
+                        <div className="text-xl font-black text-slate-900">
+                          {isFixed ? `Flat ₹${discVal.toFixed(0)} OFF` : `${discVal}% OFF`}
+                        </div>
+                        <p className="text-xs text-slate-600 mt-0.5">
+                          {c.description || (minOrder > 0 ? `Valid on orders above ₹${minOrder}` : "Cart promotion")}
+                        </p>
+                      </div>
+
+                      {/* Criteria Badges */}
+                      <div className="flex flex-wrap items-center gap-1.5 text-[11px]">
+                        <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-semibold">
+                          {minOrder > 0 ? `Min Cart: ₹${minOrder.toLocaleString("en-IN")}` : "No Minimum Order"}
+                        </span>
+                        {c.max_discount && (
+                          <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-semibold">
+                            Max Cap: ₹{Number(c.max_discount).toLocaleString("en-IN")}
+                          </span>
+                        )}
+                        <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-semibold">
+                          Limit: {c.usage_limit_per_user || 1} per customer
+                        </span>
+                        <span className="bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded-md font-semibold">
+                          {c.redemption_count || 0} redemptions
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+                      <button
+                        onClick={() => handleOpenEditCoupon(c)}
+                        className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
+                        title="Edit Offer"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCoupon(c)}
+                        className="p-1.5 hover:bg-rose-50 rounded-lg text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                        title="Delete Offer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ================================================================= */}
       {/* MODAL: ADD / EDIT CUSTOMER TESTIMONIAL                            */}
       {/* ================================================================= */}
       {testimonialModalOpen && (
@@ -1039,6 +1332,211 @@ export default function AdminSettingsPage() {
                   className="px-5 py-2 bg-[#01722C] hover:bg-[#0b542c] text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 shadow-xs"
                 >
                   {isSubmittingTestimonial ? "Saving..." : editingTestimonial ? "Save Changes" : "Publish Review"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ================================================================= */}
+      {/* MODAL: ADD / EDIT PROMOTIONAL OFFER                               */}
+      {/* ================================================================= */}
+      {couponModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setCouponModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl p-6 sm:p-7 max-w-lg w-full shadow-2xl border border-slate-200/80 my-8 space-y-5"
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-800 flex items-center justify-center">
+                  <Tag className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-slate-900 text-base">
+                    {editingCoupon ? `Edit Offer: ${editingCoupon.code}` : "Create Promotional Offer"}
+                  </h3>
+                  <p className="text-[11px] text-slate-500">
+                    Configure cart discount rules, minimum order thresholds, and eligibility.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setCouponModalOpen(false)}
+                className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-slate-700 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveCouponSubmit} className="space-y-4 text-xs">
+              <div>
+                <label className="font-bold text-slate-700 block mb-1">
+                  Coupon Code * <span className="text-[11px] font-normal text-slate-400">(e.g. ONAAR100, HARVEST10)</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={couponForm.code}
+                  onChange={(e) =>
+                    setCouponForm({ ...couponForm, code: e.target.value.toUpperCase() })
+                  }
+                  placeholder="e.g. ONAAR100"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono uppercase tracking-wider focus:outline-emerald-600 font-bold"
+                />
+              </div>
+
+              <div>
+                <label className="font-bold text-slate-700 block mb-1">Offer Description *</label>
+                <input
+                  type="text"
+                  required
+                  value={couponForm.description}
+                  onChange={(e) =>
+                    setCouponForm({ ...couponForm, description: e.target.value })
+                  }
+                  placeholder="e.g. Flat ₹100 Off on orders above ₹2,000"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Discount Type *</label>
+                  <select
+                    value={couponForm.discount_type}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, discount_type: e.target.value as "fixed" | "percentage" })
+                    }
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 font-bold bg-white"
+                  >
+                    <option value="fixed">Fixed Amount (₹ Flat Off)</option>
+                    <option value="percentage">Percentage (% Off)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">
+                    Discount Value * <span className="text-[11px] font-normal text-slate-400">({couponForm.discount_type === "fixed" ? "₹" : "%"})</span>
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max={couponForm.discount_type === "percentage" ? "100" : undefined}
+                    required
+                    value={couponForm.discount_value}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, discount_value: Number(e.target.value) })
+                    }
+                    placeholder={couponForm.discount_type === "fixed" ? "100" : "10"}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 font-bold"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">
+                    Minimum Order Amount (₹)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={couponForm.min_order_amount}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, min_order_amount: Number(e.target.value) })
+                    }
+                    placeholder="2000 (0 for no minimum)"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                  />
+                  <span className="text-[10px] text-slate-400 mt-0.5 block">
+                    e.g. Set to 2000 for "orders over ₹2,000"
+                  </span>
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">
+                    Max Discount Cap (₹) (Optional)
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={couponForm.max_discount}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, max_discount: e.target.value === "" ? "" : Number(e.target.value) })
+                    }
+                    placeholder="e.g. 500 (blank for no cap)"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                  />
+                  <span className="text-[10px] text-slate-400 mt-0.5 block">
+                    Maximum deduction limit for % offers
+                  </span>
+                </div>
+              </div>
+
+              {/* Toggles */}
+              <div className="space-y-2 pt-1">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-amber-50/70 border border-amber-200/80">
+                  <div className="space-y-0.5">
+                    <label htmlFor="firstOrderOnlyToggle" className="font-bold text-amber-950 cursor-pointer block">
+                      First Order Only Restriction
+                    </label>
+                    <p className="text-[11px] text-amber-800/80">
+                      If checked, only customers with zero prior completed orders can use this code.
+                    </p>
+                  </div>
+                  <input
+                    type="checkbox"
+                    id="firstOrderOnlyToggle"
+                    checked={couponForm.is_first_order_only}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, is_first_order_only: e.target.checked })
+                    }
+                    className="w-4 h-4 rounded text-amber-600 focus:ring-amber-500 cursor-pointer shrink-0"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="space-y-0.5">
+                    <label htmlFor="activeCouponToggle" className="font-bold text-slate-800 cursor-pointer block">
+                      Active Status
+                    </label>
+                    <p className="text-[11px] text-slate-500">
+                      Enable this promotion immediately on storefront checkout.
+                    </p>
+                  </div>
+                  <input
+                    type="checkbox"
+                    id="activeCouponToggle"
+                    checked={couponForm.is_active}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, is_active: e.target.checked })
+                    }
+                    className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer shrink-0"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setCouponModalOpen(false)}
+                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSubmittingCoupon}
+                  className="px-5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold cursor-pointer disabled:opacity-50 shadow-xs"
+                >
+                  {isSubmittingCoupon ? "Saving..." : editingCoupon ? "Save Changes" : "Create Offer"}
                 </button>
               </div>
             </form>

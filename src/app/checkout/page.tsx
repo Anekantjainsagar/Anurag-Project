@@ -29,6 +29,8 @@ import {
   X,
   Plus,
   Edit3,
+  UserCheck,
+  User,
 } from "lucide-react";
 
 const INDIAN_STATES = [
@@ -52,13 +54,26 @@ const INDIAN_STATES = [
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cartItems, cartTotal, totalSavings, clearCart, showToast } = useCart();
+  const { cartItems, cartTotal, totalSavings, clearCart, showToast, setIsLoginModalOpen } = useCart();
   const { user, isAuthenticated, addresses, addAddress } = useAuth();
 
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
   const [isAddingNewAddress, setIsAddingNewAddress] = useState(false);
   const [saveAddressToBook, setSaveAddressToBook] = useState(true);
   const [newAddressLabel, setNewAddressLabel] = useState("Home");
+  const [activeOffers, setActiveOffers] = useState<any[]>([]);
+
+  // Fetch active store promotional offers from admin settings
+  useEffect(() => {
+    api.orders
+      .getActiveOffers()
+      .then((offers) => {
+        if (Array.isArray(offers)) {
+          setActiveOffers(offers);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -130,33 +145,10 @@ export default function CheckoutPage() {
   const [couponInput, setCouponInput] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<{
     code: string;
-    discountPercent: number;
-  } | null>(() => {
-    if (typeof window === "undefined") return null;
-    try {
-      const saved = localStorage.getItem("onaar_active_coupon") || localStorage.getItem("yourbrand_active_coupon");
-      if (
-        saved &&
-        (saved.toUpperCase() === "HARVEST10" ||
-          saved.toUpperCase() === "WELCOME10" ||
-          saved.toUpperCase() === "ORGANIC10")
-      ) {
-        // If this coupon was already redeemed on this browser's cookies, prevent auto-applying
-        if (isCouponRedeemed(saved)) {
-          localStorage.removeItem("onaar_active_coupon");
-          localStorage.removeItem("yourbrand_active_coupon");
-          return null;
-        }
-        return {
-          code: saved.toUpperCase(),
-          discountPercent: 10,
-        };
-      }
-    } catch {
-      // ignore
-    }
-    return null;
-  });
+    discountAmount: number;
+    discountPercent?: number;
+    description?: string;
+  } | null>(null);
 
   const [dynamicShipping, setDynamicShipping] = useState({
     free_shipping_threshold: 499,
@@ -183,10 +175,8 @@ export default function CheckoutPage() {
   const isFreeDelivery = cartTotal >= freeDeliveryThreshold;
   const shippingFee = cartItems.length === 0 ? 0 : isFreeDelivery ? 0 : dynamicShipping.standard_shipping_fee;
 
-  // Calculate 10% coupon discount
-  const discountAmount = appliedCoupon
-    ? (cartTotal * appliedCoupon.discountPercent) / 100
-    : 0;
+  // Real discount from verified coupon (fixed or percentage)
+  const discountAmount = appliedCoupon ? appliedCoupon.discountAmount : 0;
   const grandTotal = Math.max(0, cartTotal - discountAmount) + shippingFee;
 
   const handleApplyCoupon = async (codeToApply?: string) => {
@@ -198,7 +188,7 @@ export default function CheckoutPage() {
 
     // Cookie Differentiator: Check if this browser has already redeemed this code
     if (isCouponRedeemed(code)) {
-      showToast(`Coupon "${code}" has already been redeemed on this browser. It is valid for first-time orders only.`);
+      showToast(`Coupon "${code}" has already been redeemed on this browser. Valid for first-time orders only.`);
       return;
     }
 
@@ -210,27 +200,30 @@ export default function CheckoutPage() {
         formData.email || undefined
       );
       if (backendCheck && backendCheck.valid) {
+        const discAmt = Number(backendCheck.discount_amount);
         setAppliedCoupon({
           code: backendCheck.code,
-          discountPercent: Math.round((backendCheck.discount_amount / cartTotal) * 100) || 10,
+          discountAmount: discAmt,
+          discountPercent: Math.round((discAmt / cartTotal) * 100),
+          description: backendCheck.message,
         });
         try {
           localStorage.setItem("onaar_active_coupon", backendCheck.code);
         } catch {
           // ignore
         }
-        showToast(backendCheck.message || `Coupon ${backendCheck.code} applied! (-₹${backendCheck.discount_amount.toFixed(2)})`);
+        showToast(backendCheck.message || `Coupon ${backendCheck.code} applied! (-₹${discAmt.toFixed(2)})`);
         setCouponInput("");
         return;
       } else if (backendCheck && !backendCheck.valid) {
-        // Explicitly rejected by backend validation (already redeemed on email/phone/device)
+        // Explicitly rejected by backend validation (already redeemed on email/phone/device or threshold not met)
         setAppliedCoupon(null);
         try {
           localStorage.removeItem("onaar_active_coupon");
         } catch {
           // ignore
         }
-        showToast(backendCheck.message || `Coupon "${code}" has already been redeemed.`);
+        showToast(backendCheck.message || `Coupon "${code}" has already been redeemed or is invalid.`);
         return;
       }
     } catch (err: any) {
@@ -241,8 +234,10 @@ export default function CheckoutPage() {
     }
 
     if (code === "HARVEST10" || code === "WELCOME10" || code === "ORGANIC10") {
+      const savedAmount = (cartTotal * 10) / 100;
       setAppliedCoupon({
         code,
+        discountAmount: savedAmount,
         discountPercent: 10,
       });
       try {
@@ -250,7 +245,6 @@ export default function CheckoutPage() {
       } catch {
         // ignore
       }
-      const savedAmount = (cartTotal * 10) / 100;
       showToast(`Coupon ${code} applied! 10% discount (-₹${savedAmount.toFixed(2)})`);
       setCouponInput("");
     } else {
@@ -279,28 +273,61 @@ export default function CheckoutPage() {
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // 1. Enforce Authentication: Customer MUST be signed in to create orders
+    if (!isAuthenticated) {
+      showToast("Sign in required: Please log in or register an account to place your order.", "error");
+      setIsLoginModalOpen(true);
+      return;
+    }
+
+    // 2. Validate Cart
     if (cartItems.length === 0) {
-      showToast("Your cart is empty. Add products before checkout.");
+      showToast("Your cart is empty. Add organic staples before checkout.");
       return;
     }
 
-    if (!formData.fullName.trim()) {
-      showToast("Please enter your Full Name.");
+    // 3. Strict validation of basic information
+    const cleanName = formData.fullName.trim();
+    if (!cleanName || cleanName.length < 2) {
+      showToast("Please enter your full name (minimum 2 characters).");
       return;
     }
 
-    if (!formData.phone.trim() || formData.phone.trim().length < 10) {
-      showToast("Please enter a valid 10-digit mobile number.");
+    const cleanPhoneDigits = formData.phone.replace(/\D/g, "");
+    if (cleanPhoneDigits.length < 10) {
+      showToast("Please enter a valid 10-digit mobile phone number.");
       return;
     }
 
-    if (!formData.email.trim() || !formData.email.includes("@")) {
-      showToast("Please enter a valid email address for order confirmation.");
+    const cleanEmail = formData.email.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes("@") || !cleanEmail.includes(".")) {
+      showToast("Please enter a valid email address for order confirmation & invoice.");
       return;
     }
 
-    if (!formData.flatNo.trim() || !formData.street.trim() || !formData.pincode.trim()) {
-      showToast("Please complete your delivery address and 6-digit PIN code.");
+    if (!formData.flatNo.trim()) {
+      showToast("Please enter Flat / House / Apartment No.");
+      return;
+    }
+
+    if (!formData.street.trim()) {
+      showToast("Please enter Street Name, Colony or Locality.");
+      return;
+    }
+
+    if (!formData.city.trim()) {
+      showToast("Please enter City.");
+      return;
+    }
+
+    if (!formData.state.trim()) {
+      showToast("Please select your State.");
+      return;
+    }
+
+    const cleanPin = formData.pincode.replace(/\D/g, "");
+    if (cleanPin.length !== 6) {
+      showToast("Please enter a valid 6-digit Indian Postal PIN code.");
       return;
     }
 
@@ -313,15 +340,15 @@ export default function CheckoutPage() {
     // Call FastAPI backend to record order in PostgreSQL
     try {
       const backendRes = await api.orders.checkoutOrder({
-        customer_name: formData.fullName,
-        customer_phone: formData.phone.startsWith("+91") ? formData.phone : `+91${formData.phone}`,
-        customer_email: formData.email,
-        shipping_flat_no: formData.flatNo,
-        shipping_street: formData.street,
-        shipping_landmark: formData.landmark || undefined,
-        shipping_city: formData.city,
-        shipping_state: formData.state,
-        shipping_pincode: formData.pincode,
+        customer_name: cleanName,
+        customer_phone: cleanPhoneDigits.startsWith("91") && cleanPhoneDigits.length === 12 ? `+${cleanPhoneDigits}` : `+91${cleanPhoneDigits.slice(-10)}`,
+        customer_email: cleanEmail,
+        shipping_flat_no: formData.flatNo.trim(),
+        shipping_street: formData.street.trim(),
+        shipping_landmark: formData.landmark ? formData.landmark.trim() : undefined,
+        shipping_city: formData.city.trim(),
+        shipping_state: formData.state.trim(),
+        shipping_pincode: cleanPin,
         payment_method: formData.paymentMethod.includes("COD") ? "COD" : "ONLINE",
         coupon_code: appliedCoupon?.code,
         order_notes: formData.orderNotes,
@@ -345,14 +372,14 @@ export default function CheckoutPage() {
         try {
           await addAddress({
             label: newAddressLabel,
-            recipient_name: formData.fullName,
-            recipient_phone: formData.phone.startsWith("+91") ? formData.phone : `+91${formData.phone}`,
-            flat_no: formData.flatNo,
-            street: formData.street,
-            landmark: formData.landmark || undefined,
-            city: formData.city,
-            state: formData.state,
-            pincode: formData.pincode,
+            recipient_name: cleanName,
+            recipient_phone: `+91${cleanPhoneDigits.slice(-10)}`,
+            flat_no: formData.flatNo.trim(),
+            street: formData.street.trim(),
+            landmark: formData.landmark ? formData.landmark.trim() : undefined,
+            city: formData.city.trim(),
+            state: formData.state.trim(),
+            pincode: cleanPin,
             is_default_shipping: addresses.length === 0,
             is_default_billing: addresses.length === 0,
           });
@@ -361,15 +388,25 @@ export default function CheckoutPage() {
         }
       }
     } catch (backendErr: any) {
-      console.warn("FastAPI backend checkout fallback:", backendErr);
+      console.warn("FastAPI backend checkout error:", backendErr);
+      if (
+        backendErr?.status === 401 ||
+        backendErr?.message?.includes("Authentication") ||
+        backendErr?.message?.includes("log in")
+      ) {
+        showToast("Sign in required: Please log in to complete your order.");
+        setIsSubmitting(false);
+        setIsLoginModalOpen(true);
+        return;
+      }
       if (
         backendErr?.status === 400 ||
         backendErr?.message?.includes("coupon") ||
+        backendErr?.message?.includes("offer") ||
         backendErr?.message?.includes("redeemed") ||
-        backendErr?.message?.includes("First-order") ||
-        backendErr?.message?.includes("already")
+        backendErr?.message?.includes("first order")
       ) {
-        showToast(backendErr.message || "This coupon has already been redeemed for this email address or phone number.");
+        showToast(backendErr.message || "This coupon offer is not applicable for this order.");
         setIsSubmitting(false);
         setAppliedCoupon(null);
         try {
@@ -483,7 +520,38 @@ export default function CheckoutPage() {
             </Link>
           </div>
         ) : (
-          <form onSubmit={handlePlaceOrder}>
+          <div className="space-y-6">
+            {/* Sign-in Required Banner if customer is not logged in */}
+            {!isAuthenticated && (
+              <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-50 via-teal-50 to-amber-50 border border-emerald-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
+                <div className="flex items-center gap-3.5">
+                  <div className="w-11 h-11 rounded-2xl bg-emerald-700 text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <UserCheck className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-gray-900 flex items-center gap-2">
+                      <span>Sign in to complete your pure harvest order</span>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
+                        Required
+                      </span>
+                    </h4>
+                    <p className="text-xs text-gray-600 mt-0.5">
+                      Log in with your mobile number or email to save addresses, track live courier dispatch, and unlock your first-order discount.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsLoginModalOpen(true)}
+                  className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-all shadow-xs shrink-0 cursor-pointer flex items-center justify-center gap-1.5"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  <span>Sign In / Create Account →</span>
+                </button>
+              </div>
+            )}
+
+            <form onSubmit={handlePlaceOrder}>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               {/* LEFT COLUMN: Customer Information & Delivery Address (7 cols) */}
               <div className="lg:col-span-7 space-y-6">
@@ -938,7 +1006,7 @@ export default function CheckoutPage() {
                   </div>
 
                   {/* Coupon Code Section */}
-                  <div className="pt-3 border-t border-gray-100 space-y-2">
+                  <div className="pt-3 border-t border-gray-100 space-y-3">
                     <div className="text-xs font-bold text-gray-700 flex items-center justify-between">
                       <span className="flex items-center gap-1.5">
                         <Tag className="w-3.5 h-3.5 text-[#01722C]" />
@@ -946,36 +1014,43 @@ export default function CheckoutPage() {
                       </span>
                       {appliedCoupon && (
                         <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                          10% OFF APPLIED
+                          {appliedCoupon.discountPercent ? `${appliedCoupon.discountPercent}% OFF APPLIED` : `₹${appliedCoupon.discountAmount} OFF APPLIED`}
                         </span>
                       )}
                     </div>
 
                     {appliedCoupon ? (
-                      <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl text-xs">
+                      <div className="flex items-center justify-between bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-xs">
                         <div className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-emerald-700" />
-                          <span className="font-bold text-emerald-900">
-                            {appliedCoupon.code}
-                          </span>
-                          <span className="text-emerald-700 font-medium">
-                            (-10% • saves ₹{discountAmount.toFixed(2)})
-                          </span>
+                          <Check className="w-4 h-4 text-emerald-700 shrink-0" />
+                          <div>
+                            <div className="font-bold text-emerald-950 flex items-center gap-1.5">
+                              <span>{appliedCoupon.code}</span>
+                              <span className="text-[11px] font-semibold text-emerald-700">
+                                (-₹{discountAmount.toFixed(2)})
+                              </span>
+                            </div>
+                            {appliedCoupon.description && (
+                              <p className="text-[11px] text-emerald-800/80">
+                                {appliedCoupon.description}
+                              </p>
+                            )}
+                          </div>
                         </div>
                         <button
                           type="button"
                           onClick={handleRemoveCoupon}
-                          className="text-xs text-rose-600 hover:text-rose-800 font-bold cursor-pointer"
+                          className="text-xs text-rose-600 hover:text-rose-800 font-bold cursor-pointer shrink-0 ml-2"
                         >
                           Remove
                         </button>
                       </div>
                     ) : (
-                      <div className="space-y-1.5">
+                      <div className="space-y-2.5">
                         <div className="flex gap-2">
                           <input
                             type="text"
-                            placeholder="e.g. HARVEST10"
+                            placeholder="Enter promo code (e.g. ONAAR100)"
                             value={couponInput}
                             onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                             className="flex-1 bg-[#faf9f5] border border-[#d8dfda] text-xs rounded-xl px-3 py-2 uppercase font-mono tracking-wider focus:outline-none focus:border-[#01722C] focus:bg-white"
@@ -989,22 +1064,70 @@ export default function CheckoutPage() {
                           </button>
                         </div>
 
-                        {/* Quick Tap Helper */}
-                        {isCouponRedeemed("HARVEST10") ? (
-                          <div className="flex items-center gap-1.5 text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded-lg border border-gray-200">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                            <span>Welcome coupon HARVEST10 has already been used on this browser</span>
-                          </div>
-                        ) : (
-                          <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
-                            <span>First order?</span>
-                            <button
-                              type="button"
-                              onClick={() => handleApplyCoupon("HARVEST10")}
-                              className="text-[#01722C] font-bold underline hover:text-[#0b542c] cursor-pointer"
-                            >
-                              Apply HARVEST10 for 10% off
-                            </button>
+                        {/* Live Active Promotional Offers Configured in Admin Panel */}
+                        {activeOffers.length > 0 && (
+                          <div className="space-y-1.5 pt-1">
+                            <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider flex items-center gap-1">
+                              <Sparkles className="w-3 h-3 text-[#01722C]" />
+                              <span>Store Offers &amp; Discounts</span>
+                            </div>
+                            <div className="space-y-1.5">
+                              {activeOffers.map((offer) => {
+                                const minAmt = Number(offer.min_order_amount) || 0;
+                                const isEligible = cartTotal >= minAmt;
+                                const diff = minAmt - cartTotal;
+                                const isWelcome = offer.is_first_order_only;
+
+                                return (
+                                  <div
+                                    key={offer.id || offer.code}
+                                    className={`p-2.5 rounded-xl border text-xs transition-all ${
+                                      isEligible
+                                        ? "bg-emerald-50/60 border-emerald-200"
+                                        : "bg-gray-50/70 border-gray-200 opacity-80"
+                                    }`}
+                                  >
+                                    <div className="flex items-center justify-between gap-2">
+                                      <div className="min-w-0">
+                                        <div className="flex items-center gap-1.5 flex-wrap">
+                                          <span className="font-mono font-bold text-[#01722C] bg-white px-2 py-0.5 rounded border border-[#01722C]/30 text-[11px]">
+                                            {offer.code}
+                                          </span>
+                                          {isWelcome && (
+                                            <span className="text-[10px] font-bold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">
+                                              1st Order Only
+                                            </span>
+                                          )}
+                                          <span className="font-bold text-gray-900 text-[11px]">
+                                            {offer.discount_type === "fixed"
+                                              ? `Flat ₹${Number(offer.discount_value).toFixed(0)} OFF`
+                                              : `${Number(offer.discount_value).toFixed(0)}% OFF`}
+                                          </span>
+                                        </div>
+                                        <p className="text-[11px] text-gray-600 mt-0.5 truncate">
+                                          {offer.description || (minAmt > 0 ? `Valid on orders above ₹${minAmt}` : "Special seasonal discount")}
+                                        </p>
+                                      </div>
+                                      <div>
+                                        {isEligible ? (
+                                          <button
+                                            type="button"
+                                            onClick={() => handleApplyCoupon(offer.code)}
+                                            className="bg-[#01722C] hover:bg-[#0b542c] text-white text-[11px] font-bold px-3 py-1.5 rounded-lg transition-all cursor-pointer shrink-0 active:scale-95 shadow-2xs"
+                                          >
+                                            Apply
+                                          </button>
+                                        ) : (
+                                          <span className="text-[10px] font-semibold text-gray-500 block text-right leading-tight bg-gray-100 px-2 py-1 rounded">
+                                            Add ₹{diff.toFixed(0)} more
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -1028,10 +1151,13 @@ export default function CheckoutPage() {
                     )}
 
                     {discountAmount > 0 && (
-                      <div className="flex justify-between text-emerald-700 font-bold bg-emerald-50/60 p-1.5 rounded-lg border border-emerald-100">
-                        <span className="flex items-center gap-1">
-                          <Tag className="w-3 h-3" />
-                          <span>Coupon Discount ({appliedCoupon?.code} - 10%)</span>
+                      <div className="flex justify-between text-emerald-700 font-bold bg-emerald-50/60 p-2 rounded-xl border border-emerald-100">
+                        <span className="flex items-center gap-1.5">
+                          <Tag className="w-3.5 h-3.5 text-emerald-700" />
+                          <span>
+                            Coupon Discount ({appliedCoupon?.code}
+                            {appliedCoupon?.discountPercent ? ` • ${appliedCoupon.discountPercent}%` : ""})
+                          </span>
                         </span>
                         <span>-₹{discountAmount.toFixed(2)}</span>
                       </div>
@@ -1064,6 +1190,11 @@ export default function CheckoutPage() {
                   >
                     {isSubmitting ? (
                       <span>DISPATCHING ORDER & NOTIFYING VENDOR...</span>
+                    ) : !isAuthenticated ? (
+                      <>
+                        <Lock className="w-4 h-4" />
+                        <span>SIGN IN TO PLACE ORDER (PAY ₹{grandTotal.toFixed(2)} ON DELIVERY)</span>
+                      </>
                     ) : (
                       <>
                         <CheckCircle2 className="w-4 h-4" />
@@ -1091,6 +1222,7 @@ export default function CheckoutPage() {
               </div>
             </div>
           </form>
+        </div>
         )}
       </main>
     </div>

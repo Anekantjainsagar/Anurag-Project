@@ -10,14 +10,24 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from app.core.database import get_db
 from app.core.dependencies import get_current_user, get_optional_user
+from app.models.coupon import Coupon
 from app.models.order import Order
 from app.models.user import User
-from app.schemas.coupon import CouponValidateRequest, CouponValidateResponse
+from app.schemas.coupon import CouponOut, CouponValidateRequest, CouponValidateResponse
 from app.schemas.order import OrderCreate, OrderOut, OrderTrackingEventOut
 from app.services.coupon_service import CouponService
 from app.services.order_service import OrderService
 
 router = APIRouter()
+
+
+@router.get("/coupons/active", response_model=List[CouponOut], summary="List Active Promotional Offers")
+async def list_active_coupons(db: AsyncSession = Depends(get_db)):
+    """Returns active promotional discount offers for storefront checkout and marketing."""
+    res = await db.execute(
+        select(Coupon).where(Coupon.is_active.is_(True)).order_by(Coupon.min_order_amount.asc())
+    )
+    return res.scalars().all()
 
 
 @router.post("/coupons/validate", response_model=CouponValidateResponse, summary="Validate Coupon Code")
@@ -48,16 +58,44 @@ async def checkout_order(
 ):
     """
     Processes customer checkout:
-    - Creates order record & line items
+    - Enforces authentication: User must be signed in to place an order
+    - Validates essential contact & delivery fields (name, email, phone, street, pincode)
     - Validates and applies coupon discount
     - Dispatches SMTP confirmation emails to Customer and Vendor (Anurag Jain)
     - Records initial tracking milestone
     """
+    # 1. Require user authentication
+    if not current_user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required. Please log in or register to place your order.",
+        )
+
+    # 2. Strict validation of basic customer and address information
+    if not payload.customer_name or len(payload.customer_name.strip()) < 2:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Full name is required.")
+    if not payload.customer_email or "@" not in str(payload.customer_email):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="A valid email address is required for order confirmation.")
+    if not payload.customer_phone or len(payload.customer_phone.strip()) < 10:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="A valid 10-digit phone number is required.")
+    if not payload.shipping_flat_no or not payload.shipping_flat_no.strip():
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Flat / House / Apartment number is required.")
+    if not payload.shipping_street or not payload.shipping_street.strip():
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Street address / locality is required.")
+    if not payload.shipping_city or not payload.shipping_city.strip():
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="City is required.")
+    if not payload.shipping_state or not payload.shipping_state.strip():
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="State is required.")
+    if not payload.shipping_pincode or len(payload.shipping_pincode.strip()) < 6:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="A valid 6-digit delivery PIN code is required.")
+    if not payload.items or len(payload.items) == 0:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Your cart is empty. Add items before placing an order.")
+
     try:
         order = await OrderService.place_order(
             db=db,
             payload=payload,
-            user_id=current_user.id if current_user else None,
+            user_id=current_user.id,
         )
         # Reload relationships
         stmt = (

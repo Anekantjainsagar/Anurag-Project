@@ -176,6 +176,9 @@ export const api = {
 
   // Orders & Checkout
   orders: {
+    getActiveOffers: () =>
+      request<any[]>("/coupons/active"),
+
     validateCoupon: (code: string, subtotal: number, customerPhone?: string, customerEmail?: string) =>
       request<{ valid: boolean; code: string; discount_amount: number; new_total: number; message: string }>(
         "/coupons/validate",
@@ -620,6 +623,38 @@ export const api = {
     deleteTestimonial: (id: string) =>
       request<{ success: boolean; message: string }>(
         `/admin/testimonials/${encodeURIComponent(id)}`,
+        {
+          method: "DELETE",
+          requiresAuth: true,
+        }
+      ),
+
+    getCoupons: () =>
+      request<any[]>("/admin/coupons", { requiresAuth: true }),
+
+    createCoupon: (data: any) =>
+      request<any>("/admin/coupons", {
+        method: "POST",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    updateCoupon: (id: string, data: any) =>
+      request<any>(`/admin/coupons/${encodeURIComponent(id)}`, {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
+      }),
+
+    toggleCoupon: (id: string) =>
+      request<any>(`/admin/coupons/${encodeURIComponent(id)}/toggle`, {
+        method: "PATCH",
+        requiresAuth: true,
+      }),
+
+    deleteCoupon: (id: string) =>
+      request<{ success: boolean; message: string }>(
+        `/admin/coupons/${encodeURIComponent(id)}`,
         {
           method: "DELETE",
           requiresAuth: true,

@@ -103,16 +103,16 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.06)] font-sans w-full transition-all">
-      {/* Responsive Centered Container */}
-      <div className="max-w-7xl mx-auto lg:mx-0 xl:mx-auto px-3 sm:px-6 lg:px-0 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4">
+      <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-[#e5ebe7] shadow-xs font-sans w-full transition-all">
+      {/* Sleek, Uncluttered Responsive Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-6">
         {/* Left: Official Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <BrandLogo variant="dark" />
         </Link>
 
-        {/* Center: Desktop Navigation Links (>= 1024px) */}
-        <nav className="hidden lg:flex items-center gap-2 xl:gap-5 text-[12.5px] xl:text-[14px] font-semibold text-gray-700">
+        {/* Center: Sleek Desktop Navigation (>= 1024px) */}
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] font-medium text-gray-600">
           <Link
             href="/"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
@@ -123,7 +123,7 @@ export default function Navbar() {
             href="/products"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
           >
-            All Products
+            Shop
           </Link>
 
           {/* Categories Mega Dropdown */}
@@ -180,14 +180,14 @@ export default function Navbar() {
             href="/about"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
           >
-            About Us
+            About
           </Link>
 
           <Link
             href="/blog"
             className="hover:text-[#01722C] transition-colors whitespace-nowrap"
           >
-            Health Journal
+            Journal
           </Link>
 
           <Link
@@ -198,18 +198,18 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Right Section: Search, Wishlist & Shopping Cart */}
-        <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0">
+        {/* Right Section: Compact Search, Wishlist & Cart */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Desktop Search Input (>= 1024px) */}
-          <div className="relative hidden lg:block w-32 xl:w-52" ref={searchRef}>
+          <div className="relative hidden lg:block w-36 xl:w-48" ref={searchRef}>
             <form onSubmit={handleSearchSubmit} className="relative flex items-center">
               <input
                 type="text"
-                placeholder="Search staples..."
+                placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
-                className="w-full bg-[#f9f8f5] border border-[#d8dfda] text-gray-800 placeholder-gray-400 text-xs rounded-full pl-3.5 pr-8 py-1.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] transition-all"
+                className="w-full bg-[#f6f8f6] border border-[#d8dfda] text-gray-800 placeholder-gray-400 text-xs rounded-full pl-3.5 pr-8 py-1.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] focus:w-56 transition-all"
               />
               <button
                 type="submit"
@@ -286,13 +286,13 @@ export default function Navbar() {
           {/* Wishlist Button */}
           <Link
             href="/wishlist"
-            className="relative p-1.5 sm:p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer shrink-0"
+            className="relative p-2 text-gray-700 hover:text-[#01722C] transition-colors rounded-full hover:bg-gray-100 cursor-pointer shrink-0"
             title="Wishlist"
             aria-label="Wishlist"
           >
-            <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+            <Heart className="w-4 h-4" />
             {mounted && wishlist.length > 0 && (
-              <span className="absolute top-0.5 right-0.5 bg-[#e11d48] text-white text-[10px] font-bold w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center">
+              <span className="absolute top-1 right-1 bg-[#e11d48] text-white text-[9px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">
                 {wishlist.length}
               </span>
             )}
@@ -392,23 +392,16 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Shopping Cart Icon with Cart Total Amount */}
+          {/* Shopping Cart Button */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="relative flex items-center gap-1.5 bg-[#01722C] hover:bg-[#0b542c] text-white p-2 sm:px-3.5 sm:py-2 rounded-xl transition-all shadow-xs cursor-pointer shrink-0"
+            className="relative flex items-center gap-1.5 bg-[#01722C] hover:bg-[#0b542c] text-white px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full transition-all shadow-xs cursor-pointer shrink-0 active:scale-95"
             title="Shopping Cart"
             aria-label="Cart"
           >
-            <div className="relative">
-              <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
-              {mounted && cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#facc15] text-[#014d1e] text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
-                  {cartCount}
-                </span>
-              )}
-            </div>
-            <span className="text-xs sm:text-sm font-bold hidden xl:inline">
-              Cart {mounted && cartCount > 0 && `(${cartCount})`}
+            <ShoppingCart className="w-4 h-4 shrink-0" />
+            <span className="text-xs font-bold">
+              Cart{mounted && cartCount > 0 ? ` (${cartCount})` : ""}
             </span>
           </button>
 

@@ -6,6 +6,7 @@ from fastapi import APIRouter
 from app.api.v1.endpoints.admin import (
     blogs_admin,
     catalog_admin,
+    coupons_admin,
     dashboard,
     email_admin,
     inquiries_admin,
@@ -26,4 +27,5 @@ admin_router.include_router(media_admin.router, tags=["Admin - Cloud S3 & Media"
 admin_router.include_router(email_admin.router, tags=["Admin - Email Templates & SMTP"])
 admin_router.include_router(inquiries_admin.router, tags=["Admin - Retail & Wholesale CRM"])
 admin_router.include_router(settings_admin.router, tags=["Admin - Store Policies & Settings"])
+admin_router.include_router(coupons_admin.router, tags=["Admin - Promotional Offers & Coupons"])
 

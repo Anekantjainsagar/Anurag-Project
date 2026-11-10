@@ -87,19 +87,47 @@ class CouponService:
             )
 
         if subtotal < coupon.min_order_amount:
+            remaining = coupon.min_order_amount - subtotal
             return CouponValidateResponse(
                 valid=False,
                 code=clean_code,
                 discount_amount=Decimal("0.00"),
                 new_total=subtotal,
-                message=f"Coupon requires a minimum order subtotal of ₹{coupon.min_order_amount:.2f}.",
+                message=f"Coupon '{clean_code}' requires a minimum cart subtotal of ₹{coupon.min_order_amount:.2f}. Add ₹{remaining:.2f} more to unlock this offer.",
             )
 
-        # Check single-use redemption history (by email, phone, device token, or user_id)
-        if coupon.usage_limit_per_user == 1:
-            clean_email = clean_email_str(customer_email)
-            phone_10 = extract_phone_digits(customer_phone)
+        clean_email = clean_email_str(customer_email)
+        phone_10 = extract_phone_digits(customer_phone)
 
+        # 1. Strictly First-Order Check: if user has any prior completed/confirmed order, offer is not applicable
+        if coupon.is_first_order_only:
+            first_order_conditions = []
+            if clean_email:
+                first_order_conditions.append(Order.customer_email.ilike(clean_email))
+            if phone_10:
+                first_order_conditions.append(Order.customer_phone.like(f"%{phone_10}%"))
+            if user_id:
+                first_order_conditions.append(Order.user_id == user_id)
+
+            if first_order_conditions:
+                prior_any_res = await db.execute(
+                    select(Order).where(
+                        Order.order_status != "CANCELLED",
+                        or_(*first_order_conditions),
+                    )
+                )
+                prior_any = prior_any_res.scalar_one_or_none()
+                if prior_any:
+                    return CouponValidateResponse(
+                        valid=False,
+                        code=clean_code,
+                        discount_amount=Decimal("0.00"),
+                        new_total=subtotal,
+                        message=f"Offer '{clean_code}' is applicable only on your very first order. You already placed Order #{prior_any.order_number}.",
+                    )
+
+        # 2. Check single-use redemption history (by email, phone, device token, or user_id)
+        if coupon.usage_limit_per_user == 1:
             redemption_conditions = []
             if device_token and device_token.strip():
                 redemption_conditions.append(CouponRedemption.device_token == device_token.strip())
