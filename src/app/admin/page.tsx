@@ -78,34 +78,7 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-6 font-sans">
-      {/* 1. Header Bar with Refresh & Live Indicator */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-2 border-b border-slate-200/80">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 tracking-tight">
-            Executive Analytics & Performance Insights
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Real-time telemetry, revenue velocity, order lifecycle distribution, and crop sales intelligence.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2 self-stretch sm:self-auto justify-between sm:justify-end">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Live Farm Ledger</span>
-          </div>
-          <button
-            onClick={loadData}
-            disabled={isLoading}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs transition-colors cursor-pointer"
-          >
-            <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
-            <span>Refresh</span>
-          </button>
-        </div>
-      </div>
-
-      {/* 2. Primary KPI Number Metrics */}
+      {/* 1. Primary KPI Number Metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
         {/* Metric 1 */}
         <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
