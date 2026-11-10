@@ -67,8 +67,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    // Check cached user: if marked suspended/inactive, purge session immediately
+    const cached = getCachedUser();
+    if (cached && cached.is_active === false) {
+      setAuthToken(null);
+      setCachedUser(null);
+      setUser(null);
+      setAddresses([]);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const userData = await api.auth.getMe();
+      if (!userData || userData.is_active === false) {
+        // Suspended or deactivated account: revoke session
+        setAuthToken(null);
+        setCachedUser(null);
+        setUser(null);
+        setAddresses([]);
+        return;
+      }
       setUser(userData);
       setCachedUser(userData);
       if (userData.addresses) {
@@ -76,8 +95,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     } catch (err: any) {
       const msg = err?.message || "";
-      // Only clear session if genuinely unauthorized (token expired / user not found)
-      if (msg.includes("401") || msg.includes("Unauthorized") || msg.includes("credentials") || msg.includes("not found")) {
+      // If unauthorized OR forbidden (403 suspended / 401 token invalid / deactivated), immediately clear session
+      if (
+        msg.includes("401") ||
+        msg.includes("403") ||
+        msg.includes("Unauthorized") ||
+        msg.includes("Forbidden") ||
+        msg.includes("suspended") ||
+        msg.includes("deactivated") ||
+        msg.includes("credentials") ||
+        msg.includes("not found")
+      ) {
         setAuthToken(null);
         setCachedUser(null);
         setUser(null);
@@ -100,6 +128,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const res = await api.auth.verifyOtp(identifier, otpCode, fullName);
       if (res.access_token) {
+        if (!res.user || res.user.is_active === false) {
+          setAuthToken(null);
+          setCachedUser(null);
+          setUser(null);
+          throw new Error("Your account has been suspended. Please contact customer support.");
+        }
         setAuthToken(res.access_token);
         setCachedUser(res.user);
         setUser(res.user);
@@ -108,6 +142,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       return false;
     } catch (err: any) {
+      setAuthToken(null);
+      setCachedUser(null);
+      setUser(null);
       throw err;
     }
   };

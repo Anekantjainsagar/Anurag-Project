@@ -53,8 +53,32 @@ def normalize_identifier(raw: str) -> str:
 async def send_otp(payload: OTPRequest, db: AsyncSession = Depends(get_db)):
     """
     Generates a secure 4-digit OTP code, stores the SHA-256 hash, and simulates/dispatches SMS or WhatsApp.
+    Blocks OTP generation for suspended/deactivated accounts.
     """
     clean_identifier = normalize_identifier(payload.identifier)
+
+    # Check if an existing user with this phone or email is suspended/inactive
+    is_email = "@" in clean_identifier
+    clean_phone_digits = "".join(filter(str.isdigit, clean_identifier))
+    try:
+        if is_email:
+            existing_user_res = await db.execute(select(User).where(User.email == clean_identifier))
+        elif len(clean_phone_digits) >= 10:
+            existing_user_res = await db.execute(select(User).where(User.phone.like(f"%{clean_phone_digits[-10:]}")))
+        else:
+            existing_user_res = await db.execute(select(User).where(User.phone == clean_identifier))
+
+        existing_user = existing_user_res.scalars().first()
+        if existing_user and not existing_user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your account has been suspended. Please contact customer support.",
+            )
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"⚠️ [AUTH SEND OTP] User status check: {e}")
+
     otp_code = generate_otp_code(digits=4)
     otp_hashed = hash_otp_code(otp_code)
     expires_at = datetime.now(timezone.utc) + timedelta(minutes=5)
@@ -168,6 +192,13 @@ async def verify_otp(payload: OTPVerify, response: Response, db: AsyncSession = 
 
         user = user_res.scalars().first()
 
+        # CRITICAL SECURITY CHECK: If user exists and is suspended/inactive, BLOCK IMMEDIATELY
+        if user and not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Your account has been suspended. Please contact customer support.",
+            )
+
         if not user:
             # Create user
             role = "admin" if is_admin else "customer"
@@ -221,36 +252,14 @@ async def verify_otp(payload: OTPVerify, response: Response, db: AsyncSession = 
             expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
             user=UserOut.model_validate(user),
         )
+    except HTTPException:
+        # Re-raise explicit HTTP exceptions (e.g. 403 Forbidden for suspended accounts)
+        raise
     except Exception as e:
-        print(f"⚠️ [AUTH VERIFY] DB commit fallback: {e}")
-        fallback_role = "admin" if is_admin else "customer"
-        fallback_id = uuid.uuid4()
-        access_token = create_access_token(subject=str(fallback_id), role=fallback_role)
-        raw_refresh, _ = create_refresh_token()
-
-        response.set_cookie(
-            key="onaar_refresh_token",
-            value=raw_refresh,
-            httponly=True,
-            secure=False,
-            samesite="lax",
-            max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 86400,
-        )
-
-        return TokenResponse(
-            access_token=access_token,
-            token_type="bearer",
-            expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
-            user=UserOut(
-                id=fallback_id,
-                full_name=payload.full_name or ("Anurag Jain (Admin)" if is_admin else f"Customer {clean_identifier[-4:]}"),
-                phone=clean_identifier if "@" not in clean_identifier else None,
-                email=clean_identifier if "@" in clean_identifier else None,
-                role=fallback_role,
-                is_active=True,
-                is_verified=True,
-                created_at=now,
-            ),
+        print(f"⚠️ [AUTH VERIFY] DB commit error: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Authentication service temporarily unavailable. Please try again.",
         )
 
 

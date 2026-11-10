@@ -68,6 +68,7 @@ export default function LoginModal() {
       }
       showToast(res.message || `Verification code sent to +91 ${digitsOnly}`);
     } catch (err: any) {
+      setOtpSent(false);
       showToast(err?.message || "Failed to send verification code. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -120,7 +121,12 @@ export default function LoginModal() {
         }, 800);
       }
     } catch (err: any) {
-      showToast(err.message || "Invalid OTP code. Please retry.");
+      setOtp(["", "", "", ""]);
+      const errorMsg = err?.message || "Invalid OTP code. Please retry.";
+      if (errorMsg.toLowerCase().includes("suspended") || errorMsg.toLowerCase().includes("deactivated")) {
+        setOtpSent(false);
+      }
+      showToast(errorMsg);
     } finally {
       setIsSubmitting(false);
     }

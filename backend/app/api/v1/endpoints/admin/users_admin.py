@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import func, or_, select
+from sqlalchemy import func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from app.core.database import get_db
@@ -15,7 +15,7 @@ from app.core.dependencies import require_role
 from app.core.security import get_password_hash
 from app.models.coupon import LoyaltyLedger
 from app.models.order import Order
-from app.models.user import User, UserAddress
+from app.models.user import User, UserAddress, UserSession
 from app.schemas.user import (
     AdminUserCreate,
     AdminUserDetail,
@@ -316,6 +316,12 @@ async def update_admin_user(
         u.role = payload.role.strip().lower()
     if payload.is_active is not None:
         u.is_active = payload.is_active
+        if not u.is_active:
+            await db.execute(
+                update(UserSession)
+                .where(UserSession.user_id == u.id)
+                .values(is_revoked=True)
+            )
     if payload.is_verified is not None:
         u.is_verified = payload.is_verified
     if payload.dietary_preference is not None:
@@ -352,6 +358,15 @@ async def toggle_user_active_status(
 
     u.is_active = not u.is_active
     u.updated_at = datetime.now(timezone.utc)
+
+    if not u.is_active:
+        # Revoke all active sessions so suspended user is immediately signed out
+        await db.execute(
+            update(UserSession)
+            .where(UserSession.user_id == u.id)
+            .values(is_revoked=True)
+        )
+
     await db.commit()
 
     return {
