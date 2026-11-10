@@ -12,6 +12,9 @@ class SiteSettingsOut(BaseModel):
     warehouse_address: Dict[str, Any]
     topbar_tickers: list[str]
     shipping_policy: Dict[str, Any]
+    store_details: Optional[Dict[str, Any]] = None
+    announcement_bar: Optional[Dict[str, Any]] = None
+    customer_love_header: Optional[Dict[str, Any]] = None
 
 
 class PromoBannerOut(BaseModel):

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import { api } from "@/services/apiClient";
 import { sendContactEmail } from "@/services/emailService";
@@ -24,6 +24,30 @@ function ContactPageContent() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactPhone, setContactPhone] = useState("+91 98765 43210");
+  const [supportEmail, setSupportEmail] = useState("support@onaar.com");
+  const [warehouseAddress, setWarehouseAddress] = useState(
+    "Plot 104, Organic Agro Park, Central Logistics Zone, Madhya Pradesh - 452001, INDIA"
+  );
+
+  useEffect(() => {
+    api.settings
+      .getSiteSettings()
+      .then((res) => {
+        if (res?.store_details) {
+          if (res.store_details.contact_phone) setContactPhone(res.store_details.contact_phone);
+          if (res.store_details.support_email) setSupportEmail(res.store_details.support_email);
+          if (res.store_details.warehouse_address) setWarehouseAddress(res.store_details.warehouse_address);
+        } else if (res?.vendor_info) {
+          if (res.vendor_info.phone) setContactPhone(res.vendor_info.phone);
+          if (res.vendor_info.email) setSupportEmail(res.vendor_info.email);
+          if (res?.warehouse_address?.address) setWarehouseAddress(res.warehouse_address.address);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const cleanPhone = contactPhone.replace(/[^0-9+]/g, "");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,10 +130,10 @@ function ContactPageContent() {
                     Customer & Trade Support
                   </div>
                   <a
-                    href="tel:+919876543210"
+                    href={`tel:${cleanPhone}`}
                     className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    +91-98765 43210
+                    {contactPhone}
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
                     Monday to Saturday (9:00 AM - 8:00 PM IST)
@@ -126,10 +150,10 @@ function ContactPageContent() {
                     Email Correspondence
                   </div>
                   <a
-                    href="mailto:support@onaar.com"
+                    href={`mailto:${supportEmail}`}
                     className="text-sm font-bold text-gray-900 hover:text-[#01722C] block transition-colors mt-0.5"
                   >
-                    support@onaar.com
+                    {supportEmail}
                   </a>
                   <div className="text-[11px] text-gray-500 mt-0.5">
                     For price lists, certification copies & batch analysis
@@ -145,11 +169,8 @@ function ContactPageContent() {
                   <div className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                     Central Distribution & Logistics
                   </div>
-                  <div className="text-sm font-bold text-gray-900 mt-0.5">
-                    Plot 104, Organic Agro Park, Central Logistics Zone
-                  </div>
-                  <div className="text-xs text-gray-500 mt-0.5">
-                    Madhya Pradesh - 452001, India
+                  <div className="text-sm font-bold text-gray-900 mt-0.5 leading-snug">
+                    {warehouseAddress}
                   </div>
                 </div>
               </div>

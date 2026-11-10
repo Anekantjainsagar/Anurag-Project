@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import BrandLogo from "./BrandLogo";
+import { api } from "@/services/apiClient";
 import {
   X,
   Printer,
@@ -187,6 +188,28 @@ export default function OrderInvoiceModal({
   defaultTab = "details",
 }: OrderInvoiceModalProps) {
   const [activeTab, setActiveTab] = useState<"details" | "invoice">(defaultTab);
+  const [storeDetails, setStoreDetails] = useState({
+    legal_entity: "ONAAR Pure Harvest Agri Pvt Ltd",
+    warehouse_address: "Plot 104, Organic Agro Park, Central Logistics Zone, Indore, MP - 452001",
+    gst_number: "23AABCU9603R1ZM",
+    fssai_license: "11422850000341",
+    contact_phone: "+91 98765 43210",
+    support_email: "support@onaar.com",
+  });
+
+  useEffect(() => {
+    api.settings
+      .getSiteSettings()
+      .then((res) => {
+        if (res?.store_details) {
+          setStoreDetails((prev) => ({
+            ...prev,
+            ...res.store_details,
+          }));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   if (!isOpen || !order) return null;
 
@@ -581,17 +604,17 @@ export default function OrderInvoiceModal({
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b-2 border-gray-900 pb-4">
                 <div className="space-y-1">
                   <BrandLogo variant="dark" size="md" />
-                  <p className="text-[10px] text-gray-500 font-mono tracking-tight mt-1">
-                    ONAAR ORGANIC FOODS PRIVATE LIMITED
+                  <p className="text-[10px] text-gray-500 font-mono tracking-tight mt-1 uppercase">
+                    {storeDetails.legal_entity || "ONAAR ORGANIC FOODS PRIVATE LIMITED"}
                   </p>
                   <p className="text-[10px] text-gray-500">
-                    Plot 104, Organic Agro Park, Central Logistics Zone, Indore, MP - 452001
+                    {storeDetails.warehouse_address}
                   </p>
                   <p className="text-[10px] text-gray-500 font-mono">
-                    GSTIN: <strong>23AABCO1234F1Z5</strong> • FSSAI Lic: <strong>11424999000182</strong>
+                    GSTIN: <strong>{storeDetails.gst_number}</strong> • FSSAI Lic: <strong>{storeDetails.fssai_license}</strong>
                   </p>
                   <p className="text-[10px] text-gray-500">
-                    Helpline: +91-98765 43210 • Email: support@onaar.com
+                    Helpline: {storeDetails.contact_phone} • Email: {storeDetails.support_email}
                   </p>
                 </div>
 
@@ -818,7 +841,7 @@ export default function OrderInvoiceModal({
         <div className="p-4 sm:p-5 border-t border-gray-100 bg-gray-50 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0 print:hidden">
           <div className="flex items-center gap-2 text-xs text-gray-500 w-full sm:w-auto">
             <ShieldCheck className="w-4 h-4 text-[#01722C] shrink-0" />
-            <span>Need help with this order? Call helpline: +91-98765 43210</span>
+            <span>Need help with this order? Call helpline: {storeDetails.contact_phone}</span>
           </div>
 
           <div className="flex items-center gap-2 w-full sm:w-auto justify-end">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import BrandLogo from "./BrandLogo";
 import { Phone, Mail, MapPin, ChevronRight, ShieldCheck, Heart } from "lucide-react";
@@ -12,6 +12,30 @@ export default function Footer() {
   const { showToast } = useCart();
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [phone, setPhone] = useState("+91 98765 43210");
+  const [supportEmail, setSupportEmail] = useState("support@onaar.com");
+  const [warehouseAddress, setWarehouseAddress] = useState(
+    "Plot 104, Organic Agro Park, Central Logistics Zone, Madhya Pradesh - 452001, INDIA"
+  );
+
+  useEffect(() => {
+    api.settings
+      .getSiteSettings()
+      .then((res) => {
+        if (res?.store_details) {
+          if (res.store_details.contact_phone) setPhone(res.store_details.contact_phone);
+          if (res.store_details.support_email) setSupportEmail(res.store_details.support_email);
+          if (res.store_details.warehouse_address) setWarehouseAddress(res.store_details.warehouse_address);
+        } else if (res?.vendor_info) {
+          if (res.vendor_info.phone) setPhone(res.vendor_info.phone);
+          if (res.vendor_info.email) setSupportEmail(res.vendor_info.email);
+          if (res?.warehouse_address?.address) setWarehouseAddress(res.warehouse_address.address);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const cleanPhone = phone.replace(/[^0-9+]/g, "");
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,10 +99,10 @@ export default function Footer() {
                 <div>
                   <div className="text-[10.5px] text-[#7eb59a] font-medium">Helpline & WhatsApp</div>
                   <a
-                    href="tel:+919876543210"
+                    href={`tel:${cleanPhone}`}
                     className="hover:text-white transition-colors font-bold text-white block text-xs mt-0.5"
                   >
-                    +91-98765 43210
+                    {phone}
                   </a>
                 </div>
               </div>
@@ -90,10 +114,10 @@ export default function Footer() {
                 <div>
                   <div className="text-[10.5px] text-[#7eb59a] font-medium">Customer Support Email</div>
                   <a
-                    href="mailto:support@onaar.com"
+                    href={`mailto:${supportEmail}`}
                     className="hover:text-white transition-colors font-bold text-white block text-xs mt-0.5"
                   >
-                    support@onaar.com
+                    {supportEmail}
                   </a>
                 </div>
               </div>
@@ -105,8 +129,7 @@ export default function Footer() {
                 <div>
                   <div className="text-[10.5px] text-[#7eb59a] font-medium">Central Office & Logistics Hub</div>
                   <p className="leading-snug text-white font-medium text-xs mt-0.5">
-                    Plot 104, Organic Agro Park, Central Logistics Zone,
-                    Madhya Pradesh - 452001, INDIA
+                    {warehouseAddress}
                   </p>
                 </div>
               </div>
