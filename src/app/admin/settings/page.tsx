@@ -21,6 +21,11 @@ import {
   Quote,
   Eye,
   EyeOff,
+  Search,
+  Check,
+  HelpCircle,
+  ExternalLink,
+  SlidersHorizontal,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { api } from "@/services/apiClient";
@@ -55,6 +60,7 @@ export default function AdminSettingsPage() {
     title: "Trusted by 10,000+ Indian Families",
     subtitle: "Real reviews from real customers across India who made the switch to pure, unpolished organic food.",
   });
+  const [isEditingSectionHeader, setIsEditingSectionHeader] = useState(false);
 
   // 4. Announcement Bar State
   const [announcementBar, setAnnouncementBar] = useState({
@@ -65,6 +71,8 @@ export default function AdminSettingsPage() {
 
   // 5. Testimonials List State
   const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [testimonialSearch, setTestimonialSearch] = useState("");
+  const [testimonialFilter, setTestimonialFilter] = useState<"ALL" | "FEATURED" | "HIDDEN">("ALL");
   const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(false);
 
   // Modal State for Add/Edit Testimonial
@@ -135,7 +143,8 @@ export default function AdminSettingsPage() {
         customer_love_header: customerLoveHeader,
         announcement_bar: announcementBar,
       });
-      showToast("Store policies & CMS parameters saved successfully!");
+      showToast("Settings updated successfully!");
+      setIsEditingSectionHeader(false);
     } catch (err: any) {
       showToast(err.message || "Failed to save settings", "error");
     } finally {
@@ -198,12 +207,12 @@ export default function AdminSettingsPage() {
   };
 
   const handleDeleteTestimonial = async (t: any) => {
-    if (!confirm(`Are you sure you want to delete the review from "${t.customer_name}"?`)) {
+    if (!confirm(`Are you sure you want to permanently delete the review from "${t.customer_name}"?`)) {
       return;
     }
     try {
       await api.admin.deleteTestimonial(t.id);
-      showToast("Testimonial removed.");
+      showToast("Testimonial deleted.");
       loadTestimonials();
     } catch (err: any) {
       showToast(err.message || "Failed to delete testimonial", "error");
@@ -221,231 +230,337 @@ export default function AdminSettingsPage() {
         display_order: t.display_order,
         is_featured: !t.is_featured,
       });
-      showToast(`Testimonial is now ${!t.is_featured ? "featured on homepage" : "hidden from homepage"}`);
+      showToast(t.is_featured ? "Review hidden from homepage" : "Review featured on homepage");
       loadTestimonials();
     } catch (err: any) {
       showToast(err.message || "Failed to toggle status", "error");
     }
   };
 
+  // Filtered Testimonials
+  const filteredTestimonials = testimonials.filter((t) => {
+    if (testimonialFilter === "FEATURED" && !t.is_featured) return false;
+    if (testimonialFilter === "HIDDEN" && t.is_featured) return false;
+    if (testimonialSearch.trim()) {
+      const q = testimonialSearch.toLowerCase();
+      const matchName = (t.customer_name || "").toLowerCase().includes(q);
+      const matchText = (t.review_text || "").toLowerCase().includes(q);
+      const matchCity = (t.location || "").toLowerCase().includes(q);
+      const matchCrop = (t.product_name || "").toLowerCase().includes(q);
+      return matchName || matchText || matchCity || matchCrop;
+    }
+    return true;
+  });
+
+  const featuredCount = testimonials.filter((t) => t.is_featured).length;
+  const hiddenCount = testimonials.filter((t) => !t.is_featured).length;
+
   return (
-    <div className="space-y-6 max-w-5xl font-sans">
-      {/* 1. Header & Navigation Tabs */}
-      <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-sm font-bold text-slate-900 font-serif flex items-center gap-2">
-            <Sliders className="w-4 h-4 text-emerald-700" />
-            <span>Store CMS, Customer Love &amp; Fulfillment Settings</span>
-          </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Customize homepage reviews, free delivery thresholds, announcement ticker, and legal credentials.
-          </p>
-        </div>
+    <div className="space-y-6 max-w-6xl font-sans">
+      {/* 1. Sleek Navigation Segmented Control */}
+      <div className="flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-2xl w-full sm:w-auto overflow-x-auto shadow-2xs">
+        <button
+          onClick={() => setActiveTab("testimonials")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "testimonials"
+              ? "bg-white text-emerald-800 shadow-xs"
+              : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+          }`}
+        >
+          <Heart className="w-4 h-4 text-rose-500 fill-rose-500/20" />
+          <span>Customer Love &amp; Reviews</span>
+          <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700">
+            {testimonials.length}
+          </span>
+        </button>
 
-        {/* Tab Switcher */}
-        <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold self-stretch sm:self-auto overflow-x-auto">
-          <button
-            onClick={() => setActiveTab("testimonials")}
-            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
-              activeTab === "testimonials"
-                ? "bg-white text-emerald-800 font-bold shadow-2xs"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Heart className="w-3.5 h-3.5 text-rose-500" />
-            <span>Customer Love</span>
-          </button>
+        <button
+          onClick={() => setActiveTab("shipping")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "shipping"
+              ? "bg-white text-emerald-800 shadow-xs"
+              : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+          }`}
+        >
+          <Truck className="w-4 h-4 text-emerald-700" />
+          <span>Shipping &amp; Delivery Rates</span>
+        </button>
 
-          <button
-            onClick={() => setActiveTab("shipping")}
-            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
-              activeTab === "shipping"
-                ? "bg-white text-emerald-800 font-bold shadow-2xs"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Truck className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Shipping Policy</span>
-          </button>
+        <button
+          onClick={() => setActiveTab("store")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "store"
+              ? "bg-white text-emerald-800 shadow-xs"
+              : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+          }`}
+        >
+          <Store className="w-4 h-4 text-blue-600" />
+          <span>Store Profile &amp; Licenses</span>
+        </button>
 
-          <button
-            onClick={() => setActiveTab("store")}
-            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
-              activeTab === "store"
-                ? "bg-white text-emerald-800 font-bold shadow-2xs"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Store className="w-3.5 h-3.5 text-blue-600" />
-            <span>Store Identity</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab("announcement")}
-            className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap ${
-              activeTab === "announcement"
-                ? "bg-white text-emerald-800 font-bold shadow-2xs"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>Announcements</span>
-          </button>
-        </div>
+        <button
+          onClick={() => setActiveTab("announcement")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+            activeTab === "announcement"
+              ? "bg-white text-emerald-800 shadow-xs"
+              : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+          }`}
+        >
+          <Sparkles className="w-4 h-4 text-amber-500" />
+          <span>Announcement Ticker</span>
+        </button>
       </div>
 
       {/* ================================================================= */}
-      {/* TAB 1: CUSTOMER LOVE & TESTIMONIALS                               */}
+      {/* TAB 1: CUSTOMER LOVE & REVIEWS (BEAUTIFUL & STREAMLINED)          */}
       {/* ================================================================= */}
       {activeTab === "testimonials" && (
-        <div className="space-y-6 animate-fade-in">
-          {/* Section Header Editor Card */}
-          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
-                <Heart className="w-4 h-4 text-rose-500" />
-                <span>Homepage Section Headline &amp; Tagline</span>
-              </div>
+        <div className="space-y-5 animate-fade-in">
+          {/* Action & Filter Toolbar */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+            {/* Filter Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto text-xs font-semibold">
               <button
-                onClick={() => handleSaveSettings()}
-                disabled={isSaving}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs cursor-pointer disabled:opacity-50"
+                onClick={() => setTestimonialFilter("ALL")}
+                className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap ${
+                  testimonialFilter === "ALL"
+                    ? "bg-slate-900 text-white font-bold"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
               >
-                <Save className="w-3.5 h-3.5" />
-                <span>{isSaving ? "Saving..." : "Update Section Header"}</span>
+                All Reviews ({testimonials.length})
+              </button>
+              <button
+                onClick={() => setTestimonialFilter("FEATURED")}
+                className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                  testimonialFilter === "FEATURED"
+                    ? "bg-emerald-700 text-white font-bold"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>Featured on Home ({featuredCount})</span>
+              </button>
+              <button
+                onClick={() => setTestimonialFilter("HIDDEN")}
+                className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                  testimonialFilter === "HIDDEN"
+                    ? "bg-slate-800 text-white font-bold"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
+              >
+                <EyeOff className="w-3.5 h-3.5" />
+                <span>Hidden ({hiddenCount})</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Pill Badge Text</label>
+            {/* Actions: Search, Section Header Edit, Add Review */}
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1 sm:w-56">
+                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
                 <input
                   type="text"
-                  value={customerLoveHeader.badge}
-                  onChange={(e) =>
-                    setCustomerLoveHeader({ ...customerLoveHeader, badge: e.target.value })
-                  }
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
-                  placeholder="e.g. Customer Love"
+                  placeholder="Search reviews or crop..."
+                  value={testimonialSearch}
+                  onChange={(e) => setTestimonialSearch(e.target.value)}
+                  className="w-full pl-8 pr-3 py-1.5 rounded-xl border border-slate-200 text-xs focus:outline-emerald-600 bg-slate-50 focus:bg-white"
                 />
               </div>
 
-              <div className="md:col-span-2">
-                <label className="font-bold text-slate-700 block mb-1">Main Heading</label>
-                <input
-                  type="text"
-                  value={customerLoveHeader.title}
-                  onChange={(e) =>
-                    setCustomerLoveHeader({ ...customerLoveHeader, title: e.target.value })
-                  }
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 font-serif font-bold text-sm"
-                  placeholder="e.g. Trusted by 10,000+ Indian Families"
-                />
-              </div>
-
-              <div className="md:col-span-3">
-                <label className="font-bold text-slate-700 block mb-1">Subtext / Description</label>
-                <input
-                  type="text"
-                  value={customerLoveHeader.subtitle}
-                  onChange={(e) =>
-                    setCustomerLoveHeader({ ...customerLoveHeader, subtitle: e.target.value })
-                  }
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 text-xs"
-                  placeholder="e.g. Real reviews from real customers across India..."
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Testimonials List & Add CTA */}
-          <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-              <div>
-                <h3 className="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  <span>Customer Testimonials Showcase</span>
-                </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  Featured reviews rendered dynamically on the storefront homepage ({testimonials.length} total)
-                </p>
-              </div>
+              <button
+                onClick={() => setIsEditingSectionHeader(!isEditingSectionHeader)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer whitespace-nowrap ${
+                  isEditingSectionHeader
+                    ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+                    : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+                }`}
+                title="Edit homepage section title & description"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Section Header</span>
+              </button>
 
               <button
                 onClick={handleOpenAddModal}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#01722C] hover:bg-[#0b542c] text-white font-bold text-xs shadow-xs cursor-pointer transition-all"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#01722C] hover:bg-[#0b542c] text-white font-bold text-xs shadow-xs cursor-pointer transition-all whitespace-nowrap"
               >
-                <Plus className="w-3.5 h-3.5" />
-                <span>Add New Customer Review</span>
+                <Plus className="w-4 h-4" />
+                <span>Add Review</span>
               </button>
             </div>
+          </div>
 
-            {/* Testimonials Grid Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {testimonials.map((t) => (
+          {/* Collapsible Section Header Editor */}
+          {isEditingSectionHeader && (
+            <div className="bg-gradient-to-r from-emerald-50/60 to-white p-5 rounded-2xl border border-emerald-200/80 shadow-xs space-y-4 animate-fade-in">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-slate-900 flex items-center gap-2">
+                    <Heart className="w-4 h-4 text-rose-500" />
+                    <span>Homepage Section Headline &amp; Tagline</span>
+                  </h4>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Customize what thousands of shoppers read right above the customer testimonials.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsEditingSectionHeader(false)}
+                  className="text-slate-400 hover:text-slate-600 p-1"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Badge Text</label>
+                  <input
+                    type="text"
+                    value={customerLoveHeader.badge}
+                    onChange={(e) =>
+                      setCustomerLoveHeader({ ...customerLoveHeader, badge: e.target.value })
+                    }
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 bg-white"
+                    placeholder="Customer Love"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="font-bold text-slate-700 block mb-1">Main Headline</label>
+                  <input
+                    type="text"
+                    value={customerLoveHeader.title}
+                    onChange={(e) =>
+                      setCustomerLoveHeader({ ...customerLoveHeader, title: e.target.value })
+                    }
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 font-serif font-bold text-sm bg-white"
+                    placeholder="Trusted by 10,000+ Indian Families"
+                  />
+                </div>
+
+                <div className="md:col-span-3">
+                  <label className="font-bold text-slate-700 block mb-1">Subtitle / Bio</label>
+                  <input
+                    type="text"
+                    value={customerLoveHeader.subtitle}
+                    onChange={(e) =>
+                      setCustomerLoveHeader({ ...customerLoveHeader, subtitle: e.target.value })
+                    }
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600 bg-white"
+                    placeholder="Real reviews from real customers across India..."
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-2">
+                <button
+                  onClick={() => handleSaveSettings()}
+                  disabled={isSaving}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs cursor-pointer disabled:opacity-50"
+                >
+                  <Save className="w-3.5 h-3.5" />
+                  <span>{isSaving ? "Saving..." : "Save Section Header"}</span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Testimonials Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredTestimonials.length === 0 ? (
+              <div className="col-span-full bg-white p-12 text-center rounded-2xl border border-slate-200/80 text-slate-400 space-y-3">
+                <Heart className="w-8 h-8 text-slate-300 mx-auto" />
+                <div className="text-sm font-bold text-slate-700">No Customer Reviews Found</div>
+                <p className="text-xs max-w-sm mx-auto">
+                  {testimonialSearch
+                    ? "No reviews match your search query."
+                    : "No reviews in this category. Click 'Add Review' to publish your first customer story!"}
+                </p>
+                <button
+                  onClick={handleOpenAddModal}
+                  className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-[#01722C] text-white text-xs font-bold"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Add First Review</span>
+                </button>
+              </div>
+            ) : (
+              filteredTestimonials.map((t) => (
                 <div
                   key={t.id}
-                  className={`p-4 rounded-2xl border transition-all flex flex-col justify-between ${
+                  className={`bg-white rounded-2xl p-5 border transition-all flex flex-col justify-between ${
                     t.is_featured
-                      ? "bg-white border-slate-200 shadow-2xs hover:shadow-md hover:border-emerald-300"
-                      : "bg-slate-50 border-slate-200/60 opacity-60"
+                      ? "border-slate-200/80 shadow-xs hover:shadow-lg hover:border-emerald-300"
+                      : "border-slate-200/50 bg-slate-50/60 opacity-60 hover:opacity-100"
                   }`}
                 >
-                  <div className="space-y-2.5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-0.5">
+                  <div className="space-y-3">
+                    {/* Top Row: Author & Rating */}
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center text-xs shrink-0 uppercase">
+                          {t.customer_name ? t.customer_name.charAt(0) : "C"}
+                        </div>
+                        <div>
+                          <div className="font-bold text-slate-900 text-xs">{t.customer_name}</div>
+                          <div className="text-[11px] text-slate-400">{t.location}</div>
+                        </div>
+                      </div>
+
+                      {/* Star Rating */}
+                      <div className="flex items-center gap-0.5 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/80 shrink-0">
                         {Array.from({ length: t.rating || 5 }).map((_, i) => (
                           <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
                         ))}
                       </div>
-
-                      <button
-                        onClick={() => handleToggleFeatured(t)}
-                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold cursor-pointer transition-colors ${
-                          t.is_featured
-                            ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
-                            : "bg-slate-200 text-slate-600"
-                        }`}
-                        title="Click to toggle featured on storefront"
-                      >
-                        {t.is_featured ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-                        <span>{t.is_featured ? "Featured" : "Hidden"}</span>
-                      </button>
                     </div>
 
-                    <p className="text-xs text-slate-700 italic leading-relaxed line-clamp-4">
+                    {/* Review Quote */}
+                    <p className="text-xs text-slate-700 italic leading-relaxed line-clamp-4 pt-1">
                       &ldquo;{t.review_text}&rdquo;
                     </p>
                   </div>
 
-                  <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <div>
-                      <div className="font-bold text-slate-900">{t.customer_name}</div>
-                      <div className="text-[11px] text-slate-400">
-                        {t.location} {t.product_name ? `• ${t.product_name}` : ""}
-                      </div>
-                    </div>
+                  {/* Bottom Row: Product Tag & Controls */}
+                  <div className="pt-3.5 mt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2.5 py-0.5 rounded-full truncate max-w-[150px]">
+                      {t.product_name || "Organic Harvest"}
+                    </span>
 
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {/* Featured Toggle Switch */}
+                      <button
+                        onClick={() => handleToggleFeatured(t)}
+                        className={`text-[10px] font-bold px-2 py-1 rounded-lg border transition-all cursor-pointer flex items-center gap-1 ${
+                          t.is_featured
+                            ? "bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100"
+                            : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
+                        }`}
+                        title="Toggle visibility on storefront"
+                      >
+                        {t.is_featured ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
+                        <span>{t.is_featured ? "Featured" : "Hidden"}</span>
+                      </button>
+
                       <button
                         onClick={() => handleOpenEditModal(t)}
-                        className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
-                        title="Edit testimonial"
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer"
+                        title="Edit review"
                       >
                         <Edit2 className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => handleDeleteTestimonial(t)}
                         className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
-                        title="Delete testimonial"
+                        title="Delete review"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              ))
+            )}
           </div>
         </div>
       )}
@@ -454,91 +569,114 @@ export default function AdminSettingsPage() {
       {/* TAB 2: SHIPPING RATES & LOGISTICS                                 */}
       {/* ================================================================= */}
       {activeTab === "shipping" && (
-        <form onSubmit={handleSaveSettings} className="space-y-6 animate-fade-in">
+        <form onSubmit={handleSaveSettings} className="space-y-5 animate-fade-in">
+          {/* Card 1: Free Delivery Policy */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm border-b border-slate-100 pb-3">
-              <Truck className="w-4 h-4 text-emerald-700" />
-              <span>Pan-India Shipping Thresholds &amp; Courier Fees</span>
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2.5 text-slate-900 font-bold text-sm">
+                <Truck className="w-4 h-4 text-emerald-700" />
+                <span>Pan-India Shipping Thresholds &amp; Free Delivery</span>
+              </div>
+              <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                Active Policy
+              </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">
-                  Free Delivery Cart Threshold (₹) *
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+              <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-100 space-y-2">
+                <label className="font-bold text-slate-800 block">
+                  Free Shipping Order Threshold
                 </label>
-                <input
-                  type="number"
-                  required
-                  value={shippingPolicy.free_shipping_threshold}
-                  onChange={(e) =>
-                    setShippingPolicy({
-                      ...shippingPolicy,
-                      free_shipping_threshold: Number(e.target.value),
-                    })
-                  }
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono text-xs focus:outline-emerald-600"
-                />
-                <p className="text-[10px] text-slate-400 mt-1">Orders above this cart value ship free across India.</p>
+                <div className="relative">
+                  <span className="absolute left-3 top-2 font-bold text-slate-400">₹</span>
+                  <input
+                    type="number"
+                    required
+                    value={shippingPolicy.free_shipping_threshold}
+                    onChange={(e) =>
+                      setShippingPolicy({
+                        ...shippingPolicy,
+                        free_shipping_threshold: Number(e.target.value),
+                      })
+                    }
+                    className="w-full pl-7 pr-3 py-1.5 rounded-xl border border-slate-200 font-mono text-sm font-bold text-slate-900 focus:outline-emerald-600 bg-white"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Orders equal or above this cart value ship <strong>100% Free</strong> across all states in India.
+                </p>
               </div>
 
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">
-                  Standard Surface Shipping Fee (₹)
+              <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-100 space-y-2">
+                <label className="font-bold text-slate-800 block">
+                  Standard Surface Shipping Fee
                 </label>
-                <input
-                  type="number"
-                  required
-                  value={shippingPolicy.standard_shipping_fee}
-                  onChange={(e) =>
-                    setShippingPolicy({
-                      ...shippingPolicy,
-                      standard_shipping_fee: Number(e.target.value),
-                    })
-                  }
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono text-xs focus:outline-emerald-600"
-                />
-                <p className="text-[10px] text-slate-400 mt-1">Applied when cart total is below free threshold.</p>
+                <div className="relative">
+                  <span className="absolute left-3 top-2 font-bold text-slate-400">₹</span>
+                  <input
+                    type="number"
+                    required
+                    value={shippingPolicy.standard_shipping_fee}
+                    onChange={(e) =>
+                      setShippingPolicy({
+                        ...shippingPolicy,
+                        standard_shipping_fee: Number(e.target.value),
+                      })
+                    }
+                    className="w-full pl-7 pr-3 py-1.5 rounded-xl border border-slate-200 font-mono text-sm font-bold text-slate-900 focus:outline-emerald-600 bg-white"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Applied automatically at checkout when the customer&apos;s cart is below the free threshold.
+                </p>
               </div>
 
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">
-                  Express Air Courier Fee (₹)
+              <div className="bg-slate-50/80 p-4 rounded-xl border border-slate-100 space-y-2">
+                <label className="font-bold text-slate-800 block">
+                  Express Air Courier Fee
                 </label>
-                <input
-                  type="number"
-                  required
-                  value={shippingPolicy.express_shipping_fee}
-                  onChange={(e) =>
-                    setShippingPolicy({
-                      ...shippingPolicy,
-                      express_shipping_fee: Number(e.target.value),
-                    })
-                  }
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono text-xs focus:outline-emerald-600"
-                />
-                <p className="text-[10px] text-slate-400 mt-1">For urgent expedited harvest delivery.</p>
+                <div className="relative">
+                  <span className="absolute left-3 top-2 font-bold text-slate-400">₹</span>
+                  <input
+                    type="number"
+                    required
+                    value={shippingPolicy.express_shipping_fee}
+                    onChange={(e) =>
+                      setShippingPolicy({
+                        ...shippingPolicy,
+                        express_shipping_fee: Number(e.target.value),
+                      })
+                    }
+                    className="w-full pl-7 pr-3 py-1.5 rounded-xl border border-slate-200 font-mono text-sm font-bold text-slate-900 focus:outline-emerald-600 bg-white"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Priority express air courier dispatch for time-sensitive organic shipments.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Central Warehouse Destination */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
+          {/* Card 2: Central Packaging Hub */}
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-3">
             <div className="flex items-center gap-2 text-slate-900 font-bold text-sm border-b border-slate-100 pb-3">
               <MapPin className="w-4 h-4 text-emerald-700" />
-              <span>Central Sorting &amp; Packaging Facility Address</span>
+              <span>Central Sorting, Packaging &amp; Warehouse Facility</span>
             </div>
 
-            <div className="text-xs">
-              <label className="font-bold text-slate-700 block mb-1">Physical Dispatch Hub</label>
+            <div className="text-xs space-y-1">
+              <label className="font-bold text-slate-700 block">Physical Logistics Hub Address</label>
               <textarea
                 rows={3}
                 value={storeDetails.warehouse_address}
                 onChange={(e) =>
                   setStoreDetails({ ...storeDetails, warehouse_address: e.target.value })
                 }
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 leading-relaxed focus:outline-emerald-600"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 leading-relaxed focus:outline-emerald-600 font-mono text-xs"
               />
-              <p className="text-[10px] text-slate-400 mt-1">Printed on packing slips and GST invoices as dispatch center.</p>
+              <p className="text-[11px] text-slate-400">
+                Printed on official packing slips, consignment notes, and tax invoices.
+              </p>
             </div>
           </div>
 
@@ -556,75 +694,100 @@ export default function AdminSettingsPage() {
       )}
 
       {/* ================================================================= */}
-      {/* TAB 3: STORE & REGULATORY IDENTITY                                */}
+      {/* TAB 3: STORE PROFILE & REGULATORY LICENSES                        */}
       {/* ================================================================= */}
       {activeTab === "store" && (
-        <form onSubmit={handleSaveSettings} className="space-y-6 animate-fade-in">
-          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm border-b border-slate-100 pb-3">
-              <Store className="w-4 h-4 text-emerald-700" />
-              <span>Store Trading Profile &amp; Regulatory Credentials</span>
+        <form onSubmit={handleSaveSettings} className="space-y-5 animate-fade-in">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Left: Brand Identity & Support */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm border-b border-slate-100 pb-3">
+                <Store className="w-4 h-4 text-blue-600" />
+                <span>Brand Identity &amp; Support Contacts</span>
+              </div>
+
+              <div className="space-y-3.5 text-xs">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Brand Trading Name</label>
+                  <input
+                    type="text"
+                    value={storeDetails.name}
+                    onChange={(e) => setStoreDetails({ ...storeDetails, name: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Registered Legal Entity</label>
+                  <input
+                    type="text"
+                    value={storeDetails.legal_entity}
+                    onChange={(e) => setStoreDetails({ ...storeDetails, legal_entity: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Customer Helpline Phone</label>
+                  <input
+                    type="text"
+                    value={storeDetails.contact_phone}
+                    onChange={(e) => setStoreDetails({ ...storeDetails, contact_phone: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:outline-emerald-600"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">Official Support Email</label>
+                  <input
+                    type="email"
+                    value={storeDetails.support_email}
+                    onChange={(e) => setStoreDetails({ ...storeDetails, support_email: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:outline-emerald-600"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Brand Trading Name</label>
-                <input
-                  type="text"
-                  value={storeDetails.name}
-                  onChange={(e) => setStoreDetails({ ...storeDetails, name: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
-                />
+            {/* Right: Government & Regulatory Licenses */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm border-b border-slate-100 pb-3">
+                <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                <span>Government &amp; Organic Accreditations</span>
               </div>
 
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Registered Legal Entity</label>
-                <input
-                  type="text"
-                  value={storeDetails.legal_entity}
-                  onChange={(e) => setStoreDetails({ ...storeDetails, legal_entity: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
-                />
-              </div>
+              <div className="space-y-3.5 text-xs">
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">GSTIN Number (Tax Registration)</label>
+                  <input
+                    type="text"
+                    value={storeDetails.gst_number}
+                    onChange={(e) => setStoreDetails({ ...storeDetails, gst_number: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono uppercase focus:outline-emerald-600"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1">Rendered on tax invoices generated for shoppers.</p>
+                </div>
 
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Customer Helpline Phone</label>
-                <input
-                  type="text"
-                  value={storeDetails.contact_phone}
-                  onChange={(e) => setStoreDetails({ ...storeDetails, contact_phone: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:outline-emerald-600"
-                />
-              </div>
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">FSSAI Organic License Number</label>
+                  <input
+                    type="text"
+                    value={storeDetails.fssai_license}
+                    onChange={(e) => setStoreDetails({ ...storeDetails, fssai_license: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:outline-emerald-600"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-1">Food Safety and Standards Authority of India (FSSAI) cert license.</p>
+                </div>
 
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">Official Support Email</label>
-                <input
-                  type="email"
-                  value={storeDetails.support_email}
-                  onChange={(e) => setStoreDetails({ ...storeDetails, support_email: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:outline-emerald-600"
-                />
-              </div>
-
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">GSTIN Number (Tax Identifier)</label>
-                <input
-                  type="text"
-                  value={storeDetails.gst_number}
-                  onChange={(e) => setStoreDetails({ ...storeDetails, gst_number: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono uppercase focus:outline-emerald-600"
-                />
-              </div>
-
-              <div>
-                <label className="font-bold text-slate-700 block mb-1">FSSAI Organic License #</label>
-                <input
-                  type="text"
-                  value={storeDetails.fssai_license}
-                  onChange={(e) => setStoreDetails({ ...storeDetails, fssai_license: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono focus:outline-emerald-600"
-                />
+                <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 space-y-1">
+                  <div className="font-bold flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                    <span>NPOP &amp; Jaivik Bharat Certification</span>
+                  </div>
+                  <p className="text-emerald-700 leading-relaxed">
+                    National Programme for Organic Production compliant direct from verified farm cooperatives.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -646,11 +809,28 @@ export default function AdminSettingsPage() {
       {/* TAB 4: ANNOUNCEMENTS & TICKER CMS                                 */}
       {/* ================================================================= */}
       {activeTab === "announcement" && (
-        <form onSubmit={handleSaveSettings} className="space-y-6 animate-fade-in">
+        <form onSubmit={handleSaveSettings} className="space-y-5 animate-fade-in">
+          {/* Live Mockup Preview */}
+          <div className="bg-slate-900 p-5 rounded-2xl text-white space-y-2 shadow-md">
+            <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono uppercase tracking-wider">
+              <span>Live Storefront Preview</span>
+              <span className="text-emerald-400 font-bold">TopBar Banner</span>
+            </div>
+            <div className="bg-[#014d1e] text-[#e3ece7] text-xs py-2 px-4 rounded-xl border border-[#015c24] flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Truck className="w-3.5 h-3.5 text-[#58cf8b]" />
+                <span className="font-bold">{announcementBar.ticker_text || "Announcement Message"}</span>
+              </div>
+              <span className="text-[11px] text-[#58cf8b] font-bold">WhatsApp: {announcementBar.whatsapp_number}</span>
+            </div>
+          </div>
+
           <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4">
-            <div className="flex items-center gap-2 text-slate-900 font-bold text-sm border-b border-slate-100 pb-3">
-              <Sparkles className="w-4 h-4 text-amber-500" />
-              <span>TopBar Announcement Banner &amp; WhatsApp Support</span>
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                <Sparkles className="w-4 h-4 text-amber-500" />
+                <span>Storefront Announcement Ticker &amp; WhatsApp Support</span>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
@@ -667,12 +847,11 @@ export default function AdminSettingsPage() {
                   className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
                   placeholder="e.g. FREE PAN-INDIA DELIVERY ON ORDERS OVER ₹499"
                 />
-                <p className="text-[10px] text-slate-400 mt-1">Displayed in the header across all storefront pages.</p>
               </div>
 
               <div>
                 <label className="font-bold text-slate-700 block mb-1">
-                  WhatsApp Support Number
+                  WhatsApp Helpline Number
                 </label>
                 <input
                   type="text"
@@ -685,7 +864,7 @@ export default function AdminSettingsPage() {
                 />
               </div>
 
-              <div className="flex items-center gap-3 pt-4">
+              <div className="flex items-center gap-3 pt-5">
                 <input
                   type="checkbox"
                   id="announcementActive"
@@ -695,8 +874,8 @@ export default function AdminSettingsPage() {
                   }
                   className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                 />
-                <label htmlFor="announcementActive" className="font-bold text-slate-800 cursor-pointer">
-                  Display Announcement Banner on Public Storefront
+                <label htmlFor="announcementActive" className="font-bold text-slate-800 cursor-pointer text-xs">
+                  Display announcement banner on public storefront
                 </label>
               </div>
             </div>
@@ -727,11 +906,11 @@ export default function AdminSettingsPage() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl max-w-lg w-full max-h-[92dvh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-6 space-y-4 my-auto animate-fade-up"
+            className="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full max-h-[92dvh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-6 space-y-4 my-auto animate-fade-up"
           >
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
-                <Heart className="w-4 h-4 text-rose-500" />
+                <Heart className="w-4 h-4 text-rose-500 fill-rose-500/20" />
                 <span>{editingTestimonial ? "Edit Customer Review" : "Add Customer Review"}</span>
               </h3>
               <button
@@ -743,7 +922,7 @@ export default function AdminSettingsPage() {
             </div>
 
             <form onSubmit={handleSaveTestimonialSubmit} className="space-y-4 text-xs">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                   <label className="font-bold text-slate-700 block mb-1">Customer Full Name *</label>
                   <input
@@ -817,20 +996,8 @@ export default function AdminSettingsPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pt-1">
-                <div>
-                  <label className="font-bold text-slate-700 block mb-1">Display Order</label>
-                  <input
-                    type="number"
-                    value={testimonialForm.display_order}
-                    onChange={(e) =>
-                      setTestimonialForm({ ...testimonialForm, display_order: Number(e.target.value) })
-                    }
-                    className="w-full px-3 py-2 rounded-xl border border-slate-200 font-mono"
-                  />
-                </div>
-
-                <div className="flex items-center gap-2 pt-6">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
+                <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     id="featuredCheckbox"
@@ -841,12 +1008,24 @@ export default function AdminSettingsPage() {
                     className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                   />
                   <label htmlFor="featuredCheckbox" className="font-bold text-slate-800 cursor-pointer">
-                    Feature on Homepage
+                    Feature on Storefront Homepage
                   </label>
+                </div>
+
+                <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <span>Display Order:</span>
+                  <input
+                    type="number"
+                    value={testimonialForm.display_order}
+                    onChange={(e) =>
+                      setTestimonialForm({ ...testimonialForm, display_order: Number(e.target.value) })
+                    }
+                    className="w-14 px-2 py-1 rounded-lg border border-slate-200 font-mono text-center bg-white"
+                  />
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-4 border-t border-slate-100">
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setTestimonialModalOpen(false)}
