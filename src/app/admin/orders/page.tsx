@@ -12,6 +12,7 @@ import {
   Users,
   MapPin,
   CheckCircle,
+  CheckCircle2,
   Package,
   FileText,
   Printer,
@@ -98,6 +99,23 @@ function OrdersContent() {
       loadOrders();
     } catch (err: any) {
       showToast(err.message || "Failed to dispatch order");
+    } finally {
+      setIsUpdatingOrder(false);
+    }
+  };
+
+  const handleUpdateOrderStatus = async (orderId: string, newStatus: string, notes?: string) => {
+    setIsUpdatingOrder(true);
+    try {
+      await api.admin.updateOrderStatus(orderId, newStatus, notes);
+      showToast(`Order marked as ${newStatus.replace(/_/g, " ")}!`);
+      if (inspectedOrder && inspectedOrder.id === orderId) {
+        const refreshed = await api.admin.getOrder(orderId);
+        setInspectedOrder(refreshed);
+      }
+      loadOrders();
+    } catch (err: any) {
+      showToast(err.message || "Failed to update order status", "error");
     } finally {
       setIsUpdatingOrder(false);
     }
@@ -314,7 +332,16 @@ function OrdersContent() {
                             <Eye className="w-3.5 h-3.5" />
                             <span>Details</span>
                           </button>
-                          {o.order_status !== "DELIVERED" && o.order_status !== "CANCELLED" && (
+                          {o.order_status === "DISPATCHED" ? (
+                            <button
+                              onClick={() => handleUpdateOrderStatus(o.id, "DELIVERED")}
+                              className="bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-all flex items-center gap-1 shadow-xs"
+                              title="Mark package as successfully delivered"
+                            >
+                              <CheckCircle2 className="w-3 h-3" />
+                              <span>Deliver</span>
+                            </button>
+                          ) : o.order_status !== "DELIVERED" && o.order_status !== "CANCELLED" ? (
                             <button
                               onClick={() => {
                                 setSelectedOrderForDispatch(o);
@@ -323,13 +350,18 @@ function OrdersContent() {
                                   tracking_awb: o.tracking_awb || "",
                                 });
                               }}
-                              className="bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-all flex items-center gap-1 shadow-xs"
+                              className="bg-slate-800 hover:bg-slate-900 text-white px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-all flex items-center gap-1 shadow-xs"
                               title="Assign courier and tracking AWB"
                             >
                               <Truck className="w-3 h-3" />
                               <span>Dispatch</span>
                             </button>
-                          )}
+                          ) : o.order_status === "DELIVERED" ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 flex items-center gap-1">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              <span>Done</span>
+                            </span>
+                          ) : null}
                         </div>
                       </td>
                     </tr>
@@ -436,9 +468,20 @@ function OrdersContent() {
                     <h3 className="text-base font-bold text-slate-900 font-mono">
                       Order #{inspectedOrder.order_number || inspectedOrder.id.slice(0, 8)}
                     </h3>
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
-                      {inspectedOrder.order_status}
-                    </span>
+                    <select
+                      value={inspectedOrder.order_status}
+                      disabled={isUpdatingOrder}
+                      onChange={(e) => handleUpdateOrderStatus(inspectedOrder.id, e.target.value)}
+                      className="px-2.5 py-0.5 rounded-full text-[10px] font-bold border cursor-pointer focus:outline-none bg-emerald-50 text-emerald-800 border-emerald-300"
+                      title="Update order status directly"
+                    >
+                      <option value="PENDING_VERIFICATION">PENDING VERIFICATION</option>
+                      <option value="CONFIRMED">CONFIRMED</option>
+                      <option value="PACKED">PACKED</option>
+                      <option value="DISPATCHED">DISPATCHED</option>
+                      <option value="DELIVERED">DELIVERED</option>
+                      <option value="CANCELLED">CANCELLED</option>
+                    </select>
                   </div>
                   <div className="text-[11px] text-slate-400 font-mono mt-0.5">
                     Placed on: {inspectedOrder.created_at ? new Date(inspectedOrder.created_at).toLocaleString("en-IN") : "Recent"}
@@ -604,7 +647,39 @@ function OrdersContent() {
                   <span>View / Print Tax Invoice</span>
                 </button>
 
-                {inspectedOrder.order_status !== "DELIVERED" && inspectedOrder.order_status !== "CANCELLED" && (
+                {inspectedOrder.order_status === "DISPATCHED" ? (
+                  <>
+                    <button
+                      onClick={() => handleUpdateOrderStatus(inspectedOrder.id, "DELIVERED")}
+                      disabled={isUpdatingOrder}
+                      className="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl font-bold flex items-center gap-1.5 shadow-xs cursor-pointer transition-colors"
+                      title="Mark order as delivered to customer"
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>{isUpdatingOrder ? "Updating..." : "Mark as Delivered"}</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSelectedOrderForDispatch(inspectedOrder);
+                        setDispatchForm({
+                          courier_name: inspectedOrder.courier_name || "Delhivery Express",
+                          tracking_awb: inspectedOrder.tracking_awb || "",
+                        });
+                        setInspectedOrder(null);
+                      }}
+                      className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-xl font-semibold flex items-center gap-1.5 cursor-pointer text-xs transition-colors"
+                      title="Update assigned courier or tracking number"
+                    >
+                      <Truck className="w-3.5 h-3.5" />
+                      <span>Edit Logistics / AWB</span>
+                    </button>
+                  </>
+                ) : inspectedOrder.order_status === "DELIVERED" ? (
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-2 rounded-xl">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>Delivered to Customer Doorstep</span>
+                  </div>
+                ) : inspectedOrder.order_status !== "CANCELLED" ? (
                   <button
                     onClick={() => {
                       setSelectedOrderForDispatch(inspectedOrder);
@@ -619,7 +694,7 @@ function OrdersContent() {
                     <Truck className="w-4 h-4" />
                     <span>Dispatch Package</span>
                   </button>
-                )}
+                ) : null}
               </div>
               <button
                 onClick={() => setInspectedOrder(null)}

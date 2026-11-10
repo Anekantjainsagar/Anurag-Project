@@ -133,19 +133,43 @@ async def update_order_status(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found.")
 
     new_status = payload.status.strip().upper()
+    old_status = order.order_status
     order.order_status = new_status
     if payload.notes:
         order.vendor_notes = payload.notes
 
-    # Add tracking milestone
-    tracking_event = OrderTrackingEvent(
-        order_id=order.id,
-        status=new_status,
-        title=f"Status Updated: {new_status}",
-        description=payload.notes or f"Order advanced to {new_status}.",
-        location="Indore Logistics Center",
-    )
-    db.add(tracking_event)
+    # Human-friendly milestone titles, descriptions & destinations
+    if new_status == "DELIVERED":
+        title = "Delivered to Customer Doorstep"
+        desc = payload.notes or "Package safely handed over to recipient. Pure organic order fulfilled."
+        loc = f"{order.shipping_city}, {order.shipping_state}" if order.shipping_city else "Recipient Address"
+    elif new_status == "CONFIRMED":
+        title = "Order Confirmed & Farm Lot Allocated"
+        desc = payload.notes or "Order verified and scheduled for clean eco-barrier packaging."
+        loc = "Central Logistics Hub, Indore"
+    elif new_status == "PACKED":
+        title = "Packed & Quality Inspected"
+        desc = payload.notes or "Items hand-picked, nitrogen-flushed, and sealed in eco barrier pouches."
+        loc = "Milling & Packaging Facility, Indore"
+    elif new_status == "CANCELLED":
+        title = "Order Cancelled"
+        desc = payload.notes or "Order cancelled by store operator."
+        loc = "Administrative Desk"
+    else:
+        title = f"Status Updated: {new_status}"
+        desc = payload.notes or f"Order advanced to {new_status}."
+        loc = "Indore Logistics Center"
+
+    # Only add milestone if status actually changed or new notes provided
+    if old_status != new_status or payload.notes:
+        tracking_event = OrderTrackingEvent(
+            order_id=order.id,
+            status=new_status,
+            title=title,
+            description=desc,
+            location=loc,
+        )
+        db.add(tracking_event)
     await db.commit()
     await db.refresh(order)
     return order
@@ -171,18 +195,36 @@ async def dispatch_order(
     if not order:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found.")
 
+    already_dispatched = (order.order_status == "DISPATCHED")
     order.order_status = "DISPATCHED"
     order.courier_name = payload.courier_name
     order.tracking_awb = payload.tracking_awb
 
-    tracking_event = OrderTrackingEvent(
-        order_id=order.id,
-        status="DISPATCHED",
-        title="Dispatched via Courier",
-        description=f"Shipped via {payload.courier_name} (AWB: {payload.tracking_awb})",
-        location=payload.dispatch_location,
-    )
-    db.add(tracking_event)
+    # Avoid duplicate events if already dispatched; update the existing event instead
+    if already_dispatched:
+        existing_dispatch_evt = next((e for e in order.tracking_events if e.status == "DISPATCHED"), None)
+        if existing_dispatch_evt:
+            existing_dispatch_evt.title = "Dispatched via Courier"
+            existing_dispatch_evt.description = f"Shipped via {payload.courier_name} (AWB: {payload.tracking_awb})"
+            existing_dispatch_evt.location = payload.dispatch_location
+        else:
+            tracking_event = OrderTrackingEvent(
+                order_id=order.id,
+                status="DISPATCHED",
+                title="Dispatched via Courier",
+                description=f"Shipped via {payload.courier_name} (AWB: {payload.tracking_awb})",
+                location=payload.dispatch_location,
+            )
+            db.add(tracking_event)
+    else:
+        tracking_event = OrderTrackingEvent(
+            order_id=order.id,
+            status="DISPATCHED",
+            title="Dispatched via Courier",
+            description=f"Shipped via {payload.courier_name} (AWB: {payload.tracking_awb})",
+            location=payload.dispatch_location,
+        )
+        db.add(tracking_event)
     await db.commit()
     await db.refresh(order)
     return order
