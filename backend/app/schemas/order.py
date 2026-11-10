@@ -11,15 +11,20 @@ from pydantic import BaseModel, ConfigDict, EmailStr
 
 class OrderItemCreate(BaseModel):
     product_id: str
-    variant_id: uuid.UUID
+    variant_id: Optional[uuid.UUID] = None
+    product_name: Optional[str] = None
+    weight_label: Optional[str] = None
+    packaging_size: Optional[str] = None
+    unit_price: Optional[Decimal] = None
+    subtotal: Optional[Decimal] = None
     quantity: int
 
 
 class OrderItemOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: uuid.UUID
-    product_id: str
-    variant_id: uuid.UUID
+    product_id: Optional[str] = None
+    variant_id: Optional[uuid.UUID] = None
     product_name: str
     weight_label: str
     unit_price: Decimal

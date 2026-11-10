@@ -69,7 +69,7 @@ export default function LoginModal() {
       showToast(res.message || `Verification code sent to +91 ${digitsOnly}`);
     } catch (err: any) {
       setOtpSent(false);
-      showToast(err?.message || "Failed to send verification code. Please try again.");
+      showToast(err?.message || "Failed to send verification code. Please try again.", "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -79,7 +79,7 @@ export default function LoginModal() {
     e.preventDefault();
     const enteredOtp = otp.join("");
     if (enteredOtp.length < 4) {
-      showToast("Please enter the complete 4-digit code");
+      showToast("Please enter the complete 4-digit code", "warning");
       return;
     }
 
@@ -126,7 +126,7 @@ export default function LoginModal() {
       if (errorMsg.toLowerCase().includes("suspended") || errorMsg.toLowerCase().includes("deactivated")) {
         setOtpSent(false);
       }
-      showToast(errorMsg);
+      showToast(errorMsg, "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -167,7 +167,7 @@ export default function LoginModal() {
         setOtpSent(false);
         setDevCode(null);
       }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -186,7 +186,7 @@ export default function LoginModal() {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="p-7 text-center">
+        <div className="p-5 sm:p-7 text-center">
           <div className="flex justify-center mb-4">
             <BrandLogo variant="dark" size="sm" />
           </div>
@@ -314,7 +314,7 @@ export default function LoginModal() {
                     value={otp[index]}
                     onChange={(e) => handleOtpChange(index, e.target.value)}
                     onKeyDown={(e) => handleOtpKeyDown(index, e)}
-                    className="w-12 h-12 text-center text-lg font-bold border border-gray-300 rounded-xl bg-[#f9faf9] text-gray-900 focus:outline-none focus:border-[#01722C] focus:bg-white font-mono"
+                    className="w-11 h-11 sm:w-12 sm:h-12 text-center text-lg font-bold border border-gray-300 rounded-xl bg-[#f9faf9] text-gray-900 focus:outline-none focus:border-[#01722C] focus:bg-white font-mono"
                     autoFocus={index === 0}
                   />
                 ))}

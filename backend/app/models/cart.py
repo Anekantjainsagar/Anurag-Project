@@ -40,9 +40,8 @@ class WishlistItem(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=True, index=True)
     guest_session_token = Column(String(100), nullable=True, index=True)
-    product_id = Column(String(150), ForeignKey("products.id", ondelete="CASCADE"), nullable=False)
+    product_id = Column(String(150), nullable=False, index=True)
     created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
     user = relationship("User", back_populates="wishlist_items")
-    product = relationship("Product")
 

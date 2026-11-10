@@ -105,7 +105,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.06)] font-sans w-full transition-all">
       {/* Responsive Centered Container */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-0 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
         {/* Left: Official Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <BrandLogo variant="dark" />
@@ -452,13 +452,15 @@ export default function Navbar() {
 
       {/* Mobile & Tablet Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] lg:hidden flex justify-end font-sans">
+        <div className="fixed inset-0 z-[100] lg:hidden font-sans">
+          {/* Dark Backdrop */}
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-xs animate-fade-in"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          <div className="relative w-4/5 max-w-xs sm:max-w-sm bg-white h-full max-h-screen shadow-2xl flex flex-col z-10 animate-slide-left">
+          {/* Slide-out Drawer Panel (Anchored to right, guaranteed 100dvh full height) */}
+          <div className="fixed inset-y-0 right-0 w-[85%] max-w-xs sm:max-w-sm bg-white h-full h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc] shrink-0">
               <BrandLogo variant="dark" size="sm" />
               <button

@@ -212,6 +212,29 @@ export const api = {
     getBlogDetail: (idOrSlug: string) => request<any>(`/blogs/${encodeURIComponent(idOrSlug)}`),
   },
 
+  // Customer Wishlist (Persisted in PostgreSQL database across devices)
+  wishlist: {
+    getWishlist: () =>
+      request<{ product_ids: string[]; count: number }>("/wishlist"),
+
+    toggleWishlist: (productId: string) =>
+      request<{ product_ids: string[]; count: number; in_wishlist: boolean }>("/wishlist/toggle", {
+        method: "POST",
+        body: JSON.stringify({ product_id: productId }),
+      }),
+
+    syncWishlist: (productIds: string[]) =>
+      request<{ product_ids: string[]; count: number }>("/wishlist/sync", {
+        method: "POST",
+        body: JSON.stringify({ product_ids: productIds }),
+      }),
+
+    clearWishlist: () =>
+      request<{ cleared: boolean; count: number }>("/wishlist", {
+        method: "DELETE",
+      }),
+  },
+
   // Inquiries
   inquiries: {
     submitContact: (data: { name: string; email: string; phone: string; subject: string; message: string }) =>
@@ -544,6 +567,18 @@ export const api = {
       request<any>(`/admin/inquiries/newsletter/${id}`, {
         method: "DELETE",
         requiresAuth: true,
+      }),
+
+    getSettings: () =>
+      request<{ shipping_policy: any; store_details: any }>("/admin/settings", {
+        requiresAuth: true,
+      }),
+
+    updateSettings: (data: { shipping_policy?: any; store_details?: any }) =>
+      request<{ success: boolean; message: string }>("/admin/settings", {
+        method: "PUT",
+        requiresAuth: true,
+        body: JSON.stringify(data),
       }),
   },
 };

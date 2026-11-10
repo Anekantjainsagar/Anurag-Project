@@ -2,6 +2,9 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Product, ProductWeightOption, CartItem } from "@/types";
+import { api } from "@/services/apiClient";
+
+export type ToastType = "success" | "error" | "warning" | "info";
 
 interface CartContextType {
   cartItems: CartItem[];
@@ -25,7 +28,8 @@ interface CartContextType {
   isTrackModalOpen: boolean;
   setIsTrackModalOpen: (open: boolean) => void;
   toastMessage: string | null;
-  showToast: (message: string) => void;
+  toastType: ToastType;
+  showToast: (message: string, type?: ToastType) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -54,6 +58,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isTrackModalOpen, setIsTrackModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastType, setToastType] = useState<ToastType>("success");
 
   // Save changes
   useEffect(() => {
@@ -72,11 +77,53 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [wishlist]);
 
-  const showToast = (message: string) => {
+  // Sync wishlist from PostgreSQL database on mount / device load
+  useEffect(() => {
+    api.wishlist
+      .getWishlist()
+      .then((res) => {
+        if (res?.product_ids && Array.isArray(res.product_ids)) {
+          setWishlist((prev) => {
+            const merged = Array.from(new Set([...prev, ...res.product_ids]));
+            const missingInDb = prev.filter((id) => !res.product_ids.includes(id));
+            if (missingInDb.length > 0) {
+              api.wishlist.syncWishlist(merged).catch(() => {});
+            }
+            return merged;
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const showToast = (message: string, type?: ToastType) => {
+    let resolvedType: ToastType = type || "success";
+    if (!type) {
+      const lower = message.toLowerCase();
+      if (
+        lower.includes("suspend") ||
+        lower.includes("denied") ||
+        lower.includes("error") ||
+        lower.includes("failed") ||
+        lower.includes("forbidden") ||
+        lower.includes("deactivated")
+      ) {
+        resolvedType = "error";
+      } else if (
+        lower.includes("warning") ||
+        lower.includes("invalid") ||
+        lower.includes("required") ||
+        lower.includes("empty") ||
+        lower.includes("already been redeemed")
+      ) {
+        resolvedType = "warning";
+      }
+    }
+    setToastType(resolvedType);
     setToastMessage(message);
     setTimeout(() => {
       setToastMessage(null);
-    }, 3500);
+    }, 4000);
   };
 
   const addToCart = (
@@ -141,16 +188,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const clearCart = () => setCartItems([]);
 
   const toggleWishlist = (productId: string) => {
-    setWishlist((prev) => {
-      const exists = prev.includes(productId);
-      if (exists) {
-        showToast("Removed item from wishlist");
-        return prev.filter((id) => id !== productId);
-      } else {
-        showToast("Saved item to wishlist");
-        return [...prev, productId];
-      }
-    });
+    const exists = wishlist.includes(productId);
+    if (exists) {
+      showToast("Removed item from wishlist");
+      setWishlist((prev) => prev.filter((id) => id !== productId));
+    } else {
+      showToast("Saved item to wishlist");
+      setWishlist((prev) => [...prev, productId]);
+    }
+    // Persist to PostgreSQL database asynchronously
+    api.wishlist.toggleWishlist(productId).catch(() => {});
   };
 
   const isInWishlist = (productId: string) => wishlist.includes(productId);
@@ -190,6 +237,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         isTrackModalOpen,
         setIsTrackModalOpen,
         toastMessage,
+        toastType,
         showToast,
       }}
     >

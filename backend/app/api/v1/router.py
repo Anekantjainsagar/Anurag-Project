@@ -14,6 +14,7 @@ from app.api.v1.endpoints import (
     orders,
     profile,
     settings,
+    wishlist,
 )
 from app.api.v1.endpoints.admin import admin_router
 
@@ -31,8 +32,11 @@ api_router.include_router(profile.router, tags=["Profile & Address Book"])
 # Catalog, Categories & Products
 api_router.include_router(catalog.router, tags=["Catalog & Products"])
 
-# Cart & Wishlist
+# Cart & Shopping
 api_router.include_router(cart.router, tags=["Cart & Shopping"])
+
+# Saved Wishlist
+api_router.include_router(wishlist.router, tags=["Customer Wishlist"])
 
 # Checkout, Orders & Real-time Tracking
 api_router.include_router(orders.router, tags=["Orders & Checkout"])

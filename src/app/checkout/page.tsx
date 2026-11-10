@@ -27,6 +27,8 @@ import {
   Tag,
   Check,
   X,
+  Plus,
+  Edit3,
 } from "lucide-react";
 
 const INDIAN_STATES = [
@@ -51,9 +53,12 @@ const INDIAN_STATES = [
 export default function CheckoutPage() {
   const router = useRouter();
   const { cartItems, cartTotal, totalSavings, clearCart, showToast } = useCart();
-  const { user, isAuthenticated, addresses } = useAuth();
+  const { user, isAuthenticated, addresses, addAddress } = useAuth();
 
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
+  const [isAddingNewAddress, setIsAddingNewAddress] = useState(false);
+  const [saveAddressToBook, setSaveAddressToBook] = useState(true);
+  const [newAddressLabel, setNewAddressLabel] = useState("Home");
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -85,6 +90,7 @@ export default function CheckoutPage() {
 
   const handleSelectSavedAddress = (addr: UserAddress) => {
     setSelectedAddressId(addr.id);
+    setIsAddingNewAddress(false);
     setFormData((prev) => ({
       ...prev,
       fullName: addr.recipient_name || prev.fullName,
@@ -95,6 +101,20 @@ export default function CheckoutPage() {
       city: addr.city,
       state: addr.state,
       pincode: addr.pincode,
+    }));
+  };
+
+  const startAddNewAddress = () => {
+    setSelectedAddressId(null);
+    setIsAddingNewAddress(true);
+    setFormData((prev) => ({
+      ...prev,
+      flatNo: "",
+      street: "",
+      landmark: "",
+      city: "",
+      state: "Madhya Pradesh",
+      pincode: "",
     }));
   };
 
@@ -138,9 +158,30 @@ export default function CheckoutPage() {
     return null;
   });
 
-  const freeDeliveryThreshold = 499;
+  const [dynamicShipping, setDynamicShipping] = useState({
+    free_shipping_threshold: 499,
+    standard_shipping_fee: 49,
+    express_shipping_fee: 99,
+  });
+
+  useEffect(() => {
+    api.settings
+      .getSiteSettings()
+      .then((res) => {
+        if (res?.shipping_policy) {
+          setDynamicShipping({
+            free_shipping_threshold: Number(res.shipping_policy.free_shipping_threshold ?? 499),
+            standard_shipping_fee: Number(res.shipping_policy.standard_shipping_fee ?? 49),
+            express_shipping_fee: Number(res.shipping_policy.express_shipping_fee ?? 99),
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const freeDeliveryThreshold = dynamicShipping.free_shipping_threshold;
   const isFreeDelivery = cartTotal >= freeDeliveryThreshold;
-  const shippingFee = cartItems.length === 0 ? 0 : isFreeDelivery ? 0 : 50;
+  const shippingFee = cartItems.length === 0 ? 0 : isFreeDelivery ? 0 : dynamicShipping.standard_shipping_fee;
 
   // Calculate 10% coupon discount
   const discountAmount = appliedCoupon
@@ -279,6 +320,27 @@ export default function CheckoutPage() {
 
       if (backendRes && backendRes.order_number) {
         orderId = backendRes.order_number;
+      }
+
+      // Auto-save new address to user profile address book
+      if (isAddingNewAddress && saveAddressToBook && isAuthenticated) {
+        try {
+          await addAddress({
+            label: newAddressLabel,
+            recipient_name: formData.fullName,
+            recipient_phone: formData.phone.startsWith("+91") ? formData.phone : `+91${formData.phone}`,
+            flat_no: formData.flatNo,
+            street: formData.street,
+            landmark: formData.landmark || undefined,
+            city: formData.city,
+            state: formData.state,
+            pincode: formData.pincode,
+            is_default_shipping: addresses.length === 0,
+            is_default_billing: addresses.length === 0,
+          });
+        } catch (addrErr) {
+          console.warn("Auto-save address error:", addrErr);
+        }
       }
     } catch (backendErr) {
       console.warn("FastAPI backend checkout fallback:", backendErr);
@@ -476,146 +538,241 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="space-y-4">
-                    {/* Saved Address Book Selector (if logged in and has addresses) */}
-                    {isAuthenticated && addresses && addresses.length > 0 && (
-                      <div className="bg-[#edf7f1] p-3.5 rounded-2xl border border-[#cbe5d4] space-y-2">
-                        <div className="flex items-center justify-between text-xs font-bold text-[#01722C]">
-                          <span className="flex items-center gap-1.5">
-                            <MapPin className="w-3.5 h-3.5" />
-                            <span>Select Saved Delivery Address</span>
+                    {/* Saved Address Book View (when user has addresses and is not adding new) */}
+                    {isAuthenticated && addresses && addresses.length > 0 && !isAddingNewAddress ? (
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-gray-700 flex items-center gap-1.5">
+                            <MapPin className="w-4 h-4 text-[#01722C]" />
+                            <span>Select From Saved Delivery Addresses ({addresses.length})</span>
                           </span>
-                          <Link href="/profile?tab=addresses" className="hover:underline text-[11px]">
-                            Manage Addresses →
-                          </Link>
+                          <button
+                            type="button"
+                            onClick={startAddNewAddress}
+                            className="inline-flex items-center gap-1 text-xs font-bold text-[#01722C] hover:text-[#0b542c] bg-[#edf7f1] hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-[#b8dfc7] transition-all cursor-pointer"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                            <span>Add New Address</span>
+                          </button>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                          {addresses.map((addr) => (
-                            <button
-                              key={addr.id}
-                              type="button"
-                              onClick={() => handleSelectSavedAddress(addr)}
-                              className={`p-2.5 rounded-xl border text-left text-xs transition-all cursor-pointer ${
-                                selectedAddressId === addr.id
-                                  ? "bg-white border-[#01722C] ring-2 ring-[#01722C]/20 shadow-xs"
-                                  : "bg-white/70 border-gray-200 hover:bg-white"
-                              }`}
-                            >
-                              <div className="flex items-center justify-between font-bold text-gray-900 mb-0.5">
-                                <span className="uppercase text-[10px] tracking-wider text-[#01722C]">
-                                  {addr.label}
-                                </span>
-                                {selectedAddressId === addr.id && (
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-[#01722C]" />
-                                )}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {addresses.map((addr) => {
+                            const isSelected = selectedAddressId === addr.id;
+                            return (
+                              <div
+                                key={addr.id}
+                                onClick={() => handleSelectSavedAddress(addr)}
+                                className={`p-3.5 rounded-2xl border text-left text-xs transition-all cursor-pointer relative ${
+                                  isSelected
+                                    ? "bg-white border-[#01722C] ring-2 ring-[#01722C]/20 shadow-sm"
+                                    : "bg-slate-50/70 border-gray-200 hover:bg-white hover:border-gray-300"
+                                }`}
+                              >
+                                <div className="flex items-center justify-between font-bold text-gray-900 mb-1">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="uppercase text-[10px] tracking-wider font-extrabold px-2 py-0.5 rounded-md bg-[#edf7f1] text-[#01722C] border border-[#c6e4d0]">
+                                      {addr.label || "Address"}
+                                    </span>
+                                    {addr.is_default_shipping && (
+                                      <span className="text-[10px] font-semibold text-gray-400">
+                                        (Default)
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div
+                                    className={`w-4 h-4 rounded-full flex items-center justify-center border transition-all ${
+                                      isSelected
+                                        ? "border-[#01722C] bg-[#01722C] text-white"
+                                        : "border-gray-300 bg-white"
+                                    }`}
+                                  >
+                                    {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
+                                  </div>
+                                </div>
+                                <div className="font-bold text-gray-900 text-xs mt-1">
+                                  {addr.recipient_name}
+                                </div>
+                                <div className="text-[11px] text-gray-600 mt-0.5 leading-relaxed">
+                                  {addr.flat_no}, {addr.street}
+                                  {addr.landmark ? `, Near ${addr.landmark}` : ""}
+                                </div>
+                                <div className="text-[11px] text-gray-500 font-mono mt-0.5">
+                                  {addr.city}, {addr.state} - <strong className="text-gray-700">{addr.pincode}</strong>
+                                </div>
                               </div>
-                              <div className="font-semibold text-gray-800 truncate">
-                                {addr.recipient_name}
-                              </div>
-                              <div className="text-[11px] text-gray-500 truncate">
-                                {addr.flat_no}, {addr.street}, {addr.city} ({addr.pincode})
-                              </div>
-                            </button>
-                          ))}
+                            );
+                          })}
                         </div>
+
+                        {/* Selected Address Confirmation Banner */}
+                        {selectedAddressId && (
+                          <div className="p-3 bg-[#f8fbf9] rounded-xl border border-[#cbe4d4] flex items-center justify-between text-xs text-[#01722C]">
+                            <span className="flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-[#01722C] shrink-0" />
+                              <span className="font-semibold truncate">
+                                Delivering to <strong>{formData.flatNo}, {formData.street}, {formData.city} ({formData.pincode})</strong>
+                              </span>
+                            </span>
+                            <button
+                              type="button"
+                              onClick={startAddNewAddress}
+                              className="text-[11px] font-bold text-[#01722C] hover:underline ml-2 shrink-0 cursor-pointer"
+                            >
+                              Deliver Somewhere Else →
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      /* New Address Input Form */
+                      <div className="space-y-4 animate-fade-in">
+                        {isAuthenticated && addresses && addresses.length > 0 && (
+                          <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+                            <span className="text-xs font-bold text-gray-800">
+                              Enter New Delivery Address
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setIsAddingNewAddress(false);
+                                if (addresses.length > 0) {
+                                  handleSelectSavedAddress(addresses[0]);
+                                }
+                              }}
+                              className="text-xs font-bold text-[#01722C] hover:underline cursor-pointer"
+                            >
+                              ← Back to Saved Addresses
+                            </button>
+                          </div>
+                        )}
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-700">
+                              Flat, House No, Building Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="flatNo"
+                              required
+                              placeholder="e.g. Flat 402, Shivam Residency"
+                              value={formData.flatNo}
+                              onChange={handleInputChange}
+                              className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-700">
+                              Street, Area, Colony <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="street"
+                              required
+                              placeholder="e.g. MG Road, Sector 4, Commercial Belt"
+                              value={formData.street}
+                              onChange={handleInputChange}
+                              className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-700">
+                              Landmark (Optional)
+                            </label>
+                            <input
+                              type="text"
+                              name="landmark"
+                              placeholder="e.g. Near Vikram Tower"
+                              value={formData.landmark}
+                              onChange={handleInputChange}
+                              className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-700">
+                              City / District <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="city"
+                              required
+                              placeholder="e.g. New Delhi, Mumbai, Indore"
+                              value={formData.city}
+                              onChange={handleInputChange}
+                              className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-xs font-bold text-gray-700">
+                              PIN Code (6 Digits) <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="pincode"
+                              required
+                              maxLength={6}
+                              placeholder="452001"
+                              value={formData.pincode}
+                              onChange={handleInputChange}
+                              className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-xs font-bold text-gray-700">
+                            State <span className="text-red-500">*</span>
+                          </label>
+                          <select
+                            name="state"
+                            value={formData.state}
+                            onChange={handleInputChange}
+                            className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] cursor-pointer"
+                          >
+                            {INDIAN_STATES.map((st) => (
+                              <option key={st} value={st}>
+                                {st}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Save to Profile Checkbox (if logged in) */}
+                        {isAuthenticated && (
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-xl">
+                            <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold text-emerald-950">
+                              <input
+                                type="checkbox"
+                                checked={saveAddressToBook}
+                                onChange={(e) => setSaveAddressToBook(e.target.checked)}
+                                className="w-4 h-4 text-[#01722C] rounded border-gray-300 focus:ring-[#01722C] cursor-pointer"
+                              />
+                              <span>Save this address to my profile address book for future 1-click checkout</span>
+                            </label>
+                            <div className="flex items-center gap-2">
+                              <span className="text-[11px] text-gray-500 font-medium">Tag:</span>
+                              <select
+                                value={newAddressLabel}
+                                onChange={(e) => setNewAddressLabel(e.target.value)}
+                                className="text-xs bg-white border border-gray-300 rounded-lg px-2.5 py-1 font-semibold text-gray-700 cursor-pointer"
+                              >
+                                <option value="Home">Home</option>
+                                <option value="Work">Work</option>
+                                <option value="Farm">Farm</option>
+                                <option value="Other">Other</option>
+                              </select>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-gray-700">
-                          Flat, House No, Building Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="flatNo"
-                          required
-                          placeholder="e.g. Flat 402, Shivam Residency"
-                          value={formData.flatNo}
-                          onChange={handleInputChange}
-                          className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-gray-700">
-                          Street, Area, Colony <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="street"
-                          required
-                          placeholder="e.g. MG Road, Sector 4, Commercial Belt"
-                          value={formData.street}
-                          onChange={handleInputChange}
-                          className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-gray-700">
-                          Landmark (Optional)
-                        </label>
-                        <input
-                          type="text"
-                          name="landmark"
-                          placeholder="e.g. Near Vikram Tower"
-                          value={formData.landmark}
-                          onChange={handleInputChange}
-                          className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-gray-700">
-                          City / District <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="city"
-                          required
-                          placeholder="e.g. New Delhi, Mumbai, Indore"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                          className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-gray-700">
-                          PIN Code (6 Digits) <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          type="text"
-                          name="pincode"
-                          required
-                          maxLength={6}
-                          placeholder="452001"
-                          value={formData.pincode}
-                          onChange={handleInputChange}
-                          className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C]"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-gray-700">
-                        State <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="state"
-                        value={formData.state}
-                        onChange={handleInputChange}
-                        className="w-full bg-[#faf9f5] border border-[#d8dfda] text-xs sm:text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#01722C] focus:bg-white focus:ring-1 focus:ring-[#01722C] cursor-pointer"
-                      >
-                        {INDIAN_STATES.map((st) => (
-                          <option key={st} value={st}>
-                            {st}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
 
                     <div className="space-y-1 pt-1">
                       <label className="text-xs font-bold text-gray-700">

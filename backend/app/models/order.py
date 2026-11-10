@@ -62,8 +62,8 @@ class OrderItem(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     order_id = Column(UUID(as_uuid=True), ForeignKey("orders.id", ondelete="CASCADE"), nullable=False, index=True)
-    product_id = Column(String(150), ForeignKey("products.id", ondelete="RESTRICT"), nullable=False)
-    variant_id = Column(UUID(as_uuid=True), ForeignKey("product_variants.id", ondelete="RESTRICT"), nullable=False)
+    product_id = Column(String(150), ForeignKey("products.id", ondelete="SET NULL"), nullable=True)
+    variant_id = Column(UUID(as_uuid=True), ForeignKey("product_variants.id", ondelete="SET NULL"), nullable=True)
     product_name = Column(String(255), nullable=False)
     weight_label = Column(String(50), nullable=False)
     unit_price = Column(Numeric(10, 2), nullable=False)

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { api } from "@/services/apiClient";
 import {
   X,
   Plus,
@@ -43,9 +44,21 @@ export default function CartDrawer() {
     }
   }, [isCartOpen, setIsCartOpen]);
 
+  const [freeShippingThreshold, setFreeShippingThreshold] = useState(499);
+
+  useEffect(() => {
+    api.settings
+      .getSiteSettings()
+      .then((res) => {
+        if (res?.shipping_policy?.free_shipping_threshold) {
+          setFreeShippingThreshold(Number(res.shipping_policy.free_shipping_threshold));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   if (!isCartOpen) return null;
 
-  const freeShippingThreshold = 499;
   const progressToFreeShipping = Math.min(
     100,
     (cartTotal / freeShippingThreshold) * 100
@@ -58,7 +71,7 @@ export default function CartDrawer() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex justify-end font-sans">
+    <div className="fixed inset-0 z-[100] font-sans">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/60 backdrop-blur-2xs animate-fade-in"
@@ -66,7 +79,7 @@ export default function CartDrawer() {
       />
 
       {/* Drawer */}
-      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-slide-left">
+      <div className="fixed inset-y-0 right-0 w-full max-w-md bg-white h-full h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc]">
           <div className="flex items-center gap-2">

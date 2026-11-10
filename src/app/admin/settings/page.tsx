@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Sliders, Save, Store, Truck, MapPin } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { api } from "@/services/apiClient";
 
 export default function AdminSettingsPage() {
   const { showToast } = useCart();
+  const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
   const [shippingPolicy, setShippingPolicy] = useState({
@@ -24,13 +26,44 @@ export default function AdminSettingsPage() {
     warehouse_address: "Khasra No. 142/2, Nemawar Agro Hub, Bypass Road, Indore, Madhya Pradesh - 452016",
   });
 
-  const handleSaveSettings = (e: React.FormEvent) => {
+  useEffect(() => {
+    const loadSettings = async () => {
+      setIsLoading(true);
+      try {
+        const res = await api.admin.getSettings();
+        if (res.shipping_policy) {
+          setShippingPolicy({
+            free_shipping_threshold: Number(res.shipping_policy.free_shipping_threshold ?? 499),
+            standard_shipping_fee: Number(res.shipping_policy.standard_shipping_fee ?? 49),
+            express_shipping_fee: Number(res.shipping_policy.express_shipping_fee ?? 99),
+          });
+        }
+        if (res.store_details) {
+          setStoreDetails((prev) => ({ ...prev, ...res.store_details }));
+        }
+      } catch (err: any) {
+        console.warn("Could not load backend settings:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadSettings();
+  }, []);
+
+  const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    setTimeout(() => {
-      setIsSaving(false);
+    try {
+      await api.admin.updateSettings({
+        shipping_policy: shippingPolicy,
+        store_details: storeDetails,
+      });
       showToast("Store policies & fulfillment parameters saved successfully!");
-    }, 400);
+    } catch (err: any) {
+      showToast(err.message || "Failed to save settings");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (

@@ -1,9 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Phone, Mail, ShieldCheck, Truck, Sparkles } from "lucide-react";
+import { api } from "@/services/apiClient";
 
 export default function TopBar() {
+  const [freeThreshold, setFreeThreshold] = useState(499);
+
+  useEffect(() => {
+    api.settings
+      .getSiteSettings()
+      .then((res) => {
+        if (res?.shipping_policy?.free_shipping_threshold) {
+          setFreeThreshold(Number(res.shipping_policy.free_shipping_threshold));
+        }
+      })
+      .catch(() => {});
+  }, []);
   return (
     <div className="w-full bg-[#014d1e] text-[#e3ece7] text-[11px] sm:text-xs py-2 border-b border-[#015c24] font-sans">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-0 flex items-center justify-between gap-2 sm:gap-4">
@@ -29,7 +42,7 @@ export default function TopBar() {
         {/* Center: Free Delivery Announcement (Visible on large desktop >= 1280px) */}
         <div className="hidden xl:flex items-center gap-2 font-semibold text-white/90 tracking-wide text-xs truncate">
           <Truck className="w-3.5 h-3.5 text-[#58cf8b] shrink-0" />
-          <span className="truncate">FREE PAN-INDIA DELIVERY ON ORDERS OVER ₹499</span>
+          <span className="truncate">FREE PAN-INDIA DELIVERY ON ORDERS OVER ₹{freeThreshold}</span>
         </div>
 
         {/* Right: WhatsApp Support */}

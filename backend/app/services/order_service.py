@@ -46,34 +46,73 @@ class OrderService:
         subtotal = Decimal("0.00")
         line_items_data = []
 
+        # 0. If user_id not explicitly provided, auto-link by matching customer phone or email
+        if not user_id:
+            from app.models.user import User
+            if payload.customer_phone:
+                clean_phone = payload.customer_phone.replace(" ", "")
+                res_u = await db.execute(select(User).where(User.phone == clean_phone))
+                matched_user = res_u.scalar_one_or_none()
+                if not matched_user and not clean_phone.startswith("+91"):
+                    res_u_alt = await db.execute(select(User).where(User.phone == f"+91{clean_phone}"))
+                    matched_user = res_u_alt.scalar_one_or_none()
+                if matched_user:
+                    user_id = matched_user.id
+            if not user_id and payload.customer_email:
+                res_u_email = await db.execute(select(User).where(User.email == str(payload.customer_email)))
+                matched_user_email = res_u_email.scalar_one_or_none()
+                if matched_user_email:
+                    user_id = matched_user_email.id
+
         # 1. Validate items and lock prices
         for item in payload.items:
-            res_v = await db.execute(select(ProductVariant).where(ProductVariant.id == item.variant_id))
-            variant = res_v.scalar_one_or_none()
-            if not variant:
-                raise ValueError(f"Variant '{item.variant_id}' does not exist.")
+            variant = None
+            product = None
+            if item.variant_id:
+                res_v = await db.execute(select(ProductVariant).where(ProductVariant.id == item.variant_id))
+                variant = res_v.scalar_one_or_none()
 
-            res_p = await db.execute(select(Product).where(Product.id == item.product_id))
-            product = res_p.scalar_one_or_none()
-            if not product:
-                raise ValueError(f"Product '{item.product_id}' does not exist.")
+            if item.product_id:
+                res_p = await db.execute(select(Product).where(Product.id == item.product_id))
+                product = res_p.scalar_one_or_none()
 
-            line_price = variant.price
+            line_price = (
+                variant.price
+                if variant
+                else (Decimal(str(item.unit_price)) if item.unit_price is not None else Decimal("100.00"))
+            )
+            product_name = (
+                product.name
+                if product
+                else (item.product_name or "Organic Farm Harvest")
+            )
+            weight_label = (
+                variant.weight_label
+                if variant
+                else (item.weight_label or item.packaging_size or "Standard Pack")
+            )
             line_total = line_price * item.quantity
             subtotal += line_total
 
             line_items_data.append({
-                "product_id": product.id,
-                "variant_id": variant.id,
-                "product_name": product.name,
-                "weight_label": variant.weight_label,
+                "product_id": product.id if product else item.product_id,
+                "variant_id": variant.id if variant else None,
+                "product_name": product_name,
+                "weight_label": weight_label,
                 "unit_price": line_price,
                 "quantity": item.quantity,
                 "line_total": line_total,
             })
 
-        # 2. Shipping calculation (Free over ₹499 or ₹60 flat)
-        shipping_fee = Decimal("0.00") if subtotal >= Decimal("499.00") else Decimal("60.00")
+        # 2. Shipping calculation: Pull dynamic settings from DB SiteSetting
+        from app.models.settings import SiteSetting
+        st_res = await db.execute(select(SiteSetting).where(SiteSetting.key == "shipping_policy"))
+        st_obj = st_res.scalar_one_or_none()
+        shipping_policy = st_obj.value if st_obj and isinstance(st_obj.value, dict) else {}
+        free_thresh = Decimal(str(shipping_policy.get("free_shipping_threshold", 499)))
+        std_fee = Decimal(str(shipping_policy.get("standard_shipping_fee", 49)))
+
+        shipping_fee = Decimal("0.00") if subtotal >= free_thresh else std_fee
 
         # 3. Coupon discount
         discount_amount = Decimal("0.00")

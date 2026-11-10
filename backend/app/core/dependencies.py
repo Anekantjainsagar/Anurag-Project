@@ -116,3 +116,6 @@ def require_role(*allowed_roles: str):
 
     return role_checker
 
+
+get_current_admin_user = require_role("admin", "vendor")
+
