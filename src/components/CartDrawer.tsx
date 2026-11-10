@@ -58,15 +58,15 @@ export default function CartDrawer() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end animate-fade-in font-sans">
+    <div className="fixed inset-0 z-[100] flex justify-end font-sans">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-2xs transition-opacity"
+        className="fixed inset-0 bg-black/60 backdrop-blur-2xs animate-fade-in"
         onClick={() => setIsCartOpen(false)}
       />
 
       {/* Drawer */}
-      <div className="relative w-full max-w-md bg-white h-screen max-h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
+      <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col z-10 animate-slide-left">
         {/* Header */}
         <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc]">
           <div className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export default function CartDrawer() {
         </div>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-3.5">
+        <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-3.5">
           {cartItems.length === 0 ? (
             <div className="py-16 text-center space-y-4">
               <div className="w-16 h-16 rounded-full bg-[#edf7f1] text-[#01722C] mx-auto flex items-center justify-center">

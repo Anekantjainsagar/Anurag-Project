@@ -452,13 +452,13 @@ export default function Navbar() {
 
       {/* Mobile & Tablet Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden flex justify-end animate-fade-in font-sans">
+        <div className="fixed inset-0 z-[100] lg:hidden flex justify-end font-sans">
           <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs animate-fade-in"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          <div className="relative w-4/5 max-w-xs sm:max-w-sm bg-white h-screen max-h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
+          <div className="relative w-4/5 max-w-xs sm:max-w-sm bg-white h-full max-h-screen shadow-2xl flex flex-col z-10 animate-slide-left">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc] shrink-0">
               <BrandLogo variant="dark" size="sm" />
               <button
@@ -470,7 +470,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4">
               {/* User Account State in Mobile Drawer */}
               {mounted && isAuthenticated && user ? (
                 <div className="p-3 bg-[#edf7f1] rounded-2xl border border-[#cbe4d4] space-y-2.5">

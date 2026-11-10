@@ -19,6 +19,8 @@ import {
   Calendar,
   MapPin,
   ExternalLink,
+  X,
+  Eye,
 } from "lucide-react";
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
@@ -45,6 +47,20 @@ export default function AdminInquiriesPage() {
   const [editingNotesId, setEditingNotesId] = useState<string | null>(null);
   const [notesDraft, setNotesDraft] = useState("");
   const [isSavingNotes, setIsSavingNotes] = useState(false);
+
+  // Inspection & Action Modals (One click row/action view)
+  const [selectedContact, setSelectedContact] = useState<any | null>(null);
+  const [selectedBulk, setSelectedBulk] = useState<any | null>(null);
+
+  const openContactModal = (ci: any) => {
+    setSelectedContact(ci);
+    setNotesDraft(ci.vendor_notes || "");
+  };
+
+  const openBulkModal = (bi: any) => {
+    setSelectedBulk(bi);
+    setNotesDraft(bi.vendor_notes || "");
+  };
 
   const loadAll = async () => {
     setIsLoading(true);
@@ -75,6 +91,7 @@ export default function AdminInquiriesPage() {
       setContactInquiries((prev) =>
         prev.map((c) => (c.id === id ? { ...c, status: updated.status } : c))
       );
+      setSelectedContact((prev: any) => (prev?.id === id ? { ...prev, status: updated.status } : prev));
       showToast(`Inquiry marked as ${newStatus}`);
     } catch (err: any) {
       showToast(err.message || "Failed to update status");
@@ -95,6 +112,9 @@ export default function AdminInquiriesPage() {
     try {
       await api.admin.deleteContactInquiry(id);
       setContactInquiries((prev) => prev.filter((c) => c.id !== id));
+      if (selectedContact?.id === id) {
+        setSelectedContact(null);
+      }
       showToast("Contact inquiry deleted");
     } catch (err: any) {
       showToast(err.message || "Failed to delete inquiry");
@@ -108,6 +128,7 @@ export default function AdminInquiriesPage() {
       setBulkInquiries((prev) =>
         prev.map((b) => (b.id === id ? { ...b, status: updated.status } : b))
       );
+      setSelectedBulk((prev: any) => (prev?.id === id ? { ...prev, status: updated.status } : prev));
       showToast(`Wholesale lead marked as ${newStatus}`);
     } catch (err: any) {
       showToast(err.message || "Failed to update status");
@@ -128,6 +149,9 @@ export default function AdminInquiriesPage() {
     try {
       await api.admin.deleteBulkEnquiry(id);
       setBulkInquiries((prev) => prev.filter((b) => b.id !== id));
+      if (selectedBulk?.id === id) {
+        setSelectedBulk(null);
+      }
       showToast("Wholesale enquiry deleted");
     } catch (err: any) {
       showToast(err.message || "Failed to delete enquiry");
@@ -144,12 +168,14 @@ export default function AdminInquiriesPage() {
         setContactInquiries((prev) =>
           prev.map((c) => (c.id === id ? { ...c, vendor_notes: updated.vendor_notes } : c))
         );
+        setSelectedContact((prev: any) => (prev?.id === id ? { ...prev, vendor_notes: updated.vendor_notes } : prev));
       } else {
         const item = bulkInquiries.find((b) => b.id === id);
         const updated = await api.admin.updateBulkEnquiryStatus(id, item?.status || "NEW", notesDraft);
         setBulkInquiries((prev) =>
           prev.map((b) => (b.id === id ? { ...b, vendor_notes: updated.vendor_notes } : b))
         );
+        setSelectedBulk((prev: any) => (prev?.id === id ? { ...prev, vendor_notes: updated.vendor_notes } : prev));
       }
       showToast("Vendor notes saved");
       setEditingNotesId(null);
@@ -590,15 +616,15 @@ export default function AdminInquiriesPage() {
           )}
         </div>
       ) : activeTab === "retail" ? (
-        /* TAB 1: RETAIL CONTACT MESSAGES */
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-5 space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+        /* TAB 1: RETAIL CONTACT MESSAGES (TABLE VIEW) */
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
+          <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-100">
             <div>
               <h3 className="text-sm font-bold text-slate-900 font-serif">
                 Retail Support & Customer Messages
               </h3>
               <p className="text-xs text-slate-500">
-                Queries submitted through the Contact Us page or direct customer inquiries.
+                Direct customer inquiries submitted through the Contact Us desk.
               </p>
             </div>
             <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
@@ -606,167 +632,119 @@ export default function AdminInquiriesPage() {
             </span>
           </div>
 
-          <div className="divide-y divide-slate-100">
-            {filteredContacts.length === 0 ? (
-              <div className="py-16 text-center text-xs text-slate-400">
-                No retail contact inquiries match your search.
-              </div>
-            ) : (
-              filteredContacts.map((ci) => (
-                <div key={ci.id} className="py-4 space-y-3 text-xs">
-                  {/* Top line: Name, Contacts & Status */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <strong className="text-slate-900 font-bold text-sm">
-                        {ci.name}
-                      </strong>
-                      <span className="text-slate-500 font-mono text-xs">
-                        ({ci.email})
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      {/* Status Dropdown */}
-                      <select
-                        value={ci.status}
-                        onChange={(e) => handleUpdateContactStatus(ci.id, e.target.value)}
-                        className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border cursor-pointer ${
-                          ci.status === "NEW"
-                            ? "bg-rose-50 text-rose-800 border-rose-200"
-                            : ci.status === "CONTACTED"
-                            ? "bg-amber-50 text-amber-800 border-amber-200"
-                            : ci.status === "RESOLVED"
-                            ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                            : "bg-slate-100 text-slate-700 border-slate-200"
-                        }`}
-                      >
-                        <option value="NEW">NEW</option>
-                        <option value="CONTACTED">CONTACTED</option>
-                        <option value="RESOLVED">RESOLVED</option>
-                        <option value="ARCHIVED">ARCHIVED</option>
-                      </select>
-
-                      <button
-                        onClick={() => handleDeleteContact(ci.id)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
-                        title="Delete inquiry"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Subject and Contact Links */}
-                  <div className="flex flex-wrap items-center gap-4 text-slate-500 font-mono text-[11px]">
-                    {ci.phone && (
-                      <a
-                        href={`tel:${ci.phone}`}
-                        className="hover:text-emerald-700 flex items-center gap-1"
-                      >
-                        <Phone className="w-3 h-3 text-emerald-600" />
-                        <span>{ci.phone}</span>
-                      </a>
-                    )}
-                    <a
-                      href={`mailto:${ci.email}?subject=RE: ${ci.subject || "ONAAR Inquiry"}`}
-                      className="hover:text-emerald-700 flex items-center gap-1"
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-slate-50/75 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <th className="py-3 px-4">Customer</th>
+                  <th className="py-3 px-4">Subject</th>
+                  <th className="py-3 px-4">Message Preview</th>
+                  <th className="py-3 px-4 whitespace-nowrap">Received On</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-sans">
+                {filteredContacts.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="py-16 text-center text-xs text-slate-400">
+                      No retail contact inquiries match your search.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredContacts.map((ci) => (
+                    <tr
+                      key={ci.id}
+                      onClick={() => openContactModal(ci)}
+                      className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
                     >
-                      <Mail className="w-3 h-3 text-slate-400" />
-                      <span>{ci.email}</span>
-                    </a>
-                    {ci.created_at && (
-                      <span className="flex items-center gap-1 text-slate-400">
-                        <Calendar className="w-3 h-3" />
-                        <span>
-                          {new Date(ci.created_at).toLocaleString("en-IN", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-slate-900 text-xs">
+                          {ci.name}
+                        </div>
+                        <div className="text-[11px] text-slate-500 font-mono flex items-center gap-1.5 flex-wrap">
+                          <span>{ci.email}</span>
+                          {ci.phone && (
+                            <>
+                              <span className="text-slate-300">•</span>
+                              <span>{ci.phone}</span>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <span className="font-bold text-emerald-900 bg-emerald-50/90 border border-emerald-200/80 px-2 py-0.5 rounded-md text-[11px]">
+                          {ci.subject || "General Inquiry"}
                         </span>
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Subject */}
-                  {ci.subject && (
-                    <div className="text-emerald-800 font-bold text-xs bg-emerald-50/70 px-2.5 py-1 rounded-md border border-emerald-100 inline-block">
-                      Subject: {ci.subject}
-                    </div>
-                  )}
-
-                  {/* Message body */}
-                  <p className="text-slate-800 bg-slate-50 p-3.5 rounded-xl border border-slate-100 leading-relaxed font-sans text-xs">
-                    {ci.message}
-                  </p>
-
-                  {/* Vendor Notes */}
-                  <div className="text-[11px] pt-1">
-                    {editingNotesId === ci.id ? (
-                      <div className="space-y-1.5">
-                        <textarea
-                          value={notesDraft}
-                          onChange={(e) => setNotesDraft(e.target.value)}
-                          placeholder="Add internal vendor notes about this inquiry..."
-                          className="w-full bg-amber-50/50 text-slate-800 text-xs p-2 rounded-lg border border-amber-200 focus:outline-none focus:ring-1 focus:ring-emerald-700"
-                          rows={2}
-                        />
-                        <div className="flex items-center gap-2 justify-end">
+                      </td>
+                      <td className="py-3.5 px-4 max-w-xs truncate text-slate-600">
+                        {ci.message}
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap text-slate-500 font-mono text-[11px]">
+                        {ci.created_at
+                          ? new Date(ci.created_at).toLocaleDateString("en-IN", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })
+                          : "—"}
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                        <select
+                          value={ci.status}
+                          onChange={(e) => handleUpdateContactStatus(ci.id, e.target.value)}
+                          className={`text-[10px] font-bold px-2 py-1 rounded-md border cursor-pointer ${
+                            ci.status === "NEW"
+                              ? "bg-rose-50 text-rose-800 border-rose-200"
+                              : ci.status === "CONTACTED"
+                              ? "bg-amber-50 text-amber-800 border-amber-200"
+                              : ci.status === "RESOLVED"
+                              ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                              : "bg-slate-100 text-slate-700 border-slate-200"
+                          }`}
+                        >
+                          <option value="NEW">NEW</option>
+                          <option value="CONTACTED">CONTACTED</option>
+                          <option value="RESOLVED">RESOLVED</option>
+                          <option value="ARCHIVED">ARCHIVED</option>
+                        </select>
+                      </td>
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                        <div className="flex items-center justify-end gap-1.5">
                           <button
-                            onClick={() => setEditingNotesId(null)}
-                            className="px-2 py-1 rounded text-slate-600 hover:bg-slate-100 cursor-pointer"
+                            onClick={() => openContactModal(ci)}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors cursor-pointer"
+                            title="Manage inquiry"
                           >
-                            Cancel
+                            <Eye className="w-3 h-3" />
+                            <span>Manage</span>
                           </button>
                           <button
-                            onClick={() => handleSaveNotes("contact", ci.id)}
-                            disabled={isSavingNotes}
-                            className="px-2.5 py-1 rounded bg-emerald-700 text-white font-bold cursor-pointer"
+                            onClick={() => handleDeleteContact(ci.id)}
+                            className="p-1 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                            title="Delete inquiry"
                           >
-                            Save Note
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-between text-slate-500">
-                        <span>
-                          {ci.vendor_notes ? (
-                            <span className="text-slate-700">
-                              <strong>Vendor Note:</strong> {ci.vendor_notes}
-                            </span>
-                          ) : (
-                            <span className="italic text-slate-400">No internal vendor notes.</span>
-                          )}
-                        </span>
-                        <button
-                          onClick={() => {
-                            setEditingNotesId(ci.id);
-                            setNotesDraft(ci.vendor_notes || "");
-                          }}
-                          className="text-emerald-700 hover:underline cursor-pointer font-medium ml-2 shrink-0"
-                        >
-                          {ci.vendor_notes ? "Edit Note" : "+ Add Note"}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))
-            )}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       ) : (
-        /* TAB 2: WHOLESALE B2B ENQUIRIES */
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs p-5 space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+        /* TAB 2: WHOLESALE B2B ENQUIRIES (TABLE VIEW) */
+        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
+          <div className="p-4 sm:p-5 flex items-center justify-between border-b border-slate-100">
             <div>
               <h3 className="text-sm font-bold text-slate-900 font-serif">
                 Wholesale & Export Commercial Inquiries
               </h3>
               <p className="text-xs text-slate-500">
-                High-volume orders submitted through the B2B Wholesale form.
+                Institutional supply & export requests submitted through B2B channels.
               </p>
             </div>
             <span className="text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
@@ -774,174 +752,481 @@ export default function AdminInquiriesPage() {
             </span>
           </div>
 
-          <div className="divide-y divide-slate-100">
-            {filteredBulks.length === 0 ? (
-              <div className="py-16 text-center text-xs text-slate-400">
-                No wholesale or export leads match your search.
-              </div>
-            ) : (
-              filteredBulks.map((bi) => (
-                <div key={bi.id} className="py-4 space-y-3 text-xs">
-                  {/* Top line: Name, Company & Status */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <strong className="text-slate-900 font-bold text-sm">
-                        {bi.name}
-                      </strong>
-                      {bi.company_name && (
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
-                          {bi.company_name}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-slate-50/75 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                  <th className="py-3 px-4">Company & Buyer</th>
+                  <th className="py-3 px-4">Commodity / Crop</th>
+                  <th className="py-3 px-4 whitespace-nowrap">Volume & Destination</th>
+                  <th className="py-3 px-4">Contact Info</th>
+                  <th className="py-3 px-4 whitespace-nowrap">Received On</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-sans">
+                {filteredBulks.length === 0 ? (
+                  <tr>
+                    <td colSpan={7} className="py-16 text-center text-xs text-slate-400">
+                      No wholesale or export leads match your search.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredBulks.map((bi) => (
+                    <tr
+                      key={bi.id}
+                      onClick={() => openBulkModal(bi)}
+                      className="hover:bg-slate-50/80 transition-colors cursor-pointer group"
+                    >
+                      <td className="py-3.5 px-4">
+                        <div className="font-bold text-slate-900 text-xs flex items-center gap-1.5 flex-wrap">
+                          <span>{bi.name}</span>
+                          {bi.company_name && (
+                            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                              {bi.company_name}
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <span className="font-bold text-emerald-900 bg-emerald-50/90 border border-emerald-200/80 px-2 py-0.5 rounded-md text-[11px]">
+                          {bi.category}
                         </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      {/* Status Dropdown */}
-                      <select
-                        value={bi.status}
-                        onChange={(e) => handleUpdateBulkStatus(bi.id, e.target.value)}
-                        className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border cursor-pointer ${
-                          bi.status === "NEW"
-                            ? "bg-rose-50 text-rose-800 border-rose-200"
-                            : bi.status === "QUOTE_SENT"
-                            ? "bg-blue-50 text-blue-800 border-blue-200"
-                            : bi.status === "IN_NEGOTIATION"
-                            ? "bg-amber-50 text-amber-800 border-amber-200"
-                            : bi.status === "FULFILLED"
-                            ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                            : "bg-slate-100 text-slate-700 border-slate-200"
-                        }`}
-                      >
-                        <option value="NEW">NEW</option>
-                        <option value="QUOTE_SENT">QUOTE SENT</option>
-                        <option value="IN_NEGOTIATION">IN NEGOTIATION</option>
-                        <option value="FULFILLED">FULFILLED</option>
-                        <option value="REJECTED">REJECTED</option>
-                      </select>
-
-                      <button
-                        onClick={() => handleDeleteBulk(bi.id)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
-                        title="Delete wholesale enquiry"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Volume and Destination Tags */}
-                  <div className="flex flex-wrap items-center gap-2 text-xs">
-                    <span className="font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold flex items-center gap-1">
-                      <PackageCheck className="w-3 h-3 text-emerald-600" />
-                      <span>Volume: {bi.quantity}</span>
-                    </span>
-                    <span className="text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md font-semibold">
-                      Crop: {bi.category}
-                    </span>
-                    {bi.destination && (
-                      <span className="text-slate-600 flex items-center gap-1 font-mono text-[11px]">
-                        <MapPin className="w-3 h-3 text-slate-400" />
-                        <span>Dest: {bi.destination}</span>
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Contact channels */}
-                  <div className="flex flex-wrap items-center gap-4 text-slate-500 font-mono text-[11px]">
-                    {bi.phone && (
-                      <a
-                        href={`tel:${bi.phone}`}
-                        className="hover:text-emerald-700 flex items-center gap-1"
-                      >
-                        <Phone className="w-3 h-3 text-emerald-600" />
-                        <span>{bi.phone}</span>
-                      </a>
-                    )}
-                    {bi.email && (
-                      <a
-                        href={`mailto:${bi.email}?subject=Wholesale Proposal: ${bi.category}`}
-                        className="hover:text-emerald-700 flex items-center gap-1"
-                      >
-                        <Mail className="w-3 h-3 text-slate-400" />
-                        <span>{bi.email}</span>
-                      </a>
-                    )}
-                    {bi.created_at && (
-                      <span className="flex items-center gap-1 text-slate-400">
-                        <Calendar className="w-3 h-3" />
-                        <span>
-                          {new Date(bi.created_at).toLocaleString("en-IN", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </span>
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Requirements / Notes */}
-                  {bi.notes && (
-                    <p className="text-slate-800 bg-slate-50 p-3.5 rounded-xl border border-slate-100 leading-relaxed font-sans text-xs">
-                      <strong>Client Specs:</strong> {bi.notes}
-                    </p>
-                  )}
-
-                  {/* Vendor Notes */}
-                  <div className="text-[11px] pt-1">
-                    {editingNotesId === bi.id ? (
-                      <div className="space-y-1.5">
-                        <textarea
-                          value={notesDraft}
-                          onChange={(e) => setNotesDraft(e.target.value)}
-                          placeholder="Add internal procurement / quota notes..."
-                          className="w-full bg-amber-50/50 text-slate-800 text-xs p-2 rounded-lg border border-amber-200 focus:outline-none focus:ring-1 focus:ring-emerald-700"
-                          rows={2}
-                        />
-                        <div className="flex items-center gap-2 justify-end">
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 font-bold flex items-center gap-1 text-[11px]">
+                            <PackageCheck className="w-3 h-3 text-emerald-600" />
+                            <span>{bi.quantity}</span>
+                          </span>
+                          {bi.destination && (
+                            <span className="text-slate-600 flex items-center gap-1 font-mono text-[11px]">
+                              <MapPin className="w-3 h-3 text-slate-400" />
+                              <span>{bi.destination}</span>
+                            </span>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap">
+                        <div className="text-[11px] text-slate-500 font-mono space-y-0.5">
+                          {bi.phone && (
+                            <div className="flex items-center gap-1 text-slate-700">
+                              <Phone className="w-3 h-3 text-emerald-600" />
+                              <span>{bi.phone}</span>
+                            </div>
+                          )}
+                          {bi.email && (
+                            <div className="flex items-center gap-1 text-slate-500">
+                              <Mail className="w-3 h-3 text-slate-400" />
+                              <span className="truncate max-w-[140px]">{bi.email}</span>
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap text-slate-500 font-mono text-[11px]">
+                        {bi.created_at
+                          ? new Date(bi.created_at).toLocaleDateString("en-IN", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })
+                          : "—"}
+                      </td>
+                      <td className="py-3.5 px-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                        <select
+                          value={bi.status}
+                          onChange={(e) => handleUpdateBulkStatus(bi.id, e.target.value)}
+                          className={`text-[10px] font-bold px-2 py-1 rounded-md border cursor-pointer ${
+                            bi.status === "NEW"
+                              ? "bg-rose-50 text-rose-800 border-rose-200"
+                              : bi.status === "QUOTE_SENT"
+                              ? "bg-blue-50 text-blue-800 border-blue-200"
+                              : bi.status === "IN_NEGOTIATION"
+                              ? "bg-amber-50 text-amber-800 border-amber-200"
+                              : bi.status === "FULFILLED"
+                              ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                              : "bg-slate-100 text-slate-700 border-slate-200"
+                          }`}
+                        >
+                          <option value="NEW">NEW</option>
+                          <option value="QUOTE_SENT">QUOTE SENT</option>
+                          <option value="IN_NEGOTIATION">IN NEGOTIATION</option>
+                          <option value="FULFILLED">FULFILLED</option>
+                          <option value="REJECTED">REJECTED</option>
+                        </select>
+                      </td>
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
+                        <div className="flex items-center justify-end gap-1.5">
                           <button
-                            onClick={() => setEditingNotesId(null)}
-                            className="px-2 py-1 rounded text-slate-600 hover:bg-slate-100 cursor-pointer"
+                            onClick={() => openBulkModal(bi)}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors cursor-pointer"
+                            title="Manage wholesale inquiry"
                           >
-                            Cancel
+                            <Eye className="w-3 h-3" />
+                            <span>Manage</span>
                           </button>
                           <button
-                            onClick={() => handleSaveNotes("bulk", bi.id)}
-                            disabled={isSavingNotes}
-                            className="px-2.5 py-1 rounded bg-emerald-700 text-white font-bold cursor-pointer"
+                            onClick={() => handleDeleteBulk(bi.id)}
+                            className="p-1 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                            title="Delete wholesale inquiry"
                           >
-                            Save Note
+                            <Trash2 className="w-3.5 h-3.5" />
                           </button>
                         </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-between text-slate-500">
-                        <span>
-                          {bi.vendor_notes ? (
-                            <span className="text-slate-700">
-                              <strong>Vendor Note:</strong> {bi.vendor_notes}
-                            </span>
-                          ) : (
-                            <span className="italic text-slate-400">No internal vendor notes.</span>
-                          )}
-                        </span>
-                        <button
-                          onClick={() => {
-                            setEditingNotesId(bi.id);
-                            setNotesDraft(bi.vendor_notes || "");
-                          }}
-                          className="text-emerald-700 hover:underline cursor-pointer font-medium ml-2 shrink-0"
-                        >
-                          {bi.vendor_notes ? "Edit Note" : "+ Add Note"}
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 1: RETAIL CONTACT INQUIRY MANAGEMENT */}
+      {selectedContact && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+          onClick={() => setSelectedContact(null)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl max-w-lg w-full max-h-[92dvh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-6 space-y-5 relative my-auto animate-fade-up"
+          >
+            {/* Header */}
+            <div className="flex items-start justify-between pb-3 border-b border-slate-100">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 uppercase tracking-wider mb-1">
+                  <MessageSquare className="w-3 h-3" />
+                  <span>Retail Customer Ticket</span>
                 </div>
-              ))
+                <h3 className="font-serif font-bold text-base sm:text-lg text-slate-900">
+                  {selectedContact.subject || "Customer Support Inquiry"}
+                </h3>
+                <p className="text-xs text-slate-500 font-mono">
+                  ID: {selectedContact.id}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedContact(null)}
+                className="text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
+                title="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Customer Details Box */}
+            <div className="bg-slate-50 rounded-xl p-3.5 border border-slate-100 space-y-2 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-slate-900 text-sm">{selectedContact.name}</span>
+                <span className="text-[11px] text-slate-500 font-mono">
+                  {selectedContact.created_at
+                    ? new Date(selectedContact.created_at).toLocaleString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : ""}
+                </span>
+              </div>
+              <div className="flex items-center gap-4 text-[11px] text-slate-600 font-mono flex-wrap">
+                <a
+                  href={`mailto:${selectedContact.email}?subject=RE: ${selectedContact.subject || "ONAAR Inquiry"}`}
+                  className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+                >
+                  <Mail className="w-3.5 h-3.5 text-slate-400" />
+                  <span>{selectedContact.email}</span>
+                </a>
+                {selectedContact.phone && (
+                  <a
+                    href={`tel:${selectedContact.phone}`}
+                    className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>{selectedContact.phone}</span>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Customer Message */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Customer Message</label>
+              <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-800 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap font-sans">
+                {selectedContact.message}
+              </div>
+            </div>
+
+            {/* Status Selector */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Ticket Workflow Status</label>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {(["NEW", "CONTACTED", "RESOLVED", "ARCHIVED"] as const).map((st) => (
+                  <button
+                    key={st}
+                    type="button"
+                    onClick={() => handleUpdateContactStatus(selectedContact.id, st)}
+                    className={`py-1.5 px-2 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
+                      selectedContact.status === st
+                        ? st === "NEW"
+                          ? "bg-rose-600 text-white border-rose-600 shadow-xs"
+                          : st === "CONTACTED"
+                          ? "bg-amber-600 text-white border-amber-600 shadow-xs"
+                          : st === "RESOLVED"
+                          ? "bg-emerald-700 text-white border-emerald-700 shadow-xs"
+                          : "bg-slate-700 text-white border-slate-700 shadow-xs"
+                        : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
+                    }`}
+                  >
+                    {st}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Internal Vendor Notes */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Internal Operations / Vendor Notes</label>
+              <textarea
+                value={notesDraft}
+                onChange={(e) => setNotesDraft(e.target.value)}
+                placeholder="Log internal resolution steps, phone calls, or fulfillment reminders..."
+                rows={3}
+                className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-700 bg-amber-50/30 text-slate-800"
+              />
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => handleSaveNotes("contact", selectedContact.id)}
+                  disabled={isSavingNotes}
+                  className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                >
+                  {isSavingNotes ? "Saving..." : "Save Note"}
+                </button>
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <button
+                type="button"
+                onClick={() => handleDeleteContact(selectedContact.id)}
+                className="inline-flex items-center gap-1 text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg border border-rose-200 cursor-pointer font-semibold transition-colors"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Delete</span>
+              </button>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={`mailto:${selectedContact.email}?subject=RE: ${selectedContact.subject || "ONAAR Support"}`}
+                  className="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1.5 rounded-lg font-bold transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Reply Email</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setSelectedContact(null)}
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg cursor-pointer transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 2: WHOLESALE B2B COMMERCIAL INQUIRY MANAGEMENT */}
+      {selectedBulk && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in font-sans overflow-y-auto"
+          onClick={() => setSelectedBulk(null)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl max-w-xl w-full max-h-[92dvh] overflow-y-auto shadow-2xl border border-slate-200 p-5 sm:p-6 space-y-5 relative my-auto animate-fade-up"
+          >
+            {/* Header */}
+            <div className="flex items-start justify-between pb-3 border-b border-slate-100">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 uppercase tracking-wider mb-1">
+                  <Building2 className="w-3 h-3" />
+                  <span>B2B Commercial & Export Supply</span>
+                </div>
+                <h3 className="font-serif font-bold text-base sm:text-lg text-slate-900">
+                  {selectedBulk.company_name || selectedBulk.name} — {selectedBulk.category}
+                </h3>
+                <p className="text-xs text-slate-500 font-mono">
+                  ID: {selectedBulk.id}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedBulk(null)}
+                className="text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
+                title="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Enterprise & Buyer Details Card */}
+            <div className="bg-amber-50/40 rounded-xl p-3.5 border border-amber-200/80 space-y-2 text-xs">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <div>
+                  <span className="font-bold text-slate-900 text-sm">{selectedBulk.name}</span>
+                  {selectedBulk.company_name && (
+                    <span className="ml-2 font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded text-[11px]">
+                      {selectedBulk.company_name}
+                    </span>
+                  )}
+                </div>
+                <span className="text-[11px] text-slate-500 font-mono">
+                  {selectedBulk.created_at
+                    ? new Date(selectedBulk.created_at).toLocaleString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                    : ""}
+                </span>
+              </div>
+              <div className="flex items-center gap-4 text-[11px] text-slate-600 font-mono flex-wrap">
+                {selectedBulk.email && (
+                  <a
+                    href={`mailto:${selectedBulk.email}?subject=Wholesale Proposal: ${selectedBulk.category} Supply`}
+                    className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-slate-400" />
+                    <span>{selectedBulk.email}</span>
+                  </a>
+                )}
+                {selectedBulk.phone && (
+                  <a
+                    href={`tel:${selectedBulk.phone}`}
+                    className="inline-flex items-center gap-1 text-emerald-700 hover:underline"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>{selectedBulk.phone}</span>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Order Specification Tags */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                <div className="text-[10px] uppercase font-bold text-slate-400">Target Crop</div>
+                <div className="font-bold text-slate-800">{selectedBulk.category}</div>
+              </div>
+              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                <div className="text-[10px] uppercase font-bold text-slate-400">Order Volume</div>
+                <div className="font-bold text-emerald-700 font-mono">{selectedBulk.quantity}</div>
+              </div>
+              <div className="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                <div className="text-[10px] uppercase font-bold text-slate-400">Delivery Port / City</div>
+                <div className="font-bold text-slate-800">{selectedBulk.destination || "Domestic Dispatch"}</div>
+              </div>
+            </div>
+
+            {/* Buyer Specifications & Packaging Notes */}
+            {selectedBulk.notes && (
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-700">Buyer Requirements & Specifications</label>
+                <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-100 text-xs text-slate-800 leading-relaxed max-h-40 overflow-y-auto whitespace-pre-wrap font-sans">
+                  {selectedBulk.notes}
+                </div>
+              </div>
             )}
+
+            {/* Status Workflow Selector */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Wholesale Pipeline Status</label>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
+                {(["NEW", "QUOTE_SENT", "IN_NEGOTIATION", "FULFILLED", "REJECTED"] as const).map((st) => (
+                  <button
+                    key={st}
+                    type="button"
+                    onClick={() => handleUpdateBulkStatus(selectedBulk.id, st)}
+                    className={`py-1.5 px-2 rounded-lg text-[11px] font-bold border transition-all cursor-pointer ${
+                      selectedBulk.status === st
+                        ? st === "NEW"
+                          ? "bg-rose-600 text-white border-rose-600 shadow-xs"
+                          : st === "QUOTE_SENT"
+                          ? "bg-blue-600 text-white border-blue-600 shadow-xs"
+                          : st === "IN_NEGOTIATION"
+                          ? "bg-amber-600 text-white border-amber-600 shadow-xs"
+                          : st === "FULFILLED"
+                          ? "bg-emerald-700 text-white border-emerald-700 shadow-xs"
+                          : "bg-slate-700 text-white border-slate-700 shadow-xs"
+                        : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
+                    }`}
+                  >
+                    {st.replace("_", " ")}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Procurement / Quota Notes */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700">Internal Procurement & Quota Notes</label>
+              <textarea
+                value={notesDraft}
+                onChange={(e) => setNotesDraft(e.target.value)}
+                placeholder="Record farm batch allocations, container quote sent, or payment terms..."
+                rows={3}
+                className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-700 bg-amber-50/30 text-slate-800"
+              />
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => handleSaveNotes("bulk", selectedBulk.id)}
+                  disabled={isSavingNotes}
+                  className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-lg transition-colors cursor-pointer"
+                >
+                  {isSavingNotes ? "Saving..." : "Save Note"}
+                </button>
+              </div>
+            </div>
+
+            {/* Footer Actions */}
+            <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <button
+                type="button"
+                onClick={() => handleDeleteBulk(selectedBulk.id)}
+                className="inline-flex items-center gap-1 text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg border border-rose-200 cursor-pointer font-semibold transition-colors"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Delete</span>
+              </button>
+
+              <div className="flex items-center gap-2">
+                {selectedBulk.email && (
+                  <a
+                    href={`mailto:${selectedBulk.email}?subject=ONAAR Wholesale Proposal: ${selectedBulk.category}`}
+                    className="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white px-3 py-1.5 rounded-lg font-bold transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Email Proposal</span>
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setSelectedBulk(null)}
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-lg cursor-pointer transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

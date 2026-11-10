@@ -228,17 +228,17 @@ export default function BestSellersSection({
                     </div>
 
                     {/* Dual Action Buttons */}
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                       <button
                         onClick={() => addToCart(product, currentOption, 1)}
-                        className="w-full text-center text-xs font-bold text-[#01722C] bg-white hover:bg-[#edf7f1] border border-[#01722C] py-2 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1"
+                        className="w-full text-center text-[11px] sm:text-xs font-bold text-[#01722C] bg-white hover:bg-[#edf7f1] border border-[#01722C] py-2 px-1 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1 whitespace-nowrap"
                       >
-                        <ShoppingCart className="w-3.5 h-3.5" />
+                        <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
                         <span>Add</span>
                       </button>
                       <button
                         onClick={() => handleBuyNow(product)}
-                        className="w-full text-center text-xs font-bold text-white bg-[#01722C] hover:bg-[#0b542c] py-2 rounded-xl transition-all shadow-xs cursor-pointer"
+                        className="w-full text-center text-[11px] sm:text-xs font-bold text-white bg-[#01722C] hover:bg-[#0b542c] py-2 px-1 rounded-xl transition-all shadow-xs cursor-pointer whitespace-nowrap"
                       >
                         Buy Now
                       </button>
