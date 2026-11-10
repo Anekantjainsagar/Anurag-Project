@@ -778,14 +778,39 @@ function ProfileContent() {
                                   In Transit via <strong>{order.courier_name}</strong> (AWB: <strong>{order.tracking_awb}</strong>)
                                 </span>
                               </div>
-                              <Link
-                                href={`/orders/track/${order.order_number}`}
-                                onClick={(e) => e.stopPropagation()}
-                                className="font-bold text-blue-700 hover:underline flex items-center gap-1"
-                              >
-                                <span>Track Live</span>
-                                <ExternalLink className="w-3.5 h-3.5" />
-                              </Link>
+                              {order.tracking_awb ? (
+                                <a
+                                  href={
+                                    order.courier_name?.toLowerCase().includes("blue")
+                                      ? `https://www.bluedart.com/tracking?numbers=${order.tracking_awb}`
+                                      : order.courier_name?.toLowerCase().includes("delhivery")
+                                      ? `https://www.delhivery.com/track/package/${order.tracking_awb}`
+                                      : `https://www.google.com/search?q=${encodeURIComponent(
+                                          `${order.courier_name || "Courier"} tracking ${order.tracking_awb}`
+                                        )}`
+                                  }
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="font-bold text-blue-700 hover:underline flex items-center gap-1 cursor-pointer shrink-0"
+                                  title="Open courier tracking portal"
+                                >
+                                  <span>Track Courier</span>
+                                  <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                              ) : (
+                                <button
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedOrder(order);
+                                    setOrderModalTab("details");
+                                  }}
+                                  className="font-bold text-blue-700 hover:underline flex items-center gap-1 cursor-pointer shrink-0"
+                                >
+                                  <span>View Timeline</span>
+                                  <ChevronRight className="w-3.5 h-3.5" />
+                                </button>
+                              )}
                             </div>
                           )}
 
@@ -817,15 +842,6 @@ function ProfileContent() {
                                 <span>Official Tax Invoice</span>
                               </button>
                             </div>
-
-                            <Link
-                              href={`/orders/track/${order.order_number}`}
-                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-blue-700 hover:text-blue-900 hover:bg-blue-50 border border-blue-200 transition-colors"
-                            >
-                              <Truck className="w-3.5 h-3.5" />
-                              <span>Live Milestone Tracking</span>
-                              <ChevronRight className="w-3.5 h-3.5" />
-                            </Link>
                           </div>
                         </div>
                       );

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import BrandLogo from "./BrandLogo";
-import { X, ArrowRight, CheckCircle2, ShieldCheck, KeyRound, Phone, Mail } from "lucide-react";
+import { X, ArrowRight, CheckCircle2, ShieldCheck, KeyRound, Phone, Mail, AlertCircle } from "lucide-react";
 
 export default function LoginModal() {
   const router = useRouter();
@@ -19,6 +19,7 @@ export default function LoginModal() {
   const [devCode, setDevCode] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [inlineError, setInlineError] = useState<string | null>(null);
 
   // Lock body scroll and listen for Escape key when login modal is open
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function LoginModal() {
           setIsLoginModalOpen(false);
           setOtpSent(false);
           setDevCode(null);
+          setInlineError(null);
         }
       };
       window.addEventListener("keydown", handleKeyDown);
@@ -58,6 +60,7 @@ export default function LoginModal() {
       return;
     }
 
+    setInlineError(null);
     setIsSubmitting(true);
     try {
       const cleanId = `+91${digitsOnly}`;
@@ -69,7 +72,9 @@ export default function LoginModal() {
       showToast(res.message || `Verification code sent to +91 ${digitsOnly}`);
     } catch (err: any) {
       setOtpSent(false);
-      showToast(err?.message || "Failed to send verification code. Please try again.", "error");
+      const errMsg = err?.message || "Failed to send verification code. Please try again.";
+      setInlineError(errMsg);
+      showToast(errMsg, "error");
     } finally {
       setIsSubmitting(false);
     }
@@ -83,12 +88,14 @@ export default function LoginModal() {
       return;
     }
 
+    setInlineError(null);
     setIsSubmitting(true);
     try {
       const cleanId = getCleanIdentifier();
       const success = await verifyOtp(cleanId, enteredOtp, fullName || undefined);
       if (success) {
         setIsLoggedIn(true);
+        setInlineError(null);
         showToast("Welcome back! Authentication successful.");
         setTimeout(() => {
           setIsLoginModalOpen(false);
@@ -98,6 +105,7 @@ export default function LoginModal() {
           setFullName("");
           setDevCode(null);
           setOtp(["", "", "", ""]);
+          setInlineError(null);
 
           // Check if there was a post-login redirect (e.g. from /admin)
           if (typeof window !== "undefined") {
@@ -126,6 +134,7 @@ export default function LoginModal() {
       if (errorMsg.toLowerCase().includes("suspended") || errorMsg.toLowerCase().includes("deactivated")) {
         setOtpSent(false);
       }
+      setInlineError(errorMsg);
       showToast(errorMsg, "error");
     } finally {
       setIsSubmitting(false);
@@ -179,6 +188,7 @@ export default function LoginModal() {
             setIsLoginModalOpen(false);
             setOtpSent(false);
             setDevCode(null);
+            setInlineError(null);
           }}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 p-1 rounded-full cursor-pointer z-10"
           title="Close modal"
@@ -214,6 +224,16 @@ export default function LoginModal() {
                 </p>
               </div>
 
+              {inlineError && (
+                <div className="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 text-xs flex items-start gap-2.5 animate-fade-in shadow-xs">
+                  <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                  <div className="space-y-0.5">
+                    <div className="font-bold">Access Restricted</div>
+                    <div className="text-[11px] leading-relaxed text-rose-800">{inlineError}</div>
+                  </div>
+                </div>
+              )}
+
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1">
                   Full Name (Optional for new users)
@@ -222,7 +242,10 @@ export default function LoginModal() {
                   type="text"
                   placeholder="e.g. Anurag Jain"
                   value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
+                  onChange={(e) => {
+                    setFullName(e.target.value);
+                    if (inlineError) setInlineError(null);
+                  }}
                   className="w-full text-xs px-3 py-2.5 border border-gray-200 rounded-lg bg-[#f9faf9] text-gray-900 focus:outline-none focus:border-[#01722C] focus:bg-white"
                 />
               </div>
@@ -258,6 +281,7 @@ export default function LoginModal() {
                     onChange={(e) => {
                       const onlyDigits = e.target.value.replace(/\D/g, "");
                       setIdentifier(onlyDigits.slice(0, 10));
+                      if (inlineError) setInlineError(null);
                     }}
                     className="w-full text-xs px-3 py-2.5 text-gray-900 focus:outline-none font-mono tracking-wider"
                     autoFocus
@@ -292,6 +316,16 @@ export default function LoginModal() {
                   4-digit code sent to <strong>{getCleanIdentifier()}</strong>
                 </p>
               </div>
+
+              {inlineError && (
+                <div className="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 text-xs flex items-start gap-2.5 animate-fade-in shadow-xs">
+                  <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                  <div className="space-y-0.5">
+                    <div className="font-bold">Verification Error</div>
+                    <div className="text-[11px] leading-relaxed text-rose-800">{inlineError}</div>
+                  </div>
+                </div>
+              )}
 
               {devCode && (
                 <div

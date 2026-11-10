@@ -15,6 +15,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/orders/:path*",
+        destination: "/profile?tab=orders",
+        permanent: false,
+      },
+    ];
+  },
   turbopack: {
     rules: {
       "*.css": {

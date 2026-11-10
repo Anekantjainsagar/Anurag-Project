@@ -357,13 +357,9 @@ export default function OrderInvoiceModal({
               <div className="bg-[#fcfbf7] p-4 sm:p-5 rounded-2xl border border-[#ece4d4]">
                 <div className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center justify-between">
                   <span>Fulfillment Progress</span>
-                  <Link
-                    href={`/orders/track/${order.order_number}`}
-                    className="text-[#01722C] hover:underline font-bold flex items-center gap-1"
-                  >
-                    <span>Full Live Tracker</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </Link>
+                  <span className="font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full text-[10px]">
+                    {order.order_status?.replace(/_/g, " ") || "In Progress"}
+                  </span>
                 </div>
                 <div className="grid grid-cols-5 gap-1 relative">
                   {statusProgressSteps.map((step, idx) => (
@@ -405,13 +401,28 @@ export default function OrderInvoiceModal({
                       </div>
                     </div>
                   </div>
-                  <Link
-                    href={`/orders/track/${order.order_number}`}
-                    className="inline-flex items-center gap-1.5 bg-blue-700 hover:bg-blue-800 text-white px-3.5 py-2 rounded-xl font-bold transition-all shadow-xs shrink-0"
-                  >
-                    <span>Track Live Delivery</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </Link>
+                  {order.tracking_awb ? (
+                    <a
+                      href={
+                        order.courier_name?.toLowerCase().includes("blue")
+                          ? `https://www.bluedart.com/tracking?numbers=${order.tracking_awb}`
+                          : order.courier_name?.toLowerCase().includes("delhivery")
+                          ? `https://www.delhivery.com/track/package/${order.tracking_awb}`
+                          : `https://www.google.com/search?q=${encodeURIComponent(
+                              `${order.courier_name || "Courier"} tracking ${order.tracking_awb}`
+                            )}`
+                      }
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 bg-blue-700 hover:bg-blue-800 text-white px-3.5 py-2 rounded-xl font-bold transition-all shadow-xs shrink-0 cursor-pointer"
+                      title="Open courier's official tracking portal"
+                    >
+                      <span>Track on {order.courier_name || "Carrier"}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  ) : (
+                    <span className="text-[11px] text-blue-600 font-medium">In Transit</span>
+                  )}
                 </div>
               )}
 
