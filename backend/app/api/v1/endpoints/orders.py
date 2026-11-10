@@ -27,7 +27,7 @@ async def validate_coupon(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Validates coupon rules (HARVEST10) and enforces cookie & phone differentiator limits.
+    Validates coupon rules (HARVEST10) and enforces cookie, phone & email single-use limits.
     """
     return await CouponService.validate_coupon(
         db=db,
@@ -35,6 +35,7 @@ async def validate_coupon(
         subtotal=payload.subtotal,
         device_token=payload.device_token,
         customer_phone=payload.customer_phone,
+        customer_email=payload.customer_email,
         user_id=current_user.id if current_user else None,
     )
 

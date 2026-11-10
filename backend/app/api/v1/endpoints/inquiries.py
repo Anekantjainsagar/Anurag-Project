@@ -81,10 +81,35 @@ async def subscribe_newsletter(payload: NewsletterSubscribeRequest, db: AsyncSes
         db.add(sub)
         await db.commit()
 
+    # Check if this email has already redeemed the first-order discount
+    from app.models.coupon import CouponRedemption
+    from app.models.order import Order
+
+    redemption_res = await db.execute(
+        select(CouponRedemption).where(CouponRedemption.customer_email == clean_email)
+    )
+    already_redeemed = redemption_res.scalar_one_or_none() is not None
+
+    if not already_redeemed:
+        prior_order_res = await db.execute(
+            select(Order).where(Order.customer_email.ilike(clean_email), Order.discount_amount > 0)
+        )
+        already_redeemed = prior_order_res.scalar_one_or_none() is not None
+
+    if already_redeemed:
+        return NewsletterSubscribeResponse(
+            success=True,
+            email=clean_email,
+            coupon_code=None,
+            already_redeemed=True,
+            message="Welcome back to the Farm Club! Your first-order discount was already availed on a prior purchase.",
+        )
+
     return NewsletterSubscribeResponse(
         success=True,
         email=clean_email,
         coupon_code="HARVEST10",
-        message="Welcome to the Farm Club! Coupon HARVEST10 has been activated for 10% off your order.",
+        already_redeemed=False,
+        message="Welcome to the Farm Club! Coupon HARVEST10 has been activated for 10% off your first order.",
     )
 

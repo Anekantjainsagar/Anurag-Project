@@ -125,15 +125,22 @@ class OrderService:
                 subtotal=subtotal,
                 device_token=payload.device_token,
                 customer_phone=payload.customer_phone,
+                customer_email=str(payload.customer_email),
                 user_id=user_id,
             )
-            if coupon_res.valid:
-                discount_amount = coupon_res.discount_amount
-                from app.models.coupon import Coupon
-                c_res = await db.execute(select(Coupon).where(Coupon.code == payload.coupon_code.strip().upper()))
-                c_obj = c_res.scalar_one_or_none()
-                if c_obj:
-                    applied_coupon_id = c_obj.id
+            if not coupon_res.valid:
+                from fastapi import HTTPException, status
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=coupon_res.message,
+                )
+
+            discount_amount = coupon_res.discount_amount
+            from app.models.coupon import Coupon
+            c_res = await db.execute(select(Coupon).where(Coupon.code == payload.coupon_code.strip().upper()))
+            c_obj = c_res.scalar_one_or_none()
+            if c_obj:
+                applied_coupon_id = c_obj.id
 
         total_amount = max(Decimal("0.00"), subtotal + shipping_fee - discount_amount)
         order_num = cls.generate_order_number()
@@ -189,13 +196,14 @@ class OrderService:
         db.add(initial_event)
 
         # 7. Record coupon redemption if applied
-        if applied_coupon_id and payload.device_token:
+        if applied_coupon_id:
             await CouponService.record_redemption(
                 db=db,
                 coupon_id=applied_coupon_id,
                 order_id=order.id,
-                device_token=payload.device_token,
+                device_token=payload.device_token or "BROWSER-GUEST",
                 customer_phone=payload.customer_phone,
+                customer_email=str(payload.customer_email),
                 user_id=user_id,
             )
 

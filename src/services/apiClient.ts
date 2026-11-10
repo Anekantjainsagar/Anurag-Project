@@ -176,7 +176,7 @@ export const api = {
 
   // Orders & Checkout
   orders: {
-    validateCoupon: (code: string, subtotal: number, customerPhone?: string) =>
+    validateCoupon: (code: string, subtotal: number, customerPhone?: string, customerEmail?: string) =>
       request<{ valid: boolean; code: string; discount_amount: number; new_total: number; message: string }>(
         "/coupons/validate",
         {
@@ -186,6 +186,7 @@ export const api = {
             subtotal,
             device_token: getSessionToken(),
             customer_phone: customerPhone,
+            customer_email: customerEmail,
           }),
         }
       ),
@@ -250,7 +251,13 @@ export const api = {
       }),
 
     subscribeNewsletter: (email: string) =>
-      request<{ success: boolean; email: string; coupon_code: string; message: string }>("/newsletter/subscribe", {
+      request<{
+        success: boolean;
+        email: string;
+        coupon_code?: string | null;
+        message: string;
+        already_redeemed?: boolean;
+      }>("/newsletter/subscribe", {
         method: "POST",
         body: JSON.stringify({ email }),
       }),

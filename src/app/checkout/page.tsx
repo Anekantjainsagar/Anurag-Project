@@ -203,7 +203,12 @@ export default function CheckoutPage() {
     }
 
     try {
-      const backendCheck = await api.orders.validateCoupon(code, cartTotal, formData.phone);
+      const backendCheck = await api.orders.validateCoupon(
+        code,
+        cartTotal,
+        formData.phone || undefined,
+        formData.email || undefined
+      );
       if (backendCheck && backendCheck.valid) {
         setAppliedCoupon({
           code: backendCheck.code,
@@ -217,9 +222,22 @@ export default function CheckoutPage() {
         showToast(backendCheck.message || `Coupon ${backendCheck.code} applied! (-₹${backendCheck.discount_amount.toFixed(2)})`);
         setCouponInput("");
         return;
+      } else if (backendCheck && !backendCheck.valid) {
+        // Explicitly rejected by backend validation (already redeemed on email/phone/device)
+        setAppliedCoupon(null);
+        try {
+          localStorage.removeItem("onaar_active_coupon");
+        } catch {
+          // ignore
+        }
+        showToast(backendCheck.message || `Coupon "${code}" has already been redeemed.`);
+        return;
       }
-    } catch {
-      // Backend offline fallback to local check
+    } catch (err: any) {
+      if (err?.message) {
+        showToast(err.message);
+        return;
+      }
     }
 
     if (code === "HARVEST10" || code === "WELCOME10" || code === "ORGANIC10") {
@@ -342,8 +360,25 @@ export default function CheckoutPage() {
           console.warn("Auto-save address error:", addrErr);
         }
       }
-    } catch (backendErr) {
+    } catch (backendErr: any) {
       console.warn("FastAPI backend checkout fallback:", backendErr);
+      if (
+        backendErr?.status === 400 ||
+        backendErr?.message?.includes("coupon") ||
+        backendErr?.message?.includes("redeemed") ||
+        backendErr?.message?.includes("First-order") ||
+        backendErr?.message?.includes("already")
+      ) {
+        showToast(backendErr.message || "This coupon has already been redeemed for this email address or phone number.");
+        setIsSubmitting(false);
+        setAppliedCoupon(null);
+        try {
+          localStorage.removeItem("onaar_active_coupon");
+        } catch {
+          // ignore
+        }
+        return;
+      }
     }
 
     const orderDate = new Date().toLocaleDateString("en-IN", {

@@ -50,8 +50,9 @@ class NewsletterSubscribeRequest(BaseModel):
 class NewsletterSubscribeResponse(BaseModel):
     success: bool
     email: str
-    coupon_code: str
+    coupon_code: Optional[str] = None
     message: str
+    already_redeemed: bool = False
 
 
 class NewsletterSubscriberOut(BaseModel):

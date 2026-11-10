@@ -10,6 +10,7 @@ export default function FarmClubNewsletter() {
   const { showToast } = useCart();
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [feedback, setFeedback] = useState<{ alreadyRedeemed: boolean; message: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,14 +22,31 @@ export default function FarmClubNewsletter() {
     setIsSubmitted(true);
 
     try {
-      await api.inquiries.subscribeNewsletter(cleanEmail);
+      const res = await api.inquiries.subscribeNewsletter(cleanEmail);
+      if (res?.already_redeemed) {
+        setFeedback({
+          alreadyRedeemed: true,
+          message: "Welcome back! You're subscribed. First-order discount was already availed on a prior order.",
+        });
+        showToast(res.message || "Welcome back to the Farm Club!");
+        setEmail("");
+        return;
+      }
     } catch {
       // Graceful fallback
     }
 
     if (isCouponRedeemed("HARVEST10")) {
+      setFeedback({
+        alreadyRedeemed: true,
+        message: "Welcome to the Farm Club Community! (First-order coupon already redeemed on this browser)",
+      });
       showToast("Thank you for subscribing to our Farm Club!");
     } else {
+      setFeedback({
+        alreadyRedeemed: false,
+        message: "Coupon Code Activated: HARVEST10",
+      });
       try {
         localStorage.setItem("onaar_active_coupon", "HARVEST10");
       } catch {
@@ -64,14 +82,14 @@ export default function FarmClubNewsletter() {
               <div className="flex items-center justify-center gap-2 text-sm font-bold text-[#7de0a8]">
                 <Check className="w-4 h-4" />
                 <span>
-                  {isCouponRedeemed("HARVEST10")
+                  {feedback?.alreadyRedeemed
                     ? "Welcome to the Farm Club Community!"
                     : "Coupon Code Activated: HARVEST10"}
                 </span>
               </div>
               <p className="text-xs text-[#c3decb]">
-                {isCouponRedeemed("HARVEST10")
-                  ? "You will receive exclusive seasonal harvest updates and recipes in your inbox."
+                {feedback?.alreadyRedeemed
+                  ? "You will receive exclusive seasonal harvest updates and recipes in your inbox. First-order discount was already used on a prior order."
                   : "Apply at checkout for 10% discount on your order."}
               </p>
             </div>

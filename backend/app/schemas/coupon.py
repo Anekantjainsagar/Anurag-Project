@@ -14,6 +14,7 @@ class CouponValidateRequest(BaseModel):
     subtotal: Decimal
     device_token: Optional[str] = None
     customer_phone: Optional[str] = None
+    customer_email: Optional[str] = None
 
 
 class CouponValidateResponse(BaseModel):

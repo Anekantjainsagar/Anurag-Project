@@ -45,7 +45,8 @@ class CouponRedemption(Base):
     coupon_id = Column(UUID(as_uuid=True), ForeignKey("coupons.id", ondelete="CASCADE"), nullable=False, index=True)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
     device_token = Column(String(100), nullable=False, index=True)
-    customer_phone = Column(String(15), nullable=False, index=True)
+    customer_phone = Column(String(25), nullable=False, index=True)
+    customer_email = Column(String(255), nullable=True, index=True)
     order_id = Column(UUID(as_uuid=True), ForeignKey("orders.id", ondelete="SET NULL"), nullable=True)
     redeemed_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
 
