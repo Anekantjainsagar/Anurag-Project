@@ -42,7 +42,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${jakarta.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white overflow-x-clip">
+      <body className="min-h-screen flex flex-col font-sans bg-white text-gray-900 selection:bg-[#01722C] selection:text-white overflow-x-hidden">
         <AuthProvider>
           <CartProvider>
             <ConfirmProvider>

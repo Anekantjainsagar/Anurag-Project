@@ -105,7 +105,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-[#e5ebe7] shadow-[0_2px_12px_rgba(0,0,0,0.06)] font-sans w-full transition-all">
       {/* Responsive Centered Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-4">
         {/* Left: Official Brand Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <BrandLogo variant="dark" />
@@ -452,15 +452,15 @@ export default function Navbar() {
 
       {/* Mobile & Tablet Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[100] lg:hidden font-sans">
+        <div className="fixed inset-0 z-[160] lg:hidden font-sans" role="dialog" aria-modal="true">
           {/* Dark Backdrop */}
           <div
             className="fixed inset-0 bg-black/60 backdrop-blur-xs animate-fade-in"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
-          {/* Slide-out Drawer Panel (Anchored to right, guaranteed 100dvh full height) */}
-          <div className="fixed inset-y-0 right-0 w-[85%] max-w-xs sm:max-w-sm bg-white h-full h-[100dvh] shadow-2xl flex flex-col z-10 animate-slide-left">
+          {/* Slide-out Drawer Panel (Pinned explicitly to top, bottom, right for zero collapse) */}
+          <div className="fixed top-0 right-0 bottom-0 w-[85%] max-w-xs sm:max-w-sm bg-white h-screen max-h-screen shadow-2xl flex flex-col z-10 animate-slide-left overflow-hidden">
             <div className="p-4 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc] shrink-0">
               <BrandLogo variant="dark" size="sm" />
               <button
@@ -472,7 +472,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4 overscroll-contain">
               {/* User Account State in Mobile Drawer */}
               {mounted && isAuthenticated && user ? (
                 <div className="p-3 bg-[#edf7f1] rounded-2xl border border-[#cbe4d4] space-y-2.5">
@@ -648,12 +648,25 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="p-4 border-t border-gray-100 bg-gray-50 text-[11px] text-gray-500 space-y-1 shrink-0">
-              <div className="flex items-center gap-2 text-gray-800 font-bold">
-                <Phone className="w-3.5 h-3.5 text-[#01722C]" />
-                <span>+91-98765 43210</span>
+            <div className="p-4 border-t border-gray-100 bg-[#f9faf9] text-[11px] text-gray-600 space-y-1.5 shrink-0">
+              <div className="flex items-center justify-between">
+                <a
+                  href="tel:+919876543210"
+                  className="flex items-center gap-1.5 text-gray-900 font-bold hover:text-[#01722C] transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#01722C]" />
+                  <span>+91-98765 43210</span>
+                </a>
+                <a
+                  href="https://wa.me/919876543210?text=Hello%20ONAAR%20Support"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#01722C] font-bold text-[11px] hover:underline"
+                >
+                  WhatsApp
+                </a>
               </div>
-              <div>Mon - Sat: 9:00 AM - 8:00 PM IST</div>
+              <div className="text-gray-400 text-[10px]">Mon - Sat: 9:00 AM - 8:00 PM IST</div>
             </div>
           </div>
         </div>

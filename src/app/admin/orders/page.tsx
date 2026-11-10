@@ -193,26 +193,27 @@ function OrdersContent() {
           <table className="w-full text-left text-xs">
             <thead className="bg-slate-50 text-slate-500 border-b border-slate-200 font-semibold uppercase tracking-wider text-[10px]">
               <tr>
-                <th className="px-5 py-3.5">Order ID & Date</th>
-                <th className="px-4 py-3.5">Customer</th>
-                <th className="px-4 py-3.5">Items Ordered</th>
-                <th className="px-4 py-3.5">Total & Payment</th>
-                <th className="px-4 py-3.5">Status</th>
-                <th className="px-4 py-3.5">Logistics & AWB</th>
-                <th className="px-5 py-3.5 text-right">Actions</th>
+                <th className="px-4 py-3 whitespace-nowrap">Order ID</th>
+                <th className="px-3 py-3 whitespace-nowrap">Date</th>
+                <th className="px-3 py-3 whitespace-nowrap">Customer</th>
+                <th className="px-3 py-3 whitespace-nowrap">Items</th>
+                <th className="px-3 py-3 whitespace-nowrap">Amount</th>
+                <th className="px-3 py-3 whitespace-nowrap">Status</th>
+                <th className="px-3 py-3 whitespace-nowrap">Logistics</th>
+                <th className="px-4 py-3 text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-slate-100 font-sans">
               {isLoadingOrders ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-12 text-center text-slate-400">
+                  <td colSpan={8} className="px-5 py-12 text-center text-slate-400">
                     <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-emerald-600" />
                     Loading dispatch queue...
                   </td>
                 </tr>
               ) : orders.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-12 text-center text-slate-400">
+                  <td colSpan={8} className="px-5 py-12 text-center text-slate-400">
                     <Package className="w-6 h-6 mx-auto mb-2 text-slate-300" />
                     No orders match the current filter.
                   </td>
@@ -231,74 +232,87 @@ function OrdersContent() {
                   if (o.order_status === "CANCELLED")
                     statusColor = "bg-rose-50 text-rose-800 border-rose-200";
 
+                  const orderDate = o.created_at
+                    ? new Date(o.created_at).toLocaleDateString("en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "Recent";
+
+                  const firstItem = o.items && o.items[0];
+                  const itemSummary = firstItem
+                    ? `${firstItem.product_name} (${firstItem.weight_label || "1pk"})${
+                        o.items.length > 1 ? ` +${o.items.length - 1} more` : ""
+                      }`
+                    : "Items in package";
+
+                  const logisticsText = o.courier_name
+                    ? `${o.courier_name}${o.tracking_awb ? ` · ${o.tracking_awb}` : ""}`
+                    : null;
+
                   return (
-                    <tr key={o.id} className="hover:bg-slate-50/80 transition-colors">
-                      <td className="px-5 py-3.5">
-                        <div className="font-bold text-slate-900 font-mono">
+                    <tr
+                      key={o.id}
+                      onClick={() => handleInspectOrder(o.id)}
+                      className="hover:bg-emerald-50/40 transition-colors cursor-pointer group"
+                      title="Click to view full order details and invoice"
+                    >
+                      {/* Order ID */}
+                      <td className="px-4 py-3 whitespace-nowrap">
+                        <span className="font-bold text-slate-900 font-mono group-hover:text-emerald-700 transition-colors">
                           #{o.order_number || o.id.slice(0, 8)}
-                        </div>
-                        <div className="text-[10px] text-slate-400">
-                          {o.created_at ? new Date(o.created_at).toLocaleDateString("en-IN") : "Recent"}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3.5">
-                        {o.user_id ? (
-                          <Link
-                            href={`/admin/users?highlight=${o.user_id}`}
-                            className="text-left font-bold text-emerald-700 hover:underline cursor-pointer block"
-                            title="View customer profile"
-                          >
-                            {o.customer_name || "Customer"}
-                          </Link>
-                        ) : (
-                          <div className="font-bold text-slate-900">{o.customer_name || "Customer"}</div>
-                        )}
-                        <div className="text-[11px] text-slate-500 font-mono">{o.customer_phone}</div>
-                        {o.customer_email && (
-                          <div className="text-[10px] text-slate-400 truncate max-w-[150px]">{o.customer_email}</div>
-                        )}
-                      </td>
-                      <td className="px-4 py-3.5 max-w-[220px]">
-                        <div className="font-medium text-slate-800 truncate">
-                          {o.items && o.items.length > 0
-                            ? o.items.map((i: any) => `${i.product_name} (${i.weight_label}) ×${i.quantity}`).join(", ")
-                            : "Items in package"}
-                        </div>
-                        <div className="text-[10px] text-slate-400">
-                          {o.items?.length || 0} distinct pack sizes
-                        </div>
-                      </td>
-                      <td className="px-4 py-3.5">
-                        <div className="font-bold text-slate-900 font-mono">
-                          ₹{Number(o.total_amount).toFixed(2)}
-                        </div>
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">
-                          {o.payment_method === "COD_VENDOR_CONTACT" ? "Pay on Delivery (COD)" : o.payment_method}
                         </span>
                       </td>
-                      <td className="px-4 py-3.5">
-                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${statusColor}`}>
+
+                      {/* Date */}
+                      <td className="px-3 py-3 whitespace-nowrap text-slate-500 font-mono text-[11px]">
+                        {orderDate}
+                      </td>
+
+                      {/* Customer */}
+                      <td className="px-3 py-3 whitespace-nowrap">
+                        <span className="font-semibold text-slate-800 group-hover:text-slate-900">
+                          {o.customer_name || "Customer"}
+                        </span>
+                      </td>
+
+                      {/* Items */}
+                      <td className="px-3 py-3 max-w-[200px] truncate text-slate-600" title={o.items?.map((i: any) => `${i.product_name} (${i.weight_label || '1pk'}) ×${i.quantity}`).join(", ")}>
+                        {itemSummary}
+                      </td>
+
+                      {/* Total Amount */}
+                      <td className="px-3 py-3 whitespace-nowrap font-bold text-slate-900 font-mono">
+                        ₹{Number(o.total_amount).toFixed(2)}
+                      </td>
+
+                      {/* Status */}
+                      <td className="px-3 py-3 whitespace-nowrap">
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${statusColor}`}>
                           {o.order_status.replace(/_/g, " ")}
                         </span>
                       </td>
-                      <td className="px-4 py-3.5 text-slate-600 font-mono text-[11px]">
-                        {o.courier_name ? (
-                          <div>
-                            <div className="font-bold text-slate-800">{o.courier_name}</div>
-                            <div className="text-[10px] text-slate-500">{o.tracking_awb}</div>
-                          </div>
+
+                      {/* Logistics */}
+                      <td className="px-3 py-3 whitespace-nowrap text-[11px] font-mono text-slate-600">
+                        {logisticsText ? (
+                          <span>{logisticsText}</span>
                         ) : (
-                          <span className="text-slate-400 italic">Pending dispatch</span>
+                          <span className="text-slate-400 italic font-sans text-[11px]">Pending dispatch</span>
                         )}
                       </td>
-                      <td className="px-5 py-3.5 text-right">
+
+                      {/* Actions */}
+                      <td className="px-4 py-3 text-right whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                         <div className="flex items-center justify-end gap-1.5">
                           <button
                             onClick={() => handleInspectOrder(o.id)}
-                            className="p-1.5 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 rounded-lg cursor-pointer transition-all"
-                            title="Inspect Order Details"
+                            className="px-2.5 py-1 bg-slate-100 hover:bg-emerald-100 text-slate-700 hover:text-emerald-800 rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center gap-1"
+                            title="Inspect Order Details & Tax Invoice"
                           >
                             <Eye className="w-3.5 h-3.5" />
+                            <span>Details</span>
                           </button>
                           {o.order_status !== "DELIVERED" && o.order_status !== "CANCELLED" && (
                             <button
@@ -310,6 +324,7 @@ function OrdersContent() {
                                 });
                               }}
                               className="bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1 rounded-lg text-xs font-bold cursor-pointer transition-all flex items-center gap-1 shadow-xs"
+                              title="Assign courier and tracking AWB"
                             >
                               <Truck className="w-3 h-3" />
                               <span>Dispatch</span>

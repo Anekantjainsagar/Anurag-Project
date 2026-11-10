@@ -9,27 +9,42 @@ export default function ToastNotification() {
 
   if (!toastMessage) return null;
 
-  const isError = toastType === "error";
-  const isWarning = toastType === "warning";
-  const isInfo = toastType === "info";
+  const lowerMsg = (toastMessage || "").toLowerCase();
+  const isSuspendedOrBanned =
+    lowerMsg.includes("suspend") ||
+    lowerMsg.includes("deactivated") ||
+    lowerMsg.includes("banned") ||
+    lowerMsg.includes("forbidden") ||
+    lowerMsg.includes("blocked") ||
+    lowerMsg.includes("contact customer support");
+
+  const isError = toastType === "error" || isSuspendedOrBanned;
+  const isWarning =
+    !isError &&
+    (toastType === "warning" ||
+      lowerMsg.includes("warning") ||
+      lowerMsg.includes("invalid") ||
+      lowerMsg.includes("required") ||
+      lowerMsg.includes("empty"));
+  const isInfo = !isError && !isWarning && toastType === "info";
 
   return (
-    <div className="fixed bottom-6 right-6 z-[120] animate-fade-in font-sans max-w-sm sm:max-w-md">
+    <div className="fixed bottom-6 right-6 z-[200] animate-fade-in font-sans max-w-sm sm:max-w-md pointer-events-auto">
       <div
-        className={`px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border transition-all ${
+        className={`px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border transition-all ${
           isError
-            ? "bg-rose-950 text-rose-100 border-rose-800 shadow-rose-950/40"
+            ? "bg-rose-900 text-white border-2 border-rose-500 shadow-rose-950/60"
             : isWarning
-            ? "bg-amber-950 text-amber-100 border-amber-800 shadow-amber-950/40"
+            ? "bg-amber-800 text-amber-50 border-2 border-amber-400 shadow-amber-950/50"
             : isInfo
-            ? "bg-slate-900 text-slate-100 border-slate-700 shadow-slate-950/40"
-            : "bg-[#033b20] text-white border-[#0d6b3a] shadow-emerald-950/40"
+            ? "bg-slate-900 text-slate-100 border border-slate-700 shadow-slate-950/40"
+            : "bg-[#033b20] text-white border border-[#0d6b3a] shadow-emerald-950/40"
         }`}
       >
         {isError ? (
-          <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />
+          <AlertCircle className="w-5 h-5 text-rose-200 shrink-0" />
         ) : isWarning ? (
-          <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />
+          <AlertTriangle className="w-5 h-5 text-amber-300 shrink-0" />
         ) : isInfo ? (
           <Info className="w-5 h-5 text-sky-400 shrink-0" />
         ) : (
