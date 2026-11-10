@@ -107,3 +107,29 @@ html {
 .animate-slide-progress {
   animation: slideProgress 3s linear forwards;
 }
+
+/* Dedicated Print Styles for Tax Invoices */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  header,
+  footer,
+  nav,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  #onaar-official-tax-invoice {
+    display: block !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+}
+

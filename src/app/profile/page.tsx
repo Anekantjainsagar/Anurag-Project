@@ -30,7 +30,12 @@ import {
   X,
   Clock,
   ExternalLink,
+  Eye,
+  FileText,
+  Printer,
+  Receipt,
 } from "lucide-react";
+import OrderInvoiceModal from "@/components/OrderInvoiceModal";
 
 const DIETARY_OPTIONS = [
   "All-Natural & Organic Enthusiast",
@@ -94,6 +99,7 @@ function ProfileContent() {
   const [orders, setOrders] = useState<any[]>([]);
   const [isLoadingOrders, setIsLoadingOrders] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
+  const [orderModalTab, setOrderModalTab] = useState<"details" | "invoice">("details");
 
   // Sync profile details when user is loaded
   useEffect(() => {
@@ -661,106 +667,169 @@ function ProfileContent() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {orders.map((order) => (
-                      <div
-                        key={order.id}
-                        className="bg-white rounded-3xl border border-gray-100 p-5 shadow-xs hover:border-[#b4d9c0] transition-all space-y-4"
-                      >
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
-                          <div>
-                            <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
-                              Order ID
-                            </span>
-                            <div className="font-bold text-gray-900 text-sm">
-                              {order.order_number}
-                            </div>
-                            <div className="text-[11px] text-gray-500">
-                              Placed on {new Date(order.created_at || Date.now()).toLocaleDateString("en-IN", {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
-                              })}
-                            </div>
-                          </div>
+                    {orders.map((order) => {
+                      const orderStatus = (order.order_status || order.status || "CONFIRMED").toUpperCase();
+                      const placedDate = new Date(order.created_at || Date.now()).toLocaleDateString("en-IN", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      });
 
-                          <div className="flex items-center gap-3">
-                            <span
-                              className={`text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
-                                order.status === "DELIVERED"
-                                  ? "bg-emerald-100 text-[#01722C]"
-                                  : order.status === "DISPATCHED"
-                                  ? "bg-blue-100 text-blue-800"
-                                  : order.status === "CANCELLED"
-                                  ? "bg-red-100 text-red-800"
-                                  : "bg-amber-100 text-amber-800"
-                              }`}
-                            >
-                              {order.status}
-                            </span>
-                            <div className="text-right">
-                              <span className="text-[11px] text-gray-400 block uppercase font-bold">Total</span>
-                              <span className="font-bold text-gray-900 text-sm">
-                                ₹{Number(order.total_amount).toFixed(2)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Order Items List */}
-                        <div className="space-y-2">
-                          {(order.items || []).map((item: any, idx: number) => (
-                            <div
-                              key={idx}
-                              className="flex items-center justify-between text-xs py-1.5 border-b border-gray-50 last:border-b-0"
-                            >
-                              <div className="flex items-center gap-3 min-w-0">
-                                {item.product_image && (
-                                  <img
-                                    src={item.product_image}
-                                    alt={item.product_name}
-                                    className="w-10 h-10 object-cover rounded-lg border border-gray-100 shrink-0"
-                                  />
-                                )}
-                                <div className="truncate">
-                                  <div className="font-semibold text-gray-800 truncate">
-                                    {item.product_name}
-                                  </div>
-                                  <div className="text-[11px] text-gray-500">
-                                    Pack: {item.packaging_size} • Qty: {item.quantity}
-                                  </div>
-                                </div>
+                      return (
+                        <div
+                          key={order.id}
+                          onClick={() => {
+                            setSelectedOrder(order);
+                            setOrderModalTab("details");
+                          }}
+                          className="bg-white rounded-3xl border border-gray-100 p-5 sm:p-6 shadow-xs hover:border-[#01722C] hover:shadow-md transition-all space-y-4 cursor-pointer group"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-100 pb-3">
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+                                  Order ID
+                                </span>
+                                <span className="text-gray-300">•</span>
+                                <span className="text-[11px] text-gray-500 font-mono">
+                                  Placed on {placedDate}
+                                </span>
                               </div>
-                              <span className="font-bold text-gray-900 shrink-0">
-                                ₹{(item.unit_price * item.quantity).toFixed(2)}
-                              </span>
+                              <div className="font-bold text-gray-900 text-base font-mono group-hover:text-[#01722C] transition-colors flex items-center gap-2 mt-0.5">
+                                <span>{order.order_number}</span>
+                                <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#01722C] transition-transform group-hover:translate-x-0.5" />
+                              </div>
                             </div>
-                          ))}
-                        </div>
 
-                        {/* Tracking / Courier Info if Dispatched */}
-                        {order.status === "DISPATCHED" && order.courier_name && (
-                          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-3 text-xs text-blue-900 flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <Truck className="w-4 h-4 text-blue-600" />
-                              <span>
-                                In Transit via <strong>{order.courier_name}</strong> (AWB: <strong>{order.tracking_awb}</strong>)
+                            <div className="flex items-center gap-3">
+                              <span
+                                className={`text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
+                                  orderStatus === "DELIVERED"
+                                    ? "bg-emerald-100 text-[#01722C]"
+                                    : orderStatus === "DISPATCHED"
+                                    ? "bg-blue-100 text-blue-800"
+                                    : orderStatus === "CANCELLED"
+                                    ? "bg-red-100 text-red-800"
+                                    : "bg-amber-100 text-amber-800"
+                                }`}
+                              >
+                                {orderStatus}
                               </span>
+                              <div className="text-right">
+                                <span className="text-[11px] text-gray-400 block uppercase font-bold">Total</span>
+                                <span className="font-serif font-black text-gray-900 text-base">
+                                  ₹{Number(order.total_amount).toFixed(2)}
+                                </span>
+                              </div>
                             </div>
-                            {order.tracking_url && (
-                              <a
-                                href={order.tracking_url}
-                                target="_blank"
-                                rel="noreferrer"
+                          </div>
+
+                          {/* Order Items List */}
+                          <div className="space-y-2">
+                            {(order.items || []).map((item: any, idx: number) => {
+                              const packLabel =
+                                item.weight_label ||
+                                item.packaging_size ||
+                                item.weight ||
+                                "1 Standard Pack";
+
+                              return (
+                                <div
+                                  key={idx}
+                                  className="flex items-center justify-between text-xs py-2 border-b border-gray-50 last:border-b-0"
+                                >
+                                  <div className="flex items-center gap-3 min-w-0">
+                                    {item.product_image && (
+                                      <img
+                                        src={item.product_image}
+                                        alt={item.product_name}
+                                        className="w-12 h-12 object-cover rounded-xl border border-gray-100 shrink-0"
+                                      />
+                                    )}
+                                    <div className="truncate">
+                                      <div className="font-bold text-gray-800 truncate">
+                                        {item.product_name}
+                                      </div>
+                                      <div className="text-[11px] text-gray-500 mt-0.5 flex items-center gap-2">
+                                        <span className="bg-[#edf7f1] text-[#01722C] px-2 py-0.5 rounded font-medium">
+                                          {packLabel}
+                                        </span>
+                                        <span>•</span>
+                                        <span>Qty: {item.quantity}</span>
+                                        <span>•</span>
+                                        <span>₹{Number(item.unit_price).toFixed(2)} each</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <span className="font-bold text-gray-900 shrink-0 text-sm">
+                                    ₹{Number(item.line_total || item.unit_price * item.quantity).toFixed(2)}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Tracking / Courier Info if Dispatched */}
+                          {orderStatus === "DISPATCHED" && order.courier_name && (
+                            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-3 text-xs text-blue-900 flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <Truck className="w-4 h-4 text-blue-600" />
+                                <span>
+                                  In Transit via <strong>{order.courier_name}</strong> (AWB: <strong>{order.tracking_awb}</strong>)
+                                </span>
+                              </div>
+                              <Link
+                                href={`/orders/track/${order.order_number}`}
+                                onClick={(e) => e.stopPropagation()}
                                 className="font-bold text-blue-700 hover:underline flex items-center gap-1"
                               >
                                 <span>Track Live</span>
                                 <ExternalLink className="w-3.5 h-3.5" />
-                              </a>
-                            )}
+                              </Link>
+                            </div>
+                          )}
+
+                          {/* Interactive Action Bar: View Details & Invoice */}
+                          <div
+                            onClick={(e) => e.stopPropagation()}
+                            className="pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2 text-xs"
+                          >
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <button
+                                onClick={() => {
+                                  setSelectedOrder(order);
+                                  setOrderModalTab("details");
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-[#edf7f1] hover:bg-[#d8edd0] text-[#01722C] transition-colors cursor-pointer"
+                              >
+                                <Eye className="w-3.5 h-3.5" />
+                                <span>View Details & Timeline</span>
+                              </button>
+
+                              <button
+                                onClick={() => {
+                                  setSelectedOrder(order);
+                                  setOrderModalTab("invoice");
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-gray-100 hover:bg-gray-200 text-gray-800 transition-colors cursor-pointer"
+                              >
+                                <FileText className="w-3.5 h-3.5 text-[#01722C]" />
+                                <span>Official Tax Invoice</span>
+                              </button>
+                            </div>
+
+                            <Link
+                              href={`/orders/track/${order.order_number}`}
+                              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold text-blue-700 hover:text-blue-900 hover:bg-blue-50 border border-blue-200 transition-colors"
+                            >
+                              <Truck className="w-3.5 h-3.5" />
+                              <span>Live Milestone Tracking</span>
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            </Link>
                           </div>
-                        )}
-                      </div>
-                    ))}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -959,6 +1028,14 @@ function ProfileContent() {
           </div>
         </div>
       )}
+
+      {/* ORDER DETAILS & TAX INVOICE MODAL */}
+      <OrderInvoiceModal
+        order={selectedOrder}
+        isOpen={!!selectedOrder}
+        onClose={() => setSelectedOrder(null)}
+        defaultTab={orderModalTab}
+      />
     </div>
   );
 }

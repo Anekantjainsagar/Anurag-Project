@@ -13,9 +13,12 @@ import {
   MapPin,
   CheckCircle,
   Package,
+  FileText,
+  Printer,
 } from "lucide-react";
 import { api } from "@/services/apiClient";
 import { useCart } from "@/context/CartContext";
+import OrderInvoiceModal from "@/components/OrderInvoiceModal";
 
 function OrdersContent() {
   const { showToast } = useCart();
@@ -33,6 +36,7 @@ function OrdersContent() {
   const [inspectedOrder, setInspectedOrder] = useState<any | null>(null);
   const [isLoadingInspectedOrder, setIsLoadingInspectedOrder] = useState(false);
   const [selectedOrderForDispatch, setSelectedOrderForDispatch] = useState<any | null>(null);
+  const [invoiceModalOrder, setInvoiceModalOrder] = useState<any | null>(null);
   const [isUpdatingOrder, setIsUpdatingOrder] = useState(false);
   const [dispatchForm, setDispatchForm] = useState({
     courier_name: "Delhivery Express",
@@ -575,8 +579,16 @@ function OrdersContent() {
             </div>
 
             {/* Modal Footer */}
-            <div className="flex items-center justify-between border-t border-slate-100 pt-3">
-              <div>
+            <div className="flex flex-wrap items-center justify-between border-t border-slate-100 pt-3 gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => setInvoiceModalOrder(inspectedOrder)}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-800 px-4 py-2 rounded-xl font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <FileText className="w-4 h-4 text-emerald-700" />
+                  <span>View / Print Tax Invoice</span>
+                </button>
+
                 {inspectedOrder.order_status !== "DELIVERED" && inspectedOrder.order_status !== "CANCELLED" && (
                   <button
                     onClick={() => {
@@ -604,6 +616,14 @@ function OrdersContent() {
           </div>
         </div>
       )}
+
+      {/* OFFICIAL TAX INVOICE MODAL FOR ADMIN */}
+      <OrderInvoiceModal
+        order={invoiceModalOrder}
+        isOpen={!!invoiceModalOrder}
+        onClose={() => setInvoiceModalOrder(null)}
+        defaultTab="invoice"
+      />
     </div>
   );
 }
