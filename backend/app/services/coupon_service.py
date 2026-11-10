@@ -154,34 +154,7 @@ class CouponService:
                         code=clean_code,
                         discount_amount=Decimal("0.00"),
                         new_total=subtotal,
-                        message=f"First-order coupon '{clean_code}' has already been redeemed for this email address, phone number, or browser device.",
-                    )
-
-            # Check existing completed orders with this email/phone where a discount was already availed
-            order_conditions = []
-            if clean_email:
-                order_conditions.append(Order.customer_email.ilike(clean_email))
-            if phone_10:
-                order_conditions.append(Order.customer_phone.like(f"%{phone_10}%"))
-            if user_id:
-                order_conditions.append(Order.user_id == user_id)
-
-            if order_conditions:
-                prior_order_res = await db.execute(
-                    select(Order).where(
-                        Order.discount_amount > 0,
-                        Order.order_status != "CANCELLED",
-                        or_(*order_conditions),
-                    )
-                )
-                prior_order = prior_order_res.scalar_one_or_none()
-                if prior_order:
-                    return CouponValidateResponse(
-                        valid=False,
-                        code=clean_code,
-                        discount_amount=Decimal("0.00"),
-                        new_total=subtotal,
-                        message=f"First-order discount '{clean_code}' was already availed on prior Order #{prior_order.order_number}. Valid for first-time orders only.",
+                        message=f"Offer '{clean_code}' has already been redeemed for this customer account.",
                     )
 
         # Calculate discount amount

@@ -31,6 +31,7 @@ import {
   Coins,
   Gift,
   AlertCircle,
+  Clock,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { api } from "@/services/apiClient";
@@ -106,6 +107,7 @@ export default function AdminSettingsPage() {
     discount_value: 100,
     min_order_amount: 2000,
     max_discount: "" as string | number,
+    validity_days: "" as string | number,
     is_first_order_only: false,
     usage_limit_per_user: 1,
     is_active: true,
@@ -285,6 +287,7 @@ export default function AdminSettingsPage() {
       discount_value: 100,
       min_order_amount: 2000,
       max_discount: "",
+      validity_days: 30,
       is_first_order_only: false,
       usage_limit_per_user: 1,
       is_active: true,
@@ -301,6 +304,7 @@ export default function AdminSettingsPage() {
       discount_value: Number(c.discount_value) || 0,
       min_order_amount: Number(c.min_order_amount) || 0,
       max_discount: c.max_discount !== null && c.max_discount !== undefined ? Number(c.max_discount) : "",
+      validity_days: c.days_remaining !== null && c.days_remaining !== undefined ? c.days_remaining : "",
       is_first_order_only: Boolean(c.is_first_order_only),
       usage_limit_per_user: c.usage_limit_per_user ?? 1,
       is_active: Boolean(c.is_active),
@@ -323,6 +327,7 @@ export default function AdminSettingsPage() {
       discount_value: Number(couponForm.discount_value),
       min_order_amount: Number(couponForm.min_order_amount) || 0,
       max_discount: couponForm.max_discount !== "" ? Number(couponForm.max_discount) : null,
+      validity_days: couponForm.validity_days !== "" ? Number(couponForm.validity_days) : null,
       is_first_order_only: Boolean(couponForm.is_first_order_only),
       usage_limit_per_user: Number(couponForm.usage_limit_per_user) || 1,
       is_active: Boolean(couponForm.is_active),
@@ -1153,6 +1158,17 @@ export default function AdminSettingsPage() {
                             Max Cap: ₹{Number(c.max_discount).toLocaleString("en-IN")}
                           </span>
                         )}
+                        {c.days_remaining !== null && c.days_remaining !== undefined ? (
+                          <span className="bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-amber-600" />
+                            <span>{c.days_remaining > 0 ? `Valid for ${c.days_remaining} more days` : "Expired"}</span>
+                          </span>
+                        ) : (
+                          <span className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1">
+                            <Clock className="w-3 h-3 text-slate-400" />
+                            <span>Ongoing (No Expiry)</span>
+                          </span>
+                        )}
                         <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md font-semibold">
                           Limit: {c.usage_limit_per_user || 1} per customer
                         </span>
@@ -1440,7 +1456,7 @@ export default function AdminSettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="font-bold text-slate-700 block mb-1">
                     Minimum Order Amount (₹)
@@ -1456,13 +1472,32 @@ export default function AdminSettingsPage() {
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
                   />
                   <span className="text-[10px] text-slate-400 mt-0.5 block">
-                    e.g. Set to 2000 for "orders over ₹2,000"
+                    e.g. 2000 for "over ₹2,000"
                   </span>
                 </div>
 
                 <div>
                   <label className="font-bold text-slate-700 block mb-1">
-                    Max Discount Cap (₹) (Optional)
+                    Validity Period (Days)
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={couponForm.validity_days}
+                    onChange={(e) =>
+                      setCouponForm({ ...couponForm, validity_days: e.target.value === "" ? "" : Number(e.target.value) })
+                    }
+                    placeholder="e.g. 30 (blank for ongoing)"
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
+                  />
+                  <span className="text-[10px] text-slate-400 mt-0.5 block">
+                    Days until offer expires
+                  </span>
+                </div>
+
+                <div>
+                  <label className="font-bold text-slate-700 block mb-1">
+                    Max Cap (₹) (Optional)
                   </label>
                   <input
                     type="number"
@@ -1471,11 +1506,11 @@ export default function AdminSettingsPage() {
                     onChange={(e) =>
                       setCouponForm({ ...couponForm, max_discount: e.target.value === "" ? "" : Number(e.target.value) })
                     }
-                    placeholder="e.g. 500 (blank for no cap)"
+                    placeholder="e.g. 500 (blank for none)"
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 focus:outline-emerald-600"
                   />
                   <span className="text-[10px] text-slate-400 mt-0.5 block">
-                    Maximum deduction limit for % offers
+                    Maximum limit for % offers
                   </span>
                 </div>
               </div>

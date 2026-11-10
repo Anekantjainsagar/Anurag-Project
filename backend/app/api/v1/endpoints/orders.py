@@ -3,9 +3,10 @@ Checkout, Order Placement & Tracking Endpoints
 Supports Pay on Delivery (COD), order tracking timeline, and coupon validation.
 """
 
+from datetime import datetime, timezone
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy import select
+from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from app.core.database import get_db
@@ -24,10 +25,41 @@ router = APIRouter()
 @router.get("/coupons/active", response_model=List[CouponOut], summary="List Active Promotional Offers")
 async def list_active_coupons(db: AsyncSession = Depends(get_db)):
     """Returns active promotional discount offers for storefront checkout and marketing."""
+    now = datetime.now(timezone.utc)
     res = await db.execute(
-        select(Coupon).where(Coupon.is_active.is_(True)).order_by(Coupon.min_order_amount.asc())
+        select(Coupon)
+        .where(
+            Coupon.is_active.is_(True),
+            or_(Coupon.valid_until.is_(None), Coupon.valid_until > now),
+        )
+        .order_by(Coupon.min_order_amount.asc())
     )
-    return res.scalars().all()
+    coupons = res.scalars().all()
+    results = []
+    for c in coupons:
+        days_rem = None
+        if c.valid_until:
+            vu = c.valid_until if c.valid_until.tzinfo else c.valid_until.replace(tzinfo=timezone.utc)
+            delta = vu - now
+            days_rem = max(0, delta.days) if delta.total_seconds() > 0 else 0
+
+        results.append(
+            CouponOut(
+                id=c.id,
+                code=c.code,
+                description=c.description,
+                discount_type=c.discount_type,
+                discount_value=c.discount_value,
+                min_order_amount=c.min_order_amount,
+                max_discount=c.max_discount,
+                is_first_order_only=c.is_first_order_only,
+                usage_limit_per_user=c.usage_limit_per_user,
+                valid_until=c.valid_until,
+                days_remaining=days_rem,
+                is_active=c.is_active,
+            )
+        )
+    return results
 
 
 @router.post("/coupons/validate", response_model=CouponValidateResponse, summary="Validate Coupon Code")

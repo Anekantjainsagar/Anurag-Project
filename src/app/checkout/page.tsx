@@ -28,6 +28,9 @@ import {
   Check,
   X,
   Plus,
+  Minus,
+  Trash2,
+  Clock,
   Edit3,
   UserCheck,
   User,
@@ -54,7 +57,7 @@ const INDIAN_STATES = [
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cartItems, cartTotal, totalSavings, clearCart, showToast, setIsLoginModalOpen } = useCart();
+  const { cartItems, cartTotal, totalSavings, updateQuantity, removeFromCart, clearCart, showToast, setIsLoginModalOpen } = useCart();
   const { user, isAuthenticated, addresses, addAddress } = useAuth();
 
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
@@ -186,9 +189,9 @@ export default function CheckoutPage() {
       return;
     }
 
-    // Cookie Differentiator: Check if this browser has already redeemed this code
+    // Check if this code was already redeemed for this customer
     if (isCouponRedeemed(code)) {
-      showToast(`Coupon "${code}" has already been redeemed on this browser. Valid for first-time orders only.`);
+      showToast(`Coupon "${code}" has already been redeemed for this account. Valid for first-time orders only.`);
       return;
     }
 
@@ -976,31 +979,70 @@ export default function CheckoutPage() {
                     </Link>
                   </div>
 
-                  {/* Itemized Order List */}
-                  <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
+                  {/* Itemized Order List with Live Quantity Controls */}
+                  <div className="space-y-3 max-h-80 overflow-y-auto pr-1 divide-y divide-gray-100">
                     {cartItems.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center justify-between gap-3 text-xs"
+                        className="pt-2.5 first:pt-0 flex items-center justify-between gap-3 text-xs"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <img
                             src={item.image}
                             alt={item.name}
-                            className="w-11 h-11 object-cover rounded-lg border border-gray-200 shrink-0 bg-white"
+                            className="w-12 h-12 object-cover rounded-xl border border-gray-200 shrink-0 bg-white"
                           />
                           <div className="min-w-0">
-                            <div className="font-bold text-gray-900 truncate">
+                            <div className="font-bold text-gray-900 truncate max-w-[140px] sm:max-w-[180px]">
                               {item.name}
                             </div>
-                            <div className="text-[11px] text-gray-500">
-                              {item.weight} × {item.quantity}
+                            <div className="text-[11px] text-gray-500 flex items-center gap-1.5 mt-0.5">
+                              <span className="font-semibold bg-emerald-50 text-emerald-800 px-1.5 py-0.2 rounded border border-emerald-200/50">
+                                {item.weight}
+                              </span>
+                              <span>•</span>
+                              <span>₹{item.price.toFixed(2)} each</span>
                             </div>
                           </div>
                         </div>
-                        <span className="font-bold text-gray-900 shrink-0">
-                          ₹{(item.price * item.quantity).toFixed(2)}
-                        </span>
+
+                        {/* Quantity Stepper & Remove */}
+                        <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex items-center border border-gray-200 rounded-lg bg-gray-50 overflow-hidden shadow-2xs">
+                            <button
+                              type="button"
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              className="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-red-600 hover:bg-gray-200/80 transition-colors cursor-pointer"
+                              title="Decrease quantity"
+                            >
+                              <Minus className="w-3 h-3" />
+                            </button>
+                            <span className="w-7 text-center font-bold text-gray-900 text-xs font-mono">
+                              {item.quantity}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className="w-6 h-6 flex items-center justify-center text-gray-600 hover:text-[#01722C] hover:bg-gray-200/80 transition-colors cursor-pointer"
+                              title="Increase quantity"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
+
+                          <span className="font-bold text-gray-900 min-w-[62px] text-right font-mono">
+                            ₹{(item.price * item.quantity).toFixed(2)}
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={() => removeFromCart(item.id)}
+                            className="text-gray-400 hover:text-red-500 transition-colors p-1 cursor-pointer"
+                            title="Remove item from order"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -1103,6 +1145,12 @@ export default function CheckoutPage() {
                                               ? `Flat ₹${Number(offer.discount_value).toFixed(0)} OFF`
                                               : `${Number(offer.discount_value).toFixed(0)}% OFF`}
                                           </span>
+                                          {offer.days_remaining !== null && offer.days_remaining !== undefined && (
+                                            <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-100/70 px-1.5 py-0.2 rounded flex items-center gap-1">
+                                              <Clock className="w-2.5 h-2.5 text-emerald-700" />
+                                              <span>{offer.days_remaining > 0 ? `Valid for ${offer.days_remaining}d` : "Expires today"}</span>
+                                            </span>
+                                          )}
                                         </div>
                                         <p className="text-[11px] text-gray-600 mt-0.5 truncate">
                                           {offer.description || (minAmt > 0 ? `Valid on orders above ₹${minAmt}` : "Special seasonal discount")}

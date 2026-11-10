@@ -36,6 +36,8 @@ class CouponOut(BaseModel):
     max_discount: Optional[Decimal] = None
     is_first_order_only: bool = False
     usage_limit_per_user: int = 1
+    valid_until: Optional[datetime] = None
+    days_remaining: Optional[int] = None
     is_active: bool
 
 
@@ -48,6 +50,8 @@ class CouponCreate(BaseModel):
     max_discount: Optional[Decimal] = None
     is_first_order_only: bool = False
     usage_limit_per_user: int = 1
+    validity_days: Optional[int] = None  # e.g. 30 days
+    valid_until: Optional[datetime] = None
     is_active: bool = True
 
 
@@ -60,6 +64,8 @@ class CouponUpdate(BaseModel):
     max_discount: Optional[Decimal] = None
     is_first_order_only: Optional[bool] = None
     usage_limit_per_user: Optional[int] = None
+    validity_days: Optional[int] = None
+    valid_until: Optional[datetime] = None
     is_active: Optional[bool] = None
 
 

@@ -4,6 +4,7 @@ Allows ONAAR store operators to create, update, and manage cart discounts,
 threshold offers (e.g. ₹100 off over ₹2,000), and first-order promotions.
 """
 
+from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from typing import Any, Dict, List
 import uuid
@@ -38,7 +39,14 @@ async def list_admin_coupons(
     rows = res.all()
 
     coupons_data = []
+    now = datetime.now(timezone.utc)
     for c, r_count in rows:
+        days_remaining = None
+        if c.valid_until:
+            vu = c.valid_until if c.valid_until.tzinfo else c.valid_until.replace(tzinfo=timezone.utc)
+            delta = vu - now
+            days_remaining = max(0, delta.days) if delta.total_seconds() > 0 else 0
+
         coupons_data.append({
             "id": str(c.id),
             "code": c.code,
@@ -49,6 +57,8 @@ async def list_admin_coupons(
             "max_discount": float(c.max_discount) if c.max_discount else None,
             "is_first_order_only": c.is_first_order_only,
             "usage_limit_per_user": c.usage_limit_per_user,
+            "valid_until": c.valid_until.isoformat() if c.valid_until else None,
+            "days_remaining": days_remaining,
             "is_active": c.is_active,
             "redemption_count": r_count,
             "created_at": c.created_at.isoformat() if c.created_at else None,
@@ -96,6 +106,10 @@ async def create_admin_coupon(
             detail="Percentage discount cannot exceed 100%.",
         )
 
+    valid_until = payload.valid_until
+    if payload.validity_days and payload.validity_days > 0:
+        valid_until = datetime.now(timezone.utc) + timedelta(days=payload.validity_days)
+
     new_coupon = Coupon(
         code=clean_code,
         description=payload.description.strip(),
@@ -105,6 +119,7 @@ async def create_admin_coupon(
         max_discount=payload.max_discount,
         is_first_order_only=payload.is_first_order_only,
         usage_limit_per_user=payload.usage_limit_per_user,
+        valid_until=valid_until,
         is_active=payload.is_active,
     )
     db.add(new_coupon)
@@ -165,6 +180,13 @@ async def update_admin_coupon(
         coupon.is_first_order_only = payload.is_first_order_only
     if payload.usage_limit_per_user is not None:
         coupon.usage_limit_per_user = payload.usage_limit_per_user
+    if payload.validity_days is not None:
+        if payload.validity_days > 0:
+            coupon.valid_until = datetime.now(timezone.utc) + timedelta(days=payload.validity_days)
+        else:
+            coupon.valid_until = None
+    elif payload.valid_until is not None:
+        coupon.valid_until = payload.valid_until
     if payload.is_active is not None:
         coupon.is_active = payload.is_active
 

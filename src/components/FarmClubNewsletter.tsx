@@ -39,7 +39,7 @@ export default function FarmClubNewsletter() {
     if (isCouponRedeemed("HARVEST10")) {
       setFeedback({
         alreadyRedeemed: true,
-        message: "Welcome to the Farm Club Community! (First-order coupon already redeemed on this browser)",
+        message: "Welcome to the Farm Club Community! First-order discount was already availed.",
       });
       showToast("Thank you for subscribing to our Farm Club!");
     } else {
