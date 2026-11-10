@@ -1,8 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { Product, ProductWeightOption, CartItem } from "@/types";
 import { api } from "@/services/apiClient";
+import { useAuth } from "@/context/AuthContext";
 
 export type ToastType = "success" | "error" | "warning" | "info";
 
@@ -35,6 +36,15 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
+  let authContext: any = null;
+  try {
+    authContext = useAuth();
+  } catch {
+    authContext = null;
+  }
+  const isAuthenticated = authContext?.isAuthenticated;
+  const user = authContext?.user;
+
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     if (typeof window === "undefined") return [];
     try {
@@ -60,13 +70,81 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastType, setToastType] = useState<ToastType>("success");
 
-  // Save changes
+  const isCartLoadedFromDb = useRef(false);
+  const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Sync cart from database on mount or whenever user logs in / out
+  useEffect(() => {
+    let isMounted = true;
+    api.cart
+      .getCart()
+      .then((res) => {
+        if (!isMounted) return;
+        if (res?.items && Array.isArray(res.items)) {
+          setCartItems((prev) => {
+            // Case 1: Backend has items and prev is empty (e.g. new device/browser after login)
+            if (res.items.length > 0 && prev.length === 0) {
+              isCartLoadedFromDb.current = true;
+              return res.items;
+            }
+            // Case 2: Backend is empty but local has items -> sync local items to DB
+            if (res.items.length === 0 && prev.length > 0) {
+              api.cart.syncCart(prev).catch(() => {});
+              isCartLoadedFromDb.current = true;
+              return prev;
+            }
+            // Case 3: Merge both by line id
+            const map = new Map<string, CartItem>();
+            res.items.forEach((item) => map.set(item.id, item));
+            prev.forEach((item) => {
+              if (map.has(item.id)) {
+                const existing = map.get(item.id)!;
+                map.set(item.id, {
+                  ...item,
+                  quantity: Math.max(item.quantity, existing.quantity),
+                });
+              } else {
+                map.set(item.id, item);
+              }
+            });
+            const merged = Array.from(map.values());
+            api.cart.syncCart(merged).catch(() => {});
+            isCartLoadedFromDb.current = true;
+            return merged;
+          });
+        }
+      })
+      .catch(() => {
+        isCartLoadedFromDb.current = true;
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isAuthenticated, user?.id]);
+
+  // Synchronize cart changes to local storage & database
   useEffect(() => {
     try {
       localStorage.setItem("onaar_cart", JSON.stringify(cartItems));
     } catch {
       // ignore
     }
+
+    if (!isCartLoadedFromDb.current) return;
+
+    if (syncTimeoutRef.current) {
+      clearTimeout(syncTimeoutRef.current);
+    }
+    syncTimeoutRef.current = setTimeout(() => {
+      api.cart.syncCart(cartItems).catch(() => {});
+    }, 400);
+
+    return () => {
+      if (syncTimeoutRef.current) {
+        clearTimeout(syncTimeoutRef.current);
+      }
+    };
   }, [cartItems]);
 
   useEffect(() => {
@@ -185,7 +263,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-  const clearCart = () => setCartItems([]);
+  const clearCart = () => {
+    setCartItems([]);
+    try {
+      localStorage.removeItem("onaar_cart");
+    } catch {
+      // ignore
+    }
+    api.cart.clearCart().catch(() => {});
+  };
 
   const toggleWishlist = (productId: string) => {
     const exists = wishlist.includes(productId);

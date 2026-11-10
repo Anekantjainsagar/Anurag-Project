@@ -19,6 +19,10 @@ import {
   ShoppingBag,
   ShoppingCart,
   ShieldCheck,
+  Plus,
+  Minus,
+  Trash2,
+  Check,
 } from "lucide-react";
 
 /**
@@ -93,7 +97,14 @@ function ProductsCatalogContent() {
     setCurrentPage(1);
   }, [searchParams]);
 
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    toggleWishlist,
+    isInWishlist,
+  } = useCart();
 
   // Selected weight options for each product
   const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>(() => {
@@ -343,17 +354,48 @@ function ProductsCatalogContent() {
               const isFav = isInWishlist(product.id);
               const isDropdownOpen = openDropdownId === product.id;
 
+              // Find if this exact variant is in the cart
+              const inCartItem = cartItems.find(
+                (item) =>
+                  item.productId === product.id &&
+                  item.weight.trim().toLowerCase() === currentOption.label.trim().toLowerCase()
+              );
+
+              // Check if any variant of this product is in the cart
+              const allVariantsInCart = cartItems.filter(
+                (item) => item.productId === product.id
+              );
+              const totalProductQty = allVariantsInCart.reduce(
+                (sum, item) => sum + item.quantity,
+                0
+              );
+
               return (
                 <div
                   key={product.id}
-                  className="group bg-white rounded-2xl border border-[#e4ebe6] hover:border-[#01722C] hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className={`group bg-white rounded-2xl border transition-all duration-300 flex flex-col justify-between overflow-hidden ${
+                    inCartItem
+                      ? "border-[#01722C] ring-2 ring-[#01722C]/30 shadow-md bg-[#fbfdfc]"
+                      : "border-[#e4ebe6] hover:border-[#01722C] hover:shadow-xl"
+                  }`}
                 >
                   {/* Card Header & Image */}
                   <div className="relative">
                     <div className="absolute top-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between pointer-events-none">
-                      <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs pointer-events-auto">
-                        {product.tag || product.category}
-                      </span>
+                      <div className="flex items-center gap-1 flex-wrap pointer-events-auto">
+                        <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                          {product.tag || product.category}
+                        </span>
+                        {inCartItem ? (
+                          <span className="bg-emerald-700 text-white text-[10px] font-black px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1 animate-fade-in">
+                            <Check className="w-3 h-3 stroke-[3]" /> In Cart ({inCartItem.quantity})
+                          </span>
+                        ) : totalProductQty > 0 ? (
+                          <span className="bg-[#edf7f1] text-[#01722C] border border-[#01722C]/40 text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1">
+                            ✓ {totalProductQty} in Cart
+                          </span>
+                        ) : null}
+                      </div>
                       <button
                         onClick={(e) => {
                           e.preventDefault();
@@ -472,27 +514,116 @@ function ProductsCatalogContent() {
                             </span>
                           )}
                         </div>
-                        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-                          In Stock
-                        </span>
+                        {inCartItem ? (
+                          <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                            ✓ {inCartItem.quantity} in Cart
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+                            In Stock
+                          </span>
+                        )}
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="grid grid-cols-2 gap-1.5">
-                        <button
-                          onClick={(e) => handleAddToCart(product, e)}
-                          className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-1"
-                        >
-                          <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
-                          <span>Add</span>
-                        </button>
-                        <button
-                          onClick={(e) => handleBuyNow(product, e)}
-                          className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap"
-                        >
-                          Buy Now
-                        </button>
-                      </div>
+                      {inCartItem ? (
+                        <div className="flex items-center gap-1.5 w-full">
+                          {/* Inline Quantity Stepper with Remove */}
+                          <div className="flex items-center justify-between flex-1 bg-[#edf7f1] border-2 border-[#01722C] rounded-xl p-0.5 shadow-2xs">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                if (inCartItem.quantity <= 1) {
+                                  removeFromCart(inCartItem.id);
+                                } else {
+                                  updateQuantity(inCartItem.id, inCartItem.quantity - 1);
+                                }
+                              }}
+                              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white text-gray-700 hover:text-red-600 transition-colors cursor-pointer"
+                              title={
+                                inCartItem.quantity <= 1
+                                  ? "Remove from cart"
+                                  : "Decrease quantity"
+                              }
+                            >
+                              {inCartItem.quantity <= 1 ? (
+                                <Trash2 className="w-3.5 h-3.5 text-red-600" />
+                              ) : (
+                                <Minus className="w-3.5 h-3.5" />
+                              )}
+                            </button>
+                            <div className="flex flex-col items-center leading-tight px-1">
+                              <span className="text-xs font-black text-[#01722C]">
+                                {inCartItem.quantity}
+                              </span>
+                              <span className="text-[8px] text-gray-500 font-semibold uppercase tracking-wider">
+                                in cart
+                              </span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                updateQuantity(inCartItem.id, inCartItem.quantity + 1);
+                              }}
+                              className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white text-[#01722C] font-bold transition-colors cursor-pointer"
+                              title="Increase quantity"
+                            >
+                              <Plus className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+
+                          {/* Quick Remove button if quantity > 1 */}
+                          {inCartItem.quantity > 1 && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                removeFromCart(inCartItem.id);
+                              }}
+                              className="w-8 h-8 flex items-center justify-center rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer shrink-0"
+                              title="Remove all from cart"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+
+                          {/* Direct Checkout Button */}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              router.push("/checkout");
+                            }}
+                            className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-2 px-2.5 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-0.5 shrink-0"
+                            title="Proceed to Checkout"
+                          >
+                            <span>Checkout</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-1.5">
+                          <button
+                            onClick={(e) => handleAddToCart(product, e)}
+                            className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-1"
+                          >
+                            <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
+                            <span>Add</span>
+                          </button>
+                          <button
+                            onClick={(e) => handleBuyNow(product, e)}
+                            className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap"
+                          >
+                            Buy Now
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

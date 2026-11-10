@@ -239,6 +239,23 @@ export const api = {
       }),
   },
 
+  // Shopping Cart (Persisted in Database across devices)
+  cart: {
+    getCart: () =>
+      request<{ items: any[]; count: number; subtotal: number }>("/cart"),
+
+    syncCart: (items: any[]) =>
+      request<{ items: any[]; count: number; subtotal: number }>("/cart/sync", {
+        method: "POST",
+        body: JSON.stringify({ items }),
+      }),
+
+    clearCart: () =>
+      request<{ success: boolean; message: string }>("/cart/clear", {
+        method: "POST",
+      }),
+  },
+
   // Inquiries
   inquiries: {
     submitContact: (data: { name: string; email: string; phone: string; subject: string; message: string }) =>

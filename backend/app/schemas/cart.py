@@ -51,3 +51,26 @@ class WishlistItemOut(BaseModel):
 class WishlistToggleRequest(BaseModel):
     product_id: str
 
+
+class FrontendCartItem(BaseModel):
+    id: str
+    productId: str
+    name: str
+    subtitle: Optional[str] = ""
+    price: float
+    originalPrice: Optional[float] = None
+    weight: str
+    image: str
+    quantity: int
+
+
+class CartSyncPayload(BaseModel):
+    items: List[FrontendCartItem]
+
+
+class CartStateResponse(BaseModel):
+    items: List[FrontendCartItem]
+    count: int
+    subtotal: float
+
+
