@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
 import { Product, ProductWeightOption } from "@/types";
 import { useCart } from "@/context/CartContext";
-import { Heart, Star, ChevronDown, ArrowRight, ShoppingCart, Sparkles, CheckCircle2 } from "lucide-react";
+import { Heart, Star, ChevronDown, ArrowRight, ShoppingCart, Sparkles, CheckCircle2, Plus, Minus, Trash2, Check, ChevronRight } from "lucide-react";
 
 interface BestSellersSectionProps {
   activeCategoryFilter?: string | null;
@@ -20,26 +20,37 @@ export default function BestSellersSection({
   limit = 8,
 }: BestSellersSectionProps) {
   const router = useRouter();
-  const { addToCart, toggleWishlist, isInWishlist, setIsCartOpen } = useCart();
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    toggleWishlist,
+    isInWishlist,
+    setIsCartOpen,
+  } = useCart();
 
-  // Selected weight options for each product
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>(() => {
-    const init: Record<string, ProductWeightOption> = {};
-    ALL_PRODUCTS.forEach((prod) => {
-      init[prod.id] = prod.options[0];
-    });
-    return init;
-  });
-
+  // Selected weight options for each product (starts empty so in-cart variants auto-select)
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>({});
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+
+  const normalizeWeight = (w?: string) =>
+    (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
+
+  const isCartItemForProduct = (item: any, prod: Product) => {
+    if (item.productId && item.productId === prod.id) return true;
+    if (item.id === prod.id) return true;
+    if (item.id && item.id.startsWith(`${prod.id}-`)) return true;
+    return false;
+  };
 
   const handleOptionSelect = (productId: string, opt: ProductWeightOption) => {
     setSelectedOptions((prev) => ({ ...prev, [productId]: opt }));
     setOpenDropdownId(null);
   };
 
-  const handleBuyNow = (product: Product) => {
-    const option = selectedOptions[product.id] || product.options[0];
+  const handleBuyNow = (product: Product, opt?: ProductWeightOption) => {
+    const option = opt || selectedOptions[product.id] || product.options[0];
     addToCart(product, option, 1);
     router.push("/checkout");
   };
@@ -96,14 +107,45 @@ export default function BestSellersSection({
         {/* Product Cards Full-Width Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6">
           {displayProducts.map((product) => {
-            const currentOption = selectedOptions[product.id] || product.options[0];
+            // Find all items in cart belonging to this product
+            const allVariantsInCart = cartItems.filter((item) =>
+              isCartItemForProduct(item, product)
+            );
+            const totalProductQty = allVariantsInCart.reduce(
+              (sum, item) => sum + item.quantity,
+              0
+            );
+
+            // Auto-select in-cart option if user hasn't explicitly selected one
+            const explicitOption = selectedOptions[product.id];
+            const inCartOptionMatch =
+              allVariantsInCart.length > 0
+                ? product.options.find((opt) =>
+                    allVariantsInCart.some(
+                      (ci) => normalizeWeight(ci.weight) === normalizeWeight(opt.label)
+                    )
+                  )
+                : null;
+
+            const currentOption =
+              explicitOption || inCartOptionMatch || product.options[0];
             const isWishlisted = isInWishlist(product.id);
             const isDropdownOpen = openDropdownId === product.id;
+
+            // Find if this exact displayed variant is in the cart
+            const inCartItem = allVariantsInCart.find(
+              (item) =>
+                normalizeWeight(item.weight) === normalizeWeight(currentOption.label)
+            );
 
             return (
               <div
                 key={product.id}
-                className="group relative bg-white border border-[#e4ebe6] hover:border-[#01722C] rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+                className={`group relative bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 ${
+                  inCartItem
+                    ? "border-2 border-[#01722C] ring-2 ring-[#01722C]/20 bg-[#fbfdfc]"
+                    : "border border-[#e4ebe6] hover:border-[#01722C]"
+                }`}
               >
                 {/* Product Image Area */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#faf8f4] border-b border-[#edf1ee]">
@@ -118,11 +160,22 @@ export default function BestSellersSection({
 
                   {/* Organic Badge & Discount Tag */}
                   <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10 pointer-events-none">
-                    <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
-                      {product.tag || "Organic"}
-                    </span>
+                    <div className="flex items-center gap-1 flex-wrap pointer-events-auto">
+                      <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
+                        {product.tag || "Organic"}
+                      </span>
+                      {inCartItem ? (
+                        <span className="bg-emerald-700 text-white text-[10px] font-black px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1 animate-fade-in">
+                          <Check className="w-3 h-3 stroke-[3]" /> In Cart ({inCartItem.quantity})
+                        </span>
+                      ) : totalProductQty > 0 ? (
+                        <span className="bg-[#edf7f1] text-[#01722C] border border-[#01722C]/40 text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1">
+                          ✓ {totalProductQty} in Cart
+                        </span>
+                      ) : null}
+                    </div>
                     {currentOption.discount && (
-                      <span className="bg-[#facc15] text-[#014d1e] text-[9.5px] font-black px-1.5 py-0.5 rounded shadow-xs">
+                      <span className="bg-[#facc15] text-[#014d1e] text-[9.5px] font-black px-1.5 py-0.5 rounded shadow-xs w-fit">
                         {currentOption.discount}
                       </span>
                     )}
@@ -189,21 +242,38 @@ export default function BestSellersSection({
 
                       {isDropdownOpen && (
                         <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl py-1 z-30 animate-fade-in max-h-48 overflow-y-auto">
-                          {product.options.map((opt, i) => (
-                            <button
-                              key={i}
-                              type="button"
-                              onClick={() => handleOptionSelect(product.id, opt)}
-                              className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${
-                                opt.label === currentOption.label
-                                  ? "bg-[#edf7f1] text-[#01722C] font-bold"
-                                  : "text-gray-700 hover:bg-gray-50"
-                              }`}
-                            >
-                              <span>{opt.label}</span>
-                              <span className="font-bold">₹{opt.price.toFixed(2)}</span>
-                            </button>
-                          ))}
+                          {product.options.map((opt, i) => {
+                            const isSelected =
+                              normalizeWeight(opt.label) ===
+                              normalizeWeight(currentOption.label);
+                            const optInCart = allVariantsInCart.find(
+                              (ci) =>
+                                normalizeWeight(ci.weight) ===
+                                normalizeWeight(opt.label)
+                            );
+                            return (
+                              <button
+                                key={i}
+                                type="button"
+                                onClick={() => handleOptionSelect(product.id, opt)}
+                                className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${
+                                  isSelected
+                                    ? "bg-[#edf7f1] text-[#01722C] font-bold"
+                                    : "text-gray-700 hover:bg-gray-50"
+                                }`}
+                              >
+                                <div className="flex items-center gap-1.5 truncate mr-1">
+                                  <span>{opt.label}</span>
+                                  {optInCart && (
+                                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-1 py-0.2 rounded shrink-0">
+                                      ✓ {optInCart.quantity}
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="font-bold shrink-0">₹{opt.price.toFixed(2)}</span>
+                              </button>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -222,27 +292,137 @@ export default function BestSellersSection({
                           </span>
                         )}
                       </div>
-                      <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
-                        In Stock
-                      </span>
+                      {inCartItem ? (
+                        <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100/90 border border-emerald-300 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                          ✓ {inCartItem.quantity} in Cart
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                          In Stock
+                        </span>
+                      )}
                     </div>
 
-                    {/* Dual Action Buttons */}
-                    <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
-                      <button
-                        onClick={() => addToCart(product, currentOption, 1)}
-                        className="w-full text-center text-[11px] sm:text-xs font-bold text-[#01722C] bg-white hover:bg-[#edf7f1] border border-[#01722C] py-2 px-1 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1 whitespace-nowrap"
-                      >
-                        <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
-                        <span>Add</span>
-                      </button>
-                      <button
-                        onClick={() => handleBuyNow(product)}
-                        className="w-full text-center text-[11px] sm:text-xs font-bold text-white bg-[#01722C] hover:bg-[#0b542c] py-2 px-1 rounded-xl transition-all shadow-xs cursor-pointer whitespace-nowrap"
-                      >
-                        Buy Now
-                      </button>
-                    </div>
+                    {/* Dual Action Buttons or In-Cart Stepper */}
+                    {inCartItem ? (
+                      <div className="flex items-center gap-1.5 w-full">
+                        <div className="flex items-center justify-between flex-1 bg-[#edf7f1] border-2 border-[#01722C] rounded-xl p-0.5 shadow-2xs">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (inCartItem.quantity <= 1) {
+                                removeFromCart(inCartItem.id);
+                              } else {
+                                updateQuantity(inCartItem.id, inCartItem.quantity - 1);
+                              }
+                            }}
+                            className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white text-gray-700 hover:text-red-600 transition-colors cursor-pointer"
+                            title={inCartItem.quantity <= 1 ? "Remove from cart" : "Decrease quantity"}
+                          >
+                            {inCartItem.quantity <= 1 ? (
+                              <Trash2 className="w-3.5 h-3.5 text-red-600" />
+                            ) : (
+                              <Minus className="w-3.5 h-3.5" />
+                            )}
+                          </button>
+                          <div className="flex flex-col items-center leading-tight px-1">
+                            <span className="text-xs font-black text-[#01722C]">
+                              {inCartItem.quantity}
+                            </span>
+                            <span className="text-[8px] text-gray-500 font-semibold uppercase tracking-wider">
+                              in cart
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              updateQuantity(inCartItem.id, inCartItem.quantity + 1);
+                            }}
+                            className="w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white text-[#01722C] font-bold transition-colors cursor-pointer"
+                            title="Increase quantity"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+
+                        {inCartItem.quantity > 1 && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              removeFromCart(inCartItem.id);
+                            }}
+                            className="w-8 h-8 flex items-center justify-center rounded-xl bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 transition-colors cursor-pointer shrink-0"
+                            title="Remove all from cart"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            router.push("/checkout");
+                          }}
+                          className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-2 px-2.5 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-0.5 shrink-0"
+                          title="Proceed to Checkout"
+                        >
+                          <span>Checkout</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-1.5">
+                        {allVariantsInCart.length > 0 && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              const targetOpt = product.options.find(
+                                (o) =>
+                                  normalizeWeight(o.label) ===
+                                  normalizeWeight(allVariantsInCart[0].weight)
+                              );
+                              if (targetOpt) {
+                                handleOptionSelect(product.id, targetOpt);
+                              }
+                            }}
+                            className="w-full flex items-center justify-between bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg px-2 py-1 text-[11px] text-emerald-800 transition-colors cursor-pointer"
+                            title="Switch to variant already in cart"
+                          >
+                            <span className="truncate">
+                              ✓ {allVariantsInCart[0].weight} ({allVariantsInCart[0].quantity} in cart)
+                            </span>
+                            <span className="font-bold underline text-[#01722C] shrink-0 ml-1">
+                              Switch
+                            </span>
+                          </button>
+                        )}
+                        <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
+                          <button
+                            onClick={() => addToCart(product, currentOption, 1)}
+                            className="w-full text-center text-[11px] sm:text-xs font-bold text-[#01722C] bg-white hover:bg-[#edf7f1] border border-[#01722C] py-2 px-1 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1 whitespace-nowrap"
+                          >
+                            <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
+                            <span>Add</span>
+                          </button>
+                          <button
+                            onClick={() => handleBuyNow(product, currentOption)}
+                            className="w-full text-center text-[11px] sm:text-xs font-bold text-white bg-[#01722C] hover:bg-[#0b542c] py-2 px-1 rounded-xl transition-all shadow-xs cursor-pointer whitespace-nowrap"
+                          >
+                            Buy Now
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

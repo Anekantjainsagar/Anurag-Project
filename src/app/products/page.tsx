@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
-import { Product, ProductWeightOption } from "@/types";
+import { Product, ProductWeightOption, CartItem } from "@/types";
 import {
   Search,
   Heart,
@@ -106,33 +106,37 @@ function ProductsCatalogContent() {
     isInWishlist,
   } = useCart();
 
-  // Selected weight options for each product
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>(() => {
-    const init: Record<string, ProductWeightOption> = {};
-    ALL_PRODUCTS.forEach((p) => {
-      init[p.id] = p.options[0];
-    });
-    return init;
-  });
+  // Selected weight options for each product (starts empty so in-cart variants auto-select)
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>({});
 
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+
+  const normalizeWeight = (w?: string) =>
+    (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
+
+  const isCartItemForProduct = (item: CartItem, prod: Product) => {
+    if (item.productId && item.productId === prod.id) return true;
+    if (item.id === prod.id) return true;
+    if (item.id && item.id.startsWith(`${prod.id}-`)) return true;
+    return false;
+  };
 
   const handleOptionSelect = (productId: string, opt: ProductWeightOption) => {
     setSelectedOptions((prev) => ({ ...prev, [productId]: opt }));
     setOpenDropdownId(null);
   };
 
-  const handleAddToCart = (product: Product, e: React.MouseEvent) => {
+  const handleAddToCart = (product: Product, e: React.MouseEvent, opt?: ProductWeightOption) => {
     e.preventDefault();
     e.stopPropagation();
-    const option = selectedOptions[product.id] || product.options[0];
+    const option = opt || selectedOptions[product.id] || product.options[0];
     addToCart(product, option, 1);
   };
 
-  const handleBuyNow = (product: Product, e: React.MouseEvent) => {
+  const handleBuyNow = (product: Product, e: React.MouseEvent, opt?: ProductWeightOption) => {
     e.preventDefault();
     e.stopPropagation();
-    const option = selectedOptions[product.id] || product.options[0];
+    const option = opt || selectedOptions[product.id] || product.options[0];
     addToCart(product, option, 1);
     router.push("/checkout");
   };
@@ -349,25 +353,35 @@ function ProductsCatalogContent() {
         {paginatedProducts.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
             {paginatedProducts.map((product) => {
-              const currentOption =
-                selectedOptions[product.id] || product.options[0];
-              const isFav = isInWishlist(product.id);
-              const isDropdownOpen = openDropdownId === product.id;
-
-              // Find if this exact variant is in the cart
-              const inCartItem = cartItems.find(
-                (item) =>
-                  item.productId === product.id &&
-                  item.weight.trim().toLowerCase() === currentOption.label.trim().toLowerCase()
-              );
-
-              // Check if any variant of this product is in the cart
-              const allVariantsInCart = cartItems.filter(
-                (item) => item.productId === product.id
+              // Find all items in cart belonging to this product
+              const allVariantsInCart = cartItems.filter((item) =>
+                isCartItemForProduct(item, product)
               );
               const totalProductQty = allVariantsInCart.reduce(
                 (sum, item) => sum + item.quantity,
                 0
+              );
+
+              // Auto-select in-cart option if user hasn't explicitly selected one
+              const explicitOption = selectedOptions[product.id];
+              const inCartOptionMatch =
+                allVariantsInCart.length > 0
+                  ? product.options.find((opt) =>
+                      allVariantsInCart.some(
+                        (ci) => normalizeWeight(ci.weight) === normalizeWeight(opt.label)
+                      )
+                    )
+                  : null;
+
+              const currentOption =
+                explicitOption || inCartOptionMatch || product.options[0];
+              const isFav = isInWishlist(product.id);
+              const isDropdownOpen = openDropdownId === product.id;
+
+              // Find if this exact displayed variant is in the cart
+              const inCartItem = allVariantsInCart.find(
+                (item) =>
+                  normalizeWeight(item.weight) === normalizeWeight(currentOption.label)
               );
 
               return (
@@ -477,25 +491,42 @@ function ProductsCatalogContent() {
 
                         {isDropdownOpen && (
                           <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl py-1 z-30 animate-fade-in max-h-48 overflow-y-auto">
-                            {product.options.map((opt, optIdx) => (
-                              <button
-                                key={optIdx}
-                                type="button"
-                                onClick={() =>
-                                  handleOptionSelect(product.id, opt)
-                                }
-                                className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${
-                                  opt.label === currentOption.label
-                                    ? "bg-[#edf7f1] text-[#01722C] font-bold"
-                                    : "text-gray-700 hover:bg-gray-50"
-                                }`}
-                              >
-                                <span>{opt.label}</span>
-                                <span className="font-semibold">
-                                  ₹{opt.price.toFixed(2)}
-                                </span>
-                              </button>
-                            ))}
+                            {product.options.map((opt, optIdx) => {
+                              const isSelected =
+                                normalizeWeight(opt.label) ===
+                                normalizeWeight(currentOption.label);
+                              const optInCart = allVariantsInCart.find(
+                                (ci) =>
+                                  normalizeWeight(ci.weight) ===
+                                  normalizeWeight(opt.label)
+                              );
+                              return (
+                                <button
+                                  key={optIdx}
+                                  type="button"
+                                  onClick={() =>
+                                    handleOptionSelect(product.id, opt)
+                                  }
+                                  className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left cursor-pointer transition-colors ${
+                                    isSelected
+                                      ? "bg-[#edf7f1] text-[#01722C] font-bold"
+                                      : "text-gray-700 hover:bg-gray-50"
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-1.5 truncate mr-1">
+                                    <span>{opt.label}</span>
+                                    {optInCart && (
+                                      <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-1 py-0.2 rounded shrink-0">
+                                        ✓ {optInCart.quantity}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <span className="font-semibold shrink-0">
+                                    ₹{opt.price.toFixed(2)}
+                                  </span>
+                                </button>
+                              );
+                            })}
                           </div>
                         )}
                       </div>
@@ -608,20 +639,48 @@ function ProductsCatalogContent() {
                           </button>
                         </div>
                       ) : (
-                        <div className="grid grid-cols-2 gap-1.5">
-                          <button
-                            onClick={(e) => handleAddToCart(product, e)}
-                            className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-1"
-                          >
-                            <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
-                            <span>Add</span>
-                          </button>
-                          <button
-                            onClick={(e) => handleBuyNow(product, e)}
-                            className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap"
-                          >
-                            Buy Now
-                          </button>
+                        <div className="flex flex-col gap-1.5">
+                          {allVariantsInCart.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                const targetOpt = product.options.find(
+                                  (o) =>
+                                    normalizeWeight(o.label) ===
+                                    normalizeWeight(allVariantsInCart[0].weight)
+                                );
+                                if (targetOpt) {
+                                  handleOptionSelect(product.id, targetOpt);
+                                }
+                              }}
+                              className="w-full flex items-center justify-between bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg px-2 py-1 text-[11px] text-emerald-800 transition-colors cursor-pointer"
+                              title="Switch to variant already in cart"
+                            >
+                              <span className="truncate">
+                                ✓ {allVariantsInCart[0].weight} ({allVariantsInCart[0].quantity} in cart)
+                              </span>
+                              <span className="font-bold underline text-[#01722C] shrink-0 ml-1">
+                                Switch
+                              </span>
+                            </button>
+                          )}
+                          <div className="grid grid-cols-2 gap-1.5">
+                            <button
+                              onClick={(e) => handleAddToCart(product, e, currentOption)}
+                              className="bg-white hover:bg-[#edf7f1] text-[#01722C] border border-[#01722C] text-xs font-bold py-1.5 px-2 rounded-xl transition-all cursor-pointer text-center whitespace-nowrap flex items-center justify-center gap-1"
+                            >
+                              <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
+                              <span>Add</span>
+                            </button>
+                            <button
+                              onClick={(e) => handleBuyNow(product, e, currentOption)}
+                              className="bg-[#01722C] hover:bg-[#0b542c] text-white text-xs font-bold py-1.5 px-2 rounded-xl transition-all shadow-xs cursor-pointer text-center whitespace-nowrap"
+                            >
+                              Buy Now
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>
