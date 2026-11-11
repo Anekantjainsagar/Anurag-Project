@@ -175,15 +175,32 @@ async def sync_cart(
             continue
 
         # Look up product variant
+        raw_pid = (item.productId or "").strip()
         res_p = await db.execute(
             select(Product)
             .options(selectinload(Product.variants))
-            .where(Product.id == item.productId)
+            .where(Product.id == raw_pid)
         )
         p = res_p.scalar_one_or_none()
+        if not p and "-" in raw_pid:
+            base_pid = raw_pid.rsplit("-", 1)[0]
+            res_p = await db.execute(
+                select(Product)
+                .options(selectinload(Product.variants))
+                .where(Product.id == base_pid)
+            )
+            p = res_p.scalar_one_or_none()
+
+        if not p:
+            # Skip items that do not exist in the database catalog to prevent FK violations
+            continue
+
         variant_id = None
         if p and p.variants:
             v_match = next((v for v in p.variants if v.weight_label.lower() == item.weight.lower()), None)
+            if not v_match:
+                norm_w = item.weight.lower().replace(" ", "").replace("-", "")
+                v_match = next((v for v in p.variants if (v.weight_label or "").lower().replace(" ", "").replace("-", "") == norm_w), None)
             if not v_match:
                 v_match = next((v for v in p.variants if v.is_default), p.variants[0])
             if v_match:
@@ -192,7 +209,7 @@ async def sync_cart(
         ci = CartItem(
             user_id=current_user.id if current_user else None,
             guest_session_token=x_session_token if not current_user else None,
-            product_id=item.productId,
+            product_id=p.id,
             variant_id=variant_id,
             weight_label=item.weight,
             quantity=item.quantity,

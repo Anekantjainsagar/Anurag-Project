@@ -10,6 +10,7 @@ from typing import List, Optional
 import uuid
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 from app.core.config import settings
 from app.models.catalog import Product, ProductVariant
 from app.models.order import Order, OrderItem, OrderTrackingEvent
@@ -68,13 +69,42 @@ class OrderService:
         for item in payload.items:
             variant = None
             product = None
+
+            # A. Attempt to resolve product by ID or base slug
+            raw_pid = (item.product_id or "").strip()
+            if raw_pid:
+                res_p = await db.execute(select(Product).options(selectinload(Product.variants)).where(Product.id == raw_pid))
+                product = res_p.scalar_one_or_none()
+
+                # If raw_pid was a compound key like "product-slug-1kg", try stripping the suffix
+                if not product and "-" in raw_pid:
+                    base_pid = raw_pid.rsplit("-", 1)[0]
+                    res_p = await db.execute(select(Product).options(selectinload(Product.variants)).where(Product.id == base_pid))
+                    product = res_p.scalar_one_or_none()
+
+            # B. If not resolved yet, attempt by name matching
+            if not product and item.product_name:
+                clean_name = item.product_name.strip()
+                res_name = await db.execute(select(Product).options(selectinload(Product.variants)).where(Product.name.ilike(f"%{clean_name}%")))
+                product = res_name.scalars().first()
+
+            # C. Resolve variant
             if item.variant_id:
                 res_v = await db.execute(select(ProductVariant).where(ProductVariant.id == item.variant_id))
                 variant = res_v.scalar_one_or_none()
 
-            if item.product_id:
-                res_p = await db.execute(select(Product).where(Product.id == item.product_id))
-                product = res_p.scalar_one_or_none()
+            if product and not variant:
+                req_weight = (item.weight_label or item.packaging_size or "").strip().lower()
+                norm_req = req_weight.replace(" ", "").replace("-", "")
+                res_variants = await db.execute(select(ProductVariant).where(ProductVariant.product_id == product.id))
+                variants_list = res_variants.scalars().all()
+                if variants_list:
+                    v_match = next((v for v in variants_list if (v.weight_label or "").strip().lower() == req_weight), None)
+                    if not v_match:
+                        v_match = next((v for v in variants_list if (v.weight_label or "").lower().replace(" ", "").replace("-", "") == norm_req), None)
+                    if not v_match:
+                        v_match = next((v for v in variants_list if v.is_default), variants_list[0])
+                    variant = v_match
 
             line_price = (
                 variant.price
@@ -95,7 +125,7 @@ class OrderService:
             subtotal += line_total
 
             line_items_data.append({
-                "product_id": product.id if product else item.product_id,
+                "product_id": product.id if product else None,  # NEVER violate PostgreSQL ForeignKey constraint
                 "variant_id": variant.id if variant else None,
                 "product_name": product_name,
                 "weight_label": weight_label,
@@ -228,21 +258,27 @@ class OrderService:
             "vendor_email": settings.VENDOR_EMAIL,
         }
 
-        # Send to customer
-        await EmailService.send_email(
-            db=db,
-            recipient_email=order.customer_email,
-            template_key="ORDER_CONFIRMATION_CUSTOMER",
-            context=email_ctx,
-        )
+        # Send to customer (safely non-blocking)
+        try:
+            await EmailService.send_email(
+                db=db,
+                recipient_email=order.customer_email,
+                template_key="ORDER_CONFIRMATION_CUSTOMER",
+                context=email_ctx,
+            )
+        except Exception as e:
+            print(f"⚠️ [ORDER SERVICE] Customer email notification notice: {e}")
 
         # Send to vendor (Anurag Jain <meriwebdunia@gmail.com>)
-        await EmailService.send_email(
-            db=db,
-            recipient_email=settings.VENDOR_EMAIL,
-            template_key="ORDER_ALERT_VENDOR",
-            context=email_ctx,
-        )
+        try:
+            await EmailService.send_email(
+                db=db,
+                recipient_email=settings.VENDOR_EMAIL,
+                template_key="ORDER_ALERT_VENDOR",
+                context=email_ctx,
+            )
+        except Exception as e:
+            print(f"⚠️ [ORDER SERVICE] Vendor email notification notice: {e}")
 
         return order
 

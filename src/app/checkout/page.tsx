@@ -356,10 +356,11 @@ export default function CheckoutPage() {
         coupon_code: appliedCoupon?.code,
         order_notes: formData.orderNotes,
         items: cartItems.map((item) => ({
-          product_id: item.id,
+          product_id: item.productId || item.id,
           product_name: item.name,
           product_image: item.image,
           packaging_size: item.weight,
+          weight_label: item.weight,
           quantity: item.quantity,
           unit_price: item.price,
           subtotal: item.price * item.quantity,
