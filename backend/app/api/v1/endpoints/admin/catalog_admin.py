@@ -10,7 +10,7 @@ import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel, Field
-from sqlalchemy import func, or_, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -113,41 +113,67 @@ async def admin_list_products(
     db: AsyncSession = Depends(get_db),
 ):
     """Returns paginated catalog items with stock levels, categories, and pack variant details."""
-    stmt = (
-        select(Product)
-        .options(
-            selectinload(Product.variants),
-            selectinload(Product.images),
-            selectinload(Product.category),
-        )
-        .order_by(Product.name.asc())
-    )
-
+    base_filter = []
     if category_id and category_id != "ALL":
-        stmt = stmt.where(Product.category_id == category_id)
+        base_filter.append(Product.category_id == category_id)
 
     if search:
         search_fmt = f"%{search.strip()}%"
-        stmt = stmt.where(or_(Product.name.ilike(search_fmt), Product.subtitle.ilike(search_fmt)))
+        base_filter.append(or_(Product.name.ilike(search_fmt), Product.subtitle.ilike(search_fmt)))
 
-    # Fetch all matching to evaluate stock count accurately
-    result = await db.execute(stmt)
-    all_products = result.scalars().all()
+    if not stock_status or stock_status == "all":
+        # Direct SQL pagination: ultra-fast single round trip
+        count_stmt = select(func.count(Product.id))
+        if base_filter:
+            count_stmt = count_stmt.where(and_(*base_filter))
+        total_count = (await db.execute(count_stmt)).scalar() or 0
 
-    # Filter stock status in memory if specified
-    filtered = []
-    for p in all_products:
-        total_stock = sum(v.stock_quantity for v in p.variants) if p.variants else 0
-        if stock_status == "low_stock" and total_stock > 10:
-            continue
-        if stock_status == "out_of_stock" and total_stock > 0:
-            continue
-        if stock_status == "in_stock" and total_stock == 0:
-            continue
-        filtered.append(p)
+        paged_stmt = (
+            select(Product)
+            .options(
+                selectinload(Product.variants),
+                selectinload(Product.images),
+                selectinload(Product.category),
+            )
+            .order_by(Product.name.asc())
+            .offset(skip)
+            .limit(limit)
+        )
+        if base_filter:
+            paged_stmt = paged_stmt.where(and_(*base_filter))
 
-    total_count = len(filtered)
-    paged = filtered[skip : skip + limit]
+        paged_res = await db.execute(paged_stmt)
+        paged = paged_res.scalars().all()
+    else:
+        # In-memory filter when specific stock level filter is requested
+        stmt = (
+            select(Product)
+            .options(
+                selectinload(Product.variants),
+                selectinload(Product.images),
+                selectinload(Product.category),
+            )
+            .order_by(Product.name.asc())
+        )
+        if base_filter:
+            stmt = stmt.where(and_(*base_filter))
+
+        result = await db.execute(stmt)
+        all_products = result.scalars().all()
+
+        filtered = []
+        for p in all_products:
+            total_stock = sum(v.stock_quantity for v in p.variants) if p.variants else 0
+            if stock_status == "low_stock" and total_stock > 10:
+                continue
+            if stock_status == "out_of_stock" and total_stock > 0:
+                continue
+            if stock_status == "in_stock" and total_stock == 0:
+                continue
+            filtered.append(p)
+
+        total_count = len(filtered)
+        paged = filtered[skip : skip + limit]
 
     data = []
     for p in paged:

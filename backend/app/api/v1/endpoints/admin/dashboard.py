@@ -6,7 +6,7 @@ Executive KPI Intelligence, Revenue Trends, Order Status Distributions & Perform
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from fastapi import APIRouter, Depends
-from sqlalchemy import func, select
+from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.dependencies import require_role
@@ -31,50 +31,35 @@ async def get_dashboard_metrics(
     - Top performing organic crops
     - Recent order intelligence ledger
     """
-    # 1. Total revenue (excluding cancelled)
-    rev_res = await db.execute(
-        select(func.coalesce(func.sum(Order.total_amount), Decimal("0.00")))
-        .where(Order.order_status != "CANCELLED")
-    )
-    total_revenue = rev_res.scalar() or Decimal("0.00")
+    # 1. Combined single-roundtrip executive KPI scalar query
+    kpi_query = text("""
+        SELECT
+            COALESCE((SELECT SUM(total_amount) FROM orders WHERE order_status != 'CANCELLED'), 0) AS total_revenue,
+            (SELECT COUNT(*) FROM orders) AS total_orders,
+            (SELECT COUNT(*) FROM orders WHERE order_status = 'PENDING_VERIFICATION') AS pending_cod,
+            (SELECT COUNT(*) FROM products WHERE is_active = TRUE) AS total_products,
+            (SELECT COUNT(*) FROM product_variants WHERE stock_quantity <= 10) AS low_stock,
+            (SELECT COUNT(*) FROM users WHERE role = 'customer') AS total_customers,
+            COALESCE((
+                SELECT SUM(order_items.quantity)
+                FROM order_items
+                JOIN orders ON orders.id = order_items.order_id
+                WHERE orders.order_status != 'CANCELLED'
+            ), 0) AS total_items_sold,
+            (SELECT COUNT(*) FROM orders WHERE order_status != 'CANCELLED') AS valid_orders_count;
+    """)
+    kpi_res = await db.execute(kpi_query)
+    kpi_row = kpi_res.one()
 
-    # 2. Total orders count
-    orders_count_res = await db.execute(select(func.count(Order.id)))
-    total_orders = orders_count_res.scalar() or 0
+    total_revenue = Decimal(str(kpi_row[0] or 0))
+    total_orders = int(kpi_row[1] or 0)
+    pending_cod = int(kpi_row[2] or 0)
+    total_products = int(kpi_row[3] or 0)
+    low_stock_count = int(kpi_row[4] or 0)
+    total_customers = int(kpi_row[5] or 0)
+    total_items_sold = int(kpi_row[6] or 0)
+    valid_orders_count = int(kpi_row[7] or 0)
 
-    # 3. Pending COD orders requiring vendor verification
-    pending_cod_res = await db.execute(
-        select(func.count(Order.id)).where(Order.order_status == "PENDING_VERIFICATION")
-    )
-    pending_cod = pending_cod_res.scalar() or 0
-
-    # 4. Total active products
-    prod_count_res = await db.execute(select(func.count(Product.id)).where(Product.is_active.is_(True)))
-    total_products = prod_count_res.scalar() or 0
-
-    # 5. Low stock variants (< 10 units)
-    low_stock_res = await db.execute(
-        select(func.count(ProductVariant.id)).where(ProductVariant.stock_quantity <= 10)
-    )
-    low_stock_count = low_stock_res.scalar() or 0
-
-    # 6. Total registered customers
-    cust_count_res = await db.execute(select(func.count(User.id)).where(User.role == "customer"))
-    total_customers = cust_count_res.scalar() or 0
-
-    # 7. Total items sold across all non-cancelled orders
-    items_sold_res = await db.execute(
-        select(func.coalesce(func.sum(OrderItem.quantity), 0))
-        .join(Order, Order.id == OrderItem.order_id)
-        .where(Order.order_status != "CANCELLED")
-    )
-    total_items_sold = int(items_sold_res.scalar() or 0)
-
-    # 8. Average Order Value (AOV)
-    valid_orders_count_res = await db.execute(
-        select(func.count(Order.id)).where(Order.order_status != "CANCELLED")
-    )
-    valid_orders_count = valid_orders_count_res.scalar() or 0
     avg_order_value = (
         float(total_revenue) / valid_orders_count if valid_orders_count > 0 else 0.0
     )
@@ -117,29 +102,33 @@ async def get_dashboard_metrics(
         round((fulfilled_count / valid_orders_count) * 100, 1) if valid_orders_count > 0 else 100.0
     )
 
-    # 10. 7-Day Revenue Trend (daily buckets)
+    # 10. 7-Day Revenue Trend (single-query aggregation)
     now = datetime.now(timezone.utc)
+    seven_days_ago = (now - timedelta(days=6)).replace(hour=0, minute=0, second=0, microsecond=0)
+    recent_orders_res = await db.execute(
+        select(Order.created_at, Order.total_amount).where(
+            Order.created_at >= seven_days_ago,
+            Order.order_status != "CANCELLED",
+        )
+    )
+    recent_rows = recent_orders_res.all()
+
     revenue_trend_7d = []
     for i in range(6, -1, -1):
         day_start = (now - timedelta(days=i)).replace(hour=0, minute=0, second=0, microsecond=0)
         day_end = day_start + timedelta(days=1)
-        day_res = await db.execute(
-            select(
-                func.coalesce(func.sum(Order.total_amount), Decimal("0.00")),
-                func.count(Order.id),
-            ).where(
-                Order.created_at >= day_start,
-                Order.created_at < day_end,
-                Order.order_status != "CANCELLED",
-            )
-        )
-        rev, cnt = day_res.one()
+        day_orders = [
+            r for r in recent_rows
+            if r[0] and (r[0].replace(tzinfo=timezone.utc) if not r[0].tzinfo else r[0]) >= day_start
+            and (r[0].replace(tzinfo=timezone.utc) if not r[0].tzinfo else r[0]) < day_end
+        ]
+        rev = sum((float(r[1]) for r in day_orders), 0.0)
         revenue_trend_7d.append({
             "date": day_start.strftime("%Y-%m-%d"),
             "label": day_start.strftime("%d %b"),
             "day": day_start.strftime("%a"),
-            "revenue": float(rev or 0),
-            "orders": cnt or 0,
+            "revenue": round(rev, 2),
+            "orders": len(day_orders),
         })
 
     # 11. Category Breakdown (products count & catalog share)

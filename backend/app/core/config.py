@@ -9,7 +9,9 @@ from pydantic import AnyHttpUrl, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
-DEFAULT_SQLITE_URL = f"sqlite+aiosqlite:///{BACKEND_DIR / 'onaar.db'}"
+DEFAULT_SUPABASE_DATABASE_URL = (
+    "postgresql+asyncpg://postgres.btiuwbqbkltwlefcqhjd:onaar_db_123@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres"
+)
 
 
 class Settings(BaseSettings):
@@ -32,8 +34,8 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
 
-    # Supabase PostgreSQL / Local SQLite Database
-    DATABASE_URL: str = DEFAULT_SQLITE_URL
+    # Cloud Supabase PostgreSQL Database (Transaction Pooler Port 6543)
+    DATABASE_URL: str = DEFAULT_SUPABASE_DATABASE_URL
     SUPABASE_URL: str = "https://btiuwbqbkltwlefcqhjd.supabase.co"
     SUPABASE_SERVICE_ROLE_KEY: str = ""
 
@@ -62,18 +64,8 @@ class Settings(BaseSettings):
     @classmethod
     def validate_database_url(cls, v: Union[str, None]) -> str:
         if not v or not isinstance(v, str) or not v.strip():
-            return DEFAULT_SQLITE_URL
-        val = v.strip()
-        # Fallback to local SQLite if password placeholder or unreachable template
-        if "[PASSWORD]" in val or "db.btiuwbqbkltwlefcqhjd.supabase.co" in val:
-            return DEFAULT_SQLITE_URL
-        if val.startswith("sqlite+aiosqlite:///"):
-            path_part = val.replace("sqlite+aiosqlite:///", "")
-            if not path_part.startswith("/") and not Path(path_part).is_absolute():
-                filename = Path(path_part).name or "onaar.db"
-                resolved = (BACKEND_DIR / filename).resolve()
-                return f"sqlite+aiosqlite:///{resolved}"
-        return val
+            return DEFAULT_SUPABASE_DATABASE_URL
+        return v.strip()
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod

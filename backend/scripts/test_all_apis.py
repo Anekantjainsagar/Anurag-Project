@@ -13,15 +13,15 @@ def test_endpoint(name: str, method: str, path: str, json_data=None, headers=Non
     url = f"{BASE_URL}{path}"
     t0 = time.time()
     try:
-        with httpx.Client() as client:
+        with httpx.Client(timeout=30.0) as client:
             if method.upper() == "GET":
-                resp = client.get(url, headers=headers, timeout=10)
+                resp = client.get(url, headers=headers)
             elif method.upper() == "POST":
-                resp = client.post(url, json=json_data, headers=headers, timeout=10)
+                resp = client.post(url, json=json_data, headers=headers)
             elif method.upper() == "PUT":
-                resp = client.put(url, json=json_data, headers=headers, timeout=10)
+                resp = client.put(url, json=json_data, headers=headers)
             elif method.upper() == "DELETE":
-                resp = client.delete(url, headers=headers, timeout=10)
+                resp = client.delete(url, headers=headers)
             else:
                 raise ValueError(f"Unknown method {method}")
         elapsed = (time.time() - t0) * 1000
