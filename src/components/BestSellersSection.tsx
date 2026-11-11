@@ -45,13 +45,23 @@ export default function BestSellersSection({
   const isCartItemForProduct = (item: any, prod: Product) => {
     if (!item || !prod) return false;
     const cleanProdId = prod.id.trim().toLowerCase();
+    const cleanItemId = (item.productId || "").trim().toLowerCase();
+    const cleanLineId = (item.id || "").trim().toLowerCase();
+    const cleanName = (item.name || "").trim().toLowerCase();
     const cleanProdName = prod.name.trim().toLowerCase();
 
-    if (item.productId && item.productId.trim().toLowerCase() === cleanProdId) return true;
-    if (item.id && item.id.trim().toLowerCase() === cleanProdId) return true;
-    if (item.id && item.id.trim().toLowerCase().startsWith(`${cleanProdId}-`)) return true;
-    if (item.name && item.name.trim().toLowerCase() === cleanProdName) return true;
-    if (item.productId && (item.productId.toLowerCase().startsWith(cleanProdId) || cleanProdId.startsWith(item.productId.toLowerCase()))) return true;
+    // 1. Direct match on productId
+    if (cleanItemId && cleanItemId === cleanProdId) return true;
+
+    // 2. Direct match on line ID
+    if (cleanLineId === cleanProdId) return true;
+
+    // 3. Match compound line ID: {productId}-{weight}
+    if (cleanLineId.startsWith(`${cleanProdId}-`)) return true;
+
+    // 4. Exact match on product name
+    if (cleanName && cleanName === cleanProdName) return true;
+
     return false;
   };
 

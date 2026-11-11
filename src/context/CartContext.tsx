@@ -35,13 +35,30 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+function normalizeId(id?: string): string {
+  return (id || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
+}
+
+function canonicalCartKey(items: CartItem[]): string {
+  if (!items || items.length === 0) return "[]";
+  const normalized = items
+    .filter((it) => it && it.id && it.quantity > 0)
+    .map((it) => ({
+      id: normalizeId(it.id),
+      qty: it.quantity,
+      price: it.price,
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+  return JSON.stringify(normalized);
+}
+
 function dedupeCartItems(items: CartItem[]): CartItem[] {
   const map = new Map<string, CartItem>();
   for (const item of items) {
     if (!item || !item.id) continue;
-    const key = item.id.trim().toLowerCase();
+    const key = normalizeId(item.id);
     if (map.has(key)) {
-      map.get(key)!.quantity += item.quantity;
+      map.get(key)!.quantity = Math.max(map.get(key)!.quantity, item.quantity);
     } else {
       map.set(key, { ...item });
     }
@@ -102,20 +119,31 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         const rawDbItems = Array.isArray(res?.items) ? res.items : [];
         const dbItems = dedupeCartItems(rawDbItems);
         setCartItems((prev) => {
-          // If backend has items, backend is the single source of truth
+          isCartLoadedFromDb.current = true;
+          // If backend has items, merge them safely with any local items
           if (dbItems.length > 0) {
-            isCartLoadedFromDb.current = true;
-            lastSyncedCartJsonRef.current = JSON.stringify(dbItems);
-            return dbItems;
+            const itemMap = new Map<string, CartItem>();
+            for (const d of dbItems) {
+              itemMap.set(normalizeId(d.id), d);
+            }
+            // Preserve any local items that aren't on server yet
+            for (const p of prev) {
+              const k = normalizeId(p.id);
+              if (!itemMap.has(k)) {
+                itemMap.set(k, p);
+              }
+            }
+            const merged = Array.from(itemMap.values());
+            lastSyncedCartJsonRef.current = canonicalCartKey(merged);
+            return merged;
           }
           // If backend has no items but user had items in localStorage (guest), keep local items
-          if (dbItems.length === 0 && prev.length > 0) {
-            isCartLoadedFromDb.current = true;
-            return dedupeCartItems(prev);
+          if (prev.length > 0) {
+            const local = dedupeCartItems(prev);
+            return local;
           }
           // Both empty
-          isCartLoadedFromDb.current = true;
-          lastSyncedCartJsonRef.current = JSON.stringify([]);
+          lastSyncedCartJsonRef.current = canonicalCartKey([]);
           return [];
         });
       })
@@ -138,9 +166,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     if (!isCartLoadedFromDb.current) return;
 
-    const currentJson = JSON.stringify(cartItems);
+    const currentKey = canonicalCartKey(cartItems);
     // If the cart items haven't changed from what was loaded/synced, skip network call!
-    if (currentJson === lastSyncedCartJsonRef.current) {
+    if (currentKey === lastSyncedCartJsonRef.current) {
       return;
     }
 
@@ -148,7 +176,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       clearTimeout(syncTimeoutRef.current);
     }
     syncTimeoutRef.current = setTimeout(() => {
-      lastSyncedCartJsonRef.current = currentJson;
+      lastSyncedCartJsonRef.current = currentKey;
       api.cart.syncCart(cartItems).catch(() => {});
     }, 600);
 
@@ -257,25 +285,27 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     const normWeight = (selectedOption.label || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
     const cartLineId = `${product.id}-${normWeight}`;
+    const targetNormId = normalizeId(cartLineId);
 
     setCartItems((prev) => {
-      const existing = prev.find(
+      const cleanPrev = dedupeCartItems(prev);
+      const existingIndex = cleanPrev.findIndex(
         (item) =>
-          item.id === cartLineId ||
-          (item.productId === product.id &&
-            (item.weight || "").trim().toLowerCase().replace(/[\s_-]+/g, "") === normWeight) ||
+          normalizeId(item.id) === targetNormId ||
+          (normalizeId(item.productId) === normalizeId(product.id) &&
+            normalizeId(item.weight) === normWeight) ||
           (item.name.trim().toLowerCase() === product.name.trim().toLowerCase() &&
-            (item.weight || "").trim().toLowerCase().replace(/[\s_-]+/g, "") === normWeight)
+            normalizeId(item.weight) === normWeight)
       );
-      if (existing) {
-        return prev.map((item) =>
-          item.id === existing.id
+      if (existingIndex >= 0) {
+        return cleanPrev.map((item, idx) =>
+          idx === existingIndex
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
         return [
-          ...prev,
+          ...cleanPrev,
           {
             id: cartLineId,
             productId: product.id,
@@ -295,7 +325,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   };
 
   const removeFromCart = (cartLineId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== cartLineId));
+    const target = normalizeId(cartLineId);
+    setCartItems((prev) => prev.filter((item) => normalizeId(item.id) !== target));
   };
 
   const updateQuantity = (cartLineId: string, quantity: number) => {
@@ -303,16 +334,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       removeFromCart(cartLineId);
       return;
     }
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === cartLineId ? { ...item, quantity } : item
-      )
-    );
+    const target = normalizeId(cartLineId);
+    setCartItems((prev) => {
+      const cleanPrev = dedupeCartItems(prev);
+      return cleanPrev.map((item) =>
+        normalizeId(item.id) === target ? { ...item, quantity: Math.max(1, quantity) } : item
+      );
+    });
   };
 
   const clearCart = () => {
     setCartItems([]);
-    lastSyncedCartJsonRef.current = "[]";
+    lastSyncedCartJsonRef.current = canonicalCartKey([]);
     try {
       localStorage.removeItem("onaar_cart");
     } catch {

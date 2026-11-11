@@ -60,7 +60,7 @@ class FrontendCartItem(BaseModel):
     price: float
     originalPrice: Optional[float] = None
     weight: str
-    image: str
+    image: Optional[str] = "/images/products/placeholder.jpg"
     quantity: int
 
 

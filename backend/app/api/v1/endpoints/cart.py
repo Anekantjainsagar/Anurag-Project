@@ -54,7 +54,7 @@ async def get_cart(
                     None
                 )
                 if existing_match:
-                    existing_match.quantity += g_item.quantity
+                    existing_match.quantity = max(existing_match.quantity, g_item.quantity)
                     await db.delete(g_item)
                 else:
                     g_item.user_id = current_user.id
@@ -161,23 +161,12 @@ async def sync_cart(
     else:
         await db.execute(delete(CartItem).where(CartItem.guest_session_token == x_session_token))
 
-    # Deduplicate payload items by (productId, normalized_weight)
-    deduped_items = {}
+    # Resolve and deduplicate payload items by (product.id, normalized_weight)
+    resolved_items = {}
     for item in payload.items:
         if item.quantity <= 0:
             continue
-        key = (item.productId.strip().lower(), item.weight.strip().lower().replace(" ", ""))
-        if key in deduped_items:
-            deduped_items[key].quantity += item.quantity
-        else:
-            deduped_items[key] = item
 
-    # Insert items
-    for item in deduped_items.values():
-        if item.quantity <= 0:
-            continue
-
-        # Look up product variant
         raw_pid = (item.productId or "").strip()
         res_p = await db.execute(
             select(Product)
@@ -198,24 +187,34 @@ async def sync_cart(
             # Skip items that do not exist in the database catalog to prevent FK violations
             continue
 
+        norm_w = (item.weight or "").strip().lower().replace(" ", "").replace("-", "")
+        dedupe_key = (p.id, norm_w)
+
         variant_id = None
         if p and p.variants:
-            v_match = next((v for v in p.variants if v.weight_label.lower() == item.weight.lower()), None)
-            if not v_match:
-                norm_w = item.weight.lower().replace(" ", "").replace("-", "")
-                v_match = next((v for v in p.variants if (v.weight_label or "").lower().replace(" ", "").replace("-", "") == norm_w), None)
+            v_match = next((v for v in p.variants if v.weight_label.lower().replace(" ", "").replace("-", "") == norm_w), None)
             if not v_match:
                 v_match = next((v for v in p.variants if v.is_default), p.variants[0])
             if v_match:
                 variant_id = v_match.id
 
+        # Use the exact quantity requested (never compound multiply)
+        resolved_items[dedupe_key] = {
+            "product_id": p.id,
+            "variant_id": variant_id,
+            "weight_label": item.weight,
+            "quantity": item.quantity,
+        }
+
+    # Insert items
+    for data in resolved_items.values():
         ci = CartItem(
             user_id=current_user.id if current_user else None,
             guest_session_token=x_session_token if not current_user else None,
-            product_id=p.id,
-            variant_id=variant_id,
-            weight_label=item.weight,
-            quantity=item.quantity,
+            product_id=data["product_id"],
+            variant_id=data["variant_id"],
+            weight_label=data["weight_label"],
+            quantity=data["quantity"],
         )
         db.add(ci)
 
