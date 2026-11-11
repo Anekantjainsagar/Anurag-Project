@@ -72,6 +72,19 @@ def format_sql_value(val, col_type_str):
 
     if "BOOL" in col_upper:
         return "TRUE" if val and val not in (0, "0", False, "false") else "FALSE"
+
+    if "ARRAY" in col_upper:
+        if not val:
+            return "ARRAY[]::text[]"
+        if isinstance(val, str):
+            try:
+                val = json.loads(val)
+            except Exception:
+                val = [val]
+        if isinstance(val, (list, tuple)):
+            items = [f"'{str(x).replace(chr(39), chr(39)+chr(39))}'" for x in val]
+            return f"ARRAY[{', '.join(items)}]::text[]"
+        return "ARRAY[]::text[]"
     
     if "INT" in col_upper or "NUMERIC" in col_upper or "FLOAT" in col_upper or "DECIMAL" in col_upper:
         try:
@@ -143,6 +156,8 @@ def generate_sql_dump(output_file: str):
 
     # 2. Generate INSERTs for all populated tables in dependency order
     print("2. Extracting rows from SQLite onaar.db...")
+    lines.append("-- Disable foreign key checks during bulk import")
+    lines.append("SET session_replication_role = 'replica';\n")
     total_rows = 0
 
     for table in Base.metadata.sorted_tables:
@@ -185,6 +200,9 @@ def generate_sql_dump(output_file: str):
         except Exception as e:
             # Table might not exist in SQLite or be empty
             pass
+
+    lines.append("\n-- Re-enable foreign key checks")
+    lines.append("SET session_replication_role = 'origin';\n")
 
     sqlite_conn.close()
 
