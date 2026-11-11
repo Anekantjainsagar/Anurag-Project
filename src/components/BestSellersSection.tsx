@@ -38,9 +38,15 @@ export default function BestSellersSection({
     (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
 
   const isCartItemForProduct = (item: any, prod: Product) => {
-    if (item.productId && item.productId === prod.id) return true;
-    if (item.id === prod.id) return true;
-    if (item.id && item.id.startsWith(`${prod.id}-`)) return true;
+    if (!item || !prod) return false;
+    const cleanProdId = prod.id.trim().toLowerCase();
+    const cleanProdName = prod.name.trim().toLowerCase();
+
+    if (item.productId && item.productId.trim().toLowerCase() === cleanProdId) return true;
+    if (item.id && item.id.trim().toLowerCase() === cleanProdId) return true;
+    if (item.id && item.id.trim().toLowerCase().startsWith(`${cleanProdId}-`)) return true;
+    if (item.name && item.name.trim().toLowerCase() === cleanProdName) return true;
+    if (item.productId && (item.productId.toLowerCase().startsWith(cleanProdId) || cleanProdId.startsWith(item.productId.toLowerCase()))) return true;
     return false;
   };
 

@@ -124,11 +124,16 @@ async def verify_otp(payload: OTPVerify, response: Response, db: AsyncSession = 
     now = datetime.now(timezone.utc)
 
     # Check admin identifier match
+    admin_emails = {
+        settings.VENDOR_EMAIL.lower(),
+        "anekantjainsagar@gmail.com",
+        "meriwebdunia@gmail.com",
+    }
+    admin_phones = {"9876543210", "7692045606"}
     clean_phone_digits = "".join(filter(str.isdigit, clean_identifier))
-    vendor_phone_digits = "".join(filter(str.isdigit, settings.VENDOR_PHONE))
     is_admin = (
-        (bool(clean_phone_digits) and bool(vendor_phone_digits) and clean_phone_digits.endswith(vendor_phone_digits[-10:]))
-        or (clean_identifier.lower() == settings.VENDOR_EMAIL.lower())
+        clean_identifier.lower() in admin_emails
+        or any(clean_phone_digits.endswith(p) for p in admin_phones)
     )
 
     is_valid_otp = False

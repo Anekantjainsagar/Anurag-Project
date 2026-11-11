@@ -31,6 +31,7 @@ import {
  */
 function resolveCategoryName(param?: string | null): string {
   if (!param || param.toLowerCase() === "all") return "All";
+  if (param.toLowerCase() === "in cart" || param.toLowerCase() === "incart") return "In Cart";
   let decoded = param;
   try {
     decoded = decodeURIComponent(param);
@@ -99,6 +100,9 @@ function ProductsCatalogContent() {
 
   const {
     cartItems,
+    cartCount,
+    cartTotal,
+    setIsCartOpen,
     addToCart,
     removeFromCart,
     updateQuantity,
@@ -115,10 +119,25 @@ function ProductsCatalogContent() {
     (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
 
   const isCartItemForProduct = (item: CartItem, prod: Product) => {
-    if (item.productId && item.productId === prod.id) return true;
-    if (item.id === prod.id) return true;
-    if (item.id && item.id.startsWith(`${prod.id}-`)) return true;
+    if (!item || !prod) return false;
+    const cleanProdId = prod.id.trim().toLowerCase();
+    const cleanProdName = prod.name.trim().toLowerCase();
+
+    if (item.productId && item.productId.trim().toLowerCase() === cleanProdId) return true;
+    if (item.id && item.id.trim().toLowerCase() === cleanProdId) return true;
+    if (item.id && item.id.trim().toLowerCase().startsWith(`${cleanProdId}-`)) return true;
+    if (item.name && item.name.trim().toLowerCase() === cleanProdName) return true;
+    if (item.productId && (item.productId.toLowerCase().startsWith(cleanProdId) || cleanProdId.startsWith(item.productId.toLowerCase()))) return true;
     return false;
+  };
+
+  const getCategoryCartCount = (categoryName: string) => {
+    return cartItems
+      .filter((ci) => {
+        const p = ALL_PRODUCTS.find((prod) => isCartItemForProduct(ci, prod));
+        return p && p.category.toLowerCase() === categoryName.toLowerCase();
+      })
+      .reduce((sum, item) => sum + item.quantity, 0);
   };
 
   const handleOptionSelect = (productId: string, opt: ProductWeightOption) => {
@@ -145,7 +164,11 @@ function ProductsCatalogContent() {
   const filteredProducts = useMemo(() => {
     let result = [...ALL_PRODUCTS];
 
-    if (selectedCategory !== "All") {
+    if (selectedCategory === "In Cart") {
+      result = result.filter((p) =>
+        cartItems.some((ci) => isCartItemForProduct(ci, p))
+      );
+    } else if (selectedCategory !== "All") {
       const targetCat = resolveCategoryName(selectedCategory);
       result = result.filter(
         (p) => p.category.toLowerCase() === targetCat.toLowerCase()
@@ -302,8 +325,31 @@ function ProductsCatalogContent() {
             </div>
           </div>
 
-          {/* Category Filter Pills (All 8 Categories + "All") */}
+          {/* Category Filter Pills (All 8 Categories + "All" + "In Cart") */}
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+            {cartCount > 0 && (
+              <button
+                onClick={() => handleCategoryChange("In Cart")}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black transition-all whitespace-nowrap cursor-pointer shrink-0 ${
+                  selectedCategory === "In Cart"
+                    ? "bg-emerald-700 text-white shadow-md ring-2 ring-emerald-400"
+                    : "bg-emerald-50 text-emerald-800 border-2 border-emerald-400 hover:bg-emerald-100"
+                }`}
+              >
+                <ShoppingCart className="w-3.5 h-3.5 shrink-0" />
+                <span>In Your Cart</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
+                    selectedCategory === "In Cart"
+                      ? "bg-white text-emerald-800"
+                      : "bg-[#01722C] text-white"
+                  }`}
+                >
+                  {cartCount}
+                </span>
+              </button>
+            )}
+
             <button
               onClick={() => handleCategoryChange("All")}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
@@ -318,6 +364,7 @@ function ProductsCatalogContent() {
             {CATEGORIES.map((cat) => {
               const isSelected =
                 selectedCategory.toLowerCase() === cat.name.toLowerCase();
+              const catCartQty = getCategoryCartCount(cat.name);
               return (
                 <button
                   key={cat.id}
@@ -334,20 +381,91 @@ function ProductsCatalogContent() {
                     className="w-4 h-4 rounded-full object-cover"
                   />
                   <span>{cat.name}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isSelected
-                        ? "bg-white/20 text-white"
-                        : "bg-gray-100 text-gray-500 font-bold"
-                    }`}
-                  >
-                    24
-                  </span>
+                  {catCartQty > 0 ? (
+                    <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-800 font-black border border-emerald-300">
+                      ✓ {catCartQty}
+                    </span>
+                  ) : (
+                    <span
+                      className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                        isSelected
+                          ? "bg-white/20 text-white"
+                          : "bg-gray-100 text-gray-500 font-bold"
+                      }`}
+                    >
+                      24
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
         </div>
+
+        {/* Active Cart Quick Summary Bar (Direct Shop Cart Management) */}
+        {cartCount > 0 && (
+          <div className="mb-6 bg-gradient-to-r from-emerald-50 via-[#edf7f1] to-teal-50 border-2 border-emerald-500/40 rounded-2xl p-4 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-3 animate-fade-in">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-[#01722C] text-white flex items-center justify-center shrink-0 shadow-xs">
+                <ShoppingCart className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-serif font-bold text-gray-900 text-sm sm:text-base">
+                    Active Shopping Bag
+                  </span>
+                  <span className="bg-[#01722C] text-white text-[11px] font-black px-2 py-0.5 rounded-full">
+                    {cartCount} {cartCount === 1 ? "item" : "items"}
+                  </span>
+                  <span className="text-xs text-gray-500 font-medium">
+                    (Saved in database across your devices)
+                  </span>
+                </div>
+                <div className="text-xs text-gray-600 mt-0.5 flex items-center gap-2 flex-wrap">
+                  <span>
+                    Bag Total:{" "}
+                    <strong className="text-gray-900 font-bold">
+                      ₹{cartTotal.toFixed(2)}
+                    </strong>
+                  </span>
+                  <span className="text-gray-300">•</span>
+                  <span className="text-emerald-700 font-medium">
+                    ✓ You can adjust quantities and remove items right on each card below
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 w-full md:w-auto justify-end flex-wrap">
+              <button
+                onClick={() =>
+                  handleCategoryChange(selectedCategory === "In Cart" ? "All" : "In Cart")
+                }
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
+                  selectedCategory === "In Cart"
+                    ? "bg-[#01722C] text-white shadow-xs"
+                    : "bg-white text-emerald-800 border border-emerald-300 hover:bg-emerald-50"
+                }`}
+              >
+                {selectedCategory === "In Cart"
+                  ? "Show All Products"
+                  : `Show Only In-Cart Items (${cartCount})`}
+              </button>
+              <button
+                onClick={() => setIsCartOpen(true)}
+                className="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 transition-all cursor-pointer whitespace-nowrap"
+              >
+                View Bag Drawer
+              </button>
+              <button
+                onClick={() => router.push("/checkout")}
+                className="px-4 py-1.5 rounded-xl text-xs font-bold bg-[#01722C] hover:bg-[#0b542c] text-white shadow-xs transition-all cursor-pointer whitespace-nowrap flex items-center gap-1"
+              >
+                <span>Checkout</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Product Cards Responsive Grid */}
         {paginatedProducts.length > 0 ? (
@@ -388,8 +506,8 @@ function ProductsCatalogContent() {
                 <div
                   key={product.id}
                   className={`group bg-white rounded-2xl border transition-all duration-300 flex flex-col justify-between overflow-hidden ${
-                    inCartItem
-                      ? "border-[#01722C] ring-2 ring-[#01722C]/30 shadow-md bg-[#fbfdfc]"
+                    inCartItem || totalProductQty > 0
+                      ? "border-emerald-600 ring-2 ring-emerald-500/30 shadow-md bg-[#fbfdfc]"
                       : "border-[#e4ebe6] hover:border-[#01722C] hover:shadow-xl"
                   }`}
                 >
@@ -405,7 +523,7 @@ function ProductsCatalogContent() {
                             <Check className="w-3 h-3 stroke-[3]" /> In Cart ({inCartItem.quantity})
                           </span>
                         ) : totalProductQty > 0 ? (
-                          <span className="bg-[#edf7f1] text-[#01722C] border border-[#01722C]/40 text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1">
+                          <span className="bg-emerald-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1">
                             ✓ {totalProductQty} in Cart
                           </span>
                         ) : null}
@@ -655,14 +773,15 @@ function ProductsCatalogContent() {
                                   handleOptionSelect(product.id, targetOpt);
                                 }
                               }}
-                              className="w-full flex items-center justify-between bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg px-2 py-1 text-[11px] text-emerald-800 transition-colors cursor-pointer"
+                              className="w-full flex items-center justify-between bg-emerald-100/90 hover:bg-emerald-200 border-2 border-emerald-400 rounded-lg px-2 py-1.5 text-xs text-emerald-900 font-bold transition-colors cursor-pointer shadow-2xs"
                               title="Switch to variant already in cart"
                             >
-                              <span className="truncate">
-                                ✓ {allVariantsInCart[0].weight} ({allVariantsInCart[0].quantity} in cart)
+                              <span className="truncate flex items-center gap-1">
+                                <Check className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                                {allVariantsInCart[0].weight} ({allVariantsInCart[0].quantity} in cart)
                               </span>
-                              <span className="font-bold underline text-[#01722C] shrink-0 ml-1">
-                                Switch
+                              <span className="underline text-[#01722C] shrink-0 ml-1">
+                                Switch & Edit
                               </span>
                             </button>
                           )}

@@ -76,6 +76,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Sync cart from database on mount or whenever user logs in / out
   useEffect(() => {
     let isMounted = true;
+    const normalizeWeightKey = (w?: string) =>
+      (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
+
+    const getCartKey = (item: CartItem) => {
+      const pid = (item.productId || item.name || item.id).trim().toLowerCase();
+      return `${pid}-${normalizeWeightKey(item.weight)}`;
+    };
+
     api.cart
       .getCart()
       .then((res) => {
@@ -93,18 +101,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
               isCartLoadedFromDb.current = true;
               return prev;
             }
-            // Case 3: Merge both by line id
+            // Case 3: Merge both by product and normalized weight
             const map = new Map<string, CartItem>();
-            res.items.forEach((item) => map.set(item.id, item));
+            res.items.forEach((item) => map.set(getCartKey(item), item));
             prev.forEach((item) => {
-              if (map.has(item.id)) {
-                const existing = map.get(item.id)!;
-                map.set(item.id, {
+              const k = getCartKey(item);
+              if (map.has(k)) {
+                const existing = map.get(k)!;
+                map.set(k, {
                   ...item,
+                  id: existing.id || item.id,
                   quantity: Math.max(item.quantity, existing.quantity),
                 });
               } else {
-                map.set(item.id, item);
+                map.set(k, item);
               }
             });
             const merged = Array.from(map.values());
@@ -216,13 +226,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       discount: product.defaultDiscount,
     };
 
-    const cartLineId = `${product.id}-${selectedOption.label}`;
+    const normWeight = (selectedOption.label || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
+    const cartLineId = `${product.id}-${normWeight}`;
 
     setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === cartLineId);
+      const existing = prev.find(
+        (item) =>
+          item.id === cartLineId ||
+          (item.productId === product.id &&
+            (item.weight || "").trim().toLowerCase().replace(/[\s_-]+/g, "") === normWeight) ||
+          (item.name.trim().toLowerCase() === product.name.trim().toLowerCase() &&
+            (item.weight || "").trim().toLowerCase().replace(/[\s_-]+/g, "") === normWeight)
+      );
       if (existing) {
         return prev.map((item) =>
-          item.id === cartLineId
+          item.id === existing.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );

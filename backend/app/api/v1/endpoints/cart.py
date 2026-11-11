@@ -41,16 +41,20 @@ async def get_cart(
             guest_res = await db.execute(guest_stmt)
             guest_items = guest_res.scalars().all()
             for g_item in guest_items:
-                # Check if item with same product_id and weight_label already in user cart
+                clean_guest_w = (g_item.weight_label or "").strip().lower().replace(" ", "")
+                # Check if item with same product_id and normalized weight already in user cart
                 existing_stmt = select(CartItem).where(
                     CartItem.user_id == current_user.id,
                     CartItem.product_id == g_item.product_id,
-                    CartItem.weight_label == g_item.weight_label,
                 )
                 existing_res = await db.execute(existing_stmt)
-                existing_user_item = existing_res.scalar_one_or_none()
-                if existing_user_item:
-                    existing_user_item.quantity += g_item.quantity
+                user_items = existing_res.scalars().all()
+                existing_match = next(
+                    (u for u in user_items if (u.weight_label or "").strip().lower().replace(" ", "") == clean_guest_w),
+                    None
+                )
+                if existing_match:
+                    existing_match.quantity += g_item.quantity
                     await db.delete(g_item)
                 else:
                     g_item.user_id = current_user.id
@@ -154,8 +158,19 @@ async def sync_cart(
     else:
         await db.execute(delete(CartItem).where(CartItem.guest_session_token == x_session_token))
 
-    # Insert items
+    # Deduplicate payload items by (productId, normalized_weight)
+    deduped_items = {}
     for item in payload.items:
+        if item.quantity <= 0:
+            continue
+        key = (item.productId.strip().lower(), item.weight.strip().lower().replace(" ", ""))
+        if key in deduped_items:
+            deduped_items[key].quantity += item.quantity
+        else:
+            deduped_items[key] = item
+
+    # Insert items
+    for item in deduped_items.values():
         if item.quantity <= 0:
             continue
 
