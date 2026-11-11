@@ -72,57 +72,37 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const isCartLoadedFromDb = useRef(false);
   const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastSyncedCartJsonRef = useRef<string>("");
+  const isWishlistLoadedFromDb = useRef(false);
+  const syncWishlistTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastSyncedWishlistJsonRef = useRef<string>("");
 
-  // Sync cart from database on mount or whenever user logs in / out
+  // 1. Fetch Cart from Database on mount or whenever user identity changes
   useEffect(() => {
     let isMounted = true;
-    const normalizeWeightKey = (w?: string) =>
-      (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
-
-    const getCartKey = (item: CartItem) => {
-      const pid = (item.productId || item.name || item.id).trim().toLowerCase();
-      return `${pid}-${normalizeWeightKey(item.weight)}`;
-    };
 
     api.cart
       .getCart()
       .then((res) => {
         if (!isMounted) return;
-        if (res?.items && Array.isArray(res.items)) {
-          setCartItems((prev) => {
-            // Case 1: Backend has items and prev is empty (e.g. new device/browser after login)
-            if (res.items.length > 0 && prev.length === 0) {
-              isCartLoadedFromDb.current = true;
-              return res.items;
-            }
-            // Case 2: Backend is empty but local has items -> sync local items to DB
-            if (res.items.length === 0 && prev.length > 0) {
-              api.cart.syncCart(prev).catch(() => {});
-              isCartLoadedFromDb.current = true;
-              return prev;
-            }
-            // Case 3: Merge both by product and normalized weight
-            const map = new Map<string, CartItem>();
-            res.items.forEach((item) => map.set(getCartKey(item), item));
-            prev.forEach((item) => {
-              const k = getCartKey(item);
-              if (map.has(k)) {
-                const existing = map.get(k)!;
-                map.set(k, {
-                  ...item,
-                  id: existing.id || item.id,
-                  quantity: Math.max(item.quantity, existing.quantity),
-                });
-              } else {
-                map.set(k, item);
-              }
-            });
-            const merged = Array.from(map.values());
-            api.cart.syncCart(merged).catch(() => {});
+        const dbItems = Array.isArray(res?.items) ? res.items : [];
+        setCartItems((prev) => {
+          // If backend has items, backend is the single source of truth
+          if (dbItems.length > 0) {
             isCartLoadedFromDb.current = true;
-            return merged;
-          });
-        }
+            lastSyncedCartJsonRef.current = JSON.stringify(dbItems);
+            return dbItems;
+          }
+          // If backend has no items but user had items in localStorage (guest), keep local items
+          if (dbItems.length === 0 && prev.length > 0) {
+            isCartLoadedFromDb.current = true;
+            return prev;
+          }
+          // Both empty
+          isCartLoadedFromDb.current = true;
+          lastSyncedCartJsonRef.current = JSON.stringify([]);
+          return [];
+        });
       })
       .catch(() => {
         isCartLoadedFromDb.current = true;
@@ -133,7 +113,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     };
   }, [isAuthenticated, user?.id]);
 
-  // Synchronize cart changes to local storage & database
+  // 2. Synchronize cart changes to local storage & database (debounced, only on actual change)
   useEffect(() => {
     try {
       localStorage.setItem("onaar_cart", JSON.stringify(cartItems));
@@ -143,12 +123,19 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     if (!isCartLoadedFromDb.current) return;
 
+    const currentJson = JSON.stringify(cartItems);
+    // If the cart items haven't changed from what was loaded/synced, skip network call!
+    if (currentJson === lastSyncedCartJsonRef.current) {
+      return;
+    }
+
     if (syncTimeoutRef.current) {
       clearTimeout(syncTimeoutRef.current);
     }
     syncTimeoutRef.current = setTimeout(() => {
+      lastSyncedCartJsonRef.current = currentJson;
       api.cart.syncCart(cartItems).catch(() => {});
-    }, 400);
+    }, 600);
 
     return () => {
       if (syncTimeoutRef.current) {
@@ -157,32 +144,59 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     };
   }, [cartItems]);
 
+  // 3. Wishlist localStorage persistence & debounced DB sync
   useEffect(() => {
     try {
       localStorage.setItem("onaar_wishlist", JSON.stringify(wishlist));
     } catch {
       // ignore
     }
+
+    if (!isWishlistLoadedFromDb.current) return;
+    const currentJson = JSON.stringify(wishlist);
+    if (currentJson === lastSyncedWishlistJsonRef.current) return;
+
+    if (syncWishlistTimeoutRef.current) {
+      clearTimeout(syncWishlistTimeoutRef.current);
+    }
+    syncWishlistTimeoutRef.current = setTimeout(() => {
+      lastSyncedWishlistJsonRef.current = currentJson;
+      api.wishlist.syncWishlist(wishlist).catch(() => {});
+    }, 600);
+
+    return () => {
+      if (syncWishlistTimeoutRef.current) {
+        clearTimeout(syncWishlistTimeoutRef.current);
+      }
+    };
   }, [wishlist]);
 
-  // Sync wishlist from PostgreSQL database on mount / device load
+  // 4. Fetch Wishlist from Database on mount or user login
   useEffect(() => {
+    let isMounted = true;
     api.wishlist
       .getWishlist()
       .then((res) => {
+        if (!isMounted) return;
         if (res?.product_ids && Array.isArray(res.product_ids)) {
           setWishlist((prev) => {
-            const merged = Array.from(new Set([...prev, ...res.product_ids]));
-            const missingInDb = prev.filter((id) => !res.product_ids.includes(id));
-            if (missingInDb.length > 0) {
-              api.wishlist.syncWishlist(merged).catch(() => {});
-            }
+            const merged = Array.from(new Set([...res.product_ids, ...prev]));
+            isWishlistLoadedFromDb.current = true;
+            lastSyncedWishlistJsonRef.current = JSON.stringify(merged);
             return merged;
           });
+        } else {
+          isWishlistLoadedFromDb.current = true;
         }
       })
-      .catch(() => {});
-  }, []);
+      .catch(() => {
+        isWishlistLoadedFromDb.current = true;
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isAuthenticated, user?.id]);
 
   const showToast = (message: string, type?: ToastType) => {
     let resolvedType: ToastType = type || "success";
@@ -283,6 +297,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setCartItems([]);
+    lastSyncedCartJsonRef.current = "[]";
     try {
       localStorage.removeItem("onaar_cart");
     } catch {

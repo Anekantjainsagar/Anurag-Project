@@ -78,6 +78,10 @@ async function request<T>(endpoint: string, options: RequestOptions = {}): Promi
   });
 
   if (!response.ok) {
+    if (response.status === 401 && !endpoint.includes("/auth/otp")) {
+      setAuthToken(null);
+      setCachedUser(null);
+    }
     let errorDetail = `Request failed with status ${response.status}`;
     try {
       const errJson = await response.json();
