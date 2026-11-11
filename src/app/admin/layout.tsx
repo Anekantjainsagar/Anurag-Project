@@ -20,6 +20,7 @@ import {
   Menu,
   ExternalLink,
   LogOut,
+  LogIn,
   RefreshCw,
 } from "lucide-react";
 import { api } from "@/services/apiClient";
@@ -78,16 +79,11 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, isAuthenticated, isLoading: isAuthLoading, logout, sendOtp, verifyOtp } = useAuth();
-  const { showToast } = useCart();
+  const { user, isAuthenticated, isLoading: isAuthLoading, logout } = useAuth();
+  const { showToast, setIsLoginModalOpen } = useCart();
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [stats, setStats] = useState<any>(null);
-  const [adminIdentifier, setAdminIdentifier] = useState("7692045606");
-  const [adminOtp, setAdminOtp] = useState("1234");
-  const [otpSent, setOtpSent] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [loginError, setLoginError] = useState<string | null>(null);
 
   const isAdmin = Boolean(user && (user.role === "admin" || user.role === "vendor"));
 
@@ -98,48 +94,25 @@ export default function AdminLayout({
     }
   }, [pathname]);
 
-  const handleSendOtp = async () => {
-    if (!adminIdentifier.trim()) {
-      setLoginError("Please enter your admin phone number or email");
-      return;
-    }
-    setIsSubmitting(true);
-    setLoginError(null);
-    try {
-      const res = await sendOtp(adminIdentifier.trim());
-      setOtpSent(true);
-      if (res.dev_code) {
-        setAdminOtp(res.dev_code);
+  // If not authenticated as Admin, auto-trigger the standard storefront login modal
+  useEffect(() => {
+    if (!isAuthLoading && !isAdmin) {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("post_login_redirect", pathname || "/admin");
       }
-      showToast(res.message || "OTP sent successfully");
-    } catch (err: any) {
-      setLoginError(err?.message || "Failed to send OTP");
-    } finally {
-      setIsSubmitting(false);
+      setIsLoginModalOpen(true);
     }
-  };
+  }, [isAuthLoading, isAdmin, pathname, setIsLoginModalOpen]);
 
-  const handleAdminLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!adminIdentifier.trim() || !adminOtp.trim()) {
-      setLoginError("Please provide both identifier and OTP");
-      return;
+  // Fetch admin dashboard stats when admin is confirmed
+  useEffect(() => {
+    if (isAdmin) {
+      api.admin
+        .getDashboard()
+        .then((d) => setStats(d))
+        .catch(() => {});
     }
-    setIsSubmitting(true);
-    setLoginError(null);
-    try {
-      const ok = await verifyOtp(adminIdentifier.trim(), adminOtp.trim());
-      if (ok) {
-        showToast("Welcome to ONAAR Admin Portal");
-      } else {
-        setLoginError("Authentication failed. Ensure credentials belong to an administrator.");
-      }
-    } catch (err: any) {
-      setLoginError(err?.message || "Invalid credentials or unauthorized account.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  }, [isAdmin, pathname]);
 
   // Loading state
   if (isAuthLoading) {
@@ -153,97 +126,46 @@ export default function AdminLayout({
     );
   }
 
-  // Not authenticated as Admin -> In-place Admin Gateway (never mounts children to prevent 401 loops)
+  // Not authenticated as Admin -> Clean prompt to use the standard storefront login modal
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-[#07130c] flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-[#0d1e15] border border-[#1b3d2b] rounded-3xl p-8 shadow-2xl text-white">
-          <div className="flex items-center gap-3.5 mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shrink-0">
-              <ShieldCheck className="w-7 h-7" />
-            </div>
-            <div>
-              <h2 className="text-xl font-bold font-serif text-white">ONAAR Admin Portal</h2>
-              <p className="text-xs text-emerald-400 font-medium">Administrator Access Required</p>
-            </div>
+      <div className="min-h-screen bg-[#08140e] flex items-center justify-center p-4 text-white">
+        <div className="w-full max-w-md bg-[#0f2418] border border-[#1b3d2b] rounded-3xl p-8 shadow-2xl text-center space-y-5">
+          <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mx-auto shadow-sm">
+            <ShieldCheck className="w-8 h-8" />
+          </div>
+          <div>
+            <h2 className="text-xl font-bold font-serif text-white">ONAAR Admin Portal</h2>
+            <p className="text-xs text-emerald-400 font-medium mt-1">Administrator Access Required</p>
           </div>
 
-          <p className="text-xs text-slate-300 leading-relaxed mb-6">
-            Please authenticate using your registered administrator phone or email to access live telemetry, orders, inventory, and crop settings.
+          <p className="text-xs text-slate-300 leading-relaxed">
+            {user
+              ? `You are signed in as ${user.full_name || user.phone || user.email} (${user.role}). This portal requires an administrator account.`
+              : "Please sign in using your registered administrator account."}
           </p>
 
-          {loginError && (
-            <div className="mb-5 p-3 rounded-xl bg-red-950/80 border border-red-800/80 text-red-200 text-xs">
-              {loginError}
-            </div>
-          )}
-
-          <form onSubmit={handleAdminLogin} className="space-y-4">
-            <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                Admin Phone or Email
-              </label>
-              <input
-                type="text"
-                value={adminIdentifier}
-                onChange={(e) => setAdminIdentifier(e.target.value)}
-                placeholder="7692045606 or meriwebdunia@gmail.com"
-                className="w-full bg-[#08130d] border border-[#1d3d2c] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
-                required
-              />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-semibold text-slate-300">
-                  Verification OTP Code
-                </label>
-                <button
-                  type="button"
-                  onClick={handleSendOtp}
-                  disabled={isSubmitting}
-                  className="text-[11px] text-emerald-400 hover:text-emerald-300 underline cursor-pointer"
-                >
-                  Send OTP
-                </button>
-              </div>
-              <input
-                type="text"
-                value={adminOtp}
-                onChange={(e) => setAdminOtp(e.target.value)}
-                placeholder="Enter 4 or 6-digit OTP (e.g. 1234)"
-                className="w-full bg-[#08130d] border border-[#1d3d2c] rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 tracking-widest font-mono transition-colors"
-                required
-              />
-              <span className="text-[10px] text-slate-400 mt-1 block">
-                Development master bypass code: <strong className="text-emerald-400">1234</strong>
-              </span>
-            </div>
-
+          <div className="pt-2 space-y-2.5">
             <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-900/30 flex items-center justify-center gap-2 cursor-pointer mt-2 disabled:opacity-50"
+              type="button"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  sessionStorage.setItem("post_login_redirect", pathname || "/admin");
+                }
+                setIsLoginModalOpen(true);
+              }}
+              className="w-full bg-[#01722C] hover:bg-[#0b542c] text-white font-bold py-3 px-4 rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer text-sm"
             >
-              {isSubmitting ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Verifying...</span>
-                </>
-              ) : (
-                <>
-                  <ShieldCheck className="w-4 h-4" />
-                  <span>Unlock Admin Portal</span>
-                </>
-              )}
+              <LogIn className="w-4 h-4" />
+              <span>{user ? "Switch to Admin Account" : "Sign In with ONAAR Account"}</span>
             </button>
-          </form>
 
-          <div className="mt-6 pt-5 border-t border-[#1b3d2b] flex items-center justify-between text-xs">
-            <Link href="/" className="text-slate-400 hover:text-white transition-colors">
+            <Link
+              href="/"
+              className="block w-full text-center py-2 text-xs text-slate-400 hover:text-white transition-colors"
+            >
               ← Return to Storefront
             </Link>
-            <span className="text-slate-500 text-[11px]">Secure Supabase Cloud Gateway</span>
           </div>
         </div>
       </div>
