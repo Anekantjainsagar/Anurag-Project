@@ -982,9 +982,9 @@ export default function CheckoutPage() {
 
                   {/* Itemized Order List with Live Quantity Controls */}
                   <div className="space-y-3 max-h-80 overflow-y-auto pr-1 divide-y divide-gray-100">
-                    {cartItems.map((item) => (
+                    {cartItems.map((item, idx) => (
                       <div
-                        key={item.id}
+                        key={`${item.id}-${idx}`}
                         className="pt-2.5 first:pt-0 flex items-center justify-between gap-3 text-xs"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">

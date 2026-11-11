@@ -282,12 +282,15 @@ function ProfileContent() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#01722C] text-white flex items-center justify-center font-serif text-2xl font-bold shadow-md">
+              <div
+                suppressHydrationWarning
+                className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#01722C] text-white flex items-center justify-center font-serif text-2xl font-bold shadow-md"
+              >
                 {user?.full_name ? user.full_name.charAt(0).toUpperCase() : "O"}
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="font-serif text-xl sm:text-2xl font-bold text-gray-900">
+                  <h1 suppressHydrationWarning className="font-serif text-xl sm:text-2xl font-bold text-gray-900">
                     {user?.full_name || "Valued Customer"}
                   </h1>
                   {user?.role === "admin" && (
@@ -296,7 +299,7 @@ function ProfileContent() {
                     </span>
                   )}
                 </div>
-                <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-2 mt-0.5">
+                <p suppressHydrationWarning className="text-xs sm:text-sm text-gray-600 flex items-center gap-2 mt-0.5">
                   <span>{user?.phone || user?.email}</span>
                   <span>•</span>
                   <span className="text-[#01722C] font-medium flex items-center gap-1">

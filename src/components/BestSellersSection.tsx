@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ALL_PRODUCTS, CATEGORIES } from "@/data/mockData";
@@ -33,6 +33,11 @@ export default function BestSellersSection({
   // Selected weight options for each product (starts empty so in-cart variants auto-select)
   const [selectedOptions, setSelectedOptions] = useState<Record<string, ProductWeightOption>>({});
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const normalizeWeight = (w?: string) =>
     (w || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
@@ -170,11 +175,11 @@ export default function BestSellersSection({
                       <span className="bg-[#01722C] text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs">
                         {product.tag || "Organic"}
                       </span>
-                      {inCartItem ? (
+                      {isMounted && inCartItem ? (
                         <span className="bg-emerald-700 text-white text-[10px] font-black px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1 animate-fade-in">
                           <Check className="w-3 h-3 stroke-[3]" /> In Cart ({inCartItem.quantity})
                         </span>
-                      ) : totalProductQty > 0 ? (
+                      ) : isMounted && totalProductQty > 0 ? (
                         <span className="bg-[#edf7f1] text-[#01722C] border border-[#01722C]/40 text-[10px] font-bold px-2 py-0.5 rounded-full tracking-wider shadow-xs flex items-center gap-1">
                           ✓ {totalProductQty} in Cart
                         </span>

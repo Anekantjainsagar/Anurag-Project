@@ -86,7 +86,7 @@ async def get_cart(
     result = await db.execute(stmt)
     cart_items = result.scalars().all()
 
-    formatted_items: List[FrontendCartItem] = []
+    consolidated_items: dict[str, FrontendCartItem] = {}
     subtotal = 0.0
 
     for ci in cart_items:
@@ -112,8 +112,10 @@ async def get_cart(
         line_total = price * ci.quantity
         subtotal += line_total
 
-        formatted_items.append(
-            FrontendCartItem(
+        if line_id in consolidated_items:
+            consolidated_items[line_id].quantity += ci.quantity
+        else:
+            consolidated_items[line_id] = FrontendCartItem(
                 id=line_id,
                 productId=p.id,
                 name=p.name,
@@ -124,7 +126,8 @@ async def get_cart(
                 image=primary_img,
                 quantity=ci.quantity,
             )
-        )
+
+    formatted_items = list(consolidated_items.values())
 
     return CartStateResponse(
         items=formatted_items,

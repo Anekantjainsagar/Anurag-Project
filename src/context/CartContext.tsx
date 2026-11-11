@@ -35,6 +35,20 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+function dedupeCartItems(items: CartItem[]): CartItem[] {
+  const map = new Map<string, CartItem>();
+  for (const item of items) {
+    if (!item || !item.id) continue;
+    const key = item.id.trim().toLowerCase();
+    if (map.has(key)) {
+      map.get(key)!.quantity += item.quantity;
+    } else {
+      map.set(key, { ...item });
+    }
+  }
+  return Array.from(map.values());
+}
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   let authContext: any = null;
   try {
@@ -49,7 +63,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (typeof window === "undefined") return [];
     try {
       const saved = localStorage.getItem("onaar_cart") || localStorage.getItem("yourbrand_cart");
-      return saved ? JSON.parse(saved) : [];
+      return saved ? dedupeCartItems(JSON.parse(saved)) : [];
     } catch {
       return [];
     }
@@ -85,7 +99,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       .getCart()
       .then((res) => {
         if (!isMounted) return;
-        const dbItems = Array.isArray(res?.items) ? res.items : [];
+        const rawDbItems = Array.isArray(res?.items) ? res.items : [];
+        const dbItems = dedupeCartItems(rawDbItems);
         setCartItems((prev) => {
           // If backend has items, backend is the single source of truth
           if (dbItems.length > 0) {
@@ -96,7 +111,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           // If backend has no items but user had items in localStorage (guest), keep local items
           if (dbItems.length === 0 && prev.length > 0) {
             isCartLoadedFromDb.current = true;
-            return prev;
+            return dedupeCartItems(prev);
           }
           // Both empty
           isCartLoadedFromDb.current = true;

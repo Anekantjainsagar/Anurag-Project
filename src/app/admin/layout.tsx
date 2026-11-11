@@ -168,6 +168,10 @@ export default function AdminLayout({
             </Link>
           </div>
         </div>
+        {/* Render child segments in a hidden container to satisfy Next.js instant navigation validation */}
+        <div className="hidden" aria-hidden="true" style={{ display: "none" }}>
+          {children}
+        </div>
       </div>
     );
   }

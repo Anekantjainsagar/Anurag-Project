@@ -151,9 +151,9 @@ export default function CartDrawer() {
               </button>
             </div>
           ) : (
-            cartItems.map((item) => (
+            cartItems.map((item, idx) => (
               <div
-                key={item.id}
+                key={`${item.id}-${idx}`}
                 className="flex items-center justify-between gap-3 p-3 bg-[#faf9f5] border border-[#ece4d6] rounded-xl hover:border-[#01722C] transition-colors"
               >
                 <img
